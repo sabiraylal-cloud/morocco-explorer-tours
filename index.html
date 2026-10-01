@@ -1,5 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>Morocco Explorer Tours</title></head>
-<body><h1>Morocco Explorer Tours</h1><p>Coming soon</p></body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morocco Explorer Tours</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      background: #fff;
+    }
+
+    header {
+      background: #6b3f20;
+      color: white;
+      padding: 18px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h2 {
+      color: #f4b942;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 22px;
+    }
+
+    .hero {
+      min-height: 75vh;
+      background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+      url('https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 30px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #d99a2b;
+      color: white;
+      padding: 14px 28px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .section {
+      padding: 60px 8%;
+      text-align: center;
+    }
+
+    .section h2 {
+      color: #6b3f20;
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .card {
+      width: 280px;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.12);
+    }
+
+    .card h3 {
+      color: #8b5528;
+      margin-bottom: 12px;
+    }
+
+    footer {
+      background: #3d2617;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h2>Morocco Explorer Tours</h2>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#tours">Tours</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Discover the Magic of Morocco</h1>
+    <p>Private tours, Sahara adventures and authentic Moroccan experiences.</p>
+    <a class="btn" href="#tours">Explore Our Tours</a>
+  </div>
+</section>
+
+<section class="section" id="tours">
+  <h2>Popular Morocco Tours</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Sahara Desert Tours</h3>
+      <p>Experience the dunes, camel trekking and unforgettable desert nights.</p>
+    </div>
+
+    <div class="card">
+      <h3>Imperial Cities</h3>
+      <p>Discover Marrakech, Fes, Rabat and Morocco's historic cities.</p>
+    </div>
+
+    <div class="card">
+      <h3>Grand Morocco Tours</h3>
+      <p>Explore Morocco from the mountains and Sahara to the Atlantic coast.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2>Explore Morocco With Us</h2>
+  <p>
+    Morocco Explorer Tours creates private and personalized journeys
+    across Morocco with experienced local drivers and guides.
+  </p>
+</section>
+
+<section class="section" id="contact">
+  <h2>Plan Your Morocco Trip</h2>
+  <p>Contact us and let us create your perfect Morocco experience.</p>
+</section>
+
+<footer>
+  © 2026 Morocco Explorer Tours. All rights reserved.
+</footer>
+
+</body>
 </html>
