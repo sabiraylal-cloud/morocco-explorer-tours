@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://moroccoexplorertours.com/sitemap.xml

@@ -1,0 +1,43 @@
+[
+  {
+    "slug": "5-day-casablanca-marrakech", "name": "Cities, blue lanes & Sahara", "title": "5-Day Casablanca to Marrakech Tour", "days": 5, "nights": 4, "start": "Casablanca", "end": "Marrakech", "category": "Cities & desert", "image": "casablanca",
+    "description": "A compact cross-country journey through Chefchaouen and Fes, with a night near the dunes of Merzouga.",
+    "route": ["Casablanca", "Chefchaouen", "Fes", "Merzouga", "Ouarzazate", "Marrakech"],
+    "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "marrakech"],
+    "pace": "Fast-paced, with several long driving days. Add nights in Fes and Marrakech for more time to explore; arrival in Casablanca the day before is recommended.",
+    "itinerary": [
+      ["Atlantic arrival, blue-city evening", "Leave Casablanca early and travel north to Chefchaouen. Settle in for an evening walk through the blue medina. This is primarily a travel day; arrival flight times may require an extra night."],
+      ["From the Rif to the medina", "Enjoy a little more time in Chefchaouen before continuing to Fes. Explore nearby lanes after check-in; a full guided city visit requires an additional night."],
+      ["Across the Middle Atlas to the dunes", "Travel south through the Middle Atlas and Ziz Valley toward Merzouga. Plan for a full day on the road, with the desert arrival and any sunset activity dependent on timing."],
+      ["Valleys, gorges and southern kasbahs", "Leave the desert and continue toward the Todra area and Ouarzazate. Pause for scenery where the day's distance allows, then settle into your overnight stop."],
+      ["An earthen village and an Atlas crossing", "Visit Ait Ben Haddou before crossing the High Atlas to Marrakech. Finish at your accommodation; avoid a same-day early departure flight."]
+    ]
+  },
+  {
+    "slug": "2-day-mhamid-desert", "name": "A night at the desert's edge", "title": "2-Day Mhamid Desert Tour from Marrakech", "days": 2, "nights": 1, "start": "Marrakech", "end": "Marrakech", "category": "Sahara escapes", "image": "sahara",
+    "description": "A short southern escape across the Atlas and through the Draa Valley to the desert around Mhamid.",
+    "route": ["Marrakech", "High Atlas", "Draa Valley", "Mhamid", "Marrakech"],
+    "destinations": ["marrakech", "atlas-mountains", "mhamid"],
+    "pace": "Very long driving days and an early start in both directions. This short route is for the Mhamid area, not the distant Erg Chegaga dunes. Choose extra days for a more relaxed desert visit.",
+    "itinerary": [
+      ["Over the Atlas, into the Draa Valley", "Depart Marrakech early, cross the High Atlas and continue south through Ouarzazate and the Draa Valley. Reach the Mhamid area for your agreed desert overnight. Stops and activities depend on travel time."],
+      ["Desert morning, mountain homecoming", "Enjoy the desert morning before beginning the long return to Marrakech. Break the journey along the way and arrive in the evening. Do not plan a departure flight that evening."]
+    ]
+  },
+  {
+    "slug": "7-day-grand-morocco", "name": "The Morocco discovery circuit", "title": "7-Day Grand Morocco Journey", "days": 7, "nights": 6, "start": "Casablanca", "end": "Casablanca", "category": "Grand journeys", "image": "kasbah",
+    "description": "Connect northern medinas, Sahara landscapes and Marrakech on a varied circuit, returning to Casablanca.",
+    "route": ["Casablanca", "Chefchaouen", "Fes", "Merzouga", "Ouarzazate", "Marrakech", "Casablanca"],
+    "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "atlas-mountains", "marrakech"],
+    "pace": "An active overview of Morocco with long transfers between regions. Add days if you prefer slower mornings, more city visits or an extended desert stay.",
+    "itinerary": [
+      ["The Atlantic gateway and the blue north", "Begin in Casablanca and head toward Chefchaouen. An early start gives you time to settle into the medina in the evening; late arrivals need a pre-tour night."],
+      ["Blue lanes and a change of rhythm", "Spend the morning exploring Chefchaouen before continuing to Fes for the night."],
+      ["A day inside Fes", "Allow a full day for Fes: its medina lanes, craft workshops and historic architecture. A local guide can be included in your personalised quote."],
+      ["Mountain scenery and a desert night", "Travel through the Middle Atlas and Ziz Valley toward Merzouga. Confirm your camp and desert activities during planning; arrival time determines the evening schedule."],
+      ["Through the southern valleys", "Continue west from the Sahara toward Ouarzazate, with stops around the Todra area as time allows. The landscape changes from open desert to valleys and earthen villages."],
+      ["Kasbah paths and the High Atlas", "Explore Ait Ben Haddou, then cross the High Atlas to Marrakech for your final overnight."],
+      ["Marrakech moments and your onward journey", "Arrange time in Marrakech around your transfer to Casablanca. Share your flight time before booking so the final day's schedule includes a comfortable transfer buffer."]
+    ]
+  }
+]

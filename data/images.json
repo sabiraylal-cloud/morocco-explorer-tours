@@ -1,0 +1,52 @@
+{
+  "sahara": {
+    "source": "images/camel-caravan-going-through-the-desert-2026-01-11-08-48-58-utc.jpeg",
+    "width": 1400,
+    "height": 933
+  },
+  "casablanca": {
+    "source": "images/cityscape-with-casablanca-grand-moche-mosque-in-mo-2026-01-09-10-45-12-utc.jpeg",
+    "width": 1200,
+    "height": 800
+  },
+  "fes": {
+    "source": "images/fes_bab_bou_jeloud.jpeg",
+    "width": 899,
+    "height": 1200
+  },
+  "chefchaouen": {
+    "source": "images/blue-stairs-of-chefchaouen-morocco-2026-01-09-15-03-59-utc.jpeg",
+    "width": 6000,
+    "height": 4000
+  },
+  "kasbah": {
+    "source": "images/the-old-kasbah-of-ait-ben-haddou-morocco-2026-01-09-13-57-12-utc.jpeg",
+    "width": 1200,
+    "height": 800
+  },
+  "atlas": {
+    "source": "images/FB_IMG_1671279967225.jpg",
+    "width": 720,
+    "height": 960
+  },
+  "hospitality": {
+    "source": "images/FB_IMG_1712293099027.jpg",
+    "width": 2000,
+    "height": 1338
+  },
+  "marrakech": {
+    "source": "images/closeup-shot-of-a-woman-walking-near-the-buildings-2026-03-18-17-36-50-utc.jpeg",
+    "width": 1200,
+    "height": 800
+  },
+  "journey": {
+    "source": "images/woman-enjoying-view-on-stonewall-ouarzazate-sous-2026-01-09-09-34-32-utc.jpeg",
+    "width": 1200,
+    "height": 801
+  },
+  "guests": {
+    "source": "images/travel experience (104).jpeg",
+    "width": 950,
+    "height": 712
+  }
+}
