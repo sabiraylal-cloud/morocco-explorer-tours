@@ -1,0 +1,12 @@
+{
+  "name": "morocco-explorer-tours",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static Morocco Explorer Tours website; no production Node dependencies",
+  "scripts": {
+    "build": "python3 scripts/build.py",
+    "check": "python3 scripts/check_site.py",
+    "test:browser": "node scripts/test-browser.cjs"
+  },
+  "devDependencies": {"playwright": "1.62.1"}
+}

@@ -1,0 +1,42 @@
+name: Website checks
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  website:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Rebuild and validate the static website
+        run: |
+          python3 scripts/build.py
+          python3 scripts/check_site.py
+          git diff --exit-code
+          node --check assets/site.js
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Check pages, mobile layouts and interactions
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 > /tmp/site-server.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if curl --fail --silent http://127.0.0.1:8000/ > /dev/null; then break; fi
+            sleep 1
+          done
+          npm run test:browser
+      - name: Save screenshots for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-review-screenshots
+          path: artifacts/
+          if-no-files-found: ignore
