@@ -20,7 +20,7 @@ def img(key,alt,cls='',eager=False):
  srcset=', '.join(f'{link(f"assets/images/{key}-{w}.webp")} {min(w,images[key]["width"])}w' for w in widths)
  return f'<img class="{cls}" src="{link(f"assets/images/{key}-960.webp")}" srcset="{srcset}" sizes="{sizes}" width="{images[key]["width"]}" height="{images[key]["height"]}" alt="{esc(alt,quote=True)}" {"fetchpriority=high" if eager else "loading=lazy"} decoding="async">'
 def brand():
- return '<span class="brand-mark" aria-hidden="true">✳</span><span>MOROCCO EXPLORER<small>TOURS &amp; PRIVATE JOURNEYS</small></span>'
+ return f'<img class="brand-logo" src="{link("assets/logo.png")}" width="1254" height="1254" alt="Morocco Explorer Tours" decoding="async">'
 def header():
  nav=''.join(a(p,t,'active' if current==p else '') for p,t in [('tours/index.html','Our tours'),('destinations/index.html','Destinations'),('about.html','Our story')])
  return f'''<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="container header-inner">{a('index.html',brand(),'brand')}<button class="menu-toggle" aria-expanded="false" aria-controls="navigation" hidden>Menu <span aria-hidden="true">☰</span></button><nav id="navigation" aria-label="Main navigation">{nav}{a('plan-your-trip.html','Plan your trip <span aria-hidden="true">↗</span>','button small')}</nav></div></header>'''

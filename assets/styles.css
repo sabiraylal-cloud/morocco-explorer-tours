@@ -1477,3 +1477,18 @@ pre {
   .whatsapp-float { right:14px; bottom:14px; width:50px; height:50px; }
   .whatsapp-float svg { width:25px; height:25px; }
 }
+
+/* Official transparent Morocco Explorer Tours logo. */
+.brand-logo {
+  display:block;
+  width:96px;
+  height:96px;
+  object-fit:contain;
+  flex-shrink:0;
+}
+.header-inner { min-height:112px; }
+.footer-grid .brand-logo { width:150px; height:150px; }
+@media (max-width:560px) {
+  .header-inner { min-height:90px; gap:16px; }
+  .brand-logo { width:76px; height:76px; }
+}
