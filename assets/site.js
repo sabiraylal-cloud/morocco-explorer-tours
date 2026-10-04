@@ -121,3 +121,58 @@ if (form) {
     status.textContent = 'Your download is ready. This brief has not been sent.';
   });
 }
+
+
+/* Official Morocco Explorer Tours contact UI */
+(() => {
+  const official = {
+    email: 'moroccoexploredtours@gmail.com',
+    phoneDisplay: '+212 704 321 335',
+    phoneTel: '+212704321335',
+    whatsapp: 'https://wa.me/212704321335',
+    facebook: 'https://www.facebook.com/share/1FFJ8rrrof/',
+    instagram: 'https://www.instagram.com/moroccoexplorertours2026?stkn=MWNwOWpqbjNjdzNscg==',
+    youtube: 'https://www.youtube.com/@MoroccoExplorerTours'
+  };
+
+  const socialIcons = `
+    <div class="site-footer__social" aria-label="Official social media channels">
+      <a href="${official.facebook}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.5 22v-8h2.7l.4-3h-3.1V7.6c0-.9.3-1.5 1.7-1.5H16V3.1c-.3-.1-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.4V11H7v3h2.3v8h4.2Z"/></svg>
+      </a>
+      <a href="${official.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.5-3.3a1.2 1.2 0 1 1-1.2-1.2 1.2 1.2 0 0 1 1.2 1.2Z"/></svg>
+      </a>
+      <a href="${official.youtube}" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22.5 7.2a3 3 0 0 0-2.1-2.1C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.4.4A3 3 0 0 0 1.5 7.2 31 31 0 0 0 1 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.7.4 8.4.4 8.4.4s6.7 0 8.4-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23 12a31 31 0 0 0-.5-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
+      </a>
+    </div>`;
+
+  const footer = document.querySelector('footer');
+  if (footer && !footer.querySelector('.site-footer__contact-panel')) {
+    const panel = document.createElement('div');
+    panel.className = 'container site-footer__contact-panel';
+    panel.innerHTML = `
+      <div class="site-footer__contacts">
+        <a href="mailto:${official.email}">${official.email}</a>
+        <a href="tel:${official.phoneTel}">${official.phoneDisplay}</a>
+        <a href="${official.whatsapp}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="${location.pathname.includes('/tours/') || location.pathname.includes('/destinations/') ? '../' : ''}contact.html">Contact</a>
+      </div>
+      ${socialIcons}`;
+    const bottom = footer.querySelector('.footer-bottom');
+    if (bottom) footer.insertBefore(panel, bottom);
+    else footer.append(panel);
+  }
+
+  if (!document.querySelector('.whatsapp-float')) {
+    const button = document.createElement('a');
+    button.className = 'whatsapp-float';
+    button.href = official.whatsapp;
+    button.target = '_blank';
+    button.rel = 'noopener noreferrer';
+    button.setAttribute('aria-label', 'Chat with Morocco Explorer Tours on WhatsApp');
+    button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a9.9 9.9 0 0 0-8.5 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8 8 0 1 1 12 20Zm4.5-6c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.6l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.1 0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.5 3.9 1.7.7 2.4.8 3.3.7 1-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.2-.3-.3-.7-.4Z"/></svg>';
+    document.body.append(button);
+  }
+})();

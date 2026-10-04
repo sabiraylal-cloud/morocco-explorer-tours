@@ -1403,3 +1403,77 @@ pre {
     animation:none!important;
   }
 }
+
+
+/* Official contact, social links and floating WhatsApp */
+.site-footer__contact-panel {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-top: 1px solid rgba(255,255,255,.16);
+}
+.site-footer__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem 1.1rem;
+  align-items: center;
+  font-size: .95rem;
+  line-height: 1.6;
+}
+.site-footer__contacts a,
+.site-footer__social a { color: inherit; }
+.site-footer__contacts a { text-decoration: underline; text-underline-offset: 3px; }
+.site-footer__social {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-top: .9rem;
+}
+.site-footer__social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  opacity: .9;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.site-footer__social a:hover,
+.site-footer__social a:focus-visible { transform: translateY(-2px); opacity: 1; }
+.site-footer__social svg { width: 18px; height: 18px; fill: currentColor; }
+.whatsapp-float {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.24);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.28); }
+.whatsapp-float svg { width: 29px; height: 29px; fill: currentColor; }
+.contact-page__main { padding: 4rem 0 5rem; }
+.contact-page__hero { margin-bottom: 2rem; }
+.contact-page__grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.5rem; }
+.contact-card {
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(16,17,18,.09);
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+.contact-card h2 { margin-top: 0; }
+.contact-card a { color: inherit; text-decoration: underline; text-underline-offset: 3px; word-break: break-word; }
+@media (max-width:800px) { .contact-page__grid { grid-template-columns:1fr; } }
+@media (max-width:480px) {
+  .whatsapp-float { right:14px; bottom:14px; width:50px; height:50px; }
+  .whatsapp-float svg { width:25px; height:25px; }
+}
