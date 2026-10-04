@@ -1,39 +1,145 @@
-/* Existing styles.css content preserved above this line */
-
-/* ===== Floating WhatsApp button and social/contact styles ===== */
+/* Floating WhatsApp button and footer/contact social styles */
 .whatsapp-float {
   position: fixed;
   right: 18px;
   bottom: 18px;
   z-index: 9999;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #25D366; /* WhatsApp green */
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform .18s ease, opacity .18s ease;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
-.whatsapp-float:hover { transform: translateY(-3px); }
-.whatsapp-float__icon { width: 28px; height: 28px; display:block; fill: #fff; }
 
-/* Reduce footprint on small screens */
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-float svg {
+  width: 28px;
+  height: 28px;
+  fill: #fff;
+}
+
+.site-footer__contact-panel {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(16, 17, 18, 0.1);
+}
+
+.site-footer__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  align-items: center;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.site-footer__contacts a,
+.site-footer__social a {
+  color: inherit;
+}
+
+.site-footer__contacts a {
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+.site-footer__social {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 0.9rem;
+}
+
+.site-footer__social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 17, 18, 0.14);
+  background: rgba(16, 17, 18, 0.02);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.site-footer__social a:hover,
+.site-footer__social a:focus-visible {
+  background: rgba(16, 17, 18, 0.06);
+  transform: translateY(-1px);
+}
+
+.site-footer__social svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.contact-page__main {
+  padding: 4rem 0 5rem;
+}
+
+.contact-page__hero {
+  margin-bottom: 2rem;
+}
+
+.contact-page__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(16, 17, 18, 0.08);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 12px 30px rgba(16, 17, 18, 0.04);
+}
+
+.contact-card h2 {
+  margin: 0 0 0.8rem;
+  font-size: 1.1rem;
+}
+
+.contact-card p,
+.contact-card a {
+  color: inherit;
+}
+
+.contact-card a {
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+.contact-card .site-footer__social {
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 800px) {
+  .contact-page__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 480px) {
-  .whatsapp-float { width: 48px; height: 48px; right: 14px; bottom: 14px; }
-  .whatsapp-float__icon { width: 22px; height: 22px; }
+  .whatsapp-float {
+    right: 14px;
+    bottom: 14px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .whatsapp-float svg {
+    width: 22px;
+    height: 22px;
+  }
 }
-
-/* Footer social icons */
-.site-footer__social { display:flex; gap:12px; align-items:center; margin-top:12px; }
-.site-footer__social a { display:inline-flex; width:36px; height:36px; align-items:center; justify-content:center; border-radius:6px; background:transparent; transition:background .15s ease; }
-.site-footer__social a svg { width:18px; height:18px; fill:currentColor; color:#222; }
-.site-footer__social a:hover { background: rgba(0,0,0,0.04); }
-
-/* Footer contact lines */
-.site-footer__contacts { margin-top:8px; font-size:0.95rem; line-height:1.6; color: #333; }
-.site-footer__contacts a { color: inherit; text-decoration:underline; }
-
-/* Subtle social in contact page */
-.contact-social { margin-top:12px; display:flex; gap:10px; }
