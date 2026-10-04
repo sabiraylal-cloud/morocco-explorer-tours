@@ -43,7 +43,7 @@ The checks visit all 18 pages at 320, 390, 768, 1024 and 1440 pixels, test image
 
 - Approve the three **proposed** day-by-day itinerary expansions, accommodation arrangements and final inclusions. No fixed prices, guaranteed departures, ratings or availability have been invented.
 - Add verified contact details if enquiries should be sent directly.
-- Some supplied destination photos contain visible stock-preview marks. Use licensed clean originals when available; the repository originals remain preserved. Confirm publication permission for the existing guest photo.
+- Some supplied destination photos contain visible conversion-software watermarks. Use clean originals when available; the repository originals remain preserved. Confirm publication permission for the existing guest photo.
 - Configure the hosting provider to serve `404.html` for missing pages. Keep its HTTP response status at 404.
 - Review real booking/cancellation terms before adding payments or confirmed bookings.
 - Serve the public HTML pages, `assets/`, `robots.txt`, `sitemap.xml` and `404.html` from the domain root. Keep existing original photos in the repository. Do not replace an existing WordPress installation without a separate deployment decision.
