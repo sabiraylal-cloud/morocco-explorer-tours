@@ -1,43 +1,120 @@
 [
   {
-    "slug": "5-day-casablanca-marrakech", "name": "Cities, blue lanes & Sahara", "title": "5-Day Casablanca to Marrakech Tour", "days": 5, "nights": 4, "start": "Casablanca", "end": "Marrakech", "category": "Cities & desert", "image": "casablanca",
-    "description": "A compact cross-country journey through Chefchaouen and Fes, with a night near the dunes of Merzouga.",
-    "route": ["Casablanca", "Chefchaouen", "Fes", "Merzouga", "Ouarzazate", "Marrakech"],
-    "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "marrakech"],
-    "pace": "Fast-paced, with several long driving days. Add nights in Fes and Marrakech for more time to explore; arrival in Casablanca the day before is recommended.",
-    "itinerary": [
-      ["Atlantic arrival, blue-city evening", "Leave Casablanca early and travel north to Chefchaouen. Settle in for an evening walk through the blue medina. This is primarily a travel day; arrival flight times may require an extra night."],
+    "slug": "5-day-casablanca-marrakech", "name": "Cities, blue lanes & Sahara", "title": "5-Day Casablanca to Marrakech Tour", "days": 5, "nights": 4, "start": "Casablanca", "end": "Marrakech", "category": ["Northern Morocco", "Desert", "Imperial cities"], "description": "A compact cross-country journey through Chefchaouen and Fes, with a night near the dunes of Merzouga.", "route": ["Casablanca", "Chefchaouen", "Fes", "Merzouga", "Ouarzazate", "Marrakech"], "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "marrakech"], "pace": "Fast-paced, with several long driving days. Add nights in Fes and Marrakech for more time to explore; arrival in Casablanca the day before is recommended.", "itinerary": [
+      ["Atlantic arrival, blue-city evening", "Leave Casablanca early and travel north to Chefchaouen. Settle in for an evening walk through the blue medina. This is primarily a travel day; arrival in Casablanca the day before is recommended."],
       ["From the Rif to the medina", "Enjoy a little more time in Chefchaouen before continuing to Fes. Explore nearby lanes after check-in; a full guided city visit requires an additional night."],
-      ["Across the Middle Atlas to the dunes", "Travel south through the Middle Atlas and Ziz Valley toward Merzouga. Plan for a full day on the road, with the desert arrival and any sunset activity dependent on timing."],
-      ["Valleys, gorges and southern kasbahs", "Leave the desert and continue toward the Todra area and Ouarzazate. Pause for scenery where the day's distance allows, then settle into your overnight stop."],
+      ["Across the Middle Atlas to the dunes", "Travel south through the Middle Atlas and Ziz Valley toward Merzouga. Plan for a full day on the road, with the desert arrival and any sunset activities."],
+      ["Valleys, gorges and southern kasbahs", "Leave the desert and continue toward the Todra area and Ouarzazate. Pause for scenery where the day's distance allows, then settle into your overnight accommodation."],
       ["An earthen village and an Atlas crossing", "Visit Ait Ben Haddou before crossing the High Atlas to Marrakech. Finish at your accommodation; avoid a same-day early departure flight."]
     ]
   },
   {
-    "slug": "2-day-mhamid-desert", "name": "A night at the desert's edge", "title": "2-Day Mhamid Desert Tour from Marrakech", "days": 2, "nights": 1, "start": "Marrakech", "end": "Marrakech", "category": "Sahara escapes", "image": "sahara",
-    "description": "A short southern escape across the Atlas and through the Draa Valley to the desert around Mhamid.",
-    "route": ["Marrakech", "High Atlas", "Draa Valley", "Mhamid", "Marrakech"],
-    "destinations": ["marrakech", "atlas-mountains", "mhamid"],
-    "pace": "Very long driving days and an early start in both directions. This short route is for the Mhamid area, not the distant Erg Chegaga dunes. Choose extra days for a more relaxed desert visit.",
-    "itinerary": [
-      ["Over the Atlas, into the Draa Valley", "Depart Marrakech early, cross the High Atlas and continue south through Ouarzazate and the Draa Valley. Reach the Mhamid area for your agreed desert overnight. Stops and activities depend on travel time."],
-      ["Desert morning, mountain homecoming", "Enjoy the desert morning before beginning the long return to Marrakech. Break the journey along the way and arrive in the evening. Do not plan a departure flight that evening."]
+    "slug": "2-day-mhamid-desert", "name": "A night at the desert's edge", "title": "2-Day Mhamid Desert Tour from Marrakech", "days": 2, "nights": 1, "start": "Marrakech", "end": "Marrakech", "category": ["Desert"], "description": "A short southern escape across the Atlas and through the Draa Valley to the desert around Mhamid.", "route": ["Marrakech", "High Atlas", "Draa Valley", "Mhamid", "Marrakech"], "destinations": ["marrakech", "atlas-mountains", "mhamid"], "pace": "Very long driving days and an early start in both directions. This short route is for the Mhamid area, not the distant Erg Chegaga dunes. Choose extra days for a more relaxed desert version.", "itinerary": [
+      ["Over the Atlas, into the Draa Valley", "Depart Marrakech early, cross the High Atlas and continue south through Ouarzazate and the Draa Valley. Reach the Mhamid area for your agreed desert experience."],
+      ["Desert morning, mountain homecoming", "Enjoy the desert morning before beginning the long return to Marrakech. Break the journey along the way and arrive in the evening. Do not plan a departure flight on this day."]
     ]
   },
   {
-    "slug": "7-day-grand-morocco", "name": "The Morocco discovery circuit", "title": "7-Day Grand Morocco Journey", "days": 7, "nights": 6, "start": "Casablanca", "end": "Casablanca", "category": "Grand journeys", "image": "kasbah",
-    "description": "Connect northern medinas, Sahara landscapes and Marrakech on a varied circuit, returning to Casablanca.",
-    "route": ["Casablanca", "Chefchaouen", "Fes", "Merzouga", "Ouarzazate", "Marrakech", "Casablanca"],
-    "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "atlas-mountains", "marrakech"],
-    "pace": "An active overview of Morocco with long transfers between regions. Add days if you prefer slower mornings, more city visits or an extended desert stay.",
-    "itinerary": [
-      ["The Atlantic gateway and the blue north", "Begin in Casablanca and head toward Chefchaouen. An early start gives you time to settle into the medina in the evening; late arrivals need a pre-tour night."],
+    "slug": "7-day-grand-morocco", "name": "The Morocco discovery circuit", "title": "7-Day Grand Morocco Journey", "days": 7, "nights": 6, "start": "Casablanca", "end": "Casablanca", "category": ["Northern Morocco", "Desert", "Imperial cities", "Mountains"], "description": "Connect northern medinas, Sahara landscapes and Marrakech on a varied circuit, returning to Casablanca.", "route": ["Casablanca", "Chefchaouen", "Fes", "Merzouga", "Ouarzazate", "Marrakech", "Casablanca"], "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "atlas-mountains", "marrakech"], "pace": "An active overview of Morocco with long transfers between regions. Add days if you prefer slower mornings, more city visits or an extended desert stay.", "itinerary": [
+      ["The Atlantic gateway and the blue north", "Begin in Casablanca and head toward Chefchaouen. An early start gives you time to settle into the medina in the evening; late arrivals need a pre-tour night in Casablanca."],
       ["Blue lanes and a change of rhythm", "Spend the morning exploring Chefchaouen before continuing to Fes for the night."],
       ["A day inside Fes", "Allow a full day for Fes: its medina lanes, craft workshops and historic architecture. A local guide can be included in your personalised quote."],
-      ["Mountain scenery and a desert night", "Travel through the Middle Atlas and Ziz Valley toward Merzouga. Confirm your camp and desert activities during planning; arrival time determines the evening schedule."],
-      ["Through the southern valleys", "Continue west from the Sahara toward Ouarzazate, with stops around the Todra area as time allows. The landscape changes from open desert to valleys and earthen villages."],
+      ["Mountain scenery and a desert night", "Travel through the Middle Atlas and Ziz Valley toward Merzouga. Confirm your camp and desert activities during planning; arrival time determines the evening's rhythm."],
+      ["Through the southern valleys", "Continue west from the Sahara toward Ouarzazate, with stops around the Todra area as time allows. The landscape changes from open desert to valleys and earthen architecture."],
       ["Kasbah paths and the High Atlas", "Explore Ait Ben Haddou, then cross the High Atlas to Marrakech for your final overnight."],
-      ["Marrakech moments and your onward journey", "Arrange time in Marrakech around your transfer to Casablanca. Share your flight time before booking so the final day's schedule includes a comfortable transfer buffer."]
+      ["Marrakech moments and your onward journey", "Arrange time in Marrakech around your transfer to Casablanca. Share your flight time before booking so the final day's schedule includes a comfortable margin."]
+    ]
+  },
+  {
+    "slug": "6-day-imperial-spine", "name": "Rabat, Volubilis & the imperial route", "title": "6-Day Imperial Cities and Mountains Tour", "days": 6, "nights": 5, "start": "Casablanca", "end": "Marrakech", "category": ["Imperial cities", "Mountains"], "description": "A journey through three imperial cities (Rabat, Fes, Meknes) with ancient ruins at Volubilis and crossing the Middle Atlas.", "route": ["Casablanca", "Rabat", "Volubilis", "Meknes", "Fes", "Atlas Mountains", "Marrakech"], "destinations": ["casablanca", "fes", "atlas-mountains", "marrakech"], "pace": "Moderate pace with cultural focus. Cities receive unhurried time for guided exploration of medinas, palaces and craft traditions. Includes scenic mountain passes.", "itinerary": [
+      ["Coastal charm and Rabat's stories", "Travel north from Casablanca to Rabat. Explore the kasbah overlooking the Atlantic, the Mausoleum of Hassan II and the medina's quieter quarters. Overnight in Rabat."],
+      ["Ruins and Meknes rhythms", "Visit the Roman site of Volubilis before arriving in Meknes. Walk through the Imperial City's green gates and experience a more relaxed version of Moroccan grandeur. Stay overnight."],
+      ["Fes in full: a medina immersion", "Dedicate a full day to Fes. Navigate the UNESCO medina with time to explore craft workshops, historic fountains and the energy of one of North Africa's oldest cities."],
+      ["Mountains and valley transitions", "Leave the city and ascend into the Middle Atlas. Pass through cedar forests and Berber villages. Overnight in a mountain town or kasbah with views."],
+      ["High Atlas crossing", "Continue south, crossing passes and valleys. Stop in traditional Berber communities and enjoy views of snow-capped peaks. Arrive in Marrakech by evening."],
+      ["Marrakech's souks and gardens", "A morning or full day (depending on arrival time) to explore Marrakech's Jemaa el-Fnaa square, the Koutoubia Mosque and peaceful garden escapes before your onward journey."]
+    ]
+  },
+  {
+    "slug": "8-day-coast-to-desert", "name": "Essaouira, Draa Valley & remote dunes", "title": "8-Day Atlantic Coast and Deep Desert Tour", "days": 8, "nights": 7, "start": "Marrakech", "end": "Marrakech", "category": ["Desert", "Atlantic gateway", "Mountains"], "description": "A route combining the windswept Atlantic charm of Essaouira with the palm-lined Draa Valley and distant desert camps near Erg Chegaga.", "route": ["Marrakech", "Essaouira", "Anti-Atlas", "Draa Valley", "Zagora", "Erg Chegaga", "Marrakech"], "destinations": ["marrakech", "atlas-mountains", "mhamid"], "pace": "A blend of coastal relaxation and long desert drives. Includes time for Essaouira's beaches and craft souk, plus extended Sahara time away from main roads.", "itinerary": [
+      ["From the High Atlas to the sea", "Depart Marrakech early, cross the High Atlas and descend to the Atlantic coast. Arrive in Essaouira by afternoon and explore the medina, harbour and seafood scene."],
+      ["Essaouira's crafts and seafood", "Morning exploring the arganite oil cooperative and woodwork souks. Afternoon walk along the ramparts and beach. Overnight in Essaouira."],
+      ["Anti-Atlas foothills", "Travel inland toward the Anti-Atlas. Stop in mountain villages and pass through valleys with Berber hamlets. Continue toward the Draa Valley edge."],
+      ["Palm groves and southern routines", "Enter the Draa Valley, one of Morocco's longest river systems. Travel past mud-brick kasbah towns and palm-fringed communities. Overnight in a traditional guesthouse."],
+      ["Draa to Zagora", "Continue south through increasingly sparse landscape. Reach Zagora and the famous 'Tombouctou 52 jours' marker. Overnight in Zagora with views of the desert edge."],
+      ["Into Erg Chegaga and desert camp", "Travel to a remote desert camp near Erg Chegaga dunes. Sunset camel trek, traditional dinner and a night under the stars in the vast Sahara."],
+      ["Desert morning and return journey", "Wake early for a desert walk or optional camel trek. Begin the return, passing through the Draa Valley again with fresh perspectives."],
+      ["Anti-Atlas to Marrakech", "Continue north through the Atlas, arriving back in Marrakech by evening with time to rest or explore a favourite quarter."]
+    ]
+  },
+  {
+    "slug": "10-day-north-south-axis", "name": "Tangier to Marrakech: complete coastal and desert axis", "title": "10-Day Northern Morocco to Sahara Journey", "days": 10, "nights": 9, "start": "Tangier", "end": "Marrakech", "category": ["Northern Morocco", "Desert", "Imperial cities", "Atlantic gateway", "Mountains"], "description": "A comprehensive route from Tangier southward, encompassing Mediterranean charm, imperial cities, Sahara oases and the High Atlas.", "route": ["Tangier", "Tetouan", "Chefchaouen", "Fes", "Merzouga", "Todra Gorge", "Ouarzazate", "Ait Ben Haddou", "Marrakech"], "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "atlas-mountains", "marrakech"], "pace": "A grand expedition with variety. Early days in the Rif and northern cities, mid-journey through desert camps, final days crossing mountain passes. Moderate daily driving with deep stops.", "itinerary": [
+      ["Tangier: gateway and medina", "Arrive in Tangier and explore the Kasbah, medina and oceanfront esplanade. Overnight in a riad near the port."],
+      ["Tetouan's Spanish charm", "Travel to Tetouan and explore its blue medina, less crowded than Chefchaouen. Discover craft workshops and the architectural blend of Spanish and Moroccan influences. Overnight."],
+      ["Chefchaouen's blue-washed streets", "Journey to Chefchaouen and spend time wandering the famous blue lanes. Visit the medina's central square and explore nearby hiking routes if time allows."],
+      ["Fes: a full medina day", "Travel south to Fes. Dedicate a full day to the UNESCO medina with its tanners' dyes, leather workers and ancient library. A local guide enriches the experience."],
+      ["Middle Atlas and desert approach", "Leave Fes and ascend through the Middle Atlas cedar forests. Continue toward Merzouga and the Ziz Valley. Arrive at a desert camp for sunset and overnight under stars."],
+      ["Deep Sahara", "A full day in the Sahara: sunrise trek, optional camel ride, village visit or simply the landscape. Overnight in the desert camp."],
+      ["Todra Gorge and Ouarzazate", "Travel west through canyon landscapes toward Todra Gorge. Continue to Ouarzazate with its kasbah architecture and film-set backdrop. Overnight."],
+      ["Ait Ben Haddou earthen fortress", "Visit the UNESCO village of Ait Ben Haddou. Explore the kasbah's pathways and ramparts with views over the Oueds Valley. Overnight nearby."],
+      ["High Atlas crossing", "Cross the High Atlas passes with alpine scenery. Stop in Berber villages and enjoy mountain air. Descend toward Marrakech."],
+      ["Marrakech arrival and rest", "Arrive in Marrakech with the evening free to settle in, rest from the journey or explore a favourite quarter. Time for reflection on the route's diversity."]
+    ]
+  },
+  {
+    "slug": "5-day-atlas-berber-loop", "name": "Mountain Berber villages and Ouzoud Falls", "title": "5-Day Atlas Mountains and Berber Culture Tour", "days": 5, "nights": 4, "start": "Marrakech", "end": "Marrakech", "category": ["Mountains", "Imperial cities"], "description": "A journey into the High Atlas to Berber villages, terraced valleys and the cascading Ouzoud Falls, returning to Marrakech with cultural immersion.", "route": ["Marrakech", "Ait Bougmez Valley", "Ouzoud", "Bin el Ouidane", "Marrakech"], "destinations": ["marrakech", "atlas-mountains"], "pace": "Relaxed, with focus on walking and village interactions. Includes simple stays in family-run guesthouses. Some unpaved mountain roads add an authentic flavor.", "itinerary": [
+      ["High Atlas foothills and Ait Bougmez", "Depart Marrakech and drive into the High Atlas toward the Ait Bougmez Valley. This 'Happy Valley' is ringed by 4,000-meter peaks. Overnight in a guesthouse in the valley."],
+      ["Valley walks and Berber hospitality", "Spend a full day trekking through the Ait Bougmez Valley. Visit Berber communities, experience traditional agro-pastoral rhythms and share tea with locals. Simple mountain hotel overnight."],
+      ["To Ouzoud Falls and Bin el Ouidane", "Travel to Ouzoud Falls, one of Morocco's most spectacular cascades. Walk down to the base, swim if weather permits and explore the surrounding olive groves. Overnight nearby or at Bin el Ouidane lake."],
+      ["Lake and mountain scenery", "Morning exploring the turquoise waters of Bin el Ouidane Lake or further Ouzoud walking. Afternoon traveling back toward Marrakech via scenic Atlas passes."],
+      ["Atlas to city", "Complete the return to Marrakech with stops in mountain towns or small berber markets if time allows. Arrive in Marrakech by late afternoon."]
+    ]
+  },
+  {
+    "slug": "7-day-argan-oysters-atlantic", "name": "Argan oil, fishing villages and coastal escapes", "title": "7-Day Atlantic Coast and Argan Culture Tour", "days": 7, "nights": 6, "start": "Marrakech", "end": "Casablanca", "category": ["Atlantic gateway"], "description": "Explore Morocco's Atlantic coast from Marrakech northward, through argan oil heartland, coastal fishing villages and beach retreats to Casablanca.", "route": ["Marrakech", "Essaouira", "Oualidia", "El Jadida", "Azemmour", "Casablanca"], "destinations": ["marrakech", "casablanca"], "pace": "Leisurely coastal journey with beach time, culinary experiences and cultural encounters. Shorter daily drives allow for morning walks and afternoon ocean views.", "itinerary": [
+      ["High Atlas to Essaouira", "Cross the High Atlas from Marrakech to the Atlantic coast. Arrive in Essaouira and spend the afternoon and evening exploring the medina, seafood restaurants and harbor."],
+      ["Essaouira's cooperative and souks", "Visit an arganite oil cooperative run by women, learning traditional production methods. Explore the woodwork and crafts souks. Swim or beach walk in afternoon."],
+      ["Coastal drive to Oualidia", "Travel north along the coast, stopping in small beach villages. Arrive in Oualidia, known for its lagoon and oyster farms. Tour an oyster farm and enjoy fresh seafood."],
+      ["Oualidia lagoon time", "A full day for Oualidia: kayaking on the lagoon, beach walks or simply resting by the water. Discover local fishing communities and their daily routines."],
+      ["El Jadida's coastal fortress", "Journey north to El Jadida, a Portuguese coastal stronghold. Explore the fortified medina, underground cistern and rampart walks with Atlantic views. Overnight."],
+      ["Azemmour river village", "Visit the small river village of Azemmour south of El Jadida. Explore its narrow medina streets and riverfront. Continue north with coastal stops toward Casablanca."],
+      ["Arrival in Casablanca", "Reach Casablanca with time to explore the Hassan II Mosque, corniche or rest after the coastal journey. Overnight in Casablanca before onward travel or departure."]
+    ]
+  },
+  {
+    "slug": "12-day-berber-heartland-loop", "name": "Deep Draa, Taliouine & High Atlas circuit", "title": "12-Day Berber Heartland and Spice Route Journey", "days": 12, "nights": 11, "start": "Marrakech", "end": "Marrakech", "category": ["Desert", "Mountains", "Imperial cities"], "description": "An extended journey through the Draa Valley's palm groves, Taliouine's saffron fields, the Anti-Atlas and High Atlas, with time for genuine village immersion.", "route": ["Marrakech", "Draa Valley", "Taliouine", "Anti-Atlas", "Tafraoute", "Ait Bougmez", "High Atlas", "Marrakech"], "destinations": ["marrakech", "atlas-mountains", "mhamid"], "pace": "Slow and immersive. Long stays in villages, guided walks and time with local families. Includes some unpaved mountain roads and simple guesthouses. Ideal for explorers seeking depth.", "itinerary": [
+      ["Over the High Atlas to the Draa", "Depart Marrakech, cross the High Atlas and descend into the vast Draa Valley. Stop in the palm-fringed town of Agdz. Overnight in a valley riad or traditional kasbah."],
+      ["Draa Valley culture and kasbahs", "A full day exploring the Draa Valley: visit traditional kasbahs, meet Berber families and learn about date cultivation and irrigation. Walk among the palms and visit local markets."],
+      ["South toward Zagora", "Continue south through the Draa toward Zagora. Experience the landscape transition from lush valley to sparse desert. Visit the famous '52 jours à Tombouctou' marker signpost."],
+      ["Zagora desert nights", "Stay in Zagora with access to nearby Erg Chegaga dunes. Options for camel treks, desert walks or village visits in the sparse landscape. Two nights to fully absorb the Sahara."],
+      ["Taliouine's saffron fields", "Travel northeast toward Taliouine, famous for its saffron cultivation. Visit cooperatives and markets, meet saffron farmers and stay overnight in a mountain guesthouse."],
+      ["Anti-Atlas Tafraoute", "Journey to Tafraoute in the Anti-Atlas, ringed by dramatic rock formations. Explore the town and nearby painted rocks, a modern artistic intervention on the landscape. Overnight."],
+      ["Anti-Atlas mountain walks", "A day of trekking in the Anti-Atlas with Berber guides. Visit mountain villages, walk between rock formations and understand the region's nomadic heritage."],
+      ["Back toward the High Atlas", "Travel north from Tafraoute, crossing Anti-Atlas passes toward the High Atlas. Stop in small towns and Berber markets. Overnight in a mountain settlement."],
+      ["Ait Bougmez valley immersion", "Arrive in the Ait Bougmez Valley and stay with a Berber family or in a guesthouse embedded in the community. Walk through terraced fields and orchards. Learn about daily life."],
+      ["Valley culture and cooking", "A full day in Ait Bougmez: join women in food preparation (if welcomed), visit local schools or craft workshops, and walk to neighboring hamlets. Overnight with family or in guesthouse."],
+      ["High Atlas passes and descent", "Begin the return journey, traveling north through Alpine meadows and peaks. Overnight in a mountain town or pass settlement with vast views."],
+      ["Return to Marrakech", "Complete the journey by descending from the High Atlas back to Marrakech. Arrive with memories of deep Morocco and genuine encounters across villages and landscapes."]
+    ]
+  },
+  {
+    "slug": "16-day-complete-morocco-circuit", "name": "Northern coast, imperial cities, Sahara and coast return", "title": "16-Day Complete Morocco Grand Circuit", "days": 16, "nights": 15, "start": "Casablanca", "end": "Casablanca", "category": ["Northern Morocco", "Desert", "Imperial cities", "Atlantic gateway", "Mountains"], "description": "An immersive grand circuit of Morocco encompassing the northern coast and Rif, imperial cities, the full Sahara experience and Atlantic beaches, returning to Casablanca.", "route": ["Casablanca", "Tangier", "Chefchaouen", "Fes", "Merzouga", "Todra", "Ouarzazate", "Ait Ben Haddou", "Marrakech", "Essaouira", "Tafraoute", "Anti-Atlas", "Casablanca"], "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "atlas-mountains", "marrakech"], "pace": "An epic journey with balanced pacing: time in cities, deserts, mountains and on coasts. Long enough to recover from drives and truly know places visited. Suited to travelers seeking Morocco's full spectrum.", "itinerary": [
+      ["Casablanca gateway", "Begin in Casablanca. Explore the Hassan II Mosque, ramparts and oceanfront corniche. Rest and acclimate. Overnight in Casablanca."],
+      ["Tangier: the Strait crossing", "Travel to Tangier and explore this cosmopolitan gateway. Visit the Kasbah museum and medina. Overnight in Tangier riad or hotel."],
+      ["Tetouan's Spanish-Moroccan blend", "Journey to Tetouan, exploring the medina that bridges Spanish and Moroccan cultures. Less crowded than Chefchaouen, with beautiful craft traditions."],
+      ["Chefchaouen's blue medina", "Arrive in Chefchaouen and spend a full day wandering the famous blue-painted streets. Visit the medina square, local cafés and surrounding hiking routes. Overnight."],
+      ["Into Fes via Middle Atlas", "Travel south, ascending through mountain passes and cedar forests. Arrive in Fes by late afternoon. Overnight."],
+      ["Fes medina immersion", "Dedicate a full day to Fes. Walk the UNESCO medina's labyrinthine streets, observe tanners' dyes, visit craft workshops and the historic Bou Inania Madrasa. Evening rest."],
+      ["Fes to Sahara approach", "Depart Fes and traverse the Middle Atlas. Drive through Ziz Valley toward Merzouga and the Sahara. Overnight at a desert camp."],
+      ["Sahara deep immersion", "A full day in the Sahara: sunrise trek, camel ride in dunes, visit Berber village or simply absorb the vastness. Overnight in the desert camp under stars."],
+      ["Sahara to Todra", "Travel west from Merzouga through Sahara landscapes. Arrive at the spectacular Todra Gorge, a narrow canyon carved by an oued. Afternoon walk in the gorge and overnight nearby."],
+      ["Gorge and Ouarzazate", "Morning exploring Todra further, then travel to Ouarzazate, Morocco's Hollywood. Explore the kasbah architecture and red-walled streets. Overnight."],
+      ["Ait Ben Haddou UNESCO site", "Visit the UNESCO earthen village of Ait Ben Haddou. Explore winding pathways, climb ramparts and photograph views over the Oueds Valley. Overnight in a guesthouse in or near the kasbah."],
+      ["High Atlas crossing", "Cross the High Atlas passes with dramatic Alpine scenery. Stop in Berber villages on the descent. Arrive in Marrakech by evening. Overnight."],
+      ["Marrakech's heart", "Explore Jemaa el-Fnaa square with its acrobats and food stalls. Visit the Koutoubia Mosque and peaceful Majorelle Garden. Overnight in a riad in the medina."],
+      ["Marrakech to Essaouira", "Travel to Essaouira on the Atlantic coast. Explore the seafront medina, ramparts and fishing harbor. Visit an arganite oil cooperative. Overnight in Essaouira."],
+      ["Essaouira and coastal journey", "Morning beach walk or swim in Essaouira. Afternoon traveling south toward Tafraoute in the Anti-Atlas through increasingly sparse landscape. Overnight in Tafraoute."],
+      ["Anti-Atlas and return to Casablanca", "A full Anti-Atlas experience: rock formations, painted rocks and mountain villages. Begin the return journey north toward Casablanca via scenic routes. Arrive in Casablanca by evening, completing the circuit."]
     ]
   }
 ]
