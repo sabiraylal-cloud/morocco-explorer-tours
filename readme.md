@@ -1,6 +1,6 @@
 # Morocco Explorer Tours
 
-A responsive, static travel website with original editorial design, three private itinerary ideas and eight destination guides. It can be served from Hostinger or any ordinary static web server. There is no production package install, framework, database or build server requirement; generated HTML is committed.
+A responsive, static travel website with original editorial design, thirteen private itinerary ideas, eight destination guides and a five-article travel Blog. It can be served from Hostinger or any ordinary static web server. There is no production package install, framework, database or build server requirement; generated HTML is committed.
 
 ## Preview and maintain
 
@@ -14,6 +14,7 @@ Open `http://localhost:8000`. Python 3's standard library is sufficient for buil
 
 - `data/tours.json`: routes, days, overnight counts, itinerary copy and destination relationships.
 - `data/destinations.json`: destination guides, experiences and planning notes.
+- `data/articles.json`: Blog article copy, five-word card teasers, images and related tour links. The first two articles are featured above the homepage footer.
 - `data/site.json`: brand name, production URL and contact configuration.
 - `scripts/build.py`: shared header, footer, cards, templates, metadata and HTML generation. Edit templates/data, then regenerate; edits made only to generated HTML will be overwritten.
 - `assets/styles.css` and `assets/site.js`: shared responsive styling and progressive enhancements.
@@ -24,7 +25,7 @@ HTML links are relative, so the pages also work under a repository subdirectory.
 
 ## Contact setup
 
-The original repository only supplied `your@email.com` and a placeholder phone number. No real contact has been guessed. The planner therefore creates a brief that the visitor can copy or download and explicitly says it has **not** been sent.
+Verified email and WhatsApp details are configured in `data/site.json`. The planner creates a brief that the visitor can copy, download or open as a WhatsApp draft and explicitly says it has **not** been sent.
 
 To connect enquiries, enter a verified email address and/or WhatsApp international number (country code and digits) in `data/site.json`, then rebuild. When configured, the result screen offers a prefilled WhatsApp or email draft; the visitor still sends it themselves. No external endpoint, stored personal information, payment flow or false success state is included.
 
@@ -37,12 +38,12 @@ npx playwright install chromium
 npm run test:browser
 ```
 
-The checks visit all 18 pages at 320, 390, 768, 1024 and 1440 pixels, test images and horizontal overflow, and exercise mobile navigation, filter combinations/reset, enquiry validation/download, accordions and navigation with JavaScript disabled. Set `TEST_BASE_URL` to check another server; optionally set `CHROMIUM_PATH` to an installed Chromium executable. Screenshots are written to ignored `artifacts/`. The pull-request workflow runs these checks and uploads screenshots. It never deploys or merges.
+The checks visit all 35 pages at 320, 390, 768, 1024 and 1440 pixels, test images and horizontal overflow, and exercise mobile navigation, filter combinations/reset, destination relationships, Blog cards and article navigation, five-word teasers, enquiry validation/download, accordions and navigation with JavaScript disabled. Set `TEST_BASE_URL` to check another server; optionally set `CHROMIUM_PATH` to an installed Chromium executable. Screenshots are written to ignored `artifacts/`. The pull-request workflow runs these checks and uploads screenshots. It never deploys or merges.
 
 ## Production review
 
-- Approve the three **proposed** day-by-day itinerary expansions, accommodation arrangements and final inclusions. No fixed prices, guaranteed departures, ratings or availability have been invented.
-- Add verified contact details if enquiries should be sent directly.
+- Approve the thirteen **proposed** day-by-day itineraries, accommodation arrangements and final inclusions. No fixed prices, guaranteed departures, ratings or availability have been invented.
+- Review the configured contact details before publication.
 - Some supplied destination photos contain visible conversion-software watermarks. Use clean originals when available; the repository originals remain preserved. Confirm publication permission for the existing guest photo.
 - Configure the hosting provider to serve `404.html` for missing pages. Keep its HTTP response status at 404.
 - Review real booking/cancellation terms before adding payments or confirmed bookings.

@@ -100,7 +100,7 @@
     ]
   },
   {
-    "slug": "7-day-food-craft-cities", "name": "Food, craft & imperial cities", "title": "7-Day Food, Craft and Imperial Cities Tour", "days": 7, "nights": 6, "start": "Casablanca", "end": "Marrakech", "category": "Cities & desert", "image": "fes",
+    "slug": "7-day-food-craft-cities", "name": "Food, craft & imperial cities", "title": "7-Day Food, Craft and Imperial Cities Tour", "days": 7, "nights": 6, "start": "Casablanca", "end": "Marrakech", "category": "Grand journeys", "image": "fes",
     "description": "A culture-led city route focused on markets, workshops, medina walks and slower meals from Casablanca to Marrakech.",
     "route": ["Casablanca", "Rabat", "Meknes", "Fes", "Beni Mellal", "Marrakech"],
     "destinations": ["casablanca", "fes", "marrakech", "atlas-mountains"],
@@ -193,7 +193,7 @@
     "slug": "16-day-complete-morocco-explorer-circuit", "name": "The complete Morocco explorer circuit", "title": "16-Day Complete Morocco Explorer Circuit", "days": 16, "nights": 15, "start": "Casablanca", "end": "Casablanca", "category": "Grand journeys", "image": "sahara",
     "description": "A wide-ranging private circuit for travellers who want northern medinas, the Sahara, southern valleys, mountains and Atlantic breathing room.",
     "route": ["Casablanca", "Rabat", "Chefchaouen", "Fes", "Merzouga", "Dades Valley", "Skoura", "Marrakech", "Essaouira", "Casablanca"],
-    "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "atlas-mountains", "marrakech", "mhamid"],
+    "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "atlas-mountains", "marrakech"],
     "pace": "The most complete route in the collection. It is still a road journey, but the added days allow deeper city time, a fuller desert stay and gentler transitions.",
     "itinerary": [
       ["Casablanca welcome", "Arrive in Casablanca, settle in and begin with a relaxed introduction to Morocco's Atlantic gateway."],

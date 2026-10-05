@@ -82,6 +82,13 @@ function htmlFiles(dir) {
     assert.equal(await page.locator('#empty-results').isVisible(), true);
     await page.getByRole('button', { name: 'Reset filters' }).click();
     await page.waitForFunction(() => document.querySelectorAll('.tour-card:not([hidden])').length === 13);
+    await page.locator('[name="category"]').selectOption('Cities & desert');
+    assert.equal(await page.locator('.tour-card:visible').filter({ hasText: 'Food, craft & imperial cities' }).count(), 0);
+    await page.locator('[name="category"]').selectOption('Grand journeys');
+    assert.equal(await page.locator('.tour-card:visible').filter({ hasText: 'Food, craft & imperial cities' }).count(), 1);
+    await page.goto(`${base}/destinations/mhamid.html`);
+    assert.equal(await page.locator('.tour-card').filter({ hasText: 'The complete Morocco explorer circuit' }).count(), 0);
+    assert.equal(await page.locator('.tour-card').filter({ hasText: 'Erg Chigaga deep desert' }).count(), 1);
     await page.goto(`${base}/plan-your-trip.html?tour=Test+route&arrival=Fes`);
     assert.equal(await page.locator('[name="arrival"]').inputValue(), 'Fes');
     assert.equal(await page.locator('[name="interest"]').inputValue(), 'Test route');
