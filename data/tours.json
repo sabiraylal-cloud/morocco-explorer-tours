@@ -39,5 +39,179 @@
       ["Kasbah paths and the High Atlas", "Explore Ait Ben Haddou, then cross the High Atlas to Marrakech for your final overnight."],
       ["Marrakech moments and your onward journey", "Arrange time in Marrakech around your transfer to Casablanca. Share your flight time before booking so the final day's schedule includes a comfortable transfer buffer."]
     ]
+  },
+  {
+    "slug": "5-day-erg-chigaga-deep-desert", "name": "Erg Chigaga deep desert", "title": "5-Day Erg Chigaga Deep Desert Tour", "days": 5, "nights": 4, "start": "Marrakech", "end": "Marrakech", "category": "Sahara escapes", "image": "hospitality",
+    "description": "A southern desert journey through Ait Ben Haddou, the Draa Valley and the wilder sands beyond Mhamid.",
+    "route": ["Marrakech", "Ait Ben Haddou", "Draa Valley", "Mhamid", "Erg Chigaga", "Ouarzazate", "Marrakech"],
+    "destinations": ["marrakech", "atlas-mountains", "ait-ben-haddou", "mhamid"],
+    "pace": "Best for travellers who want a deeper desert feeling and understand that Erg Chigaga adds rougher tracks and longer driving than a short Mhamid overnight.",
+    "itinerary": [
+      ["Atlas road to the kasbahs", "Cross the High Atlas by the Tizi n'Tichka road and take time for Ait Ben Haddou before settling near Ouarzazate or Skoura."],
+      ["Palm groves of the Draa", "Follow the Draa Valley south through adobe villages and date palms. Reach the Mhamid area for a calm evening at the edge of the desert."],
+      ["Into Erg Chigaga", "Travel by desert tracks toward Erg Chigaga, with time arranged around camp arrival, tea, sunset and the quiet of the open dunes."],
+      ["Nomad routes and southern valleys", "Leave the dunes by the lakebed and desert plain toward Foum Zguid, then continue through southern villages to Ouarzazate."],
+      ["High Atlas return", "Return to Marrakech across the mountains, adding photo stops where road conditions and timing allow."]
+    ]
+  },
+  {
+    "slug": "5-day-atlas-valleys-kasbahs", "name": "Atlas valleys & kasbah roads", "title": "5-Day Atlas Valleys and Kasbah Roads Tour", "days": 5, "nights": 4, "start": "Marrakech", "end": "Marrakech", "category": "Grand journeys", "image": "atlas",
+    "description": "A mountain-focused loop linking the High Atlas, Ounila Valley, Ait Ben Haddou and the palm groves around Skoura.",
+    "route": ["Marrakech", "High Atlas", "Telouet", "Ounila Valley", "Ait Ben Haddou", "Skoura", "Marrakech"],
+    "destinations": ["marrakech", "atlas-mountains", "ait-ben-haddou"],
+    "pace": "A scenic alternative to a desert dash. Expect winding roads and short walks rather than dune time, with more space for mountain and kasbah visits.",
+    "itinerary": [
+      ["Into the High Atlas", "Leave Marrakech for mountain views, village stops and a slower crossing toward a valley guesthouse or lodge."],
+      ["Telouet and the Ounila Valley", "Follow the old caravan route through Telouet and the Ounila Valley, allowing time for viewpoints and local architecture."],
+      ["Ait Ben Haddou and Skoura palms", "Explore Ait Ben Haddou on foot, then continue to Skoura for palm groves and kasbah scenery."],
+      ["Oasis rhythm", "Spend a gentler day around Skoura and Ouarzazate, adding a short walk, a kasbah visit or downtime depending on your interests."],
+      ["Back over the mountains", "Return to Marrakech across the High Atlas with flexible stops for tea, views and arrival timing."]
+    ]
+  },
+  {
+    "slug": "6-day-marrakech-fes-desert-crossing", "name": "Marrakech to Fes desert crossing", "title": "6-Day Marrakech to Fes Desert Crossing", "days": 6, "nights": 5, "start": "Marrakech", "end": "Fes", "category": "Cities & desert", "image": "sahara",
+    "description": "Cross from Marrakech to Fes through Ait Ben Haddou, the Dades region and a full Sahara night near Merzouga.",
+    "route": ["Marrakech", "Ait Ben Haddou", "Dades Valley", "Merzouga", "Ziz Valley", "Fes"],
+    "destinations": ["marrakech", "atlas-mountains", "ait-ben-haddou", "sahara", "fes"],
+    "pace": "A point-to-point route with long scenic transfers. It works best when your flights allow you to start in Marrakech and finish in Fes.",
+    "itinerary": [
+      ["Marrakech to the southern side of the Atlas", "Cross the High Atlas and visit Ait Ben Haddou before continuing toward Ouarzazate or the Skoura area."],
+      ["Valleys and rose country", "Travel through the Valley of Roses and the Dades region, with time for viewpoints and a slower evening in the valley."],
+      ["Gorges to the Sahara", "Continue past Todra scenery and oasis towns toward Merzouga. Arrive for your agreed desert transfer and overnight."],
+      ["Desert morning and local life", "Wake for the desert light, then spend the day around the dunes, villages, music traditions or a relaxed camp-to-riad transfer."],
+      ["Ziz Valley and Middle Atlas", "Leave the Sahara through the Ziz Valley and climb toward the Middle Atlas for an overnight that breaks the journey to Fes."],
+      ["Arrival in Fes", "Continue to Fes with time to settle near the medina. Add a following day if you want a guided city visit."]
+    ]
+  },
+  {
+    "slug": "7-day-berber-heartland-loop", "name": "Berber heartland desert loop", "title": "7-Day Berber Heartland and Desert Loop", "days": 7, "nights": 6, "start": "Marrakech", "end": "Marrakech", "category": "Sahara escapes", "image": "journey",
+    "description": "A Marrakech loop through mountain villages, kasbah valleys, Todra scenery, Merzouga dunes and the Draa Valley.",
+    "route": ["Marrakech", "High Atlas", "Ait Ben Haddou", "Dades Valley", "Merzouga", "Draa Valley", "Marrakech"],
+    "destinations": ["marrakech", "atlas-mountains", "ait-ben-haddou", "sahara", "mhamid"],
+    "pace": "More rounded than a short desert escape, but still active. The extra days make room for valleys and desert context, not just a quick camp night.",
+    "itinerary": [
+      ["Mountain villages and the old caravan road", "Leave Marrakech for the High Atlas, pausing for views and village scenery before reaching the southern side of the mountains."],
+      ["Kasbahs and the road of a thousand kasbahs", "Explore Ait Ben Haddou, then continue through Ouarzazate toward Skoura or the Dades region."],
+      ["Dades and Todra landscapes", "Spend the day among valley roads, rock formations and gorge scenery, with the route shaped around walking comfort and timing."],
+      ["To the dunes of Merzouga", "Travel east through oasis towns to Merzouga for your planned desert arrival, camp transfer or dune-side accommodation."],
+      ["A fuller Sahara day", "Use a second desert day for sunrise, local villages, seasonal lake views or a quiet afternoon before sunset."],
+      ["Draa Valley south road", "Leave Merzouga and follow southern routes toward the Draa Valley, staying near palms and adobe villages."],
+      ["Return to Marrakech", "Cross back over the High Atlas to Marrakech, keeping the final evening free rather than planning a same-day flight."]
+    ]
+  },
+  {
+    "slug": "7-day-food-craft-cities", "name": "Food, craft & imperial cities", "title": "7-Day Food, Craft and Imperial Cities Tour", "days": 7, "nights": 6, "start": "Casablanca", "end": "Marrakech", "category": "Cities & desert", "image": "fes",
+    "description": "A culture-led city route focused on markets, workshops, medina walks and slower meals from Casablanca to Marrakech.",
+    "route": ["Casablanca", "Rabat", "Meknes", "Fes", "Beni Mellal", "Marrakech"],
+    "destinations": ["casablanca", "fes", "marrakech", "atlas-mountains"],
+    "pace": "A city-focused journey with no Sahara overnight. Choose this when food, craft and guided medina time matter more than covering the desert.",
+    "itinerary": [
+      ["Casablanca arrival and Atlantic first impressions", "Begin with Casablanca's oceanfront and a relaxed first night before the imperial-city route begins."],
+      ["Rabat and Meknes stories", "Travel through Rabat's historic quarter and continue toward Meknes, adding monuments or quiet medina time as preferred."],
+      ["Volubilis countryside to Fes", "Use the day for Roman ruins near Volubilis, rural views and arrival in Fes before dinner."],
+      ["Fes workshops and medina life", "Spend a full day with a local guide, shaping stops around craft workshops, food markets, architecture and a slower lunch."],
+      ["Middle Atlas pause", "Leave Fes toward the Middle Atlas and Beni Mellal area, breaking the journey with mountain views and a calmer evening."],
+      ["Marrakech souks and flavors", "Continue to Marrakech and begin exploring around the medina, gardens or food stalls depending on arrival time."],
+      ["A Marrakech day at your pace", "Plan a flexible final day for a guided walk, hammam time, cooking class or shopping before your onward travel."]
+    ]
+  },
+  {
+    "slug": "8-day-desert-ocean-route", "name": "Desert & ocean route", "title": "8-Day Desert and Ocean Route", "days": 8, "nights": 7, "start": "Marrakech", "end": "Marrakech", "category": "Grand journeys", "image": "marrakech",
+    "description": "Balance Sahara silence with Atlantic air on a loop from Marrakech through Merzouga, kasbah country and Essaouira.",
+    "route": ["Marrakech", "Ait Ben Haddou", "Dades Valley", "Merzouga", "Ouarzazate", "Essaouira", "Marrakech"],
+    "destinations": ["marrakech", "atlas-mountains", "ait-ben-haddou", "sahara"],
+    "pace": "A varied loop with two very different landscapes. The Atlantic section softens the return after desert and mountain driving.",
+    "itinerary": [
+      ["Marrakech to Ait Ben Haddou", "Cross the High Atlas and reach the kasbah country, with an overnight arranged for easy access to Ait Ben Haddou."],
+      ["Toward Dades scenery", "Continue through Ouarzazate, Skoura or rose country toward the Dades region, pausing where the day's light is best."],
+      ["Gorges and desert arrival", "Travel through Todra-area scenery and onward to Merzouga for your desert overnight plan."],
+      ["A Sahara day", "Keep a second day for dunes, quiet camp time, local music, villages or a gentle 4x4 circuit around the desert edge."],
+      ["West through southern Morocco", "Return west toward Ouarzazate, with room for valley stops and a settled overnight before the coast."],
+      ["To the Atlantic", "Travel toward Essaouira, swapping desert and kasbah colors for sea air, ramparts and a slower coastal evening."],
+      ["Coastal day in Essaouira", "Use a full day for the harbor, medina, beach time, seafood lunch or nearby countryside."],
+      ["Return to Marrakech", "Make the easy return to Marrakech, with time for final shopping or a farewell dinner."]
+    ]
+  },
+  {
+    "slug": "8-day-golden-light-photography", "name": "Golden light photography route", "title": "8-Day Golden Light Photography Route", "days": 8, "nights": 7, "start": "Marrakech", "end": "Fes", "category": "Grand journeys", "image": "kasbah",
+    "description": "A slower visual route for photographers, linking early light in kasbahs, valleys, dunes and the medina of Fes.",
+    "route": ["Marrakech", "Ounila Valley", "Skoura", "Dades Valley", "Merzouga", "Middle Atlas", "Fes"],
+    "destinations": ["marrakech", "atlas-mountains", "ait-ben-haddou", "sahara", "fes"],
+    "pace": "Designed around light and locations rather than maximum mileage. Sunrise and sunset plans depend on season, weather and access.",
+    "itinerary": [
+      ["Marrakech details and departure prep", "Begin with a Marrakech walk focused on color, texture and practical route briefing before the road trip starts."],
+      ["Ounila Valley frames", "Cross the High Atlas and follow the Ounila Valley, timing stops for earthen architecture and layered mountain views."],
+      ["Ait Ben Haddou to Skoura", "Photograph Ait Ben Haddou in softer light, then continue to palm groves and kasbah angles around Skoura."],
+      ["Dades formations", "Spend the day around Dades scenery, choosing viewpoints and short walks that suit your gear and mobility."],
+      ["To Merzouga dunes", "Travel toward Merzouga and arrive with enough margin for your arranged desert transfer and evening light."],
+      ["Sahara sunrise and desert textures", "Use a full desert day for sunrise, changing dune patterns, village scenes and quiet time between shoots."],
+      ["Ziz Valley to the Middle Atlas", "Leave the desert through the Ziz Valley, breaking the drive with overlooks and a mountain overnight."],
+      ["Fes arrival", "Continue into Fes, where medina doors, tiles and evening lanes close the visual journey."]
+    ]
+  },
+  {
+    "slug": "10-day-grand-circuit-casablanca", "name": "Grand circuit with room to breathe", "title": "10-Day Grand Morocco Circuit from Casablanca", "days": 10, "nights": 9, "start": "Casablanca", "end": "Casablanca", "category": "Grand journeys", "image": "chefchaouen",
+    "description": "A fuller Casablanca loop through Chefchaouen, Fes, the Sahara, kasbah valleys, Marrakech and the Atlantic coast.",
+    "route": ["Casablanca", "Chefchaouen", "Fes", "Merzouga", "Dades Valley", "Marrakech", "Essaouira", "Casablanca"],
+    "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "atlas-mountains", "marrakech"],
+    "pace": "Still a broad circuit, but less compressed than the 7-day route. It gives major regions more context and reduces one-night-only fatigue.",
+    "itinerary": [
+      ["Casablanca to the blue north", "Start from Casablanca and travel toward Chefchaouen, arriving for an evening in the blue lanes."],
+      ["Chefchaouen morning to Fes", "Spend the morning in Chefchaouen before continuing to Fes for the next stage of the journey."],
+      ["Fes guided day", "Keep a full day for the medina, craft traditions and historic quarters of Fes with a local guide."],
+      ["Middle Atlas to Midelt", "Break the long desert approach with cedar forests, mountain scenery and an overnight around Midelt or the Ziz corridor."],
+      ["Ziz Valley to Merzouga", "Continue through the Ziz Valley to Merzouga, reaching the dunes for your arranged desert experience."],
+      ["Desert morning to Dades", "Wake early if you wish, then leave the Sahara for the Dades region, pausing for oasis and gorge scenery."],
+      ["Kasbah road to Marrakech", "Visit Ait Ben Haddou or nearby kasbah country before crossing the High Atlas to Marrakech."],
+      ["Marrakech day", "Use a full day for Marrakech's medina, gardens, food or craft stops depending on your interests."],
+      ["Atlantic change of pace", "Travel to Essaouira for sea air, ramparts and a relaxed final travel night outside the big cities."],
+      ["Return to Casablanca", "Return to Casablanca with transfer timing shaped around your flight or final hotel."]
+    ]
+  },
+  {
+    "slug": "12-day-slow-morocco-cities-desert-coast", "name": "Slow Morocco: cities, desert & coast", "title": "12-Day Slow Morocco Cities, Desert and Coast Tour", "days": 12, "nights": 11, "start": "Casablanca", "end": "Casablanca", "category": "Grand journeys", "image": "guests",
+    "description": "A slower private circuit that gives Morocco's imperial cities, Sahara routes, Atlas crossing and coast time to unfold.",
+    "route": ["Casablanca", "Rabat", "Chefchaouen", "Fes", "Merzouga", "Skoura", "Marrakech", "Essaouira", "Casablanca"],
+    "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "atlas-mountains", "marrakech"],
+    "pace": "A balanced circuit for travellers who prefer fewer rushed mornings. It still includes long-distance days, but adds recovery time in key places.",
+    "itinerary": [
+      ["Casablanca arrival", "Begin with airport pickup, Casablanca's oceanfront and a soft landing night before longer touring starts."],
+      ["Rabat to Chefchaouen", "Visit Rabat's historic quarter, then continue into the Rif Mountains for Chefchaouen."],
+      ["Chefchaouen at a slower pace", "Keep time for the blue medina, viewpoints and a calmer mountain evening before heading inland."],
+      ["Toward Fes", "Travel to Fes with possible countryside stops, arriving with time to settle near the medina."],
+      ["Fes in depth", "Spend a guided day inside Fes, balancing monuments, craft workshops and unhurried meal breaks."],
+      ["Middle Atlas approach", "Head south through the Middle Atlas, breaking the road toward the Sahara with mountain and valley scenery."],
+      ["Merzouga desert night", "Continue through the Ziz Valley to Merzouga for your arranged camp or dune-side stay."],
+      ["From dunes to palms", "Leave the desert for the Todra or Dades area, then continue toward palm groves and kasbah country."],
+      ["Ait Ben Haddou to Marrakech", "Visit Ait Ben Haddou and cross the High Atlas into Marrakech."],
+      ["Marrakech full day", "Use a full day for guided medina exploration, gardens, hammam time or food experiences."],
+      ["Essaouira coast", "Travel to Essaouira for a slower Atlantic finish with ramparts, harbor scenes and sea air."],
+      ["Casablanca return", "Return to Casablanca with the day shaped around your flight time or final overnight."]
+    ]
+  },
+  {
+    "slug": "16-day-complete-morocco-explorer-circuit", "name": "The complete Morocco explorer circuit", "title": "16-Day Complete Morocco Explorer Circuit", "days": 16, "nights": 15, "start": "Casablanca", "end": "Casablanca", "category": "Grand journeys", "image": "sahara",
+    "description": "A wide-ranging private circuit for travellers who want northern medinas, the Sahara, southern valleys, mountains and Atlantic breathing room.",
+    "route": ["Casablanca", "Rabat", "Chefchaouen", "Fes", "Merzouga", "Dades Valley", "Skoura", "Marrakech", "Essaouira", "Casablanca"],
+    "destinations": ["casablanca", "chefchaouen", "fes", "sahara", "ait-ben-haddou", "atlas-mountains", "marrakech", "mhamid"],
+    "pace": "The most complete route in the collection. It is still a road journey, but the added days allow deeper city time, a fuller desert stay and gentler transitions.",
+    "itinerary": [
+      ["Casablanca welcome", "Arrive in Casablanca, settle in and begin with a relaxed introduction to Morocco's Atlantic gateway."],
+      ["Rabat and the Rif road", "Visit Rabat before heading north toward the Rif Mountains for a night en route to the blue city."],
+      ["Chefchaouen day", "Spend a full day in Chefchaouen, leaving space for blue lanes, viewpoints and slow cafe stops."],
+      ["To Fes", "Travel through northern countryside to Fes, arriving in time for a first medina impression."],
+      ["Fes guided exploration", "Explore Fes with a local guide, focusing on living craft traditions, architecture and the rhythm of the medina."],
+      ["Fes at leisure", "Keep a second day for deeper interests: cooking, ceramics, gardens, photography or simply a slower pace."],
+      ["Middle Atlas and Ziz approach", "Leave Fes through the Middle Atlas and continue toward the Ziz Valley, breaking the long road to the Sahara."],
+      ["Merzouga desert arrival", "Reach Merzouga and settle into your agreed desert camp, riad or dune-edge accommodation."],
+      ["Sahara immersion", "Use a full day for desert villages, music traditions, seasonal lake views, sunrise or quiet time near the dunes."],
+      ["Gorges and Dades Valley", "Leave the Sahara for Todra and Dades scenery, with stops shaped around light, walking comfort and road conditions."],
+      ["Skoura and kasbah country", "Continue through southern valleys to Skoura, where palm groves and kasbah architecture slow the pace."],
+      ["Ait Ben Haddou and the Atlas crossing", "Visit Ait Ben Haddou before crossing the High Atlas toward Marrakech."],
+      ["Marrakech medina day", "Spend a full day in Marrakech with guided souks, gardens or food experiences planned around your style."],
+      ["Marrakech free day", "Keep an unstructured day for rest, hammam time, shopping, a cooking class or a short countryside escape."],
+      ["Atlantic finale", "Travel to Essaouira for a coastal change of mood, ramparts, harbor views and a relaxed final night."],
+      ["Return to Casablanca", "Return to Casablanca for your flight or final hotel, with timing confirmed before booking."]
+    ]
   }
 ]

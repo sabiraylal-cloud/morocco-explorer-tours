@@ -157,7 +157,7 @@ if (form) {
         <a href="mailto:${official.email}">${official.email}</a>
         <a href="tel:${official.phoneTel}">${official.phoneDisplay}</a>
         <a href="${official.whatsapp}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        <a href="${location.pathname.includes('/tours/') || location.pathname.includes('/destinations/') ? '../' : ''}contact.html">Contact</a>
+        <a href="${location.pathname.includes('/tours/') || location.pathname.includes('/destinations/') || location.pathname.includes('/blog/') ? '../' : ''}contact.html">Contact</a>
       </div>
       ${socialIcons}`;
     const bottom = footer.querySelector('.footer-bottom');

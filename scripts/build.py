@@ -1,31 +1,39 @@
-"""Generate portable, crawlable HTML. Run with Python 3; no packages required."""
+﻿"""Generate portable, crawlable HTML. Run with Python 3; no packages required."""
 from pathlib import Path
 from html import escape as esc
 import json, os
 from urllib.parse import urlencode
 ROOT=Path(__file__).resolve().parents[1]
-site=json.loads((ROOT/'data/site.json').read_text())
-tours=json.loads((ROOT/'data/tours.json').read_text())
-dests=json.loads((ROOT/'data/destinations.json').read_text())
-images=json.loads((ROOT/'data/images.json').read_text())
+site=json.loads((ROOT/'data/site.json').read_text(encoding='utf-8'))
+tours=json.loads((ROOT/'data/tours.json').read_text(encoding='utf-8'))
+dests=json.loads((ROOT/'data/destinations.json').read_text(encoding='utf-8'))
+images=json.loads((ROOT/'data/images.json').read_text(encoding='utf-8'))
+articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))
 pages=[]
 current='index.html'
+CATEGORY_ORDER=['Sahara escapes','Cities & desert','Grand journeys']
 def link(path):
  return os.path.relpath(path, str(Path(current).parent)).replace(os.sep,'/')
 def a(path,text,cls=''):
  return f'<a href="{esc(link(path),quote=True)}" class="{cls}">{text}</a>'
 def img(key,alt,cls='',eager=False):
  sizes='100vw' if cls=='hero-photo' else '(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 33vw'
+ if cls=='article-photo':sizes='(max-width: 560px) calc(100vw - 36px), (max-width: 1100px) calc(100vw - 56px), (max-width: 1336px) calc(100vw - 96px), 1240px'
+ if cls=='blog-featured-photo':sizes='(max-width: 560px) 92vw, 46vw'
  widths=[480,960,1600] if key=='sahara' else [480,960]
  srcset=', '.join(f'{link(f"assets/images/{key}-{w}.webp")} {min(w,images[key]["width"])}w' for w in widths)
  return f'<img class="{cls}" src="{link(f"assets/images/{key}-960.webp")}" srcset="{srcset}" sizes="{sizes}" width="{images[key]["width"]}" height="{images[key]["height"]}" alt="{esc(alt,quote=True)}" {"fetchpriority=high" if eager else "loading=lazy"} decoding="async">'
 def brand():
- return '<span class="brand-mark" aria-hidden="true">✳</span><span>MOROCCO EXPLORER<small>TOURS &amp; PRIVATE JOURNEYS</small></span>'
+ return f'<img class="brand-logo" src="{link("assets/logo-morocco-explorer-tours.png")}" width="192" height="192" alt="Morocco Explorer Tours">'
+def filter_options(values):
+ return ''.join(f'<option>{esc(str(value))}</option>' for value in values)
+def duration_options():
+ return ''.join(f'<option value="{days}">{days} days</option>' for days in sorted({t["days"] for t in tours}))
 def header():
- nav=''.join(a(p,t,'active' if current==p else '') for p,t in [('tours/index.html','Our tours'),('destinations/index.html','Destinations'),('about.html','Our story')])
+ nav=''.join(a(p,t,'active' if current==p or (p=='blog/index.html' and current.startswith('blog/')) else '') for p,t in [('tours/index.html','Our tours'),('destinations/index.html','Destinations'),('blog/index.html','Blog'),('about.html','Our story')])
  return f'''<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="container header-inner">{a('index.html',brand(),'brand')}<button class="menu-toggle" aria-expanded="false" aria-controls="navigation" hidden>Menu <span aria-hidden="true">☰</span></button><nav id="navigation" aria-label="Main navigation">{nav}{a('plan-your-trip.html','Plan your trip <span aria-hidden="true">↗</span>','button small')}</nav></div></header>'''
 def footer():
- return f'''<footer><div class="container footer-grid"><div>{a('index.html',brand(),'brand')}<p>Private journeys through Morocco.<br>Thoughtfully planned. Personally explored.</p><span class="footer-location">MARRAKECH · MOROCCO</span></div><div><h2>Explore</h2>{a('tours/index.html','All journeys')}{a('tours/index.html?category=Sahara+escapes','Sahara escapes')}{a('tours/index.html?category=Cities+%26+desert','Cities &amp; desert')}{a('tours/index.html?category=Grand+journeys','Grand journeys')}</div><div><h2>Get to know us</h2>{a('destinations/index.html','Our destinations')}{a('about.html','Our story')}{a('index.html#questions','Common questions')}{a('privacy.html','Privacy')}</div><div><h2>A journey of your own</h2><p>Have a place in mind?<br>Start with what inspires you.</p>{a('plan-your-trip.html','Create your trip brief ↗','footer-plan')}</div></div><div class="container footer-bottom"><span>© 2026 Morocco Explorer Tours</span><span>Desert roads. Medina moments. Your Morocco.</span>{a('sitemap.xml','Sitemap')}</div></footer>'''
+ return f'''<footer><div class="container footer-grid"><div>{a('index.html',brand(),'brand')}<p>Private journeys through Morocco.<br>Thoughtfully planned. Personally explored.</p><span class="footer-location">MARRAKECH · MOROCCO</span></div><div><h2>Explore</h2>{a('tours/index.html','All journeys')}{a('tours/index.html?category=Sahara+escapes','Sahara escapes')}{a('tours/index.html?category=Cities+%26+desert','Cities &amp; desert')}{a('tours/index.html?category=Grand+journeys','Grand journeys')}</div><div><h2>Get to know us</h2>{a('blog/index.html','Travel blog')}{a('destinations/index.html','Our destinations')}{a('about.html','Our story')}{a('index.html#questions','Common questions')}{a('privacy.html','Privacy')}</div><div><h2>A journey of your own</h2><p>Have a place in mind?<br>Start with what inspires you.</p>{a('plan-your-trip.html','Create your trip brief ↗','footer-plan')}</div></div><div class="container footer-bottom"><span>© 2026 Morocco Explorer Tours</span><span>Desert roads. Medina moments. Your Morocco.</span>{a('sitemap.xml','Sitemap')}</div></footer>'''
 def cta():
  return f'<section class="cta container"><div><p class="eyebrow">MAKE IT PERSONAL</p><h2>Your Morocco starts<br>with a little curiosity.</h2><p>A favourite place, a few dates, a big idea. Build a journey around you.</p></div>{a("plan-your-trip.html","Let’s plan your journey ↗","button light")}</section>'
 def write(path,title,description,body,section='',schema=None):
@@ -34,14 +42,29 @@ def write(path,title,description,body,section='',schema=None):
  canonical=site['url'].rstrip('/')+('/' if path=='index.html' else '/'+path.replace('index.html',''))
  base_schema={'@context':'https://schema.org','@type':'TravelAgency','name':site['name'],'url':site['url'],'areaServed':{'@type':'Country','name':'Morocco'}}
  if schema:base_schema=schema
+ if schema and schema.get('@type')=='BlogPosting':
+  social_image=schema['image']
+  social_alt=next(article['alt'] for article in articles if path=='blog/'+article['slug']+'.html')
+ else:
+  social_image=site['url']+'/assets/images/sahara-1600.webp'
+  social_alt='Camel caravan crossing the dunes at sunset'
  doc=f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} | Morocco Explorer Tours</title><meta name="description" content="{esc(description,quote=True)}"><link rel="canonical" href="{canonical}"><meta property="og:type" content="website"><meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Morocco Explorer Tours"><meta property="og:image" content="{site['url']}/assets/images/sahara-1600.webp"><meta property="og:image:alt" content="Camel caravan crossing the dunes at sunset"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#703d2b"><link rel="icon" href="{link('assets/favicon.svg')}" type="image/svg+xml"><link rel="stylesheet" href="{link('assets/styles.css')}"><script src="{link('assets/site.js')}" defer></script><script type="application/ld+json">{json.dumps(base_schema).replace('<',chr(92)+'u003c')}</script></head><body class="{section}">{header()}<main id="main">{body}</main>{footer()}</body></html>'''
+ doc=doc.replace(f'{site["url"]}/assets/images/sahara-1600.webp',social_image).replace('content="Camel caravan crossing the dunes at sunset"',f'content="{esc(social_alt,quote=True)}"')
+ if schema and schema.get('@type')=='BlogPosting':doc=doc.replace('property="og:type" content="website"','property="og:type" content="article"')
  if path=='404.html':doc=doc.replace('<meta name="viewport"', '<meta name="robots" content="noindex, follow"><meta name="viewport"')
- out=ROOT/path;out.parent.mkdir(parents=True,exist_ok=True);out.write_text(doc+'\n');pages.append((path,canonical))
+ out=ROOT/path;out.parent.mkdir(parents=True,exist_ok=True);out.write_text(doc+'\n',encoding='utf-8');pages.append((path,canonical))
 def tourcard(t):
  return f'''<article class="tour-card" data-start="{t['start']}" data-category="{esc(t['category'])}" data-days="{t['days']}"><a class="card-photo" href="{link('tours/'+t['slug']+'.html')}" tabindex="-1" aria-hidden="true">{img(t['image'],t['title'])}<span class="photo-label">{t['days']} DAYS · {t['nights']} {'NIGHT' if t['nights']==1 else 'NIGHTS'}</span></a><div class="card-body"><p class="eyebrow">{esc(t['category'])}</p><h3>{a('tours/'+t['slug']+'.html',esc(t['name']))}</h3><p class="route-line">{t['start']} <span aria-hidden="true">→</span> {t['end']}</p><p>{t['description']}</p><div class="card-bottom"><span>Private · Tailor-made</span>{a('tours/'+t['slug']+'.html','Explore trip <span aria-hidden="true">↗</span>')}</div></div></article>'''
 def destcard(d):
  return f'''<a class="destination-card" href="{link('destinations/'+d['slug']+'.html')}">{img(d['image'],d['name'])}<div><span>{d['category']}</span><h3>{esc(d['name'])}</h3></div><span class="circle-arrow" aria-hidden="true">↗</span></a>'''
+
+def articlecard(article,heading='h2'):
+ path='blog/'+article['slug']+'.html'
+ return f'''<article class="blog-card"><a class="card-photo" href="{link(path)}" tabindex="-1" aria-hidden="true">{img(article['image'],article['alt'],'blog-featured-photo' if heading=='h3' else '')}</a><div class="card-body"><p class="eyebrow">{esc(article['category'])}</p><{heading}>{a(path,esc(article['title']))}</{heading}><p class="blog-teaser">{esc(article['teaser'])}...</p><div class="card-bottom">{a(path,'Read More<span class="sr-only">: '+esc(article['title'])+'</span> <span aria-hidden="true">↗</span>')}</div></div></article>'''
+
+def blog_preview():
+ return f'''<section class="section container blog-preview" aria-labelledby="blog-preview-title"><div class="section-heading"><div><p class="eyebrow">THE MOROCCO JOURNAL</p><h2 id="blog-preview-title">A little insight before you go.</h2></div>{a('blog/index.html','<span aria-hidden="true">←</span> All blog articles','text-link')}</div><div class="blog-grid blog-grid-featured">{''.join(articlecard(article,'h3') for article in articles[:2])}</div></section>'''
 def intro(kicker,title,text):
  return f'<section class="page-intro container"><p class="eyebrow">{kicker}</p><h1>{title}</h1><p class="lead">{text}</p></section>'
 def crumbs(parent,label):
@@ -57,11 +80,30 @@ body=f'''<section class="hero">{img('sahara','A camel caravan follows a guide ac
 <section class="story-section" id="about"><div class="container story-grid"><div class="story-image">{img('hospitality','Tea being poured beside a fire during a desert evening')}<span class="image-note">A warm welcome is part of the journey.</span></div><div class="story-copy"><p class="eyebrow">MOROCCO, WITH A PERSONAL TOUCH</p><h2>The places stay with you.<br>So do the people.</h2><p>There is the Morocco you come to see. And the Morocco you discover along the way: tea shared after a long drive, a conversation in the medina, a moment to stop and take it all in.</p><p>At Morocco Explorer Tours, we bring local knowledge and personal attention to private journeys. Tell us what matters to you, and we’ll help shape the route.</p>{a('about.html','Get to know us ↗','text-link')}<div class="story-values"><div><strong>Your people</strong><span>A private experience</span></div><div><strong>Your pace</strong><span>A personalised route</span></div></div></div></div></section>
 <section class="section container"><div class="section-heading"><div><p class="eyebrow">FROM AN IDEA TO AN ITINERARY</p><h2>Make room for the experience.</h2></div><p>A clear plan before you go.<br>More time to enjoy being there.</p></div><div class="steps"><article><span>01 / DREAM</span><h3>Choose what draws you in</h3><p>Desert, medinas, mountains — or a little of each. Start with a route or your own wish list.</p></article><article><span>02 / SHAPE</span><h3>Bring the details together</h3><p>Match your dates and arrival city with a realistic route and the right amount of time.</p></article><article><span>03 / EXPLORE</span><h3>Know the plan, enjoy the day</h3><p>Confirm your itinerary, inclusions and pickup details before your journey begins.</p></article></div></section>
 <section class="faq-section" id="questions"><div class="container faq-grid"><div><p class="eyebrow">A FEW GOOD QUESTIONS</p><h2>Before the<br>adventure begins.</h2>{a('plan-your-trip.html','Start planning ↗','text-link')}</div><div class="faq">{faq}</div></div></section>{cta()}'''
+body=body.replace('Three starting points for a story of your own.', f'{len(tours)} private journeys for a story of your own.')
+body+=blog_preview()
 write(current,'Private Morocco Tours & Tailor-Made Journeys','Explore private Morocco tours through the Sahara, imperial cities and Atlas Mountains. Find your route and plan a personalised journey.',body,'home')
+current='blog/index.html'
+body=intro('THE MOROCCO JOURNAL','Morocco travel blog','Routes, seasons and everyday experiences to help you plan your own Morocco journey.')+f'<section class="container collection" aria-label="Travel articles"><div class="blog-grid">'+''.join(articlecard(article) for article in articles)+'</div></section>'+cta()
+write(current,'Morocco Travel Blog: Itineraries, Sahara & Culture','Read five original Morocco travel guides covering itinerary planning, Sahara tours, seasons, Marrakech to Merzouga and local food and culture.',body,'blog-index')
+for article in articles:
+ current='blog/'+article['slug']+'.html'
+ article_url=site['url'].rstrip('/')+'/'+current
+ sections=''.join(f'<section><h2 id="{article["slug"]}-section-{i}">{esc(section["heading"])}</h2>'+''.join(f'<p>{esc(paragraph)}</p>' for paragraph in section['paragraphs'])+'</section>' for i,section in enumerate(article['sections']))
+ contents=''.join(f'<li><a href="#{article["slug"]}-section-{i}">{esc(section["heading"])}</a></li>' for i,section in enumerate(article['sections']))
+ source=article.get('source')
+ source_note=f'<p class="article-source">Further reading: <a href="{esc(source["url"],quote=True)}">{esc(source["label"])}</a>.</p>' if source else ''
+ body=f'''<nav class="breadcrumbs container" aria-label="Breadcrumb">{a('index.html','Home')}<span aria-hidden="true">/</span>{a('blog/index.html','Blog')}<span aria-hidden="true">/</span><span aria-current="page">{esc(article['category'])}</span></nav><article class="container blog-article"><header class="article-header"><p class="eyebrow">{esc(article['category'])} · MOROCCO EXPLORER TOURS</p><h1>{esc(article['title'])}</h1><p class="lead">{esc(article['intro'])}</p></header><figure class="article-image">{img(article['image'],article['alt'],'article-photo',True)}</figure><div class="article-layout"><nav class="article-contents" aria-label="In this article"><h2>In this article</h2><ol>{contents}</ol></nav><div class="article-copy">{sections}{source_note}<section class="article-next"><h2>{esc(article['cta_title'])}</h2><p>{esc(article['cta_text'])}</p><div class="button-row">{a('tours/'+article['tour']+'.html',esc(article['tour_label'])+' ↗','button')}{a('contact.html','Enquire about your journey ↗','text-link')}</div></section>{a('blog/index.html','<span aria-hidden="true">←</span> All blog articles','text-link')}</div></div></article>'''
+ schema={'@context':'https://schema.org','@type':'BlogPosting','headline':article['title'],'description':article['description'],'image':site['url'].rstrip('/')+'/assets/images/'+article['image']+'-960.webp','author':{'@type':'Organization','name':site['name']},'publisher':{'@type':'Organization','name':site['name']},'mainEntityOfPage':article_url,'articleSection':article['category'],'inLanguage':'en'}
+ write(current,article['title'],article['description'],body,'blog-detail',schema=schema)
 current='tours/index.html'
 filters='''<form class="filters" id="tour-filters" hidden><label>Departure<select name="start"><option value="">All departures</option><option>Casablanca</option><option>Marrakech</option></select></label><label>Experience<select name="category"><option value="">All experiences</option><option>Sahara escapes</option><option>Cities &amp; desert</option><option>Grand journeys</option></select></label><label>Duration<select name="days"><option value="">Any length</option><option value="2">2 days</option><option value="5">5 days</option><option value="7">7 days</option></select></label><button class="text-button" type="reset">Reset filters</button></form>'''
+starts=sorted({t['start'] for t in tours})
+categories=[category for category in CATEGORY_ORDER if any(t['category']==category for t in tours)]
+filters=f'''<form class="filters" id="tour-filters" hidden><label>Departure<select name="start"><option value="">All departures</option>{filter_options(starts)}</select></label><label>Experience<select name="category"><option value="">All experiences</option>{filter_options(categories)}</select></label><label>Duration<select name="days"><option value="">Any length</option>{duration_options()}</select></label><button class="text-button" type="reset">Reset filters</button></form>'''
 body=intro('FIND YOUR JOURNEY','A route for your kind<br>of <em>adventure.</em>','Explore our private itinerary ideas. Each can be adapted around your dates, interests and preferred pace.')+f'<section class="container collection">{filters}<p id="result-count" aria-live="polite">3 journeys to explore</p><div class="tour-grid" id="tour-results">'+''.join(tourcard(t) for t in tours)+f'</div><div id="empty-results" class="empty-results" hidden><h2>A different combination?</h2><p>No listed route matches these filters. Reset them or create a custom trip brief.</p>{a("plan-your-trip.html","Plan a custom journey ↗","button")}</div><p class="collection-note">Prices are quoted individually. Accommodation, activities and meals are confirmed in your written proposal.</p></section>'+cta()
-write(current,'Private Morocco Tour Collection','Compare private Morocco itineraries by departure city, experience and duration. Explore 2, 5 and 7-day routes and tailor your own journey.',body)
+body=body.replace('3 journeys to explore', f'{len(tours)} journeys to explore')
+write(current,'Private Morocco Tour Collection','Compare private Morocco itineraries by departure city, experience and duration. Explore 2 to 16-day routes and tailor your own journey.',body)
 for t in tours:
  current='tours/'+t['slug']+'.html'
  daylist=''.join(f'<details {"open" if i==0 else ""}><summary><span class="day-number">DAY {i+1:02}</span> {esc(title)}</summary><p>{esc(copy)}</p></details>' for i,(title,copy) in enumerate(t['itinerary']))
@@ -86,6 +128,7 @@ body=intro('YOUR INFORMATION','Privacy, in plain language.','How this website ha
 write(current,'Privacy','Read how the Morocco Explorer Tours trip planner handles information in your browser and what happens when you save or share a brief.',body)
 current='404.html'
 write(current,'Page Not Found','Find your way back to Morocco Explorer Tours.',intro('A SMALL DETOUR','This path ends here.','The page may have moved. Your next journey is still waiting.')+f'<div class="container collection button-row">{a("index.html","Back to home ↗","button")}{a("tours/index.html","Explore tours","button secondary")}</div>')
-(ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{esc(url)}</loc></url>\n' for path,url in pages if path!='404.html')+'</urlset>\n')
-(ROOT/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+site['url']+'/sitemap.xml\n')
+(ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{esc(url)}</loc></url>\n' for path,url in pages if path!='404.html')+'</urlset>\n',encoding='utf-8')
+(ROOT/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+site['url']+'/sitemap.xml\n',encoding='utf-8')
 print(f'Built {len(pages)} HTML pages, sitemap.xml and robots.txt')
+
