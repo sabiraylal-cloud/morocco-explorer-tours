@@ -36,9 +36,26 @@ npm ci
 npx playwright install chromium
 # In a separate terminal: python3 -m http.server 8000
 npm run test:browser
+npm run test:layout
 ```
 
 The checks visit all 35 pages at 320, 390, 768, 1024 and 1440 pixels, test images and horizontal overflow, and exercise mobile navigation, filter combinations/reset, destination relationships, Blog cards and article navigation, five-word teasers, enquiry validation/download, accordions and navigation with JavaScript disabled. Set `TEST_BASE_URL` to check another server; optionally set `CHROMIUM_PATH` to an installed Chromium executable. Screenshots are written to ignored `artifacts/`. The pull-request workflow runs these checks and uploads screenshots. It never deploys or merges.
+
+The layout suite starts its own local server. It checks transparent header/footer logos, compact header and menu dimensions, slow and fast scroll behavior, keyboard focus, article-anchor clearance, horizontal blog alignment, real touch swiping, Read More destinations and homepage tour links. At 1440px all five Blog cards must fit in the row; smaller widths scroll within the row without widening the page.
+
+## Homepage selection limitation
+
+The current data contains 2-, 5-, 6-, 7-, 8-, 10-, 12- and 16-day tours, but no 4-day tour. The homepage features the existing 2-day Mhamid, 5-day Casablanca to Marrakech and 7-day Grand Morocco tours. The exact requested 4/5/7-day combination is unavailable; no itinerary has been shortened and no duplicate tour has been created. All thirteen tours remain available through the Tours page and its filters.
+
+The supplied repository logo is the black-and-gold ME monogram with Morocco Explorer Tours text. It is a transparent PNG, not a computer-screen photo. The supplied artwork contains no camel illustration; no camel has been invented or substituted.
+
+## Hostinger publication
+
+After build and checks pass, run `python3 scripts/package-site.py`. This produces `artifacts/morocco-explorer-tours-publication.zip` with `index.html` at its root and a local SHA-256 manifest for deployed-file verification. The archive contains generated public pages and assets only, excluding source data, tests, original unused photos, Git metadata and test runtimes. Run `python3 scripts/verify-deployment.py` after publication; it compares every public response with the package, normalizing only text line endings, and fails if any file is missing or different.
+
+The repository workflow validates pull requests; it does not deploy. If Hostinger Git auto-deployment is configured separately for `main`, verify the public HTML, CSS, JavaScript and logo after the merge before reporting publication. Otherwise, in hPanel choose Websites, then the dashboard for `moroccoexplorertours.com`, then Files > File Manager. Back up the current public files, upload the publication ZIP into this domain's `public_html`, and extract its contents directly there, replacing the corresponding public files. Do not extract into an extra nested directory or upload the whole source repository. Configure missing pages to serve `404.html` with HTTP status 404, clear the website/CDN cache, and verify the deployed files against `publication-manifest.json`.
+
+Alternatively, use Advanced > Git to connect `sabiraylal-cloud/morocco-explorer-tours`, select branch `main` and root directory `public_html`, and deploy. Ensure source-only directories are not publicly exposed when deploying the whole repository. See [Hostinger Git deployment](https://www.hostinger.com/support/1583302-how-to-deploy-a-git-repository-in-hostinger/) and [Hostinger file uploads](https://www.hostinger.com/support/1583289-how-to-manually-transfer-a-website-to-hostinger/).
 
 ## Production review
 
@@ -49,4 +66,4 @@ The checks visit all 35 pages at 320, 390, 768, 1024 and 1440 pixels, test image
 - Review real booking/cancellation terms before adding payments or confirmed bookings.
 - Serve the public HTML pages, `assets/`, `robots.txt`, `sitemap.xml` and `404.html` from the domain root. Keep existing original photos in the repository. Do not replace an existing WordPress installation without a separate deployment decision.
 
-See `docs/repository-review.md` for the initial audit, design reasoning and page structure. This branch is for review; no production deployment is included.
+See `docs/repository-review.md` for the initial audit, design reasoning and page structure. A merge is not evidence that Hostinger has published the changes; verify the public version separately.

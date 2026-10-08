@@ -35,17 +35,27 @@ function updateMenu() {
 mobileQuery.addEventListener('change', updateMenu);
 updateMenu();
 let lastScrollY = window.scrollY;
+let scrollDirection = 0;
+let scrollTravel = 0;
 let headerTicking = false;
 function updateHeader() {
   const currentScrollY = Math.max(window.scrollY, 0);
   const menuOpen = navigation.classList.contains('is-open');
+  const delta = currentScrollY - lastScrollY;
+  const direction = Math.sign(delta);
+  if (direction && direction !== scrollDirection) scrollTravel = 0;
+  if (direction) {
+    scrollDirection = direction;
+    scrollTravel += Math.abs(delta);
+  }
   if (currentScrollY <= 10 || menuOpen) {
     header.classList.remove('is-hidden');
     header.classList.toggle('is-visible', currentScrollY > 4 || menuOpen);
-  } else if (currentScrollY > lastScrollY + 6 && currentScrollY > header.offsetHeight + 24) {
+    scrollTravel = 0;
+  } else if (scrollDirection > 0 && scrollTravel > 6 && currentScrollY > header.offsetHeight + 24) {
     header.classList.add('is-hidden');
     header.classList.remove('is-visible');
-  } else if (currentScrollY < lastScrollY - 6) {
+  } else if (scrollDirection < 0 && scrollTravel > 6) {
     header.classList.remove('is-hidden');
     header.classList.add('is-visible');
   }
@@ -59,6 +69,10 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 updateHeader();
+header.addEventListener('focusin', () => {
+  header.classList.remove('is-hidden');
+  header.classList.add('is-visible');
+});
 const filters = document.querySelector('#tour-filters');
 if (filters) {
   filters.hidden = false;
