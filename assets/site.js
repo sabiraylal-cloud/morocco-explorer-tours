@@ -73,6 +73,71 @@ header.addEventListener('focusin', () => {
   header.classList.remove('is-hidden');
   header.classList.add('is-visible');
 });
+document.querySelectorAll('.testimonials').forEach(carousel => {
+  carousel.classList.add('is-enhanced');
+  const track = carousel.querySelector('.testimonial-track');
+  const slides = [...track.children];
+  const dots = [...carousel.querySelectorAll('.testimonial-dot')];
+  const previous = carousel.querySelector('.testimonial-prev');
+  const next = carousel.querySelector('.testimonial-next');
+  const status = carousel.querySelector('.testimonial-status');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let active = 0;
+  let trackWidth = track.clientWidth;
+  let announce = false;
+  let ticking = false;
+  const position = index => slides[index].offsetLeft - slides[0].offsetLeft;
+  function update() {
+    // Resize can fire a scroll event before ResizeObserver; preserve the selection.
+    if (track.clientWidth !== trackWidth) {
+      trackWidth = track.clientWidth;
+      track.scrollTo({ left: position(active), behavior: 'instant' });
+    }
+    let nearest = 0;
+    for (let index = 1; index < slides.length; index++) {
+      if (Math.abs(position(index) - track.scrollLeft) < Math.abs(position(nearest) - track.scrollLeft)) nearest = index;
+    }
+    const changed = nearest !== active;
+    active = nearest;
+    dots.forEach((dot, index) => {
+      if (index === active) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
+    // aria-disabled keeps focus on a navigation button at either end.
+    previous.setAttribute('aria-disabled', String(active === 0));
+    next.setAttribute('aria-disabled', String(active === slides.length - 1));
+    if (changed && announce) {
+      const name = slides[active].querySelector('.testimonial-name').textContent;
+      const country = slides[active].querySelector('.testimonial-country').textContent;
+      status.textContent = `Testimonial ${active + 1} of ${slides.length}: ${name}, ${country}.`;
+    }
+    ticking = false;
+  }
+  function go(index) {
+    announce = true;
+    track.scrollTo({ left: position(Math.max(0, Math.min(slides.length - 1, index))), behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+  }
+  previous.addEventListener('click', () => go(active - 1));
+  next.addEventListener('click', () => go(active + 1));
+  dots.forEach((dot, index) => dot.addEventListener('click', () => go(index)));
+  track.addEventListener('keydown', event => {
+    const destinations = { ArrowLeft: active - 1, ArrowRight: active + 1, Home: 0, End: slides.length - 1 };
+    if (Object.hasOwn(destinations, event.key)) {
+      event.preventDefault();
+      go(destinations[event.key]);
+    }
+  });
+  track.addEventListener('pointerdown', () => { announce = true; }, { passive: true });
+  track.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+  new ResizeObserver(update).observe(track);
+  carousel.querySelector('.testimonial-controls').hidden = false;
+  update();
+});
 const filters = document.querySelector('#tour-filters');
 if (filters) {
   filters.hidden = false;

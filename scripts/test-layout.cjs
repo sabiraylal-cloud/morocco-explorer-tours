@@ -31,6 +31,12 @@ const server = http.createServer((request, response) => {
     page.on('response', response => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
     const articles = JSON.parse(fs.readFileSync(path.join(root, 'data/articles.json'), 'utf8'));
     const tours = JSON.parse(fs.readFileSync(path.join(root, 'data/tours.json'), 'utf8'));
+    const testimonials = JSON.parse(fs.readFileSync(path.join(root, 'data/testimonials.json'), 'utf8'));
+    assert.deepEqual(testimonials.reviews.map(review => [review.name, review.country]), [['Lissa Gomez', 'USA'], ['Ben Tanaka', 'Japan'], ['Martin Lovers', 'UK']], 'Only the three published customers may appear');
+    assert.ok(testimonials.reviews.every(review => !Object.keys(review).some(key => /date|rating|photo/i.test(key))), 'Do not add dates, ratings or unverified customer photos');
+    assert.match(testimonials.reviews[0].summary, /Marrakech.*Sahara.*Sabir/);
+    assert.match(testimonials.reviews[1].summary, /Sabir.*kindness.*professional.*safe/);
+    assert.match(testimonials.reviews[2].summary, /Fes.*Meryem.*knowledge/);
     const photoFile = 'assets/images/homepage-travellers.jpeg';
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root, photoFile))).digest('hex'), 'be85a33a92e641af8ef7ef848327e02256004e8401cae488c19088b2d5ad4437', 'Hero is not the unchanged supplied photo');
     const assetVersions = Object.fromEntries(['assets/styles.css', 'assets/site.js', 'assets/logo-morocco-explorer-tours.png', photoFile].map(file => {
@@ -140,6 +146,50 @@ const server = http.createServer((request, response) => {
           }
         }
         if (file === 'index.html') {
+          const carousel = page.locator('.testimonials');
+          const track = carousel.locator('.testimonial-track');
+          const dots = carousel.locator('.testimonial-dot');
+          assert.equal(await carousel.getAttribute('aria-roledescription'), 'carousel');
+          assert.equal(await page.locator('.blog-preview').evaluate(element => element.previousElementSibling.classList.contains('testimonials')), true, 'Testimonials must be immediately above the blog');
+          assert.deepEqual(await carousel.locator('.testimonial-name').allTextContents(), ['Lissa Gomez', 'Ben Tanaka', 'Martin Lovers']);
+          assert.deepEqual(await carousel.locator('.testimonial-country').allTextContents(), ['USA', 'Japan', 'UK']);
+          assert.deepEqual(await carousel.locator('.testimonial-summary').allTextContents(), testimonials.reviews.map(review => review.summary));
+          assert.equal(await carousel.locator('time, img, blockquote').count(), 0, 'No invented dates, customer photos or verbatim-quote presentation');
+          assert.doesNotMatch(await carousel.textContent(), /Nourddine|Ali\b|Ibrahim|\b20\d{2}\b/);
+          assert.equal(await carousel.locator('.testimonial-sources p a').getAttribute('href'), 'https://moroccoextratours.com/');
+          assert.equal(await carousel.locator('.testimonial-tourradar').getAttribute('href'), 'https://www.tourradar.com/o/morocco-extra-tours');
+          const geometry = await track.evaluate(element => ({ snap: getComputedStyle(element).scrollSnapType, width: element.clientWidth, cards: [...element.children].map(card => ({ width: card.getBoundingClientRect().width, height: card.getBoundingClientRect().height, readable: card.scrollWidth <= card.clientWidth + 1 })) }));
+          assert.equal(geometry.snap, 'x mandatory');
+          assert.equal(geometry.cards.length, 3);
+          assert.ok(geometry.cards.every(card => Math.abs(card.width - geometry.width) < 1 && card.readable), `Testimonial width/text overflows at ${width}`);
+          assert.ok(geometry.cards.every(card => Math.abs(card.height - geometry.cards[0].height) < 1), 'Slide heights must stay stable');
+          for (const button of await carousel.locator('button').all()) {
+            const box = await button.boundingBox();
+            assert.ok(box.width >= 44 && box.height >= 44, 'Carousel target is too small');
+            assert.ok(await button.getAttribute('aria-label'), 'Carousel button needs an accessible name');
+          }
+          for (const direction of ['left', 'right']) assert.equal((await page.request.get(`${base}/assets/icons/chevron-${direction}.svg`)).status(), 200, 'Missing navigation icon');
+          await track.focus();
+          assert.ok(await track.evaluate(element => getComputedStyle(element).outlineStyle !== 'none'), 'Track lacks visible keyboard focus');
+          await page.keyboard.press('ArrowRight');
+          await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[1].getAttribute('aria-current') === 'true');
+          assert.match(await carousel.locator('.testimonial-status').textContent(), /2 of 3: Ben Tanaka, Japan/);
+          await page.keyboard.press('End');
+          await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[2].getAttribute('aria-current') === 'true');
+          assert.equal(await carousel.locator('.testimonial-next').getAttribute('aria-disabled'), 'true');
+          await page.keyboard.press('Home');
+          await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[0].getAttribute('aria-current') === 'true');
+          assert.equal(await carousel.locator('.testimonial-prev').getAttribute('aria-disabled'), 'true');
+          await carousel.locator('.testimonial-next').click();
+          await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[1].getAttribute('aria-current') === 'true');
+          assert.ok(await carousel.locator('.testimonial-next').evaluate(element => element === document.activeElement), 'Navigation unexpectedly moves keyboard focus');
+          await dots.nth(2).click();
+          await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[2].getAttribute('aria-current') === 'true');
+          await carousel.locator('.testimonial-prev').click();
+          await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[1].getAttribute('aria-current') === 'true');
+          await dots.first().click();
+          await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[0].getAttribute('aria-current') === 'true');
+          if ([320, 390, 1440].includes(width)) await carousel.screenshot({ path: path.join(root, `artifacts/testimonials-${width}.png`) });
           const hero = await page.locator('.hero').evaluate(element => {
             const image = element.querySelector('.hero-photo');
             const photo = image.getBoundingClientRect();
@@ -222,7 +272,35 @@ const server = http.createServer((request, response) => {
     await mobile.waitForTimeout(400);
     assert.equal(await mobile.locator('.blog-grid').evaluate(element => element.scrollLeft), 0, 'Blog grid behaves as a horizontal swipe carousel');
     assert.equal(await mobile.evaluate(() => window.scrollX), 0, 'Touch gesture scrolls the page sideways');
+    await mobile.goto(`${base}/index.html`);
+    await mobile.locator('.testimonial-track').scrollIntoViewIfNeeded();
+    const reviewBox = await mobile.locator('.testimonial-track').boundingBox();
+    const reviewY = Math.max(100, Math.min(700, reviewBox.y + reviewBox.height / 2));
+    await session.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 330, y: reviewY }] });
+    for (const x of [290, 230, 170, 110, 50]) {
+      await session.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x, y: reviewY }] });
+      await mobile.waitForTimeout(35);
+    }
+    await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await mobile.waitForTimeout(600);
+    assert.ok(await mobile.locator('.testimonial-track').evaluate(element => element.scrollLeft > element.clientWidth / 2), 'Touch does not advance testimonials');
+    assert.equal(await mobile.locator('.testimonial-dot[aria-current="true"]').count(), 1, 'Touch leaves pagination state inconsistent');
+    assert.equal(await mobile.evaluate(() => window.scrollX), 0, 'Testimonial swipe moves the whole page');
+    const animated = await browser.newPage({ viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' });
+    animated.on('pageerror', error => errors.push(error.message));
+    await animated.goto(`${base}/index.html`);
+    await animated.locator('.testimonial-next').click();
+    await animated.waitForFunction(() => Math.abs(document.querySelector('.testimonial-track').scrollLeft - document.querySelector('.testimonial-card').offsetWidth - 16) < 2);
+    assert.equal(await animated.locator('.testimonial-dot[aria-current="true"]').getAttribute('data-slide'), '1', 'Animated navigation selects the wrong slide');
+    await animated.setViewportSize({ width: 390, height: 844 });
+    await animated.waitForTimeout(300);
+    assert.equal(await animated.locator('.testimonial-dot[aria-current="true"]').getAttribute('data-slide'), '1', 'Resize loses the selected testimonial');
+    const left = await animated.locator('.testimonial-track').evaluate(element => element.scrollLeft);
+    await animated.waitForTimeout(1800);
+    assert.ok(Math.abs(await animated.locator('.testimonial-track').evaluate(element => element.scrollLeft) - left) < 1, 'Carousel rotates without visitor input');
+    await animated.close();
     assert.deepEqual(errors, []);
+    console.log('PASS: exactly three attributed testimonials without dates/photos; carousel above blog; seven widths; readable equal-size slides; 44px named controls; keyboard/arrows/Home/End, dots, polite announcements, touch snapping, normal/reduced motion, resize retention, no autoplay/page overflow.');
     console.log(`PASS: ${files.length} pages at seven widths; exact supplied hero photo, face visibility/no text overlap, compact logo/header, menu keyboard/touch behavior, two-column mobile blog grid (no swipe), consistent card/image sizes and readable text, five-word teasers, three homepage tours and links, all ${tours.length} tours retained, slow scroll header and article anchors. Screenshots in artifacts/.`);
     console.log(`Available tour durations: ${[...new Set(tours.map(tour => tour.days))].sort((a, b) => a - b).join(', ')}. ${tours.some(tour => tour.days === 4) ? '4-day tour found.' : 'No existing 4-day tour; exact homepage combination remains unavailable.'}`);
   } finally {
