@@ -6,7 +6,7 @@ import hashlib, json, re, xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
 errors=[]
 asset_versions={}
-for asset in ['assets/styles.css','assets/site.js','assets/logo-morocco-explorer-tours.png']:
+for asset in ['assets/styles.css','assets/site.js','assets/logo-morocco-explorer-tours.png','assets/images/homepage-travellers.jpeg']:
  content=(ROOT/asset).read_bytes()
  if asset.endswith(('.css','.js')):content=content.replace(b'\r\n',b'\n')
  asset_versions[(ROOT/asset).resolve()]=hashlib.sha256(content).hexdigest()[:12]

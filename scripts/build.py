@@ -14,7 +14,9 @@ current='index.html'
 CATEGORY_ORDER=['Sahara escapes','Cities & desert','Grand journeys']
 HOME_TOUR_SLUGS=['5-day-casablanca-marrakech','2-day-mhamid-desert','7-day-grand-morocco']
 ASSET_VERSIONS={}
-for asset in ['assets/styles.css','assets/site.js','assets/logo-morocco-explorer-tours.png']:
+HOME_PHOTO='assets/images/homepage-travellers.jpeg'
+HOME_PHOTO_ALT='Three travellers overlooking a Moroccan town and mountain landscape'
+for asset in ['assets/styles.css','assets/site.js','assets/logo-morocco-explorer-tours.png',HOME_PHOTO]:
  content=(ROOT/asset).read_bytes()
  if asset.endswith(('.css','.js')):content=content.replace(b'\r\n',b'\n')
  ASSET_VERSIONS[asset]=hashlib.sha256(content).hexdigest()[:12]
@@ -26,7 +28,8 @@ def a(path,text,cls=''):
 def img(key,alt,cls='',eager=False):
  sizes='100vw' if cls=='hero-photo' else '(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 33vw'
  if cls=='article-photo':sizes='(max-width: 560px) calc(100vw - 36px), (max-width: 1100px) calc(100vw - 56px), (max-width: 1336px) calc(100vw - 96px), 1240px'
- if cls=='blog-featured-photo':sizes='(max-width: 560px) 92vw, 46vw'
+ if cls=='blog-featured-photo':sizes='(max-width: 560px) calc((100vw - 48px) / 2), 46vw'
+ if cls=='blog-photo':sizes='(max-width: 560px) calc((100vw - 48px) / 2), (max-width: 800px) 46vw, 20vw'
  widths=[480,960,1600] if key=='sahara' else [480,960]
  srcset=', '.join(f'{link(f"assets/images/{key}-{w}.webp")} {min(w,images[key]["width"])}w' for w in widths)
  return f'<img class="{cls}" src="{link(f"assets/images/{key}-960.webp")}" srcset="{srcset}" sizes="{sizes}" width="{images[key]["width"]}" height="{images[key]["height"]}" alt="{esc(alt,quote=True)}" {"fetchpriority=high" if eager else "loading=lazy"} decoding="async">'
@@ -55,6 +58,9 @@ def write(path,title,description,body,section='',schema=None):
  if schema and schema.get('@type')=='BlogPosting':
   social_image=schema['image']
   social_alt=next(article['alt'] for article in articles if path=='blog/'+article['slug']+'.html')
+ elif path=='index.html':
+  social_image=site['url']+'/'+HOME_PHOTO+'?v='+ASSET_VERSIONS[HOME_PHOTO]
+  social_alt=HOME_PHOTO_ALT
  else:
   social_image=site['url']+'/assets/images/sahara-1600.webp'
   social_alt='Camel caravan crossing the dunes at sunset'
@@ -71,7 +77,7 @@ def destcard(d):
 
 def articlecard(article,heading='h2'):
  path='blog/'+article['slug']+'.html'
- return f'''<article class="blog-card"><a class="card-photo" href="{link(path)}" tabindex="-1" aria-hidden="true">{img(article['image'],article['alt'],'blog-featured-photo' if heading=='h3' else '')}</a><div class="card-body"><p class="eyebrow">{esc(article['category'])}</p><{heading}>{a(path,esc(article['title']))}</{heading}><p class="blog-teaser">{esc(article['teaser'])}...</p><div class="card-bottom">{a(path,'Read More<span class="sr-only">: '+esc(article['title'])+'</span> <span aria-hidden="true">↗</span>')}</div></div></article>'''
+ return f'''<article class="blog-card"><a class="card-photo" href="{link(path)}" tabindex="-1" aria-hidden="true">{img(article['image'],article['alt'],'blog-featured-photo' if heading=='h3' else 'blog-photo')}</a><div class="card-body"><p class="eyebrow">{esc(article['category'])}</p><{heading}>{a(path,esc(article['title']))}</{heading}><p class="blog-teaser">{esc(article['teaser'])}...</p><div class="card-bottom">{a(path,'Read More<span class="sr-only">: '+esc(article['title'])+'</span> <span aria-hidden="true">↗</span>')}</div></div></article>'''
 
 def blog_preview():
  return f'''<section class="section container blog-preview" aria-labelledby="blog-preview-title"><div class="section-heading"><div><p class="eyebrow">THE MOROCCO JOURNAL</p><h2 id="blog-preview-title">A little insight before you go.</h2></div>{a('blog/index.html','<span aria-hidden="true">←</span> All blog articles','text-link')}</div><div class="blog-grid blog-grid-featured">{''.join(articlecard(article,'h3') for article in articles[:2])}</div></section>'''
@@ -82,7 +88,7 @@ def crumbs(parent,label):
 faqs=[('Is this a private tour?','Yes. These journeys are planned for you and the people travelling with you. The route can be adapted around your group.'),('Can we change the route or add nights?','Yes. Treat each itinerary as a starting point. Extra nights can make long driving routes more comfortable and leave more time for places you enjoy.'),('What does my quote include?','Your final proposal should confirm transport, accommodation, meals, guides, activities and any entry fees. Review the written inclusions and booking terms before making a payment.'),('Can you arrange an airport pickup?','Airport pickup and drop-off can be arranged around the agreed route. Share your flight times and accommodation so the meeting point and travel schedule can be confirmed.'),('How do we choose a desert experience?','Merzouga, Mhamid and Erg Chegaga involve different routes and travel times. Choose around the days you have available, your comfort preferences and the rest of your itinerary.')]
 faq=''.join(f'<details><summary>{q}</summary><p>{v}</p></details>' for q,v in faqs)
 current='index.html'
-body=f'''<section class="hero">{img('sahara','A camel caravan follows a guide across the Sahara dunes at sunset','hero-photo',True)}<div class="hero-shade"></div><div class="container hero-inner"><p class="eyebrow">PRIVATE JOURNEYS · LOCAL PERSPECTIVES</p><h1>A little further.<br>A little closer<br>to <em>Morocco.</em></h1><p>From the first medina morning to the last desert sunset.<br> Discover Morocco on a journey that feels like yours.</p><div class="button-row">{a('tours/index.html','Find your journey ↗','button')}{a('plan-your-trip.html','Create your own','button outline')}</div></div><div class="hero-caption"><span>31° N / 04° W</span><span>THE SAHARA, MOROCCO</span></div></section>
+body=f'''<section class="hero"><img class="hero-photo" src="{link(HOME_PHOTO)}" width="1296" height="972" alt="{HOME_PHOTO_ALT}" fetchpriority="high" decoding="async"><div class="hero-shade"></div><div class="container hero-inner"><p class="eyebrow">PRIVATE JOURNEYS · LOCAL PERSPECTIVES</p><h1>A little further.<br>A little closer<br>to <em>Morocco.</em></h1><p>From the first medina morning to the last desert sunset.<br> Discover Morocco on a journey that feels like yours.</p><div class="button-row">{a('tours/index.html','Find your journey ↗','button')}{a('plan-your-trip.html','Create your own','button outline')}</div></div><div class="hero-caption"><span>SHARED MOMENTS</span><span>MOROCCO</span></div></section>
 <div class="promise-bar"><div class="container"><span><b>01</b> Your own private journey</span><span><b>02</b> Local knowledge, personal care</span><span><b>03</b> A route shaped around you</span></div></div>
 <section class="section container" id="tours"><div class="section-heading"><div><p class="eyebrow">THE JOURNEY COLLECTION</p><h2>Different roads.<br>Extraordinary Morocco.</h2></div><div><p>Three starting points for a story of your own.<br>Find your route, then make it yours.</p>{a('tours/index.html','Explore all tours ↗','text-link')}</div></div><div class="tour-grid">{''.join(tourcard(t) for t in homepage_tours())}</div></section>
 <section class="departures"><div class="container"><p class="eyebrow">BEGIN WHERE YOU LAND</p><div class="departure-row"><h2>Where do we start?</h2>{''.join(a('tours/index.html?'+urlencode({'start':city}),city+' ↗','departure-link') for city in ['Casablanca','Marrakech'])}{a('plan-your-trip.html?arrival=Fes','Fes · custom ↗','departure-link')}{a('plan-your-trip.html?arrival=Tangier','Tangier · custom ↗','departure-link')}</div></div></section>
