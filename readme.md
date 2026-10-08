@@ -41,7 +41,11 @@ npm run test:layout
 
 The checks visit all 35 pages at 320, 390, 768, 1024 and 1440 pixels, test images and horizontal overflow, and exercise mobile navigation, filter combinations/reset, destination relationships, Blog cards and article navigation, five-word teasers, enquiry validation/download, accordions and navigation with JavaScript disabled. Set `TEST_BASE_URL` to check another server; optionally set `CHROMIUM_PATH` to an installed Chromium executable. Screenshots are written to ignored `artifacts/`. The pull-request workflow runs these checks and uploads screenshots. It never deploys or merges.
 
-The layout suite starts its own local server. It checks transparent header/footer logos, compact header and menu dimensions, slow and fast scroll behavior, keyboard focus, article-anchor clearance, horizontal blog alignment, real touch swiping, Read More destinations and homepage tour links. At 1440px all five Blog cards must fit in the row; smaller widths scroll within the row without widening the page.
+The layout suite starts its own local server. It checks transparent header/footer logos, compact header and menu dimensions, scroll behavior, keyboard focus, article-anchor clearance, the two-column mobile blog grid (not a carousel), consistent card dimensions, Read More destinations and homepage tour links. All five Blog cards fit in one desktop row; the two homepage previews stay side by side on phones.
+
+The homepage hero uses `assets/images/homepage-travellers.jpeg`, an unchanged copy of the supplied `WhatsApp Image 2026-10-08 at 22.46.18.jpeg` (SHA-256 `be85a33a92e641af8ef7ef848327e02256004e8401cae488c19088b2d5ad4437`). Tests verify the exact asset, its proportions and that the three face regions remain visible without text overlap at mobile, tablet and desktop sizes. The hero and homepage social preview use content-versioned image URLs.
+
+Set `TEST_BASE_URL=https://moroccoexplorertours.com` to run either browser suite against the deployed site. The layout suite also requires the deployed asset versions to match the current checkout; run it after publication to distinguish a successful merge from an actual live update.
 
 ## Homepage selection limitation
 
