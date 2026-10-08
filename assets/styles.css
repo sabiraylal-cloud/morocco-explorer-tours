@@ -20,13 +20,14 @@
   --line:#ded4c6;
   --serif:Georgia,'Times New Roman',serif;
   --sans:Arial,Helvetica,sans-serif;
+  --header-offset:62px;
 }
 * {
   box-sizing:border-box;
 }
 html {
   scroll-behavior:smooth;
-  scroll-padding-top:100px;
+  scroll-padding-top:calc(var(--header-offset) + 18px);
 }
 body {
   margin:0;
@@ -202,13 +203,21 @@ em {
   z-index:50;
   background:rgba(255,253,249,.97);
   border-bottom:1px solid var(--line);
+  transition:transform .22s ease, box-shadow .22s ease;
+  will-change:transform;
+}
+.site-header.is-hidden {
+  transform:translateY(calc(-100% - 2px));
+}
+.site-header.is-visible {
+  box-shadow:0 12px 30px rgba(50,40,32,.08);
 }
 .header-inner {
-  min-height:90px;
+  min-height:62px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:30px;
+  gap:24px;
 }
 .brand {
   display:flex;
@@ -223,7 +232,7 @@ em {
 .brand-logo {
   display:block;
   width:auto;
-  height:76px;
+  height:46px;
   object-fit:contain;
 }
 .brand-logo + .brand-mark,
@@ -246,12 +255,12 @@ em {
 nav#navigation {
   display:flex;
   align-items:center;
-  gap:34px;
+  gap:24px;
   font-size:12px;
   font-weight:600;
 }
 nav#navigation>a:not(.button) {
-  padding-block:14px;
+  padding-block:8px;
 }
 .active {
   color:var(--clay);
@@ -641,22 +650,27 @@ footer {
   margin-bottom:25px;
 }
 .blog-grid {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:25px;
-}
-.blog-grid-featured {
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  display:flex;
+  gap:16px;
+  max-width:100%;
+  overflow-x:auto;
+  overscroll-behavior-inline:contain;
+  scroll-snap-type:x mandatory;
+  padding-bottom:14px;
+  -webkit-overflow-scrolling:touch;
 }
 .blog-card {
+  flex:1 0 210px;
+  position:relative;
   display:flex;
   flex-direction:column;
   min-width:0;
   border:1px solid var(--line);
   background:#fff;
+  scroll-snap-align:start;
 }
 .blog-card .card-body h2,.blog-card .card-body h3 {
-  font-size:27px;
+  font-size:22px;
   letter-spacing:0;
   margin-bottom:16px;
 }
@@ -671,7 +685,8 @@ footer {
 }
 .article-header {
   max-width:880px;
-  margin:35px auto;
+  margin:28px auto 35px;
+  padding-top:8px;
 }
 .article-header h1 {
   font-size:52px;
@@ -707,6 +722,9 @@ footer {
   font-size:32px;
   letter-spacing:0;
   margin-bottom:20px;
+}
+.article-copy h2:target {
+  scroll-margin-top:18px;
 }
 .article-copy>section {
   margin-bottom:38px;
@@ -1044,7 +1062,6 @@ pre {
 }
 @media(max-width:1100px) {
   .blog-grid {
-    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:16px;
   }
   .article-layout {
@@ -1062,7 +1079,7 @@ pre {
     letter-spacing:1px;
   }
   .brand-logo {
-    height:68px;
+    height:42px;
   }
   .brand small {
     font-size:7px;
@@ -1114,6 +1131,9 @@ pre {
   }
 }
 @media(max-width:800px) {
+  :root {
+    --header-offset:54px;
+  }
   .article-layout {
     grid-template-columns:1fr;
   }
@@ -1121,10 +1141,17 @@ pre {
     border-bottom:1px solid var(--line);
     padding-bottom:15px;
   }
+  .blog-grid {
+    gap:14px;
+  }
+  .blog-card {
+    flex:0 0 min(72vw, 480px);
+    scroll-snap-align:start;
+  }
   .header-inner {
-    min-height:78px;
+    min-height:54px;
     flex-wrap:wrap;
-    gap:0;
+    gap:0 12px;
     position:relative;
   }
   .menu-toggle:not([hidden]) {
@@ -1135,13 +1162,18 @@ pre {
     flex-direction:column;
     align-items:stretch;
     gap:3px;
-    padding:15px 0 24px;
+    padding:6px 0 12px;
   }
   .js nav#navigation {
     display:none;
   }
   .js nav#navigation.is-open {
     display:flex;
+  }
+  nav#navigation>a {
+    min-height:44px;
+    display:flex;
+    align-items:center;
   }
   .hero {
     height:640px;
@@ -1252,11 +1284,14 @@ pre {
   }
 }
 @media(max-width:560px) {
-  .blog-grid {
-    grid-template-columns:1fr;
+  :root {
+    --header-offset:50px;
+  }
+  .blog-card {
+    flex:0 0 min(82vw, 320px);
   }
   .blog-card .card-body h2,.blog-card .card-body h3 {
-    font-size:26px;
+    font-size:23px;
   }
   .article-header h1 {
     font-size:34px;
@@ -1274,7 +1309,7 @@ pre {
     width:calc(100% - 36px);
   }
   .header-inner {
-    min-height:74px;
+    min-height:50px;
   }
   .brand {
     font-size:10px;
@@ -1282,7 +1317,7 @@ pre {
     letter-spacing:1.2px;
   }
   .brand-logo {
-    height:58px;
+    height:34px;
   }
   .brand-mark {
     font-size:29px;
@@ -1293,7 +1328,8 @@ pre {
   }
   .menu-toggle {
     font-size:11px;
-    padding:8px;
+    min-height:44px;
+    padding:7px 9px;
   }
   .hero {
     height:auto;

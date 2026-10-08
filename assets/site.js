@@ -1,5 +1,6 @@
 'use strict';
 document.documentElement.classList.add('js');
+const header = document.querySelector('.site-header');
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
 menuButton.hidden = false;
@@ -12,6 +13,10 @@ menuButton.addEventListener('click', () => {
   const open = menuButton.getAttribute('aria-expanded') !== 'true';
   menuButton.setAttribute('aria-expanded', String(open));
   navigation.classList.toggle('is-open', open);
+  if (open) {
+    header.classList.remove('is-hidden');
+    header.classList.add('is-visible');
+  }
 });
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && navigation.classList.contains('is-open')) closeMenu(true);
@@ -29,6 +34,45 @@ function updateMenu() {
 }
 mobileQuery.addEventListener('change', updateMenu);
 updateMenu();
+let lastScrollY = window.scrollY;
+let scrollDirection = 0;
+let scrollTravel = 0;
+let headerTicking = false;
+function updateHeader() {
+  const currentScrollY = Math.max(window.scrollY, 0);
+  const menuOpen = navigation.classList.contains('is-open');
+  const delta = currentScrollY - lastScrollY;
+  const direction = Math.sign(delta);
+  if (direction && direction !== scrollDirection) scrollTravel = 0;
+  if (direction) {
+    scrollDirection = direction;
+    scrollTravel += Math.abs(delta);
+  }
+  if (currentScrollY <= 10 || menuOpen) {
+    header.classList.remove('is-hidden');
+    header.classList.toggle('is-visible', currentScrollY > 4 || menuOpen);
+    scrollTravel = 0;
+  } else if (scrollDirection > 0 && scrollTravel > 6 && currentScrollY > header.offsetHeight + 24) {
+    header.classList.add('is-hidden');
+    header.classList.remove('is-visible');
+  } else if (scrollDirection < 0 && scrollTravel > 6) {
+    header.classList.remove('is-hidden');
+    header.classList.add('is-visible');
+  }
+  lastScrollY = currentScrollY;
+  headerTicking = false;
+}
+window.addEventListener('scroll', () => {
+  if (!headerTicking) {
+    requestAnimationFrame(updateHeader);
+    headerTicking = true;
+  }
+}, { passive: true });
+updateHeader();
+header.addEventListener('focusin', () => {
+  header.classList.remove('is-hidden');
+  header.classList.add('is-visible');
+});
 const filters = document.querySelector('#tour-filters');
 if (filters) {
   filters.hidden = false;
