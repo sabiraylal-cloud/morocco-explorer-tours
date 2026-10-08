@@ -1,7 +1,7 @@
 ﻿"""Generate portable, crawlable HTML. Run with Python 3; no packages required."""
 from pathlib import Path
 from html import escape as esc
-import json, os
+import hashlib, json, os, re
 from urllib.parse import urlencode
 ROOT=Path(__file__).resolve().parents[1]
 site=json.loads((ROOT/'data/site.json').read_text(encoding='utf-8'))
@@ -13,8 +13,14 @@ pages=[]
 current='index.html'
 CATEGORY_ORDER=['Sahara escapes','Cities & desert','Grand journeys']
 HOME_TOUR_SLUGS=['5-day-casablanca-marrakech','2-day-mhamid-desert','7-day-grand-morocco']
+ASSET_VERSIONS={}
+for asset in ['assets/styles.css','assets/site.js','assets/logo-morocco-explorer-tours.png']:
+ content=(ROOT/asset).read_bytes()
+ if asset.endswith(('.css','.js')):content=content.replace(b'\r\n',b'\n')
+ ASSET_VERSIONS[asset]=hashlib.sha256(content).hexdigest()[:12]
 def link(path):
- return os.path.relpath(path, str(Path(current).parent)).replace(os.sep,'/')
+ relative=os.path.relpath(path, str(Path(current).parent)).replace(os.sep,'/')
+ return relative+'?v='+ASSET_VERSIONS[path] if path in ASSET_VERSIONS else relative
 def a(path,text,cls=''):
  return f'<a href="{esc(link(path),quote=True)}" class="{cls}">{text}</a>'
 def img(key,alt,cls='',eager=False):
@@ -131,6 +137,13 @@ body=intro('YOUR INFORMATION','Privacy, in plain language.','How this website ha
 write(current,'Privacy','Read how the Morocco Explorer Tours trip planner handles information in your browser and what happens when you save or share a brief.',body)
 current='404.html'
 write(current,'Page Not Found','Find your way back to Morocco Explorer Tours.',intro('A SMALL DETOUR','This path ends here.','The page may have moved. Your next journey is still waiting.')+f'<div class="container collection button-row">{a("index.html","Back to home ↗","button")}{a("tours/index.html","Explore tours","button secondary")}</div>')
+# The contact page is maintained separately; update only its shared asset URLs.
+contact_path=ROOT/'contact.html'
+contact=contact_path.read_text(encoding='utf-8')
+for asset in ASSET_VERSIONS:
+ pattern=r'((?:href|src)=["\'])'+re.escape(asset)+r'(?:\?v=[a-f0-9]+)?(["\'])'
+ contact=re.sub(pattern,lambda match:match[1]+link(asset)+match[2],contact)
+contact_path.write_text(contact,encoding='utf-8')
 (ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{esc(url)}</loc></url>\n' for path,url in pages if path!='404.html')+'</urlset>\n',encoding='utf-8')
 (ROOT/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+site['url']+'/sitemap.xml\n',encoding='utf-8')
 print(f'Built {len(pages)} HTML pages, sitemap.xml and robots.txt')

@@ -1,10 +1,15 @@
 """Check generated HTML, relative URLs, anchors, SEO and data consistency."""
 from pathlib import Path
 from html.parser import HTMLParser
-from urllib.parse import urlsplit, unquote
-import json, re, xml.etree.ElementTree as ET
+from urllib.parse import urlsplit, unquote, parse_qs
+import hashlib, json, re, xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
 errors=[]
+asset_versions={}
+for asset in ['assets/styles.css','assets/site.js','assets/logo-morocco-explorer-tours.png']:
+ content=(ROOT/asset).read_bytes()
+ if asset.endswith(('.css','.js')):content=content.replace(b'\r\n',b'\n')
+ asset_versions[(ROOT/asset).resolve()]=hashlib.sha256(content).hexdigest()[:12]
 class Page(HTMLParser):
  def __init__(self,path):
   super().__init__(convert_charrefs=True); self.path=path;self.ids=set();self.refs=[];self.h1=0;self.title='';self.in_title=False;self.meta={};self.canonical=None;self.json=False;self.json_text='';self.feed(path.read_text(encoding='utf-8'))
@@ -42,6 +47,7 @@ for path,p in pages.items():
   if u.scheme or u.netloc:continue
   if ref=='#':errors.append(f'{path}: placeholder link');continue
   target=(path.parent/unquote(u.path)).resolve() if u.path else path
+  if target in asset_versions and parse_qs(u.query).get('v')!=[asset_versions[target]]:errors.append(f'{path.relative_to(ROOT)}: missing or stale asset version {ref}')
   if target.is_dir():target=target/'index.html'
   if not target.exists():errors.append(f'{path.relative_to(ROOT)}: missing {ref}')
   elif u.fragment and target in pages and unquote(u.fragment) not in pages[target].ids:errors.append(f'{path.relative_to(ROOT)}: missing anchor {ref}')

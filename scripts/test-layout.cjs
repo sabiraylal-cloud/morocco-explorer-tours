@@ -1,6 +1,7 @@
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const crypto = require('node:crypto');
 const http = require('node:http');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
@@ -30,6 +31,11 @@ const server = http.createServer((request, response) => {
     page.on('response', response => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
     const articles = JSON.parse(fs.readFileSync(path.join(root, 'data/articles.json'), 'utf8'));
     const tours = JSON.parse(fs.readFileSync(path.join(root, 'data/tours.json'), 'utf8'));
+    const assetVersions = Object.fromEntries(['assets/styles.css', 'assets/site.js', 'assets/logo-morocco-explorer-tours.png'].map(file => {
+      const bytes = fs.readFileSync(path.join(root, file));
+      const content = /\.(css|js)$/.test(file) ? Buffer.from(bytes.toString('utf8').replace(/\r\n/g, '\n')) : bytes;
+      return ['/' + file, crypto.createHash('sha256').update(content).digest('hex').slice(0, 12)];
+    }));
     const files = ['index.html', 'blog/index.html', 'tours/index.html', ...articles.map(article => `blog/${article.slug}.html`)];
     fs.mkdirSync(path.join(root, 'artifacts'), { recursive: true });
     async function screenshot(file, name, width) {
@@ -48,6 +54,11 @@ const server = http.createServer((request, response) => {
       await page.setViewportSize({ width, height: 900 });
       for (const file of files) {
         await page.goto(`${base}/${file}`);
+        const assets = await page.locator('.brand-logo, link[rel="stylesheet"], script[src]').evaluateAll(elements => elements.map(element => element.src || element.href));
+        for (const asset of assets) {
+          const url = new URL(asset);
+          assert.equal(url.searchParams.get('v'), assetVersions[url.pathname], `Missing or stale asset version: ${asset}`);
+        }
         await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
         for (const image of await page.locator('img').all()) {
           await image.scrollIntoViewIfNeeded();
