@@ -20,14 +20,14 @@
   --line:#ded4c6;
   --serif:Georgia,'Times New Roman',serif;
   --sans:Arial,Helvetica,sans-serif;
-  --header-offset:72px;
+  --header-offset:62px;
 }
 * {
   box-sizing:border-box;
 }
 html {
   scroll-behavior:smooth;
-  scroll-padding-top:calc(var(--header-offset) + 24px);
+  scroll-padding-top:calc(var(--header-offset) + 18px);
 }
 body {
   margin:0;
@@ -213,7 +213,7 @@ em {
   box-shadow:0 12px 30px rgba(50,40,32,.08);
 }
 .header-inner {
-  min-height:72px;
+  min-height:62px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -232,7 +232,7 @@ em {
 .brand-logo {
   display:block;
   width:auto;
-  height:54px;
+  height:46px;
   object-fit:contain;
 }
 .brand-logo + .brand-mark,
@@ -255,12 +255,12 @@ em {
 nav#navigation {
   display:flex;
   align-items:center;
-  gap:28px;
+  gap:24px;
   font-size:12px;
   font-weight:600;
 }
 nav#navigation>a:not(.button) {
-  padding-block:10px;
+  padding-block:8px;
 }
 .active {
   color:var(--clay);
@@ -653,6 +653,7 @@ footer {
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
   gap:16px;
+  max-width:100%;
 }
 .blog-grid-featured {
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -680,7 +681,8 @@ footer {
 }
 .article-header {
   max-width:880px;
-  margin:35px auto;
+  margin:28px auto 35px;
+  padding-top:8px;
 }
 .article-header h1 {
   font-size:52px;
@@ -1070,7 +1072,7 @@ pre {
     letter-spacing:1px;
   }
   .brand-logo {
-    height:50px;
+    height:42px;
   }
   .brand small {
     font-size:7px;
@@ -1123,7 +1125,7 @@ pre {
 }
 @media(max-width:800px) {
   :root {
-    --header-offset:58px;
+    --header-offset:54px;
   }
   .article-layout {
     grid-template-columns:1fr;
@@ -1149,7 +1151,7 @@ pre {
     scroll-snap-align:start;
   }
   .header-inner {
-    min-height:58px;
+    min-height:54px;
     flex-wrap:wrap;
     gap:0 12px;
     position:relative;
@@ -1162,7 +1164,7 @@ pre {
     flex-direction:column;
     align-items:stretch;
     gap:3px;
-    padding:10px 0 16px;
+    padding:6px 0 12px;
   }
   .js nav#navigation {
     display:none;
@@ -1306,7 +1308,7 @@ pre {
     width:calc(100% - 36px);
   }
   .header-inner {
-    min-height:56px;
+    min-height:50px;
   }
   .brand {
     font-size:10px;
@@ -1314,7 +1316,7 @@ pre {
     letter-spacing:1.2px;
   }
   .brand-logo {
-    height:44px;
+    height:34px;
   }
   .brand-mark {
     font-size:29px;
@@ -1325,7 +1327,7 @@ pre {
   }
   .menu-toggle {
     font-size:11px;
-    min-height:40px;
+    min-height:38px;
     padding:7px 9px;
   }
   .hero {

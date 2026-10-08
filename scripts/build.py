@@ -12,6 +12,7 @@ articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))
 pages=[]
 current='index.html'
 CATEGORY_ORDER=['Sahara escapes','Cities & desert','Grand journeys']
+HOME_TOUR_SLUGS=['5-day-casablanca-marrakech','2-day-mhamid-desert','7-day-grand-morocco']
 def link(path):
  return os.path.relpath(path, str(Path(current).parent)).replace(os.sep,'/')
 def a(path,text,cls=''):
@@ -24,7 +25,10 @@ def img(key,alt,cls='',eager=False):
  srcset=', '.join(f'{link(f"assets/images/{key}-{w}.webp")} {min(w,images[key]["width"])}w' for w in widths)
  return f'<img class="{cls}" src="{link(f"assets/images/{key}-960.webp")}" srcset="{srcset}" sizes="{sizes}" width="{images[key]["width"]}" height="{images[key]["height"]}" alt="{esc(alt,quote=True)}" {"fetchpriority=high" if eager else "loading=lazy"} decoding="async">'
 def brand():
- return f'<img class="brand-logo" src="{link("assets/logo-morocco-explorer-tours.png")}" width="192" height="192" alt="Morocco Explorer Tours">'
+ return f'<img class="brand-logo" src="{link("assets/logo-morocco-explorer-tours.png")}" width="1008" height="687" alt="Morocco Explorer Tours">'
+def homepage_tours():
+ by_slug={t['slug']:t for t in tours}
+ return [by_slug[slug] for slug in HOME_TOUR_SLUGS if slug in by_slug]
 def filter_options(values):
  return ''.join(f'<option>{esc(str(value))}</option>' for value in values)
 def duration_options():
@@ -74,13 +78,12 @@ faq=''.join(f'<details><summary>{q}</summary><p>{v}</p></details>' for q,v in fa
 current='index.html'
 body=f'''<section class="hero">{img('sahara','A camel caravan follows a guide across the Sahara dunes at sunset','hero-photo',True)}<div class="hero-shade"></div><div class="container hero-inner"><p class="eyebrow">PRIVATE JOURNEYS · LOCAL PERSPECTIVES</p><h1>A little further.<br>A little closer<br>to <em>Morocco.</em></h1><p>From the first medina morning to the last desert sunset.<br> Discover Morocco on a journey that feels like yours.</p><div class="button-row">{a('tours/index.html','Find your journey ↗','button')}{a('plan-your-trip.html','Create your own','button outline')}</div></div><div class="hero-caption"><span>31° N / 04° W</span><span>THE SAHARA, MOROCCO</span></div></section>
 <div class="promise-bar"><div class="container"><span><b>01</b> Your own private journey</span><span><b>02</b> Local knowledge, personal care</span><span><b>03</b> A route shaped around you</span></div></div>
-<section class="section container" id="tours"><div class="section-heading"><div><p class="eyebrow">THE JOURNEY COLLECTION</p><h2>Different roads.<br>Extraordinary Morocco.</h2></div><div><p>Three starting points for a story of your own.<br>Find your route, then make it yours.</p>{a('tours/index.html','Explore all tours ↗','text-link')}</div></div><div class="tour-grid">{''.join(tourcard(t) for t in tours)}</div></section>
+<section class="section container" id="tours"><div class="section-heading"><div><p class="eyebrow">THE JOURNEY COLLECTION</p><h2>Different roads.<br>Extraordinary Morocco.</h2></div><div><p>Three starting points for a story of your own.<br>Find your route, then make it yours.</p>{a('tours/index.html','Explore all tours ↗','text-link')}</div></div><div class="tour-grid">{''.join(tourcard(t) for t in homepage_tours())}</div></section>
 <section class="departures"><div class="container"><p class="eyebrow">BEGIN WHERE YOU LAND</p><div class="departure-row"><h2>Where do we start?</h2>{''.join(a('tours/index.html?'+urlencode({'start':city}),city+' ↗','departure-link') for city in ['Casablanca','Marrakech'])}{a('plan-your-trip.html?arrival=Fes','Fes · custom ↗','departure-link')}{a('plan-your-trip.html?arrival=Tangier','Tangier · custom ↗','departure-link')}</div></div></section>
 <section class="section container" id="destinations"><div class="section-heading"><div><p class="eyebrow">MANY WORLDS, ONE MOROCCO</p><h2>Follow your curiosity.</h2></div>{a('destinations/index.html','All destinations ↗','text-link')}</div><div class="destination-grid">{''.join(destcard(next(d for d in dests if d['slug']==slug)) for slug in ['sahara','fes','ait-ben-haddou','atlas-mountains'])}</div></section>
 <section class="story-section" id="about"><div class="container story-grid"><div class="story-image">{img('hospitality','Tea being poured beside a fire during a desert evening')}<span class="image-note">A warm welcome is part of the journey.</span></div><div class="story-copy"><p class="eyebrow">MOROCCO, WITH A PERSONAL TOUCH</p><h2>The places stay with you.<br>So do the people.</h2><p>There is the Morocco you come to see. And the Morocco you discover along the way: tea shared after a long drive, a conversation in the medina, a moment to stop and take it all in.</p><p>At Morocco Explorer Tours, we bring local knowledge and personal attention to private journeys. Tell us what matters to you, and we’ll help shape the route.</p>{a('about.html','Get to know us ↗','text-link')}<div class="story-values"><div><strong>Your people</strong><span>A private experience</span></div><div><strong>Your pace</strong><span>A personalised route</span></div></div></div></div></section>
 <section class="section container"><div class="section-heading"><div><p class="eyebrow">FROM AN IDEA TO AN ITINERARY</p><h2>Make room for the experience.</h2></div><p>A clear plan before you go.<br>More time to enjoy being there.</p></div><div class="steps"><article><span>01 / DREAM</span><h3>Choose what draws you in</h3><p>Desert, medinas, mountains — or a little of each. Start with a route or your own wish list.</p></article><article><span>02 / SHAPE</span><h3>Bring the details together</h3><p>Match your dates and arrival city with a realistic route and the right amount of time.</p></article><article><span>03 / EXPLORE</span><h3>Know the plan, enjoy the day</h3><p>Confirm your itinerary, inclusions and pickup details before your journey begins.</p></article></div></section>
 <section class="faq-section" id="questions"><div class="container faq-grid"><div><p class="eyebrow">A FEW GOOD QUESTIONS</p><h2>Before the<br>adventure begins.</h2>{a('plan-your-trip.html','Start planning ↗','text-link')}</div><div class="faq">{faq}</div></div></section>{cta()}'''
-body=body.replace('Three starting points for a story of your own.', f'{len(tours)} private journeys for a story of your own.')
 body+=blog_preview()
 write(current,'Private Morocco Tours & Tailor-Made Journeys','Explore private Morocco tours through the Sahara, imperial cities and Atlas Mountains. Find your route and plan a personalised journey.',body,'home')
 current='blog/index.html'
