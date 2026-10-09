@@ -41,7 +41,7 @@ class Page(HTMLParser):
  def handle_data(self,data):
   if self.in_title:self.title+=data
   if self.json:self.json_text+=data
-pages={p.resolve():Page(p) for p in ROOT.rglob('*.html') if not {'node_modules','artifacts','.git'}.intersection(p.relative_to(ROOT).parts)}
+pages={p.resolve():Page(p) for p in ROOT.rglob('*.html') if not {'node_modules','artifacts','.git','admin'}.intersection(p.relative_to(ROOT).parts)}
 for path,p in pages.items():
  if p.h1!=1:errors.append(f'{path}: expected one h1, got {p.h1}')
  if not p.title or not p.meta.get('description') or not p.canonical:errors.append(f'{path}: missing SEO metadata')
@@ -64,8 +64,8 @@ if terms_page not in pages:errors.append('Missing Terms and Conditions page')
 for path,page in pages.items():
  if path.name!='404.html' and not any(urlsplit(ref).path.endswith('/terms-and-conditions.html') or urlsplit(ref).path=='terms-and-conditions.html' for ref in page.footer_refs):errors.append(f'{path.relative_to(ROOT)}: missing Terms and Conditions footer link')
 
-articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))
-if len(articles)!=5 or len({article['slug'] for article in articles})!=5:errors.append('Expected five distinct blog articles')
+articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))['articles']
+if not articles or len({article['slug'] for article in articles})!=len(articles):errors.append('Blog articles need unique slugs')
 blog=pages.get((ROOT/'blog/index.html').resolve())
 home=pages[(ROOT/'index.html').resolve()]
 sitemap_urls={element.text for element in ET.parse(ROOT/'sitemap.xml').findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
@@ -89,10 +89,42 @@ for i,article in enumerate(articles):
  page=pages[path]
  if page.canonical not in sitemap_urls:errors.append(f'{article["slug"]}: missing from sitemap')
  if f'../tours/{article["tour"]}.html' not in page.refs or '../contact.html' not in page.refs:errors.append(f'{article["slug"]}: missing relevant call to action')
-tours=json.loads((ROOT/'data/tours.json').read_text(encoding='utf-8'));dests=json.loads((ROOT/'data/destinations.json').read_text(encoding='utf-8'))
+tours=json.loads((ROOT/'data/tours.json').read_text(encoding='utf-8'))['tours'];dests=json.loads((ROOT/'data/destinations.json').read_text(encoding='utf-8'))['destinations']
+images=json.loads((ROOT/'data/images.json').read_text(encoding='utf-8'))
+site=json.loads((ROOT/'data/site.json').read_text(encoding='utf-8'))
+slug_pattern=re.compile(r'[a-z0-9]+(?:-[a-z0-9]+)*')
+for label,items in [('article',articles),('tour',tours),('destination',dests)]:
+ slugs=[item['slug'] for item in items]
+ if len(slugs)!=len(set(slugs)):errors.append(f'Duplicate {label} slug')
+ for slug in slugs:
+  if not slug_pattern.fullmatch(slug):errors.append(f'Invalid {label} slug: {slug}')
+for key in ['url','facebook','instagram','youtube']:
+ if not site[key].startswith('https://'):errors.append(f'{key} must use https://')
+if not re.fullmatch(r'\+[1-9][0-9]{7,14}',site['whatsapp']):errors.append('WhatsApp must be an international E.164 number')
+if '@' not in site['email']:errors.append('Invalid contact email')
+upload_root=(ROOT/'images/uploads').resolve()
+allowed={'.jpg':b'\xff\xd8\xff','.jpeg':b'\xff\xd8\xff','.png':b'\x89PNG\r\n\x1a\n','.gif':None,'.webp':None}
+for upload in upload_root.rglob('*') if upload_root.exists() else []:
+ if not upload.is_file() or upload.name=='.gitkeep':continue
+ suffix=upload.suffix.lower();data=upload.read_bytes()[:16]
+ if suffix not in allowed:errors.append(f'Unsupported uploaded image type: {upload.relative_to(ROOT)}');continue
+ if upload.stat().st_size>8*1024*1024:errors.append(f'Uploaded image exceeds 8 MB: {upload.relative_to(ROOT)}')
+ if suffix in ('.jpg','.jpeg') and not data.startswith(allowed[suffix]):errors.append(f'Invalid JPEG upload: {upload.relative_to(ROOT)}')
+ if suffix=='.png' and not data.startswith(allowed[suffix]):errors.append(f'Invalid PNG upload: {upload.relative_to(ROOT)}')
+ if suffix=='.gif' and data[:6] not in (b'GIF87a',b'GIF89a'):errors.append(f'Invalid GIF upload: {upload.relative_to(ROOT)}')
+ if suffix=='.webp' and not (data[:4]==b'RIFF' and data[8:12]==b'WEBP'):errors.append(f'Invalid WebP upload: {upload.relative_to(ROOT)}')
+for item in articles+tours+dests:
+ image=item.get('uploaded_image') or item.get('image','')
+ if item.get('uploaded_image'):
+  relative=image.replace('\\','/').lstrip('/');candidate=(ROOT/relative).resolve()
+  if not relative.startswith('images/uploads/') or not candidate.is_relative_to(upload_root):errors.append(f'{item["slug"]}: upload must stay inside images/uploads')
+  elif not candidate.is_file():errors.append(f'{item["slug"]}: missing uploaded image {relative}')
+ elif image not in images:errors.append(f'{item["slug"]}: unknown image key {image}')
 for t in tours:
  if len(t['itinerary'])!=t['days']:errors.append(f'{t["slug"]}: itinerary length')
  if not set(t['destinations'])<={d['slug'] for d in dests}:errors.append('Unknown destination')
+for article in articles:
+ if article['tour'] not in {tour['slug'] for tour in tours}:errors.append(f'{article["slug"]}: unknown related tour')
 for file in [ROOT/'assets/styles.css']:
  for ref in re.findall(r'url\([\"\']?([^\)\"\']+)',file.read_text(encoding='utf-8')):
   if not ref.startswith('data:') and not (file.parent/ref).exists():errors.append(f'Missing CSS asset {ref}')

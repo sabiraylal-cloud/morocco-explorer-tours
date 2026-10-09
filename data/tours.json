@@ -1,4 +1,5 @@
-[
+{
+  "tours": [
   {
     "slug": "5-day-casablanca-marrakech", "name": "Cities, blue lanes & Sahara", "title": "5-Day Casablanca to Marrakech Tour", "days": 5, "nights": 4, "start": "Casablanca", "end": "Marrakech", "category": "Cities & desert", "image": "casablanca",
     "description": "A compact cross-country journey through Chefchaouen and Fes, with a night near the dunes of Merzouga.",
@@ -215,3 +216,4 @@
     ]
   }
 ]
+}

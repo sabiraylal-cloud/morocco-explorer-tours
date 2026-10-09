@@ -5,10 +5,10 @@ import hashlib, json, os, re
 from urllib.parse import urlencode
 ROOT=Path(__file__).resolve().parents[1]
 site=json.loads((ROOT/'data/site.json').read_text(encoding='utf-8'))
-tours=json.loads((ROOT/'data/tours.json').read_text(encoding='utf-8'))
-dests=json.loads((ROOT/'data/destinations.json').read_text(encoding='utf-8'))
+tours=json.loads((ROOT/'data/tours.json').read_text(encoding='utf-8'))['tours']
+dests=json.loads((ROOT/'data/destinations.json').read_text(encoding='utf-8'))['destinations']
 images=json.loads((ROOT/'data/images.json').read_text(encoding='utf-8'))
-articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))
+articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))['articles']
 testimonials=json.loads((ROOT/'data/testimonials.json').read_text(encoding='utf-8'))
 pages=[]
 current='index.html'
@@ -17,6 +17,7 @@ HOME_TOUR_SLUGS=['5-day-casablanca-marrakech','2-day-mhamid-desert','7-day-grand
 ASSET_VERSIONS={}
 HOME_PHOTO='assets/images/homepage-travellers.jpeg'
 HOME_PHOTO_ALT='Three travellers overlooking a Moroccan town and mountain landscape'
+UPLOAD_ROOT=(ROOT/'images/uploads').resolve()
 for asset in ['assets/styles.css','assets/site.js','assets/logo-morocco-explorer-tours.png',HOME_PHOTO]:
  content=(ROOT/asset).read_bytes()
  if asset.endswith(('.css','.js')):content=content.replace(b'\r\n',b'\n')
@@ -26,11 +27,50 @@ def link(path):
  return relative+'?v='+ASSET_VERSIONS[path] if path in ASSET_VERSIONS else relative
 def a(path,text,cls=''):
  return f'<a href="{esc(link(path),quote=True)}" class="{cls}">{text}</a>'
+def content_image(item):
+ return item.get('uploaded_image') or item['image']
+def uploaded_image_path(value):
+ relative=str(value).replace('\\','/').lstrip('/')
+ candidate=(ROOT/relative).resolve()
+ if not relative.startswith('images/uploads/') or not candidate.is_relative_to(UPLOAD_ROOT):
+  raise ValueError(f'Uploaded image must be inside images/uploads: {value}')
+ if not candidate.is_file():raise ValueError(f'Uploaded image does not exist: {value}')
+ return relative,candidate
+def image_dimensions(path):
+ data=path.read_bytes()
+ if data.startswith(b'\x89PNG\r\n\x1a\n') and len(data)>=24:return int.from_bytes(data[16:20],'big'),int.from_bytes(data[20:24],'big')
+ if data[:6] in (b'GIF87a',b'GIF89a') and len(data)>=10:return int.from_bytes(data[6:8],'little'),int.from_bytes(data[8:10],'little')
+ if data.startswith(b'\xff\xd8'):
+  offset=2
+  sof={0xc0,0xc1,0xc2,0xc3,0xc5,0xc6,0xc7,0xc9,0xca,0xcb,0xcd,0xce,0xcf}
+  while offset+4<=len(data):
+   while offset<len(data) and data[offset]==0xff:offset+=1
+   if offset>=len(data):break
+   marker=data[offset];offset+=1
+   if marker in (0x01,0xd8,0xd9):continue
+   if offset+2>len(data):break
+   size=int.from_bytes(data[offset:offset+2],'big')
+   if marker in sof and offset+7<=len(data):return int.from_bytes(data[offset+3:offset+5],'big'),int.from_bytes(data[offset+5:offset+7],'big')
+   if size<2:break
+   offset+=size
+ if data[:4]==b'RIFF' and data[8:12]==b'WEBP' and len(data)>=30:
+  if data[12:16]==b'VP8X':return 1+int.from_bytes(data[24:27],'little'),1+int.from_bytes(data[27:30],'little')
+  if data[12:16]==b'VP8 ' and data[23:26]==b'\x9d\x01\x2a':return int.from_bytes(data[26:28],'little')&0x3fff,int.from_bytes(data[28:30],'little')&0x3fff
+  if data[12:16]==b'VP8L' and len(data)>=25 and data[20]==0x2f:
+   bits=int.from_bytes(data[21:25],'little');return 1+(bits&0x3fff),1+((bits>>14)&0x3fff)
+ raise ValueError(f'Unsupported or invalid image: {path.relative_to(ROOT)}')
+def image_url(value):
+ if value in images:return site['url'].rstrip('/')+f'/assets/images/{value}-960.webp'
+ relative,_=uploaded_image_path(value)
+ return site['url'].rstrip('/')+'/'+relative
 def img(key,alt,cls='',eager=False):
  sizes='100vw' if cls=='hero-photo' else '(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 33vw'
  if cls=='article-photo':sizes='(max-width: 560px) calc(100vw - 36px), (max-width: 1100px) calc(100vw - 56px), (max-width: 1336px) calc(100vw - 96px), 1240px'
  if cls=='blog-featured-photo':sizes='(max-width: 560px) calc((100vw - 48px) / 2), 46vw'
  if cls=='blog-photo':sizes='(max-width: 560px) calc((100vw - 48px) / 2), (max-width: 800px) 46vw, 20vw'
+ if key not in images:
+  relative,path=uploaded_image_path(key);width,height=image_dimensions(path)
+  return f'<img class="{cls}" src="{esc(link(relative),quote=True)}" width="{width}" height="{height}" alt="{esc(alt,quote=True)}" {"fetchpriority=high" if eager else "loading=lazy"} decoding="async">'
  widths=[480,960,1600] if key=='sahara' else [480,960]
  srcset=', '.join(f'{link(f"assets/images/{key}-{w}.webp")} {min(w,images[key]["width"])}w' for w in widths)
  return f'<img class="{cls}" src="{link(f"assets/images/{key}-960.webp")}" srcset="{srcset}" sizes="{sizes}" width="{images[key]["width"]}" height="{images[key]["height"]}" alt="{esc(alt,quote=True)}" {"fetchpriority=high" if eager else "loading=lazy"} decoding="async">'
@@ -76,13 +116,13 @@ def write(path,title,description,body,section='',schema=None):
  if path=='404.html':doc=doc.replace('<meta name="viewport"', '<meta name="robots" content="noindex, follow"><meta name="viewport"')
  out=ROOT/path;out.parent.mkdir(parents=True,exist_ok=True);out.write_text(doc+'\n',encoding='utf-8');pages.append((path,canonical))
 def tourcard(t):
- return f'''<article class="tour-card" data-start="{t['start']}" data-category="{esc(t['category'])}" data-days="{t['days']}"><a class="card-photo" href="{link('tours/'+t['slug']+'.html')}" tabindex="-1" aria-hidden="true">{img(t['image'],t['title'])}<span class="photo-label">{t['days']} DAYS · {t['nights']} {'NIGHT' if t['nights']==1 else 'NIGHTS'}</span></a><div class="card-body"><p class="eyebrow">{esc(t['category'])}</p><h3>{a('tours/'+t['slug']+'.html',esc(t['name']))}</h3><p class="route-line">{t['start']} <span aria-hidden="true">→</span> {t['end']}</p><p>{t['description']}</p><div class="card-bottom"><span>Private · Tailor-made</span>{a('tours/'+t['slug']+'.html','Explore trip <span aria-hidden="true">↗</span>')}</div></div></article>'''
+ return f'''<article class="tour-card" data-start="{t['start']}" data-category="{esc(t['category'])}" data-days="{t['days']}"><a class="card-photo" href="{link('tours/'+t['slug']+'.html')}" tabindex="-1" aria-hidden="true">{img(content_image(t),t['title'])}<span class="photo-label">{t['days']} DAYS · {t['nights']} {'NIGHT' if t['nights']==1 else 'NIGHTS'}</span></a><div class="card-body"><p class="eyebrow">{esc(t['category'])}</p><h3>{a('tours/'+t['slug']+'.html',esc(t['name']))}</h3><p class="route-line">{t['start']} <span aria-hidden="true">→</span> {t['end']}</p><p>{t['description']}</p><div class="card-bottom"><span>Private · Tailor-made</span>{a('tours/'+t['slug']+'.html','Explore trip <span aria-hidden="true">↗</span>')}</div></div></article>'''
 def destcard(d):
- return f'''<a class="destination-card" href="{link('destinations/'+d['slug']+'.html')}">{img(d['image'],d['name'])}<div><span>{d['category']}</span><h3>{esc(d['name'])}</h3></div><span class="circle-arrow" aria-hidden="true">↗</span></a>'''
+ return f'''<a class="destination-card" href="{link('destinations/'+d['slug']+'.html')}">{img(content_image(d),d['name'])}<div><span>{d['category']}</span><h3>{esc(d['name'])}</h3></div><span class="circle-arrow" aria-hidden="true">↗</span></a>'''
 
 def articlecard(article,heading='h2'):
  path='blog/'+article['slug']+'.html'
- return f'''<article class="blog-card"><a class="card-photo" href="{link(path)}" tabindex="-1" aria-hidden="true">{img(article['image'],article['alt'],'blog-featured-photo' if heading=='h3' else 'blog-photo')}</a><div class="card-body"><p class="eyebrow">{esc(article['category'])}</p><{heading}>{a(path,esc(article['title']))}</{heading}><p class="blog-teaser">{esc(article['teaser'])}...</p><div class="card-bottom">{a(path,'Read More<span class="sr-only">: '+esc(article['title'])+'</span> <span aria-hidden="true">↗</span>')}</div></div></article>'''
+ return f'''<article class="blog-card"><a class="card-photo" href="{link(path)}" tabindex="-1" aria-hidden="true">{img(content_image(article),article['alt'],'blog-featured-photo' if heading=='h3' else 'blog-photo')}</a><div class="card-body"><p class="eyebrow">{esc(article['category'])}</p><{heading}>{a(path,esc(article['title']))}</{heading}><p class="blog-teaser">{esc(article['teaser'])}...</p><div class="card-bottom">{a(path,'Read More<span class="sr-only">: '+esc(article['title'])+'</span> <span aria-hidden="true">↗</span>')}</div></div></article>'''
 
 def blog_preview():
  return f'''<section class="section container blog-preview" aria-labelledby="blog-preview-title"><div class="section-heading"><div><p class="eyebrow">THE MOROCCO JOURNAL</p><h2 id="blog-preview-title">A little insight before you go.</h2></div>{a('blog/index.html','<span aria-hidden="true">←</span> All blog articles','text-link')}</div><div class="blog-grid blog-grid-featured">{''.join(articlecard(article,'h3') for article in articles[:2])}</div></section>'''
@@ -119,8 +159,8 @@ for article in articles:
  contents=''.join(f'<li><a href="#{article["slug"]}-section-{i}">{esc(section["heading"])}</a></li>' for i,section in enumerate(article['sections']))
  source=article.get('source')
  source_note=f'<p class="article-source">Further reading: <a href="{esc(source["url"],quote=True)}">{esc(source["label"])}</a>.</p>' if source else ''
- body=f'''<nav class="breadcrumbs container" aria-label="Breadcrumb">{a('index.html','Home')}<span aria-hidden="true">/</span>{a('blog/index.html','Blog')}<span aria-hidden="true">/</span><span aria-current="page">{esc(article['category'])}</span></nav><article class="container blog-article"><header class="article-header"><p class="eyebrow">{esc(article['category'])} · MOROCCO EXPLORER TOURS</p><h1>{esc(article['title'])}</h1><p class="lead">{esc(article['intro'])}</p></header><figure class="article-image">{img(article['image'],article['alt'],'article-photo',True)}</figure><div class="article-layout"><nav class="article-contents" aria-label="In this article"><h2>In this article</h2><ol>{contents}</ol></nav><div class="article-copy">{sections}{source_note}<section class="article-next"><h2>{esc(article['cta_title'])}</h2><p>{esc(article['cta_text'])}</p><div class="button-row">{a('tours/'+article['tour']+'.html',esc(article['tour_label'])+' ↗','button')}{a('contact.html','Enquire about your journey ↗','text-link')}</div></section>{a('blog/index.html','<span aria-hidden="true">←</span> All blog articles','text-link')}</div></div></article>'''
- schema={'@context':'https://schema.org','@type':'BlogPosting','headline':article['title'],'description':article['description'],'image':site['url'].rstrip('/')+'/assets/images/'+article['image']+'-960.webp','author':{'@type':'Organization','name':site['name']},'publisher':{'@type':'Organization','name':site['name']},'mainEntityOfPage':article_url,'articleSection':article['category'],'inLanguage':'en'}
+ body=f'''<nav class="breadcrumbs container" aria-label="Breadcrumb">{a('index.html','Home')}<span aria-hidden="true">/</span>{a('blog/index.html','Blog')}<span aria-hidden="true">/</span><span aria-current="page">{esc(article['category'])}</span></nav><article class="container blog-article"><header class="article-header"><p class="eyebrow">{esc(article['category'])} · MOROCCO EXPLORER TOURS</p><h1>{esc(article['title'])}</h1><p class="lead">{esc(article['intro'])}</p></header><figure class="article-image">{img(content_image(article),article['alt'],'article-photo',True)}</figure><div class="article-layout"><nav class="article-contents" aria-label="In this article"><h2>In this article</h2><ol>{contents}</ol></nav><div class="article-copy">{sections}{source_note}<section class="article-next"><h2>{esc(article['cta_title'])}</h2><p>{esc(article['cta_text'])}</p><div class="button-row">{a('tours/'+article['tour']+'.html',esc(article['tour_label'])+' ↗','button')}{a('contact.html','Enquire about your journey ↗','text-link')}</div></section>{a('blog/index.html','<span aria-hidden="true">←</span> All blog articles','text-link')}</div></div></article>'''
+ schema={'@context':'https://schema.org','@type':'BlogPosting','headline':article['title'],'description':article['description'],'image':image_url(content_image(article)),'author':{'@type':'Organization','name':site['name']},'publisher':{'@type':'Organization','name':site['name']},'mainEntityOfPage':article_url,'articleSection':article['category'],'inLanguage':'en'}
  write(current,article['title'],article['description'],body,'blog-detail',schema=schema)
 current='tours/index.html'
 filters='''<form class="filters" id="tour-filters" hidden><label>Departure<select name="start"><option value="">All departures</option><option>Casablanca</option><option>Marrakech</option></select></label><label>Experience<select name="category"><option value="">All experiences</option><option>Sahara escapes</option><option>Cities &amp; desert</option><option>Grand journeys</option></select></label><label>Duration<select name="days"><option value="">Any length</option><option value="2">2 days</option><option value="5">5 days</option><option value="7">7 days</option></select></label><button class="text-button" type="reset">Reset filters</button></form>'''
@@ -134,14 +174,14 @@ for t in tours:
  current='tours/'+t['slug']+'.html'
  daylist=''.join(f'<details {"open" if i==0 else ""}><summary><span class="day-number">DAY {i+1:02}</span> {esc(title)}</summary><p>{esc(copy)}</p></details>' for i,(title,copy) in enumerate(t['itinerary']))
  related=''.join(a('destinations/'+d['slug']+'.html',d['name']+' ↗','pill') for d in dests if d['slug'] in t['destinations'])
- body=crumbs('tours/index.html','Tours')+f'''<section class="container detail-hero"><div><p class="eyebrow">{t['category']} · PRIVATE JOURNEY</p><h1>{t['title']}</h1><p class="lead">{t['description']}</p><div class="facts"><span><b>{t['days']} days</b>{t['nights']} {'night' if t['nights']==1 else 'nights'}</span><span><b>{t['start']}</b>Start here</span><span><b>{t['end']}</b>Finish here</span></div>{a('plan-your-trip.html?'+urlencode({'tour':t['title'],'arrival':t['start']}),'Personalise this journey ↗','button')}</div>{img(t['image'],t['title'],'detail-photo',True)}</section><section class="container section detail-layout"><div><p class="eyebrow">YOUR ROUTE</p><p class="route-ribbon">{' <span aria-hidden="true">→</span> '.join(t['route'])}</p><h2>A day-by-day starting point.</h2><p>These itinerary ideas are flexible. Confirm the final schedule and overnight locations with us before booking.</p><div class="itinerary">{daylist}</div><h2 class="space-top">Places along the way</h2><div class="pills">{related}</div></div><aside class="planning-note"><p class="eyebrow">GOOD TO KNOW</p><h2>The pace of this trip</h2><p>{t['pace']}</p><hr><h3>Make the details yours</h3><ul><li>Choose your accommodation style.</li><li>Confirm transport, guides and activities.</li><li>Review meals, entry fees and exclusions.</li><li>Agree on pickup and drop-off details.</li></ul><p><strong>Price on request.</strong><br>Your dates and group size shape the quote.</p>{a('plan-your-trip.html?'+urlencode({'tour':t['title'],'arrival':t['start']}),'Build your trip brief ↗','button')}</aside></section>'''+cta()
+ body=crumbs('tours/index.html','Tours')+f'''<section class="container detail-hero"><div><p class="eyebrow">{t['category']} · PRIVATE JOURNEY</p><h1>{t['title']}</h1><p class="lead">{t['description']}</p><div class="facts"><span><b>{t['days']} days</b>{t['nights']} {'night' if t['nights']==1 else 'nights'}</span><span><b>{t['start']}</b>Start here</span><span><b>{t['end']}</b>Finish here</span></div>{a('plan-your-trip.html?'+urlencode({'tour':t['title'],'arrival':t['start']}),'Personalise this journey ↗','button')}</div>{img(content_image(t),t['title'],'detail-photo',True)}</section><section class="container section detail-layout"><div><p class="eyebrow">YOUR ROUTE</p><p class="route-ribbon">{' <span aria-hidden="true">→</span> '.join(t['route'])}</p><h2>A day-by-day starting point.</h2><p>These itinerary ideas are flexible. Confirm the final schedule and overnight locations with us before booking.</p><div class="itinerary">{daylist}</div><h2 class="space-top">Places along the way</h2><div class="pills">{related}</div></div><aside class="planning-note"><p class="eyebrow">GOOD TO KNOW</p><h2>The pace of this trip</h2><p>{t['pace']}</p><hr><h3>Make the details yours</h3><ul><li>Choose your accommodation style.</li><li>Confirm transport, guides and activities.</li><li>Review meals, entry fees and exclusions.</li><li>Agree on pickup and drop-off details.</li></ul><p><strong>Price on request.</strong><br>Your dates and group size shape the quote.</p>{a('plan-your-trip.html?'+urlencode({'tour':t['title'],'arrival':t['start']}),'Build your trip brief ↗','button')}</aside></section>'''+cta()
  write(current,t['title'],t['description'],body,schema={'@context':'https://schema.org','@type':'TouristTrip','name':t['title'],'description':t['description'],'touristType':'Private travel','provider':{'@type':'TravelAgency','name':site['name'],'url':site['url']},'itinerary':{'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':name} for i,name in enumerate(t['route'])]}})
 current='destinations/index.html'
 write(current,'Morocco Destinations: Desert, Cities & Mountains','Discover Morocco through eight destination guides, with experiences, practical planning notes and private tours that connect them.',intro('PLACES WITH A PULL','One country.<br>So many ways to <em>feel it.</em>','Find the places that speak to you, then connect them in a journey that makes sense.')+'<section class="container collection"><div class="destination-grid destination-index">'+''.join(destcard(d) for d in dests)+'</div></section>'+cta())
 for d in dests:
  current='destinations/'+d['slug']+'.html'
  matches=[t for t in tours if d['slug'] in t['destinations']]
- body=crumbs('destinations/index.html','Destinations')+f'''<section class="container detail-hero"><div><p class="eyebrow">{d['category']}</p><h1>{d['name']}</h1><p class="lead">{d['description']}</p><p>{d['body']}</p>{a('plan-your-trip.html?'+urlencode({'destination':d['name']}),'Add to your journey ↗','button')}</div>{img(d['image'],d['name'],'detail-photo',True)}</section><section class="container section destination-details"><div><p class="eyebrow">TIME WELL SPENT</p><h2>A few ways to explore.</h2><ul class="experience-list">{''.join('<li>'+x+'</li>' for x in d['experiences'])}</ul></div><aside class="planning-note"><p class="eyebrow">PLAN WITH PERSPECTIVE</p><h2>Before you go</h2><p>{d['planning']}</p></aside></section><section class="container section"><div class="section-heading"><div><p class="eyebrow">CONNECT THE PLACES</p><h2>Journeys that take you here.</h2></div>{a('tours/index.html','All tours ↗','text-link')}</div><div class="tour-grid">{''.join(tourcard(t) for t in matches)}</div></section>'''+cta()
+ body=crumbs('destinations/index.html','Destinations')+f'''<section class="container detail-hero"><div><p class="eyebrow">{d['category']}</p><h1>{d['name']}</h1><p class="lead">{d['description']}</p><p>{d['body']}</p>{a('plan-your-trip.html?'+urlencode({'destination':d['name']}),'Add to your journey ↗','button')}</div>{img(content_image(d),d['name'],'detail-photo',True)}</section><section class="container section destination-details"><div><p class="eyebrow">TIME WELL SPENT</p><h2>A few ways to explore.</h2><ul class="experience-list">{''.join('<li>'+x+'</li>' for x in d['experiences'])}</ul></div><aside class="planning-note"><p class="eyebrow">PLAN WITH PERSPECTIVE</p><h2>Before you go</h2><p>{d['planning']}</p></aside></section><section class="container section"><div class="section-heading"><div><p class="eyebrow">CONNECT THE PLACES</p><h2>Journeys that take you here.</h2></div>{a('tours/index.html','All tours ↗','text-link')}</div><div class="tour-grid">{''.join(tourcard(t) for t in matches)}</div></section>'''+cta()
  write(current,d['name']+' Travel Guide & Private Tours',d['description']+' Explore trip ideas and practical planning notes.',body)
 current='about.html'
 body=intro('OUR STORY','A personal welcome.<br>A wider <em>perspective.</em>','Morocco Explorer Tours brings local knowledge and thoughtful planning to your private journey.')+f'''<section class="container story-grid about-story"><div class="story-image">{img('guests','Travellers and their host on a journey through Morocco')}</div><div><p class="eyebrow">TRAVEL WITH PEOPLE WHO CARE</p><h2>More than the places<br>on your itinerary.</h2><p>A well-planned route gives you room to enjoy the small moments. We help you connect Morocco’s cities, desert and mountains in a way that suits the time you have.</p><p>Our approach is personal: understand what you want to experience, talk through the distances, and agree on the details before you travel.</p><p>From a short desert escape to a longer journey across the country, your trip is planned for your own group.</p>{a('plan-your-trip.html','Tell us about your journey ↗','button')}</div></section><section class="container section"><div class="steps"><article><span>01 / PERSONAL</span><h3>Built around your interests</h3><p>Share the places you want to see and the kind of travel you enjoy. The route starts there.</p></article><article><span>02 / CONSIDERED</span><h3>Honest about the distances</h3><p>Some journeys involve long drives. We make the pace clear and help you decide where to add time.</p></article><article><span>03 / CLEAR</span><h3>Details agreed together</h3><p>Know your accommodation, activities and inclusions before you commit to a booking.</p></article></div></section>'''+cta()

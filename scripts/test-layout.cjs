@@ -29,8 +29,8 @@ const server = http.createServer((request, response) => {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     page.on('response', response => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
-    const articles = JSON.parse(fs.readFileSync(path.join(root, 'data/articles.json'), 'utf8'));
-    const tours = JSON.parse(fs.readFileSync(path.join(root, 'data/tours.json'), 'utf8'));
+    const articles = JSON.parse(fs.readFileSync(path.join(root, 'data/articles.json'), 'utf8')).articles;
+    const tours = JSON.parse(fs.readFileSync(path.join(root, 'data/tours.json'), 'utf8')).tours;
     const testimonials = JSON.parse(fs.readFileSync(path.join(root, 'data/testimonials.json'), 'utf8'));
     assert.deepEqual(testimonials.reviews.map(review => [review.name, review.country]), [['Lissa Gomez', 'USA'], ['Ben Tanaka', 'Japan'], ['Martin Lovers', 'UK']], 'Only the three published customers may appear');
     assert.ok(testimonials.reviews.every(review => !Object.keys(review).some(key => /date|photo/i.test(key))), 'Do not add dates or unverified customer photos');

@@ -1,4 +1,5 @@
-[
+{
+  "articles": [
   {
     "slug": "choose-your-morocco-itinerary",
     "title": "Finding Your Morocco: Choose an Itinerary That Fits",
@@ -108,3 +109,4 @@
     "tour_label": "Explore the food and craft journey"
   }
 ]
+}
