@@ -1,0 +1,195 @@
+backend:
+  name: github
+  repo: sabiraylal-cloud/morocco-explorer-tours
+  branch: main
+  use_graphql: true
+  squash_merges: true
+  commit_messages:
+    create: "content: create {{collection}} {{slug}}"
+    update: "content: update {{collection}} {{slug}}"
+    delete: "content: delete {{collection}} {{slug}}"
+    uploadMedia: "content: upload {{path}}"
+    deleteMedia: "content: delete upload {{path}}"
+
+site_url: https://moroccoexplorertours.com
+display_url: https://moroccoexplorertours.com
+logo_url: /assets/logo-morocco-explorer-tours.png
+publish_mode: editorial_workflow
+local_backend: true
+media_folder: images/uploads
+public_folder: /images/uploads
+media_library:
+  name: default
+  config:
+    multiple: false
+    max_file_size: 8388608
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+editor:
+  preview: false
+
+collections:
+  - label: Blog articles
+    name: blog
+    files:
+      - label: Articles
+        name: articles
+        file: data/articles.json
+        fields:
+          - label: Articles
+            name: articles
+            widget: list
+            summary: "{{fields.title}}"
+            minimize_collapsed: true
+            fields:
+              - { label: URL slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
+              - { label: Title, name: title, widget: string }
+              - { label: Category, name: category, widget: string }
+              - { label: Search description, name: description, widget: text }
+              - { label: Five-word card teaser, name: teaser, widget: string, pattern: ['^\S+(?:\s+\S+){4}$', 'Use exactly five words.'] }
+              - &existing_image
+                label: Existing site image
+                name: image
+                widget: select
+                hint: Used unless a new uploaded image is selected below.
+                options:
+                  - { label: Sahara, value: sahara }
+                  - { label: Casablanca, value: casablanca }
+                  - { label: Fes, value: fes }
+                  - { label: Chefchaouen, value: chefchaouen }
+                  - { label: Ait Ben Haddou, value: kasbah }
+                  - { label: Atlas Mountains, value: atlas }
+                  - { label: Hospitality, value: hospitality }
+                  - { label: Marrakech, value: marrakech }
+                  - { label: Journey, value: journey }
+                  - { label: Guests, value: guests }
+              - &uploaded_image
+                label: New uploaded image
+                name: uploaded_image
+                widget: image
+                required: false
+                choose_url: false
+                hint: Optional. JPG, PNG, GIF or WebP, maximum 8 MB. This takes priority over the existing image.
+              - { label: Image alternative text, name: alt, widget: string }
+              - { label: Introduction, name: intro, widget: text }
+              - label: Article sections
+                name: sections
+                widget: list
+                min: 1
+                summary: "{{fields.heading}}"
+                fields:
+                  - { label: Heading, name: heading, widget: string }
+                  - label: Paragraphs
+                    name: paragraphs
+                    widget: list
+                    min: 1
+                    field: { label: Paragraph, name: paragraph, widget: text }
+              - { label: Related tour slug, name: tour, widget: string, hint: Must match an existing tour URL slug. }
+              - { label: Call-to-action heading, name: cta_title, widget: string }
+              - { label: Call-to-action text, name: cta_text, widget: text }
+              - { label: Related tour link label, name: tour_label, widget: string }
+              - label: Further-reading source
+                name: source
+                widget: object
+                required: false
+                fields:
+                  - { label: Link label, name: label, widget: string }
+                  - { label: URL, name: url, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
+
+  - label: Tours
+    name: tours
+    files:
+      - label: Tours and itineraries
+        name: tours
+        file: data/tours.json
+        fields:
+          - label: Tours
+            name: tours
+            widget: list
+            summary: "{{fields.title}}"
+            minimize_collapsed: true
+            fields:
+              - { label: URL slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
+              - { label: Card name, name: name, widget: string }
+              - { label: Page title, name: title, widget: string }
+              - { label: Days, name: days, widget: number, value_type: int, min: 1, max: 30 }
+              - { label: Nights, name: nights, widget: number, value_type: int, min: 0, max: 29 }
+              - { label: Start city, name: start, widget: string }
+              - { label: End city, name: end, widget: string }
+              - label: Category
+                name: category
+                widget: select
+                options: [Sahara escapes, Cities & desert, Grand journeys]
+              - *existing_image
+              - *uploaded_image
+              - { label: Description, name: description, widget: text }
+              - label: Route stops
+                name: route
+                widget: list
+                min: 2
+                field: { label: Place, name: place, widget: string }
+              - label: Destination slugs
+                name: destinations
+                widget: list
+                min: 1
+                hint: Each value must match a destination URL slug.
+                field: { label: Destination slug, name: destination, widget: string }
+              - { label: Pace and planning note, name: pace, widget: text }
+              - label: Day-by-day itinerary
+                name: itinerary
+                widget: list
+                min: 1
+                hint: Each day contains exactly two values, the day title first and then the full description.
+                field:
+                  label: Day title and description
+                  name: day
+                  widget: list
+                  min: 2
+                  max: 2
+                  field: { label: Text, name: text, widget: text }
+
+  - label: Destinations
+    name: destinations
+    files:
+      - label: Destinations
+        name: destinations
+        file: data/destinations.json
+        fields:
+          - label: Destinations
+            name: destinations
+            widget: list
+            summary: "{{fields.name}}"
+            minimize_collapsed: true
+            fields:
+              - { label: URL slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
+              - { label: Name, name: name, widget: string }
+              - { label: Category, name: category, widget: string }
+              - *existing_image
+              - *uploaded_image
+              - { label: Card description, name: description, widget: text }
+              - { label: Main description, name: body, widget: text }
+              - label: Experiences
+                name: experiences
+                widget: list
+                min: 1
+                field: { label: Experience, name: experience, widget: string }
+              - { label: Planning note, name: planning, widget: text }
+
+  - label: Website settings
+    name: settings
+    files:
+      - label: Contact and social information
+        name: site
+        file: data/site.json
+        fields:
+          - { label: Business name, name: name, widget: string }
+          - { label: Website URL, name: url, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
+          - { label: Contact email, name: email, widget: string, pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter a valid email address.'] }
+          - { label: WhatsApp number, name: whatsapp, widget: string, hint: International E.164 format such as +212700000000., pattern: ['^\+[1-9][0-9]{7,14}$', 'Use + followed by 8 to 15 digits.'] }
+          - { label: Display phone number, name: phone, widget: string }
+          - { label: Location, name: location, widget: string }
+          - { label: Facebook URL, name: facebook, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
+          - { label: Instagram URL, name: instagram, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
+          - { label: YouTube URL, name: youtube, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
