@@ -12,9 +12,11 @@ for asset in ['assets/styles.css','assets/site.js','assets/logo-morocco-explorer
  asset_versions[(ROOT/asset).resolve()]=hashlib.sha256(content).hexdigest()[:12]
 class Page(HTMLParser):
  def __init__(self,path):
-  super().__init__(convert_charrefs=True); self.path=path;self.ids=set();self.refs=[];self.h1=0;self.title='';self.in_title=False;self.meta={};self.canonical=None;self.json=False;self.json_text='';self.feed(path.read_text(encoding='utf-8'))
+  super().__init__(convert_charrefs=True); self.path=path;self.ids=set();self.refs=[];self.footer_refs=[];self.in_footer=False;self.h1=0;self.title='';self.in_title=False;self.meta={};self.canonical=None;self.json=False;self.json_text='';self.feed(path.read_text(encoding='utf-8'))
  def handle_starttag(self,tag,attrs):
   a=dict(attrs)
+  if tag=='footer':self.in_footer=True
+  if tag=='a' and self.in_footer and 'href' in a:self.footer_refs.append(a['href'])
   if 'id' in a:
    if a['id'] in self.ids:errors.append(f'{self.path}: duplicate id {a["id"]}')
    self.ids.add(a['id'])
@@ -30,6 +32,7 @@ class Page(HTMLParser):
    if key in a:self.refs.append(a[key])
   if 'srcset' in a:self.refs.extend(p.strip().split()[0] for p in a['srcset'].split(','))
  def handle_endtag(self,tag):
+  if tag=='footer':self.in_footer=False
   if tag=='title':self.in_title=False
   if tag=='script' and self.json:
    try:json.loads(self.json_text)
@@ -56,12 +59,27 @@ for key in ['title','canonical']:
  values=[getattr(p,key) for p in pages.values()]
  if len(values)!=len(set(values)):errors.append(f'Duplicate {key}')
 ET.parse(ROOT/'sitemap.xml')
+terms_page=(ROOT/'terms-and-conditions.html').resolve()
+if terms_page not in pages:errors.append('Missing Terms and Conditions page')
+for path,page in pages.items():
+ if path.name!='404.html' and not any(urlsplit(ref).path.endswith('/terms-and-conditions.html') or urlsplit(ref).path=='terms-and-conditions.html' for ref in page.footer_refs):errors.append(f'{path.relative_to(ROOT)}: missing Terms and Conditions footer link')
 
 articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))
 if len(articles)!=5 or len({article['slug'] for article in articles})!=5:errors.append('Expected five distinct blog articles')
 blog=pages.get((ROOT/'blog/index.html').resolve())
 home=pages[(ROOT/'index.html').resolve()]
 sitemap_urls={element.text for element in ET.parse(ROOT/'sitemap.xml').findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
+visitor_sitemap=pages.get((ROOT/'sitemap.html').resolve())
+if not visitor_sitemap:errors.append('Missing visitor HTML sitemap')
+else:
+ mapped_pages={(ROOT/unquote(urlsplit(ref).path)).resolve() for ref in visitor_sitemap.refs if not urlsplit(ref).scheme and not urlsplit(ref).netloc}
+ for path,page in pages.items():
+  if path.name in {'404.html','sitemap.html'}:continue
+  if path not in mapped_pages:errors.append(f'{path.relative_to(ROOT)}: missing from visitor sitemap')
+  if page.canonical not in sitemap_urls:errors.append(f'{path.relative_to(ROOT)}: missing public URL in XML sitemap')
+ for path,page in pages.items():
+  sitemap_refs=[ref for ref in page.footer_refs if urlsplit(ref).path.endswith(('sitemap.html','sitemap.xml'))]
+  if len(sitemap_refs)!=1 or not sitemap_refs[0].endswith('sitemap.html'):errors.append(f'{path.relative_to(ROOT)}: footer must link to HTML sitemap')
 for i,article in enumerate(articles):
  path=(ROOT/'blog'/f'{article["slug"]}.html').resolve()
  if len(article['teaser'].split())!=5:errors.append(f'{article["slug"]}: teaser must contain exactly five words')

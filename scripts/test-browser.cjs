@@ -28,6 +28,10 @@ function htmlFiles(dir) {
           await image.scrollIntoViewIfNeeded();
           await image.evaluate(element => element.decode());
         }
+        const sitemapLink = page.locator('footer .footer-bottom').getByRole('link', { name: 'Sitemap', exact: true });
+        assert.equal(new URL(await sitemapLink.getAttribute('href'), page.url()).pathname, '/sitemap.html', 'Footer must open the visitor sitemap');
+        await sitemapLink.scrollIntoViewIfNeeded();
+        assert.ok(await sitemapLink.isVisible(), 'Footer Sitemap link is not visible');
         if (file === 'index.html') {
           assert.equal(await page.evaluate(() => {
             const hero = document.querySelector('.hero').getBoundingClientRect();
@@ -131,9 +135,39 @@ function htmlFiles(dir) {
         await page.screenshot({ path: path.join(root, `artifacts/${file.includes('itinerary') ? 'article' : 'blog'}-${width}.png`), fullPage: true });
       }
     }
+    const expectedSitemapPaths = pages.filter(file => !['404.html', 'sitemap.html'].includes(file)).map(file => '/' + file.replace(/\\/g, '/')).sort();
+    for (const width of [320, 390, 768, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(`${base}/contact.html`);
+      await page.locator('footer .footer-bottom').getByRole('link', { name: 'Sitemap', exact: true }).click();
+      assert.equal(new URL(page.url()).pathname, '/sitemap.html');
+      assert.equal(await page.locator('h1').textContent(), 'Sitemap');
+      assert.deepEqual(await page.locator('.sitemap-sections h2').allTextContents(), ['Useful Pages', 'Tours', 'Destinations', 'Blog']);
+      const links = await page.locator('.sitemap-sections a').evaluateAll(elements => elements.map(element => ({ path: new URL(element.href).pathname, href: element.href, label: element.textContent.trim(), width: element.clientWidth, scroll: element.scrollWidth, height: element.getBoundingClientRect().height })));
+      assert.deepEqual(links.map(link => link.path).sort(), expectedSitemapPaths, 'Visitor sitemap must list all public content pages once');
+      for (const link of links) {
+        assert.ok(link.label && link.width + 1 >= link.scroll && link.height >= 44, 'Unreadable sitemap link');
+        assert.equal((await page.request.get(link.href)).status(), 200, `Broken sitemap link: ${link.path}`);
+      }
+      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Sitemap widens page');
+      await page.screenshot({ path: path.join(root, `artifacts/sitemap-${width}.png`), fullPage: true });
+    }
+    assert.equal((await page.request.get(`${base}/sitemap.xml`)).status(), 200, 'Search-engine XML sitemap is unavailable');
+    console.log('PASS: visible footer Sitemap links on every page; visitor sitemap sections and all destinations at four widths; XML sitemap retained.');
     const noJS = await browser.newPage({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
     await noJS.goto(base);
     assert.equal(await noJS.getByRole('navigation', { name: 'Main navigation' }).isVisible(), true);
+    assert.equal(await noJS.locator('.testimonial-card').count(), 3, 'All reviews must exist without JavaScript');
+    assert.equal(await noJS.locator('.testimonial-controls').isVisible(), false, 'Nonfunctional controls must be hidden without JavaScript');
+    assert.equal(await noJS.locator('.testimonial-track').getAttribute('tabindex'), '0');
+    assert.equal(await noJS.locator('.testimonial-track').evaluate(element => getComputedStyle(element).display), 'grid', 'Without JavaScript reviews must fall back to a readable static list');
+    const staticReviews = await noJS.locator('.testimonial-card').evaluateAll(elements => elements.map(element => {
+      const box = element.getBoundingClientRect();
+      return { top: box.top, bottom: box.bottom, left: box.left, right: box.right };
+    }));
+    assert.ok(staticReviews.every((box, index) => box.left >= 0 && box.right <= 391 && (!index || box.top >= staticReviews[index - 1].bottom)), 'Fallback reviews must be fully visible without horizontal scrolling');
+    await noJS.locator('.testimonial-card').last().scrollIntoViewIfNeeded();
+    assert.ok(await noJS.getByText('Martin Lovers', { exact: true }).isVisible(), 'Last review is inaccessible without JavaScript');
     await noJS.goto(`${base}/tours/`);
     assert.equal(await noJS.locator('.tour-card').count(), 13);
     await noJS.goto(`${base}/blog/index.html`);
