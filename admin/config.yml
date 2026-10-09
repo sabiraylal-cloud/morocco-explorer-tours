@@ -68,9 +68,9 @@ collections:
                 required: false
                 choose_url: false
                 media_library:
-                config:
-                multiple: false
-                max_file_size: 8388608
+                  config:
+                    multiple: false
+                    max_file_size: 8388608
                 hint: Optional. JPG, PNG, GIF or WebP, maximum 8 MB. This takes priority over the existing image.
               - { label: Image alternative text, name: alt, widget: string }
               - { label: Introduction, name: intro, widget: text }
