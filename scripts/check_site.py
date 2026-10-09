@@ -92,16 +92,7 @@ for i,article in enumerate(articles):
 tours=json.loads((ROOT/'data/tours.json').read_text(encoding='utf-8'))['tours'];dests=json.loads((ROOT/'data/destinations.json').read_text(encoding='utf-8'))['destinations']
 images=json.loads((ROOT/'data/images.json').read_text(encoding='utf-8'))
 site=json.loads((ROOT/'data/site.json').read_text(encoding='utf-8'))
-slug_pattern=re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)* if len(t['itinerary'])!=t['days']:errors.append(f'{t["slug"]}: itinerary length')
- if not set(t['destinations'])<={d['slug'] for d in dests}:errors.append('Unknown destination')
-for article in articles:
- if article['tour'] not in {tour['slug'] for tour in tours}:errors.append(f'{article["slug"]}: unknown related tour')
-for file in [ROOT/'assets/styles.css']:
- for ref in re.findall(r'url\([\"\']?([^\)\"\']+)',file.read_text(encoding='utf-8')):
-  if not ref.startswith('data:') and not (file.parent/ref).exists():errors.append(f'Missing CSS asset {ref}')
-if errors:raise SystemExit('\n'.join(errors))
-print(f'PASS: {len(pages)} pages; local links, fragments, image paths, metadata, JSON-LD, sitemap, itinerary data and blog reachability/teasers.')
-)
+slug_pattern=re.compile(r'[a-z0-9]+(?:-[a-z0-9]+)*')
 for label,items in [('article',articles),('tour',tours),('destination',dests)]:
  slugs=[item['slug'] for item in items]
  if len(slugs)!=len(set(slugs)):errors.append(f'Duplicate {label} slug')
@@ -132,6 +123,8 @@ for item in articles+tours+dests:
 for t in tours:
  if len(t['itinerary'])!=t['days']:errors.append(f'{t["slug"]}: itinerary length')
  if not set(t['destinations'])<={d['slug'] for d in dests}:errors.append('Unknown destination')
+for article in articles:
+ if article['tour'] not in {tour['slug'] for tour in tours}:errors.append(f'{article["slug"]}: unknown related tour')
 for file in [ROOT/'assets/styles.css']:
  for ref in re.findall(r'url\([\"\']?([^\)\"\']+)',file.read_text(encoding='utf-8')):
   if not ref.startswith('data:') and not (file.parent/ref).exists():errors.append(f'Missing CSS asset {ref}')
