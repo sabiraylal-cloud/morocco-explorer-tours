@@ -1979,3 +1979,92 @@ pre {
   .whatsapp-float { right:14px; bottom:14px; width:50px; height:50px; }
   .whatsapp-float svg { width:25px; height:25px; }
 }
+
+
+/* Homepage hero: compact split layout on desktop and tablet. */
+@media (min-width:1200px) {
+  .hero {
+    height:clamp(470px,42vw,580px);
+    min-height:470px;
+    max-height:580px;
+  }
+  .hero-photo {
+    width:57%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+  .hero-shade {
+    background:linear-gradient(90deg,#221c18 0%,#221c18 39%,rgba(34,28,24,.84) 49%,transparent 63%),linear-gradient(0deg,rgba(34,28,24,.35),transparent 18%);
+  }
+  .hero-inner {
+    padding-top:clamp(48px,6vw,82px);
+    padding-bottom:52px;
+  }
+  .hero .eyebrow,
+  .hero h1,
+  .hero p:not(.eyebrow),
+  .hero .button-row {
+    max-width:43%;
+  }
+  .hero h1 {
+    font-size:clamp(38px,4.3vw,58px);
+  }
+  .hero-caption {
+    right:26px;
+    bottom:20px;
+  }
+}
+@media (min-width:701px) and (max-width:1199px) {
+  .hero {
+    height:clamp(430px,52vw,535px);
+    min-height:430px;
+    max-height:535px;
+  }
+  .hero-photo {
+    width:56%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+  .hero-shade {
+    background:linear-gradient(90deg,#221c18 0%,#221c18 38%,rgba(34,28,24,.84) 49%,transparent 64%),linear-gradient(0deg,rgba(34,28,24,.4),transparent 18%);
+  }
+  .hero-inner {
+    padding-top:42px;
+    padding-bottom:40px;
+  }
+  .hero .eyebrow,
+  .hero h1,
+  .hero p:not(.eyebrow),
+  .hero .button-row {
+    max-width:42%;
+  }
+  .hero .eyebrow {
+    font-size:8px;
+    margin-bottom:14px;
+  }
+  .hero h1 {
+    font-size:clamp(31px,4.4vw,48px);
+    margin-bottom:18px;
+  }
+  .hero p:not(.eyebrow) {
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:20px;
+  }
+  .hero .button-row {
+    gap:8px;
+  }
+  .hero .button {
+    min-height:44px;
+    padding:10px 14px;
+    gap:8px;
+    font-size:10px;
+  }
+  .hero-caption {
+    right:18px;
+    bottom:16px;
+    font-size:8px;
+  }
+}
