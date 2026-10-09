@@ -5,9 +5,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:8000';
 const root = path.resolve(__dirname, '..');
+const articles = JSON.parse(fs.readFileSync(path.join(root, 'data/articles.json'), 'utf8')).articles;
+const tours = JSON.parse(fs.readFileSync(path.join(root, 'data/tours.json'), 'utf8')).tours;
 function htmlFiles(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(item => {
-    if (['node_modules', '.git', 'artifacts'].includes(item.name)) return [];
+    if (['node_modules', '.git', 'artifacts', 'admin'].includes(item.name)) return [];
     const full = path.join(dir, item.name);
     return item.isDirectory() ? htmlFiles(full) : item.name.endsWith('.html') ? [path.relative(root, full)] : [];
   });
@@ -54,9 +56,9 @@ function htmlFiles(dir) {
     const previewLinks = await page.locator('.blog-preview .card-bottom a').evaluateAll(links => links.map(link => link.href));
     await page.locator('.blog-preview').getByRole('link', { name: 'All blog articles' }).click();
     assert.equal(new URL(page.url()).pathname, '/blog/index.html');
-    assert.equal(await page.locator('.blog-card').count(), 5);
+    assert.equal(await page.locator('.blog-card').count(), articles.length);
     const articleLinks = await page.locator('.blog-card .card-bottom a').evaluateAll(links => links.map(link => link.href));
-    assert.equal(new Set(articleLinks).size, 5);
+    assert.equal(new Set(articleLinks).size, articles.length);
     assert.ok(previewLinks.every(link => articleLinks.includes(link)));
     for (let index = 0; index < articleLinks.length; index++) {
       await page.goto(`${base}/blog/index.html`);
@@ -67,7 +69,7 @@ function htmlFiles(dir) {
       await page.locator('.blog-card .card-bottom a').nth(index).click();
       assert.equal(page.url(), articleLinks[index]);
       assert.equal(await page.locator('h1').textContent(), title);
-      assert.equal(await page.locator('.article-copy > section').count(), 6);
+      assert.equal(await page.locator('.article-copy > section').count(), articles[index].sections.length + 1);
       await page.locator('.article-next a[href="../contact.html"]').click();
       assert.equal(new URL(page.url()).pathname, '/contact.html');
     }
@@ -85,7 +87,7 @@ function htmlFiles(dir) {
     assert.equal(await page.locator('.tour-card:visible').count(), 0);
     assert.equal(await page.locator('#empty-results').isVisible(), true);
     await page.getByRole('button', { name: 'Reset filters' }).click();
-    await page.waitForFunction(() => document.querySelectorAll('.tour-card:not([hidden])').length === 13);
+    await page.waitForFunction(expected => document.querySelectorAll('.tour-card:not([hidden])').length === expected, tours.length);
     await page.locator('[name="category"]').selectOption('Cities & desert');
     assert.equal(await page.locator('.tour-card:visible').filter({ hasText: 'Food, craft & imperial cities' }).count(), 0);
     await page.locator('[name="category"]').selectOption('Grand journeys');
@@ -169,9 +171,9 @@ function htmlFiles(dir) {
     await noJS.locator('.testimonial-card').last().scrollIntoViewIfNeeded();
     assert.ok(await noJS.getByText('Martin Lovers', { exact: true }).isVisible(), 'Last review is inaccessible without JavaScript');
     await noJS.goto(`${base}/tours/`);
-    assert.equal(await noJS.locator('.tour-card').count(), 13);
+    assert.equal(await noJS.locator('.tour-card').count(), tours.length);
     await noJS.goto(`${base}/blog/index.html`);
-    assert.equal(await noJS.locator('.blog-card').count(), 5);
+    assert.equal(await noJS.locator('.blog-card').count(), articles.length);
     assert.deepEqual(failures, []);
     console.log(`PASS: ${pages.length} pages × 5 widths, images, footer links, blog cards/navigation/teasers, mobile menu, filters, planner validation, safe text, download, FAQ, no-JS navigation; no browser errors.`);
   } finally { await browser.close(); }
