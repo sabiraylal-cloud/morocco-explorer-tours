@@ -59,6 +59,10 @@ for key in ['title','canonical']:
  values=[getattr(p,key) for p in pages.values()]
  if len(values)!=len(set(values)):errors.append(f'Duplicate {key}')
 ET.parse(ROOT/'sitemap.xml')
+terms_page=(ROOT/'terms-and-conditions.html').resolve()
+if terms_page not in pages:errors.append('Missing Terms and Conditions page')
+for path,page in pages.items():
+ if path.name!='404.html' and not any(urlsplit(ref).path.endswith('/terms-and-conditions.html') or urlsplit(ref).path=='terms-and-conditions.html' for ref in page.footer_refs):errors.append(f'{path.relative_to(ROOT)}: missing Terms and Conditions footer link')
 
 articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))
 if len(articles)!=5 or len({article['slug'] for article in articles})!=5:errors.append('Expected five distinct blog articles')
