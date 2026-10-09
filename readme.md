@@ -12,9 +12,9 @@ python3 -m http.server 8000
 
 Open `http://localhost:8000`. Python 3's standard library is sufficient for building and checking the site.
 
-- `data/tours.json`: routes, days, overnight counts, itinerary copy and destination relationships.
-- `data/destinations.json`: destination guides, experiences and planning notes.
-- `data/articles.json`: Blog article copy, five-word card teasers, images and related tour links. The first two articles are featured above the homepage footer.
+- `data/tours.json`: a `tours` collection with routes, days, overnight counts, itinerary copy and destination relationships.
+- `data/destinations.json`: a `destinations` collection with destination guides, experiences and planning notes.
+- `data/articles.json`: an `articles` collection with Blog copy, five-word card teasers, images and related tour links. The first two articles are featured above the homepage footer.
 - `data/site.json`: brand name, production URL and contact configuration.
 - `scripts/build.py`: shared header, footer, cards, templates, metadata and HTML generation. Edit templates/data, then regenerate; edits made only to generated HTML will be overwritten.
 - `assets/styles.css` and `assets/site.js`: shared responsive styling and progressive enhancements.
@@ -22,6 +22,12 @@ Open `http://localhost:8000`. Python 3's standard library is sufficient for buil
 - `assets/images/`: smaller WebP derivatives of selected existing images. `data/images.json` records each source and its dimensions. Existing marks in the originals have not been removed.
 
 HTML links are relative, so the pages also work under a repository subdirectory. Canonical URLs and sitemap entries target the production domain in `data/site.json`. If the production domain changes, update it and rebuild. Directory index pages use canonical URLs ending in `/`.
+
+## Content dashboard
+
+Decap CMS is available at `/admin/`. It edits the JSON collections and site settings, accepts validated images in `images/uploads/`, and uses an editorial workflow that creates a `cms/...` pull request before publication. CMS pull requests automatically regenerate the public pages; they are not deployed or merged by the workflow.
+
+GitHub authentication requires an external OAuth proxy or a managed Decap backend. Secrets must stay in that provider's encrypted environment settings and must never be committed. See `docs/cms-setup.md` for authentication, branch protection, review and image-upload instructions.
 
 ## Contact setup
 
