@@ -2,6 +2,8 @@ backend:
   name: github
   repo: sabiraylal-cloud/morocco-explorer-tours
   branch: main
+  base_url: https://decap-proxy.sabiraylal.workers.dev
+  auth_endpoint: /auth
   use_graphql: true
   squash_merges: true
   commit_messages:
@@ -15,7 +17,6 @@ site_url: https://moroccoexplorertours.com
 display_url: https://moroccoexplorertours.com
 logo_url: /assets/logo-morocco-explorer-tours.png
 publish_mode: editorial_workflow
-local_backend: true
 media_folder: images/uploads
 public_folder: /images/uploads
 media_library:
