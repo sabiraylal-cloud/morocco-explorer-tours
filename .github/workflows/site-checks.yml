@@ -34,6 +34,7 @@ jobs:
           done
           npm run test:browser
           npm run test:layout
+          npm run test:testimonials
       - name: Save screenshots for review
         if: always()
         uses: actions/upload-artifact@v4

@@ -7,7 +7,8 @@
     "build": "python3 scripts/build.py",
     "check": "python3 scripts/check_site.py",
     "test:browser": "node scripts/test-browser.cjs",
-    "test:layout": "node scripts/test-layout.cjs"
+    "test:layout": "node scripts/test-layout.cjs",
+    "test:testimonials": "node scripts/test-testimonials.cjs"
   },
   "devDependencies": {"playwright": "1.62.1"}
 }

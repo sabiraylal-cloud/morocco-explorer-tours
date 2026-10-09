@@ -33,7 +33,8 @@ const server = http.createServer((request, response) => {
     const tours = JSON.parse(fs.readFileSync(path.join(root, 'data/tours.json'), 'utf8'));
     const testimonials = JSON.parse(fs.readFileSync(path.join(root, 'data/testimonials.json'), 'utf8'));
     assert.deepEqual(testimonials.reviews.map(review => [review.name, review.country]), [['Lissa Gomez', 'USA'], ['Ben Tanaka', 'Japan'], ['Martin Lovers', 'UK']], 'Only the three published customers may appear');
-    assert.ok(testimonials.reviews.every(review => !Object.keys(review).some(key => /date|rating|photo/i.test(key))), 'Do not add dates, ratings or unverified customer photos');
+    assert.ok(testimonials.reviews.every(review => !Object.keys(review).some(key => /date|photo/i.test(key))), 'Do not add dates or unverified customer photos');
+    assert.deepEqual(testimonials.reviews.map(review => review.rating), [5, 5, 5], 'All three source reviews display five stars');
     assert.match(testimonials.reviews[0].summary, /Marrakech.*Sahara.*Sabir/);
     assert.match(testimonials.reviews[1].summary, /Sabir.*kindness.*professional.*safe/);
     assert.match(testimonials.reviews[2].summary, /Fes.*Meryem.*knowledge/);
@@ -153,6 +154,7 @@ const server = http.createServer((request, response) => {
           assert.equal(await page.locator('.blog-preview').evaluate(element => element.previousElementSibling.classList.contains('testimonials')), true, 'Testimonials must be immediately above the blog');
           assert.deepEqual(await carousel.locator('.testimonial-name').allTextContents(), ['Lissa Gomez', 'Ben Tanaka', 'Martin Lovers']);
           assert.deepEqual(await carousel.locator('.testimonial-country').allTextContents(), ['USA', 'Japan', 'UK']);
+          assert.deepEqual(await carousel.locator('.testimonial-rating').evaluateAll(elements => elements.map(element => [element.getAttribute('aria-label'), element.textContent.trim()])), Array(3).fill(['5 out of 5 stars', '★★★★★']), 'Visible and accessible five-star ratings must match the source');
           assert.deepEqual(await carousel.locator('.testimonial-summary').allTextContents(), testimonials.reviews.map(review => review.summary));
           assert.equal(await carousel.locator('time, img, blockquote').count(), 0, 'No invented dates, customer photos or verbatim-quote presentation');
           assert.doesNotMatch(await carousel.textContent(), /Nourddine|Ali\b|Ibrahim|\b20\d{2}\b/);
