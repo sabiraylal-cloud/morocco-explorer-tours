@@ -22,39 +22,47 @@ const url = pathToFileURL(path.join(root, 'index.html')).href + '#testimonials';
       const track = carousel.locator('.testimonial-track');
       assert.ok(await carousel.isVisible(), 'Testimonials missing from the actual local index.html');
       assert.equal(await carousel.evaluate(element => element.nextElementSibling), null, 'Carousel must close the homepage');
-      assert.deepEqual(await carousel.locator('.testimonial-name').allTextContents(), ['Lissa Gomez', 'Ben Tanaka', 'Martin Lovers']);
-      assert.deepEqual(await carousel.locator('.testimonial-country').allTextContents(), ['États-Unis', 'Japon', 'Royaume-Uni']);
-      assert.deepEqual(await carousel.locator('.testimonial-rating').evaluateAll(elements => elements.map(element => [element.getAttribute('aria-label'), element.textContent.trim()])), Array(3).fill(['5 sur 5 étoiles', '★★★★★']));
-      assert.equal(await carousel.locator('time, img, blockquote').count(), 0);
-      assert.doesNotMatch(await carousel.textContent(), /Nourddine|Ali\b|Ibrahim|\b20\d{2}\b/);
-      assert.equal(await carousel.locator('.testimonial-tourradar').getAttribute('href'), 'https://www.tourradar.com/o/morocco-extra-tours');
+      const reviews = JSON.parse(fs.readFileSync(path.join(root, 'data/testimonials.json'), 'utf8')).reviews;
+      assert.deepEqual(await carousel.locator('.testimonial-name').allTextContents(), ['Samuel Depraz', 'Lissa Denny', 'Jean Lois', 'Michel Chaboud']);
+      assert.deepEqual(await carousel.locator('.testimonial-country').allTextContents(), ['Suisse']);
+      assert.deepEqual(await carousel.locator('.testimonial-summary').allTextContents(), reviews.map(review => review.fr.text));
+      assert.deepEqual(await carousel.locator('.testimonial-card h3').allTextContents(), reviews.map(review => review.fr.title));
+      assert.deepEqual(await carousel.locator('.testimonial-trip a').evaluateAll(links => links.map(link => link.getAttribute('href'))), ['treks/vallee-oued-zat-4-jours.html', 'treks/vallee-oued-zat-4-jours.html', 'excursions/excursion-trois-vallees.html', 'treks/vallee-oued-zat-4-jours.html']);
+      assert.equal(await carousel.locator('.testimonial-rating, time, img, blockquote').count(), 0);
       const dimensions = await track.evaluate(element => {
-        const cards = [...element.children].map(card => ({ width: card.getBoundingClientRect().width, height: card.getBoundingClientRect().height, overflow: card.scrollWidth > card.clientWidth + 1 }));
+        const cards = [...element.children].map(card => {
+          const box = card.getBoundingClientRect();
+          return { width: box.width, height: box.height, overflow: card.scrollWidth > card.clientWidth + 1, nameGap: box.bottom - card.querySelector('.testimonial-person').getBoundingClientRect().bottom };
+        });
         return { width: element.clientWidth, snap: getComputedStyle(element).scrollSnapType, cards };
       });
-      assert.equal(dimensions.snap, 'x mandatory');
-      assert.equal(dimensions.cards.length, 3);
-      assert.ok(dimensions.cards.every(card => !card.overflow && Math.abs(card.width - dimensions.width) < 1 && Math.abs(card.height - dimensions.cards[0].height) < 1), 'Inconsistent or overflowing slides');
-      for (const button of await carousel.locator('button').all()) {
-        const box = await button.boundingBox();
-        assert.ok(box.width >= 44 && box.height >= 44 && await button.getAttribute('aria-label'), 'Controls need large touch targets and accessible names');
+      assert.equal(dimensions.cards.length, 4);
+      assert.ok(dimensions.cards.every(card => !card.overflow && Math.abs(card.height - dimensions.cards[0].height) < 1 && Math.abs(card.width - dimensions.cards[0].width) < 1 && Math.abs(card.nameGap - dimensions.cards[0].nameGap) < 1), 'Cards must have equal size and aligned names');
+      if (width >= 900) {
+        assert.ok(Math.abs(dimensions.cards[0].width * 2 + 20 - dimensions.width) < 2, 'Wide screens show a two-column grid');
+        assert.equal(await carousel.locator('.testimonial-controls').isVisible(), false);
+      } else {
+        assert.equal(dimensions.snap, 'x mandatory');
+        assert.ok(Math.abs(dimensions.cards[0].width - dimensions.width) < 1, 'Narrow screens show one card per slide');
+        for (const button of await carousel.locator('button').all()) {
+          const box = await button.boundingBox();
+          assert.ok(box.width >= 44 && box.height >= 44 && await button.getAttribute('aria-label'), 'Controls need large touch targets and accessible names');
+        }
+        await carousel.locator('.testimonial-next').click();
+        await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[1].getAttribute('aria-current') === 'true');
+        assert.match(await carousel.locator('.testimonial-status').textContent(), /Lissa Denny, Trek dans la vallée du Zat/);
+        await carousel.locator('.testimonial-prev').click();
+        await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[0].getAttribute('aria-current') === 'true');
+        await track.focus();
+        await page.keyboard.press('End');
+        await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[3].getAttribute('aria-current') === 'true');
+        await page.keyboard.press('Home');
+        await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[0].getAttribute('aria-current') === 'true');
+        await carousel.locator('.testimonial-dot').nth(2).click();
+        await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[2].getAttribute('aria-current') === 'true');
+        await carousel.locator('.testimonial-dot').first().click();
+        await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[0].getAttribute('aria-current') === 'true');
       }
-      await carousel.locator('.testimonial-next').click();
-      await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[1].getAttribute('aria-current') === 'true');
-      await carousel.locator('.testimonial-prev').click();
-      await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[0].getAttribute('aria-current') === 'true');
-      await track.focus();
-      await page.keyboard.press('ArrowRight');
-      await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[1].getAttribute('aria-current') === 'true');
-      assert.match(await carousel.locator('.testimonial-status').textContent(), /Ben Tanaka, Japon/);
-      await page.keyboard.press('End');
-      await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[2].getAttribute('aria-current') === 'true');
-      await page.keyboard.press('Home');
-      await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[0].getAttribute('aria-current') === 'true');
-      await carousel.locator('.testimonial-dot').nth(2).click();
-      await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[2].getAttribute('aria-current') === 'true');
-      await carousel.locator('.testimonial-dot').first().click();
-      await page.waitForFunction(() => document.querySelectorAll('.testimonial-dot')[0].getAttribute('aria-current') === 'true');
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1 && window.scrollX === 0), 'Local homepage has unwanted horizontal overflow');
       if ([320, 390, 1440].includes(width)) {
         await carousel.screenshot({ path: path.join(root, `artifacts/testimonials-file-${width}.png`) });
@@ -78,13 +86,13 @@ const url = pathToFileURL(path.join(root, 'index.html')).href + '#testimonials';
     assert.equal(await mobile.evaluate(() => window.scrollX), 0);
     const noJS = await browser.newPage({ javaScriptEnabled: false, viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
     await noJS.goto(url);
-    assert.equal(await noJS.locator('.testimonial-card').count(), 3);
+    assert.equal(await noJS.locator('.testimonial-card').count(), 4);
     assert.equal(await noJS.locator('.testimonial-controls').isVisible(), false);
     assert.equal(await noJS.locator('.testimonial-track').evaluate(element => getComputedStyle(element).display), 'grid');
     await noJS.locator('.testimonial-card').last().scrollIntoViewIfNeeded();
-    assert.ok(await noJS.getByText('Martin Lovers', { exact: true }).isVisible());
+    assert.ok(await noJS.getByText('Michel Chaboud', { exact: true }).isVisible());
     assert.deepEqual(failures, [], 'Local preview has console or loading errors');
-    console.log(`PASS: actual local file preview ${url}; carousel visible directly above blog at six widths; exact names/countries, five stars, initials/no dates, links, layout, controls, keyboard, live status, touch swipe and no-JS fallback; no console errors or page overflow. Screenshots in ${path.join(root, 'artifacts')}.`);
+    console.log(`PASS: actual local file preview ${url}; reviews at six widths; exact names, texts, trip links, no stars or dates, equal cards with aligned names, 2-column grid on wide screens, carousel controls, keyboard, live status, touch swipe and no-JS fallback; no console errors or page overflow. Screenshots in ${path.join(root, 'artifacts')}.`);
   } finally {
     await browser.close();
   }

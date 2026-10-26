@@ -9,6 +9,9 @@ RedirectMatch 301 ^/destinations(/.*)?$ /
 RedirectMatch 301 ^/tours/5-day-atlas-valleys-kasbahs\.html$ /treks/
 RedirectMatch 301 ^/tours(/.*)?$ /treks/
 RedirectMatch 301 ^/sitemap\.html$ /
+# Blog articles replaced by the High Atlas articles (October 2026).
+RedirectMatch 301 ^/blog/(choose-your-morocco-itinerary|first-sahara-desert-tour|best-time-to-visit-morocco|marrakech-to-merzouga-stops|moroccan-culture-food-local-experiences)\.html$ /blog/
+RedirectMatch 301 ^/en/blog/(choose-your-morocco-itinerary|first-sahara-desert-tour|best-time-to-visit-morocco|marrakech-to-merzouga-stops|moroccan-culture-food-local-experiences)\.html$ /en/blog/
 
 # Source files are in the repository but are not part of the public website.
 RedirectMatch 404 ^/(data|scripts|docs|artifacts|node_modules|\.github|\.claude|\.git)(/|$)

@@ -155,14 +155,18 @@ def tripcard(trip):
 
 def articlecard(article,heading='h2'):
  text=tx(article);path='blog/'+article['slug']+'.html'
- return f'''<article class="blog-card"><a class="card-photo" href="{link(page_path(path))}" tabindex="-1" aria-hidden="true">{img(content_image(article),text['alt'],'blog-featured-photo' if heading=='h3' else '')}</a><div class="card-body"><p class="eyebrow">{esc(text['category'])}</p><{heading}>{a(path,esc(text['title']))}</{heading}><p class="blog-teaser">{esc(text['teaser'])}...</p><div class="card-bottom">{a(path,t('read_more')+'<span class="sr-only">: '+esc(text['title'])+'</span> <span aria-hidden="true">↗</span>')}</div></div></article>'''
+ return f'''<article class="blog-card"><a class="card-photo" href="{link(page_path(path))}" tabindex="-1" aria-hidden="true">{img(content_image(article),image_alt(content_image(article),text['title']),'blog-featured-photo' if heading=='h3' else '')}</a><div class="card-body"><p class="eyebrow">{esc(text['category'])}</p><{heading}>{a(path,esc(text['title']))}</{heading}><p class="blog-teaser">{esc(text['teaser'])}...</p><div class="card-bottom">{a(path,t('read_more')+'<span class="sr-only">: '+esc(text['title'])+'</span> <span aria-hidden="true">↗</span>')}</div></div></article>'''
 
 def testimonial_carousel():
  reviews=testimonials['reviews']
- slides=''.join(f'''<article class="testimonial-card" role="group" aria-roledescription="slide" aria-label="{t('reviews_slide',i=i+1,n=len(reviews))}"><p class="testimonial-rating" role="img" aria-label="{t('reviews_stars',rating=review['rating'])}"><span aria-hidden="true">{"★"*review['rating']}</span></p><h3>{esc(tx(review)['title'])}</h3><p class="testimonial-summary">{esc(tx(review)['summary'])}</p><div class="testimonial-person"><span class="testimonial-avatar" aria-hidden="true">{esc(review['initials'])}</span><div><strong class="testimonial-name">{esc(review['name'])}</strong><span class="testimonial-country">{esc(tx(review)['country'])}</span></div></div></article>''' for i,review in enumerate(reviews))
+ by_slug={trip['slug']:trip for trip in trips}
+ def card(i,review):
+  text=tx(review);trip=by_slug[review['trip']]
+  country=f'<span class="testimonial-country">{esc(review["country"][lang])}</span>' if review.get('country') else ''
+  return f'''<article class="testimonial-card" role="group" aria-roledescription="slide" aria-label="{t('reviews_slide',i=i+1,n=len(reviews))}"><p class="testimonial-trip">{a(trip_path(trip),esc(text['trip_label']),'testimonial-trip-link')}</p><h3>{esc(text['title'])}</h3><p class="testimonial-summary">{esc(text['text'])}</p><div class="testimonial-person"><span class="testimonial-avatar" aria-hidden="true">{esc(review['initials'])}</span><div><strong class="testimonial-name">{esc(review['name'])}</strong>{country}</div><span class="testimonial-arrow-link" aria-hidden="true">↗</span></div></article>'''
+ slides=''.join(card(i,review) for i,review in enumerate(reviews))
  dots=''.join(f'<button type="button" class="testimonial-dot" data-slide="{i}" aria-controls="testimonial-track" aria-label="{esc(t("reviews_show",name=review["name"]),quote=True)}" title="{esc(review["name"],quote=True)}"'+(' aria-current="true"' if i==0 else '')+'><span aria-hidden="true"></span></button>' for i,review in enumerate(reviews))
- source=t('reviews_source',link=f'<a href="{esc(testimonials["source_url"],quote=True)}">Morocco Extra Tours</a>')
- return f'''<section id="testimonials" class="section container testimonials" role="region" aria-roledescription="carousel" aria-labelledby="testimonials-title"><div class="section-heading"><div><p class="eyebrow">{t('reviews_kicker')}</p><h2 id="testimonials-title">{t('reviews_title')}</h2></div></div><div id="testimonial-track" class="testimonial-track" tabindex="0" aria-label="{t('reviews_track')}">{slides}</div><div class="testimonial-controls" hidden><button type="button" class="testimonial-arrow testimonial-prev" aria-label="{t('reviews_prev')}" title="{t('reviews_prev')}" aria-controls="testimonial-track" aria-disabled="true"><span aria-hidden="true"></span></button><div class="testimonial-pagination" role="group" aria-label="{t('reviews_choose')}">{dots}</div><button type="button" class="testimonial-arrow testimonial-next" aria-label="{t('reviews_next')}" title="{t('reviews_next')}" aria-controls="testimonial-track" aria-disabled="false"><span aria-hidden="true"></span></button></div><p class="sr-only testimonial-status" role="status" aria-live="polite" aria-atomic="true"></p><div class="testimonial-sources"><p>{source}</p><a class="text-link testimonial-tourradar" href="{esc(testimonials['tourradar_url'],quote=True)}">{t('reviews_tourradar')} <span aria-hidden="true">↗</span></a></div></section>'''
+ return f'''<section id="testimonials" class="section container testimonials" role="region" aria-roledescription="carousel" aria-labelledby="testimonials-title"><div class="section-heading"><div><p class="eyebrow">{t('reviews_kicker')}</p><h2 id="testimonials-title">{t('reviews_title')}</h2></div></div><div id="testimonial-track" class="testimonial-track" tabindex="0" aria-label="{t('reviews_track')}">{slides}</div><div class="testimonial-controls" hidden><button type="button" class="testimonial-arrow testimonial-prev" aria-label="{t('reviews_prev')}" title="{t('reviews_prev')}" aria-controls="testimonial-track" aria-disabled="true"><span aria-hidden="true"></span></button><div class="testimonial-pagination" role="group" aria-label="{t('reviews_choose')}">{dots}</div><button type="button" class="testimonial-arrow testimonial-next" aria-label="{t('reviews_next')}" title="{t('reviews_next')}" aria-controls="testimonial-track" aria-disabled="false"><span aria-hidden="true"></span></button></div><p class="sr-only testimonial-status" role="status" aria-live="polite" aria-atomic="true"></p></section>'''
 
 def intro(kicker,title,text):
  return f'<section class="page-intro container"><p class="eyebrow">{kicker}</p><h1>{title}</h1><p class="lead">{text}</p></section>'
@@ -173,6 +177,9 @@ def crumbs(parent,label):
  return f'<nav class="breadcrumbs container" aria-label="{t("breadcrumb")}">{a("index.html",t("home"))}<span aria-hidden="true">/</span>{a(parent,label)}<span aria-hidden="true">/</span><span aria-current="page">{t("overview")}</span></nav>'
 def steps(items):
  return '<div class="steps">'+''.join(f'<article><span>{label}</span><h3>{title}</h3><p>{text}</p></article>' for label,title,text in items)+'</div>'
+def rich(text):
+ # Escapes data text and turns [label](site/path.html) into a link for the current language.
+ return re.sub(r'\[([^\]]+)\]\(([^)\s]+)\)',lambda m:a(m.group(2),m.group(1)),esc(text))
 def todo(text):
  # Placeholders the owner still has to fill in are highlighted on the page.
  return re.sub(r'\[(?:À COMPLÉTER|TO BE COMPLETED)[^\]]*\]',lambda m:f'<mark class="todo">{m.group(0)}</mark>',text)
@@ -257,15 +264,28 @@ def build_language():
  for article in articles:
   start_page('blog/'+article['slug']+'.html')
   text=tx(article)
+  slug=article['slug']
   article_url=canonical_url(base,lang)
-  sections=''.join(f'<section><h2 id="{article["slug"]}-section-{i}">{esc(section["heading"])}</h2>'+''.join(f'<p>{esc(paragraph)}</p>' for paragraph in section['paragraphs'])+'</section>' for i,section in enumerate(text['sections']))
-  contents=''.join(f'<li><a href="#{article["slug"]}-section-{i}">{esc(section["heading"])}</a></li>' for i,section in enumerate(text['sections']))
+  def figure(section):
+   key=section.get('image')
+   if not key:return ''
+   return f'<figure class="article-figure">{img(key,image_alt(key),"article-inline-photo")}<figcaption>{esc(section.get("caption") or image_alt(key))}</figcaption></figure>'
+  sections=''.join(f'<section class="article-section"><h2 id="{slug}-section-{i}">{esc(section["heading"])}</h2>'+''.join(f'<p>{rich(paragraph)}</p>' for paragraph in section['paragraphs'])+figure(section)+'</section>' for i,section in enumerate(text['sections']))
+  extras=[]
+  tips=text.get('tips')
+  if tips:extras.append((f'{slug}-tips',tips['title'],f'<aside class="article-tips" aria-labelledby="{slug}-tips"><h2 id="{slug}-tips">{esc(tips["title"])}</h2><ul>'+''.join(f'<li>{rich(item)}</li>' for item in tips['items'])+'</ul></aside>'))
+  faq=text.get('faq')
+  if faq:extras.append((f'{slug}-faq',t('article_faq'),f'<section class="article-faq"><h2 id="{slug}-faq">{t("article_faq")}</h2><div class="faq">'+''.join(f'<details><summary>{esc(q)}</summary><p>{rich(answer)}</p></details>' for q,answer in faq)+'</div></section>'))
+  contents=''.join(f'<li><a href="#{slug}-section-{i}">{esc(section["heading"])}</a></li>' for i,section in enumerate(text['sections']))+''.join(f'<li><a href="#{anchor}">{esc(label)}</a></li>' for anchor,label,_ in extras)
   source=text.get('source')
   source_note=f'<p class="article-source">{t("article_further")} <a href="{esc(source["url"],quote=True)}">{esc(source["label"])}</a>.</p>' if source else ''
   related=next(trip for trip in trips if trip['slug']==article['trip'])
-  body=f'''<nav class="breadcrumbs container" aria-label="{t('breadcrumb')}">{a('index.html',t('home'))}<span aria-hidden="true">/</span>{a('blog/index.html',t('footer_blog'))}<span aria-hidden="true">/</span><span aria-current="page">{esc(text['category'])}</span></nav><article class="container blog-article"><header class="article-header"><p class="eyebrow">{esc(text['category'])} · MOROCCO EXPLORER TOURS</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['intro'])}</p></header><figure class="article-image">{img(content_image(article),text['alt'],'article-photo',True)}</figure><div class="article-layout"><nav class="article-contents" aria-label="{t('article_in_this')}"><h2>{t('article_in_this')}</h2><ol>{contents}</ol></nav><div class="article-copy">{sections}{source_note}<section class="article-next"><h2>{esc(text['cta_title'])}</h2><p>{esc(text['cta_text'])}</p><div class="button-row">{a(trip_path(related),esc(text['tour_label'])+' ↗','button')}{a('contact.html',t('article_enquire'),'text-link')}</div></section>{a('blog/index.html','<span aria-hidden="true">←</span> '+t('all_articles'),'text-link')}</div></div></article>'''
-  schema={'@context':'https://schema.org','@type':'BlogPosting','headline':text['title'],'description':text['description'],'image':image_url(content_image(article)),'author':{'@type':'Organization','name':site['name']},'publisher':{'@type':'Organization','name':site['name']},'mainEntityOfPage':article_url,'articleSection':text['category'],'inLanguage':lang}
-  write(text['title'],text['description'],body,'blog-detail',schema=schema,social=(schema['image'],text['alt']))
+  whatsapp='https://wa.me/'+site['whatsapp'].lstrip('+')+'?'+urlencode({'text':t('article_whatsapp_text',title=text['title'])})
+  cover=content_image(article)
+  cover_alt=image_alt(cover,text['title'])
+  body=f'''<nav class="breadcrumbs container" aria-label="{t('breadcrumb')}">{a('index.html',t('home'))}<span aria-hidden="true">/</span>{a('blog/index.html',t('footer_blog'))}<span aria-hidden="true">/</span><span aria-current="page">{esc(text['category'])}</span></nav><article class="container blog-article"><header class="article-header"><p class="eyebrow">{esc(text['category'])} · MOROCCO EXPLORER TOURS</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['intro'])}</p></header><figure class="article-image">{img(cover,cover_alt,'article-photo',True)}</figure><div class="article-layout"><nav class="article-contents" aria-label="{t('article_in_this')}"><h2>{t('article_in_this')}</h2><ol>{contents}</ol></nav><div class="article-copy">{sections}{''.join(html for *_,html in extras)}{source_note}<section class="article-next"><h2>{esc(text['cta_title'])}</h2><p>{esc(text['cta_text'])}</p><div class="button-row">{a(trip_path(related),esc(text['tour_label'])+' ↗','button')}<a class="button secondary" href="{esc(whatsapp,quote=True)}" target="_blank" rel="noopener noreferrer">{t('article_whatsapp')}</a></div><p class="article-next-links">{a('plan-your-trip.html',t('article_plan'),'text-link')} {a('contact.html',t('article_enquire'),'text-link')}</p></section>{a('blog/index.html','<span aria-hidden="true">←</span> '+t('all_articles'),'text-link')}</div></div></article>'''
+  schema={'@context':'https://schema.org','@type':'BlogPosting','headline':text['title'],'description':text['description'],'image':image_url(cover),'datePublished':article.get('date'),'author':{'@type':'Organization','name':site['name']},'publisher':{'@type':'Organization','name':site['name']},'mainEntityOfPage':article_url,'articleSection':text['category'],'inLanguage':lang}
+  write(text.get('meta_title') or text['title'],text['description'],body,'blog-detail',schema=schema,social=(schema['image'],cover_alt))
 
  start_page('about.html')
  body=intro(t('about_kicker'),t('about_title'),t('about_lead'))+f'''<section class="container story-grid about-story"><div class="story-image">{img('guests',image_alt('guests'))}</div><div><p class="eyebrow">{t('about_care_kicker')}</p><h2>{t('about_care_title')}</h2><p>{t('about_p1')}</p><p>{t('about_p2')}</p><p>{t('about_p3')}</p>{a('plan-your-trip.html',t('about_button'),'button')}</div></section><section class="container section">{steps(t_list('about_steps'))}</section>'''+cta()

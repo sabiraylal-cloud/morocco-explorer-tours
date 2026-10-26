@@ -66,7 +66,7 @@ function htmlFiles(dir) {
       await page.locator('.blog-card .card-bottom a').nth(index).click();
       assert.equal(page.url(), articleLinks[index]);
       assert.equal(await page.locator('h1').textContent(), title);
-      assert.equal(await page.locator('.article-copy > section').count(), articles[index].fr.sections.length + 1);
+      assert.equal(await page.locator('.article-copy > section.article-section').count(), articles[index].fr.sections.length);
       await page.locator('.article-next a[href="../contact.html"]').click();
       assert.equal(new URL(page.url()).pathname, '/contact.html');
     }
@@ -133,11 +133,11 @@ function htmlFiles(dir) {
     await page.screenshot({ path: path.join(root, 'artifacts/tour-desktop.png'), fullPage: true });
     for (const width of [390, 1440]) {
       await page.setViewportSize({ width, height: 900 });
-      for (const file of ['blog/index.html', 'blog/choose-your-morocco-itinerary.html']) {
+      for (const file of ['blog/index.html', `blog/${articles[0].slug}.html`]) {
         await page.goto(`${base}/${file}`);
         for (const image of await page.locator('img').all()) { await image.scrollIntoViewIfNeeded(); await image.evaluate(element => element.decode()); }
         await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
-        await page.screenshot({ path: path.join(root, `artifacts/${file.includes('itinerary') ? 'article' : 'blog'}-${width}.png`), fullPage: true });
+        await page.screenshot({ path: path.join(root, `artifacts/${file === 'blog/index.html' ? 'blog' : 'article'}-${width}.png`), fullPage: true });
       }
     }
     const noJS = await browser.newPage({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });

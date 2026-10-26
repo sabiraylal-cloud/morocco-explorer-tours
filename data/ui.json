@@ -132,8 +132,8 @@
     "en": "Read More"
   },
   "journal_kicker": {
-    "fr": "LE CARNET MAROC",
-    "en": "THE MOROCCO JOURNAL"
+    "fr": "LE CARNET DE L’ATLAS",
+    "en": "THE ATLAS JOURNAL"
   },
   "all_articles": {
     "fr": "Tous les articles",
@@ -150,10 +150,6 @@
   "reviews_slide": {
     "fr": "{i} sur {n}",
     "en": "{i} of {n}"
-  },
-  "reviews_stars": {
-    "fr": "{rating} sur 5 étoiles",
-    "en": "{rating} out of 5 stars"
   },
   "reviews_show": {
     "fr": "Voir l’avis de {name}",
@@ -174,14 +170,6 @@
   "reviews_choose": {
     "fr": "Choisir un avis",
     "en": "Choose a testimonial"
-  },
-  "reviews_source": {
-    "fr": "Résumés d’avis publiés sur {link}.",
-    "en": "Review summaries from {link}."
-  },
-  "reviews_tourradar": {
-    "fr": "Lire les avis sur TourRadar",
-    "en": "Read reviews on TourRadar"
   },
   "contact_details": {
     "fr": "Coordonnées",
@@ -416,20 +404,20 @@
     "en": "Plan your trip ↗"
   },
   "blog_meta_title": {
-    "fr": "Blog voyage Maroc : itinéraires, Sahara & culture",
-    "en": "Morocco Travel Blog: Itineraries, Sahara & Culture"
+    "fr": "Blog du Haut Atlas : saisons, treks, villages et excursions",
+    "en": "High Atlas Blog: Seasons, Treks, Villages and Day Trips"
   },
   "blog_meta_description": {
-    "fr": "Cinq guides de voyage originaux sur le Maroc : choisir son itinéraire, partir au Sahara, la meilleure saison, la route de Marrakech à Merzouga, la cuisine et la culture locales.",
-    "en": "Read five original Morocco travel guides covering itinerary planning, Sahara tours, seasons, Marrakech to Merzouga and local food and culture."
+    "fr": "Conseils de guides de montagne de Marrakech : quand partir dans le Haut Atlas, préparer un trek, la vie dans les villages amazighs, choisir une excursion et découvrir l’Oued Zat.",
+    "en": "Advice from Marrakech mountain guides: when to visit the High Atlas, how to prepare a trek, life in Amazigh villages, choosing a day trip and discovering the Oued Zat."
   },
   "blog_title": {
-    "fr": "Blog voyage Maroc",
-    "en": "Morocco travel blog"
+    "fr": "Le blog du Haut Atlas",
+    "en": "High Atlas travel blog"
   },
   "blog_lead": {
-    "fr": "Itinéraires, saisons et expériences du quotidien pour vous aider à préparer votre propre voyage au Maroc.",
-    "en": "Routes, seasons and everyday experiences to help you plan your own Morocco journey."
+    "fr": "Saisons, villages, préparation et excursions : nos conseils de guides de montagne pour bien vivre le Haut Atlas au départ de Marrakech.",
+    "en": "Seasons, villages, preparation and day trips: our mountain guides’ advice for making the most of the High Atlas from Marrakech."
   },
   "blog_list_label": {
     "fr": "Articles de voyage",
@@ -1008,5 +996,21 @@
   "form_photo_consent_note": {
     "fr": "Facultatif. Vous pouvez retirer votre accord à tout moment par e-mail ou WhatsApp. Voir nos {terms} et notre {privacy}.",
     "en": "Optional. You can withdraw your consent at any time by email or WhatsApp. See our {terms} and our {privacy}."
+  },
+  "article_faq": {
+    "fr": "Questions fréquentes",
+    "en": "Frequently asked questions"
+  },
+  "article_whatsapp": {
+    "fr": "Écrire sur WhatsApp ↗",
+    "en": "Message us on WhatsApp ↗"
+  },
+  "article_whatsapp_text": {
+    "fr": "Bonjour, j’ai lu votre article « {title} » et j’aimerais préparer une sortie dans l’Atlas.",
+    "en": "Hello, I read your article “{title}” and would like to plan a trip in the Atlas."
+  },
+  "article_plan": {
+    "fr": "Préparer ma sortie ↗",
+    "en": "Plan your trip ↗"
   }
 }

@@ -3,7 +3,7 @@ document.documentElement.classList.add('js');
 const LANG = document.documentElement.lang === 'en' ? 'en' : 'fr';
 const TEXT = {
   fr: {
-    testimonial: 'Avis {i} sur {n} : {name}, {country}.',
+    testimonial: 'Avis {i} sur {n} : {name}, {trip}.',
     briefTitle: 'MOROCCO EXPLORER TOURS — MON PROJET DE SORTIE DANS L’ATLAS',
     name: 'Nom', month: 'Mois du voyage', type: 'Type de sortie', travellers: 'Marcheurs', days: 'Nombre de jours', level: 'Niveau de marche', interest: 'Trek ou excursion', ideas: 'Mes envies',
     notProvided: 'Non renseigné', flexible: 'Flexible', openToIdeas: 'Ouvert à toutes les idées', helpMe: 'Aidez-moi à trouver un itinéraire adapté.',
@@ -16,7 +16,7 @@ const TEXT = {
     gallery: 'Galerie photo', close: 'Fermer', previous: 'Photo précédente', next: 'Photo suivante'
   },
   en: {
-    testimonial: 'Testimonial {i} of {n}: {name}, {country}.',
+    testimonial: 'Review {i} of {n}: {name}, {trip}.',
     briefTitle: 'MOROCCO EXPLORER TOURS — MY ATLAS TRIP BRIEF',
     name: 'Name', month: 'Travel month', type: 'Type of trip', travellers: 'Walkers', days: 'Number of days', level: 'Walking level', interest: 'Trek or day trip', ideas: 'My ideas',
     notProvided: 'Not provided', flexible: 'Flexible', openToIdeas: 'Open to ideas', helpMe: 'Help me find a route that fits.',
@@ -138,8 +138,8 @@ document.querySelectorAll('.testimonials').forEach(carousel => {
     next.setAttribute('aria-disabled', String(active === slides.length - 1));
     if (changed && announce) {
       const name = slides[active].querySelector('.testimonial-name').textContent;
-      const country = slides[active].querySelector('.testimonial-country').textContent;
-      status.textContent = format(TEXT.testimonial, { i: active + 1, n: slides.length, name, country });
+      const trip = slides[active].querySelector('.testimonial-trip').textContent;
+      status.textContent = format(TEXT.testimonial, { i: active + 1, n: slides.length, name, trip });
     }
     ticking = false;
   }

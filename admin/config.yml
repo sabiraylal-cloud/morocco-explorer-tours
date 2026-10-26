@@ -61,23 +61,45 @@ collections:
                 required: false
                 hint: Card and page photo. Leave empty to show "Photo à venir". Each photo's French and English alt text is in data/images.json.
                 options: &image_options
-                  - { label: "Atlas – mule on the Oukaïmeden–Tachdirt trail", value: atlas-mule-trail }
-                  - { label: "Atlas – hiker in a high valley", value: atlas-hiker-high-valley }
-                  - { label: "Atlas – shepherds and flock", value: atlas-shepherds-flock }
-                  - { label: "Atlas – terraced village from a trail", value: atlas }
-                  - { label: "Hikers and mules below snowy peaks", value: trek-hikers-mules-snow }
-                  - { label: "Mule on a stony mountain trail", value: mule-mountain-trail }
-                  - { label: "Terraced stone village below snowy peaks", value: terraced-village-snow-peaks }
-                  - { label: "Village below a snowy slope", value: village-below-snow-slope }
-                  - { label: "Stone village lane", value: atlas-stone-village }
-                  - { label: "Rammed-earth builders on a roof", value: village-earth-builders }
-                  - { label: "Turquoise cascades", value: turquoise-cascades }
-                  - { label: "Bridge over a riverbed", value: valley-bridge-riverbed }
-                  - { label: "Off-road stop on a plateau", value: plateau-vehicle-stop }
-                  - { label: "Donkey in flowering fields", value: donkey-flowering-fields }
-                  - { label: "Villager with a donkey above a terraced valley", value: villager-mule-terraced-valley }
-                  - { label: "Winding mountain road", value: winding-mountain-road }
-                  - { label: "Art workshop window", value: art-workshop-window }
+                  - { label: "sahara", value: sahara }
+                  - { label: "casablanca", value: casablanca }
+                  - { label: "fes", value: fes }
+                  - { label: "chefchaouen", value: chefchaouen }
+                  - { label: "kasbah", value: kasbah }
+                  - { label: "Terraced village in a High Atlas valley, seen from a mountain trail", value: atlas }
+                  - { label: "hospitality", value: hospitality }
+                  - { label: "marrakech", value: marrakech }
+                  - { label: "journey", value: journey }
+                  - { label: "Travellers and their guide on a trip in Morocco", value: guests }
+                  - { label: "Mule carrying luggage on the trail between Oukaïmeden and Tachdirt, wi", value: atlas-mule-trail }
+                  - { label: "Hiker in a rocky high valley of the High Atlas", value: atlas-hiker-high-valley }
+                  - { label: "Shepherds and a flock of sheep on a High Atlas valley trail", value: atlas-shepherds-flock }
+                  - { label: "Hikers and mules on a mountain trail, with an earthen village and snow", value: trek-hikers-mules-snow }
+                  - { label: "Two men building a rammed-earth wall on a rooftop, with cliffs and woo", value: village-earth-builders }
+                  - { label: "Lane and stone houses of a mountain village in the evening sun", value: atlas-stone-village }
+                  - { label: "Stone Berber village above terraced fields, below the snowy High Atlas", value: terraced-village-snow-peaks }
+                  - { label: "Small waterfalls and turquoise pools below a wooded cliff", value: turquoise-cascades }
+                  - { label: "Road bridge across a wide riverbed, with hills and mountains behind", value: valley-bridge-riverbed }
+                  - { label: "Mountain village houses at the foot of a snowy High Atlas slope", value: village-below-snow-slope }
+                  - { label: "Loaded mule on a stony high-mountain trail", value: mule-mountain-trail }
+                  - { label: "Off-road vehicle stop on a grassy high plateau", value: plateau-vehicle-stop }
+                  - { label: "Pack donkey grazing by a road, with flowering fields and mountains beh", value: donkey-flowering-fields }
+                  - { label: "Painted “Atelier d’art – Galerie” shutter in an earthen wall", value: art-workshop-window }
+                  - { label: "Winding mountain road through the ochre Atlas ranges", value: winding-mountain-road }
+                  - { label: "Villager in a djellaba leading a loaded donkey above a terraced valley", value: villager-mule-terraced-valley }
+                  - { label: "Two smiling hikers on a stony Atlas mountain trail under a blue sky", value: atlas-trail-hikers }
+                  - { label: "The Ouzoud waterfalls with boats at the foot of the falls, between och", value: ouzoud-waterfalls }
+                  - { label: "Berber village and terraced orchards in an Atlas valley, under the clo", value: atlas-valley-village-clouds }
+                  - { label: "Red earth village with its minaret in a wooded Atlas valley", value: ourika-red-village }
+                  - { label: "Village of earthen houses above terraced fields, with High Atlas mount", value: douar-terraced-fields }
+                  - { label: "Green valley and fields below wooded hills, with a snowy High Atlas su", value: atlas-green-valley-snow-peak }
+                  - { label: "Potters at work in an earthen workshop in the old village of Tlatast, ", value: tlatast-pottery-workshop }
+                  - { label: "Clay pots drying in the sun by the walls of the village of Tlatast", value: tlatast-pottery-drying }
+                  - { label: "Grassy high plateau and red rocks below snowy summits", value: plateau-red-rocks-snow-peaks }
+                  - { label: "Circular rock engraving on a red rock of the Yagour plateau", value: yagour-rock-engraving }
+                  - { label: "Camp tents on a green plateau, with grazing horses and terraced fields", value: plateau-bivouac-tents }
+                  - { label: "Berber village of stacked stone houses below a vast snow-covered High ", value: village-below-snow-wall }
+                  - { label: "Group of hikers on a rocky high-mountain ridge, with snow patches and ", value: hikers-rocky-ridge }
               - label: New uploaded photo
                 name: uploaded_image
                 widget: image
@@ -168,42 +190,26 @@ collections:
             minimize_collapsed: true
             fields:
               - { label: URL slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
-              - label: Existing site image
-                name: image
-                widget: select
-                hint: Used unless a new uploaded image is selected below.
-                options:
-                  - { label: Sahara, value: sahara }
-                  - { label: Casablanca, value: casablanca }
-                  - { label: Fes, value: fes }
-                  - { label: Chefchaouen, value: chefchaouen }
-                  - { label: Ait Ben Haddou, value: kasbah }
-                  - { label: Atlas Mountains, value: atlas }
-                  - { label: Hospitality, value: hospitality }
-                  - { label: Marrakech, value: marrakech }
-                  - { label: Journey, value: journey }
-                  - { label: Guests, value: guests }
-                  - { label: "Atlas – mule on the trail", value: atlas-mule-trail }
-                  - { label: "Atlas – hiker in a high valley", value: atlas-hiker-high-valley }
-                  - { label: "Atlas – shepherds and flock", value: atlas-shepherds-flock }
-              - label: New uploaded image
+              - { label: Cover photo, name: image, widget: select, options: *image_options, hint: Alt text for each photo is in data/images.json. }
+              - label: New uploaded cover photo
                 name: uploaded_image
                 widget: image
                 required: false
                 choose_url: false
-                hint: Optional. JPG, PNG, GIF or WebP, maximum 8 MB. This takes priority over the existing image.
+                hint: Optional. JPG, PNG, GIF or WebP, maximum 8 MB. Takes priority over the cover photo above.
               - { label: Related trek or day trip slug, name: trip, widget: string, hint: Must match an existing trip URL slug. }
+              - { label: Publication date, name: date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false }
               - &article_text
                 label: Français
                 name: fr
                 widget: object
                 collapsed: false
                 fields:
+                  - { label: SEO title, name: meta_title, widget: string, required: false, hint: Shown in search results; the page title is used if empty. }
                   - { label: Title, name: title, widget: string }
                   - { label: Category, name: category, widget: string }
                   - { label: Search description, name: description, widget: text }
                   - { label: Five-word card teaser, name: teaser, widget: string, pattern: ['^\S+(?:\s+\S+){4}$', 'Use exactly five words.'] }
-                  - { label: Image alternative text, name: alt, widget: string }
                   - { label: Introduction, name: intro, widget: text }
                   - label: Article sections
                     name: sections
@@ -216,17 +222,35 @@ collections:
                         name: paragraphs
                         widget: list
                         min: 1
+                        hint: "Link to a page with [link text](treks/page-name.html)."
                         field: { label: Paragraph, name: paragraph, widget: text }
-                  - { label: Call-to-action heading, name: cta_title, widget: string }
-                  - { label: Call-to-action text, name: cta_text, widget: text }
-                  - { label: Related trip link label, name: tour_label, widget: string }
-                  - label: Further-reading source
-                    name: source
+                      - { label: Photo in this section, name: image, widget: select, required: false, options: *image_options }
+                      - { label: Photo caption, name: caption, widget: string, required: false }
+                  - label: Practical tips box
+                    name: tips
                     widget: object
                     required: false
                     fields:
-                      - { label: Link label, name: label, widget: string }
-                      - { label: URL, name: url, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
+                      - { label: Box title, name: title, widget: string }
+                      - label: Tips
+                        name: items
+                        widget: list
+                        field: { label: Tip, name: item, widget: string }
+                  - label: FAQ
+                    name: faq
+                    widget: list
+                    required: false
+                    hint: Each entry contains two values, the question first, then the answer.
+                    field:
+                      label: Question and answer
+                      name: entry
+                      widget: list
+                      min: 2
+                      max: 2
+                      field: { label: Text, name: text, widget: text }
+                  - { label: Call-to-action heading, name: cta_title, widget: string }
+                  - { label: Call-to-action text, name: cta_text, widget: text }
+                  - { label: Related trip button label, name: tour_label, widget: string }
               - <<: *article_text
                 label: English
                 name: en

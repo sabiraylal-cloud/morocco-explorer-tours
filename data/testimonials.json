@@ -1,51 +1,65 @@
 {
-  "source_url": "https://moroccoextratours.com/",
-  "tourradar_url": "https://www.tourradar.com/o/morocco-extra-tours",
-  "format": "attributed summaries, not verbatim quotations",
+  "format": "client reviews, verbatim as supplied by Morocco Explorer Tours",
   "reviews": [
     {
-      "name": "Lissa Gomez",
-      "initials": "LG",
-      "rating": 5,
+      "name": "Samuel Depraz",
+      "initials": "SD",
+      "trip": "vallee-oued-zat-4-jours",
+      "country": {"fr": "Suisse", "en": "Switzerland"},
       "fr": {
-        "country": "États-Unis",
-        "title": "De Marrakech au Sahara",
-        "summary": "Lissa garde le souvenir d’un voyage mémorable et soigneusement organisé de Marrakech jusqu’au Sahara, avec Sabir, excellent chauffeur et guide."
+        "trip_label": "Trek dans la vallée du Zat",
+        "title": "Une aventure inoubliable dans le Haut Atlas",
+        "text": "Notre expérience dans le Haut Atlas a été absolument magnifique ! Mohamed était un excellent guide de montagne, passionné, sympathique et très connaisseur de sa région. Les paysages de la vallée du Zat étaient à couper le souffle, et la découverte des villages berbères traditionnels a rendu cette aventure encore plus spéciale. Une expérience vivement recommandée pour découvrir le Maroc authentique !"
       },
       "en": {
-        "country": "USA",
-        "title": "Marrakech to the Sahara",
-        "summary": "Lissa remembers a memorable, carefully organised journey from Marrakech into the Sahara, with Sabir providing excellent driving and guidance."
+        "trip_label": "Zat Valley trek",
+        "title": "An Unforgettable Adventure in the High Atlas Mountains",
+        "text": "Our experience in the High Atlas Mountains was absolutely wonderful! Mohamed was an excellent mountain guide, knowledgeable, friendly, and passionate about his region. The landscapes of the Zat Valley were breathtaking, and discovering traditional Berber villages along the way made the journey even more special. Highly recommended for anyone looking for an authentic Moroccan adventure!"
       }
     },
     {
-      "name": "Ben Tanaka",
-      "initials": "BT",
-      "rating": 5,
+      "name": "Lissa Denny",
+      "initials": "LD",
+      "trip": "vallee-oued-zat-4-jours",
       "fr": {
-        "country": "Japon",
-        "title": "Un voyage entre de bonnes mains",
-        "summary": "Ben a apprécié la gentillesse et le professionnalisme de Sabir, et s’est senti en sécurité et à l’aise tout au long d’un voyage bien pensé à travers le Maroc."
+        "trip_label": "Trek dans la vallée du Zat",
+        "title": "Une magnifique rencontre avec la population locale",
+        "text": "L'un des moments forts de notre voyage au Maroc a été la rencontre avec les familles locales dans la vallée du Zat. Nous avons apprécié leur accueil chaleureux, le thé marocain traditionnel et la découverte de leur mode de vie. Hassan a rendu cette expérience agréable et enrichissante grâce à ses explications sur la culture et les traditions du Haut Atlas. Une expérience authentique et inoubliable !"
       },
       "en": {
-        "country": "Japan",
-        "title": "A journey in good hands",
-        "summary": "Ben appreciated Sabir's kindness and professional approach, feeling safe and at ease throughout a thoughtfully planned trip across Morocco."
+        "trip_label": "Zat Valley trek",
+        "title": "A Beautiful Cultural Experience with Local People",
+        "text": "One of the highlights of our trip to Morocco was spending time with local families in the Zat Valley. We enjoyed the warm hospitality, traditional Moroccan tea, and the opportunity to discover the local way of life. Hassan made everything easy and enjoyable, sharing interesting stories about the culture and traditions of the Atlas Mountains. A truly authentic and memorable experience!"
       }
     },
     {
-      "name": "Martin Lovers",
-      "initials": "ML",
-      "rating": 5,
+      "name": "Jean Lois",
+      "initials": "JL",
+      "trip": "excursion-trois-vallees",
       "fr": {
-        "country": "Royaume-Uni",
-        "title": "Fès avec une guide locale",
-        "summary": "Martin a aimé découvrir Fès avec Meryem, dont la chaleur et la connaissance de la ville ont rendu la visite authentique et sans effort."
+        "trip_label": "Excursion d’une journée : Ourika & Imlil",
+        "title": "Une superbe journée à la découverte de l'Ourika et d'Imlil",
+        "text": "Nous avons passé une journée formidable à explorer la magnifique vallée de l'Ourika et le village de montagne d'Imlil. Les paysages étaient splendides, entre vallées verdoyantes, villages traditionnels et vues impressionnantes sur les montagnes. Notre guide était sympathique, professionnel et toujours disponible pour répondre à nos questions. Une excursion très bien organisée pour découvrir la beauté du Haut Atlas. Nous la recommandons sans hésiter !"
       },
       "en": {
-        "country": "UK",
-        "title": "Fes with a local guide",
-        "summary": "Martin enjoyed exploring Fes with Meryem, whose warm manner and knowledge of the city made the visit feel authentic and effortless."
+        "trip_label": "One-day trip to Ourika & Imlil",
+        "title": "A Fantastic Day Exploring Ourika and Imlil",
+        "text": "We had a fantastic day exploring the beautiful Ourika Valley and the mountain village of Imlil. The scenery was stunning, with green valleys, traditional villages, and spectacular mountain views. Our guide was friendly, professional, and always happy to answer our questions. The trip was well organized and gave us a wonderful introduction to the beauty of the Atlas Mountains. We would definitely recommend it!"
+      }
+    },
+    {
+      "name": "Michel Chaboud",
+      "initials": "MC",
+      "trip": "vallee-oued-zat-4-jours",
+      "fr": {
+        "trip_label": "Trek dans la vallée du Zat",
+        "title": "Une randonnée authentique dans la haute vallée du Zat",
+        "text": "Notre randonnée dans la haute vallée du Zat a été une expérience exceptionnelle. Nous avons découvert des paysages montagneux spectaculaires, des villages berbères paisibles et un Maroc authentique, loin des sentiers touristiques habituels. Mohamed et Hassan ont été des guides formidables, toujours accueillants et attentifs. Leur connaissance des montagnes et des traditions locales a enrichi notre aventure. Nous repartons avec des souvenirs inoubliables !"
+      },
+      "en": {
+        "trip_label": "Zat Valley trek",
+        "title": "An Authentic Trek Through the Zat Valley",
+        "text": "Our trek through the Upper Zat Valley was an incredible experience. We discovered spectacular mountain landscapes, peaceful Berber villages, and a side of Morocco that many visitors never get to see. Mohamed and Hassan were wonderful guides who made us feel welcome throughout the journey. Their knowledge of the mountains and local traditions added so much value to our adventure. We left with unforgettable memories!"
       }
     }
   ]
