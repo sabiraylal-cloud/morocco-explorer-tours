@@ -445,5 +445,59 @@
       "fr": "Groupe de randonneurs sur une crête rocheuse en haute montagne, plaques de neige et sommets du Haut Atlas autour",
       "en": "Group of hikers on a rocky high-mountain ridge, with snow patches and High Atlas peaks all around"
     }
+  },
+  "about-mule-high-trail": {
+    "source": "images/about-mule-high-trail.jpg",
+    "width": 2000,
+    "height": 1331,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "alt": {
+      "fr": "Mule chargée de sacs, avec sa selle colorée, sur un sentier caillouteux du Haut Atlas, devant des sommets enneigés",
+      "en": "Mule loaded with bags and a colourful saddle on a rocky High Atlas trail, in front of snow-capped peaks"
+    },
+    "caption": {
+      "fr": "Sur les sentiers muletiers, les mules portent les bagages pendant que vous marchez léger.",
+      "en": "On the mule paths, the mules carry the luggage while you walk light."
+    }
+  },
+  "about-sabir-travellers": {
+    "source": "images/about-sabir-travellers.jpg",
+    "width": 2000,
+    "height": 903,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "alt": {
+      "fr": "Selfie souriant de Sabir, notre guide, avec deux voyageurs au bord d’une vallée du Haut Atlas",
+      "en": "Smiling selfie of Sabir, our guide, with two travellers above a High Atlas valley"
+    },
+    "caption": {
+      "fr": "Sabir avec des voyageurs dans le Haut Atlas.",
+      "en": "Sabir with travellers in the High Atlas."
+    }
+  },
+  "about-berber-village": {
+    "source": "images/about-berber-village.jpg",
+    "width": 2000,
+    "height": 1333,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "alt": {
+      "fr": "Ruelle en terre rouge et vieilles portes en bois d’un village berbère, avec les montagnes au loin",
+      "en": "Red earth lane and old wooden doors in a Berber village, with mountains in the distance"
+    },
+    "caption": {
+      "fr": "Les ruelles en terre et les vieilles portes en bois d’un village berbère.",
+      "en": "Earthen lanes and old wooden doors in a Berber village."
+    }
   }
 }

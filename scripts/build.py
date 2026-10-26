@@ -285,7 +285,25 @@ def build_language():
   write(text.get('meta_title') or text['title'],text['description'],body,'blog-detail',schema=schema,social=(schema['image'],cover_alt))
 
  start_page('about.html')
- body=intro(t('about_kicker'),t('about_title'),t('about_lead'))+f'''<section class="container story-grid about-story"><div class="story-image">{img('guests',image_alt('guests'))}</div><div><p class="eyebrow">{t('about_care_kicker')}</p><h2>{t('about_care_title')}</h2><p>{t('about_p1')}</p><p>{t('about_p2')}</p><p>{t('about_p3')}</p>{a('plan-your-trip.html',t('about_button'),'button')}</div></section><section class="container section">{steps(t_list('about_steps'))}</section>'''+cta()
+ def about_figure(key):
+  return f'<figure style="flex:{images[key]["width"]/images[key]["height"]:.3f} 1 0"><a class="gallery-link" href="{link(image_file(key,max(image_widths(key))))}">{img(key,image_alt(key),"gallery-photo")}</a><figcaption>{esc(images[key]["caption"][lang])}</figcaption></figure>'
+ hero_key='about-mule-high-trail'
+ hero=f'<figure class="container about-hero">{img(hero_key,image_alt(hero_key),"hero-photo",True)}<figcaption>{esc(images[hero_key]["caption"][lang])}</figcaption></figure>'
+ paragraphs=lambda key:''.join(f'<p>{p}</p>' for p in t_list(key))
+ sep=' : ' if lang=='fr' else ': '
+ places=''.join(f'<li><strong>{a(path,name,"text-link")}</strong>{sep}{text}</li>' for name,text,path in t_list('about_places'))
+ moments=''.join(f'<article><h3>{title}</h3><p>{text}</p></article>' for title,text in t_list('about_moments'))
+ gallery=''.join(about_figure(key) for key in ['about-sabir-travellers','about-berber-village'])
+ whatsapp='https://wa.me/'+site['whatsapp'].lstrip('+')+'?'+urlencode({'text':t('about_whatsapp_text')})
+ def block(kicker,title,content):
+  return f'<section class="container section about-block"><div class="about-heading"><p class="eyebrow">{t(kicker)}</p><h2>{t(title)}</h2></div><div class="about-copy">{content}</div></section>'
+ body=intro(t('about_kicker'),t('about_title'),t('about_lead'))+hero
+ body+=block('about_who_kicker','about_who_title',paragraphs('about_who_text'))
+ body+=block('about_why_kicker','about_why_title',f'<p>{t("about_why_text")}</p><ul class="about-places">{places}</ul>')
+ body+=block('about_walk_kicker','about_walk_title',paragraphs('about_walk_text'))
+ body+=f'<section class="about-moments"><div class="container section"><p class="eyebrow">{t("about_moments_kicker")}</p><h2>{t("about_moments_title")}</h2><p class="about-moments-lead">{t("about_moments_text")}</p><div class="about-scenes">{moments}</div><div class="trip-gallery about-gallery">{gallery}</div></div></section>'
+ body+=f'<section class="container section"><p class="eyebrow">{t("about_values_kicker")}</p><h2 class="about-values-title">{t("about_values_title")}</h2>'+steps(t_list('about_values')).replace('class="steps"','class="steps steps-four"',1)+'</section>'
+ body+=f'<section class="cta container about-cta"><div><p class="eyebrow">{t("about_cta_kicker")}</p><h2>{t("about_cta_title")}</h2><p>{t("about_cta_text")}</p></div><div class="button-row">{a("plan-your-trip.html",t("about_cta_plan"),"button light")}<a class="button outline" href="{esc(whatsapp,quote=True)}" target="_blank" rel="noopener noreferrer">{t("about_cta_whatsapp")}</a></div></section>'
  write(t('about_meta_title'),t('about_meta_description'),body)
 
  start_page('plan-your-trip.html')

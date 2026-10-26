@@ -440,84 +440,260 @@
     "en": "Mountain hiking"
   },
   "about_meta_title": {
-    "fr": "Notre histoire : guides et villages du Haut Atlas",
-    "en": "Our Story: High Atlas Guides and Villages"
+    "fr": "Notre histoire : guides locaux du Haut Atlas",
+    "en": "Our Story: Local High Atlas Guides"
   },
   "about_meta_description": {
-    "fr": "Morocco Explorer Tours organise des treks et des excursions privés dans le Haut Atlas au départ de Marrakech, avec des guides de montagne et des familles des villages.",
-    "en": "Morocco Explorer Tours organises private treks and day trips in the High Atlas from Marrakech, with mountain guides and village families."
+    "fr": "Mohamed et Hassan, guides locaux de Marrakech et du Haut Atlas, vous font découvrir la vallée du Zat, Imlil, le Toubkal, l’Ourika et le plateau du Yagour, loin des itinéraires fréquentés.",
+    "en": "Mohamed and Hassan, local guides from Marrakech and the High Atlas, show you the Zat valley, Imlil, Toubkal, Ourika and the Yagour plateau, far from the crowded routes."
   },
   "about_kicker": {
     "fr": "NOTRE HISTOIRE",
     "en": "OUR STORY"
   },
   "about_title": {
-    "fr": "Les sentiers de l’Atlas,<br>partagés avec <em>vous.</em>",
-    "en": "Atlas trails,<br>shared with <em>you.</em>"
+    "fr": "Nos montagnes, nos villages,<br><em>notre histoire.</em>",
+    "en": "Our mountains, our villages,<br><em>our story.</em>"
   },
   "about_lead": {
-    "fr": "Basé à Marrakech, au pied du Haut Atlas, Morocco Explorer Tours vous emmène marcher dans la montagne, à la rencontre des villages qui la font vivre.",
-    "en": "Based in Marrakech at the foot of the High Atlas, Morocco Explorer Tours takes you walking in the mountains, to meet the villages that bring them to life."
+    "fr": "Nous sommes des guides de Marrakech et du Haut Atlas. Ces montagnes, nous les connaissons de l’intérieur : leurs sentiers, leurs vallées et les douars qui les font vivre.",
+    "en": "We are guides from Marrakech and the High Atlas. We know these mountains from the inside: their trails, their valleys and the villages, the douars, that bring them to life."
   },
-  "about_care_kicker": {
-    "fr": "MARCHER AVEC DES GENS DU PAYS",
-    "en": "WALK WITH PEOPLE WHO LIVE HERE"
+  "about_who_kicker": {
+    "fr": "QUI NOUS SOMMES",
+    "en": "WHO WE ARE"
   },
-  "about_care_title": {
-    "fr": "Plus qu’un sommet<br>sur une carte.",
-    "en": "More than a summit<br>on a map."
+  "about_who_title": {
+    "fr": "Une petite équipe<br>de guides du pays.",
+    "en": "A small team<br>of local guides."
   },
-  "about_p1": {
-    "fr": "Une belle sortie, c’est un itinéraire adapté à votre forme, des étapes réalistes et du temps pour profiter des villages. Nous préparons chaque sortie avec vous : niveau, saison, matériel et rythme.",
-    "en": "A good trip means a route matched to your fitness, realistic stages and time to enjoy the villages. We plan every trip with you: level, season, equipment and pace."
+  "about_who_text": {
+    "fr": [
+      "Nous sommes Mohamed et Hassan, une petite équipe de guides locaux, entre Marrakech et le Haut Atlas. Ces montagnes, ces vallées et ces villages, nous ne les avons pas découverts dans un livre : nous les connaissons de l’intérieur.",
+      "Nous connaissons les sentiers muletiers qui relient les douars, les familles qui ouvrent leur porte aux marcheurs, les muletiers qui nous accompagnent et la façon dont le temps change en altitude.",
+      "Quand vous marchez avec nous, vous ne suivez pas seulement un itinéraire : vous entrez dans la vie de la montagne, à son rythme et au vôtre."
+    ],
+    "en": [
+      "We are Mohamed and Hassan, a small team of local guides between Marrakech and the High Atlas. We did not discover these mountains, valleys and villages in a book: we know them from the inside.",
+      "We know the mule paths that link the douars, the families who open their doors to walkers, the muleteers who travel with us and the way the weather changes at altitude.",
+      "When you walk with us, you are not just following a route: you step into mountain life, at its pace and at yours."
+    ]
   },
-  "about_p2": {
-    "fr": "Sur le terrain, vous marchez avec un guide de montagne, les mules portent les bagages et vous dormez en gîte, en refuge ou chez des familles qui vous ouvrent leur porte.",
-    "en": "On the trail you walk with a mountain guide, mules carry the luggage and you sleep in gîtes, refuges or with families who open their homes to you."
+  "about_why_kicker": {
+    "fr": "POURQUOI NOUS LE FAISONS",
+    "en": "WHY WE DO THIS"
   },
-  "about_p3": {
-    "fr": "D’une journée à Imlil à quatre jours jusqu’au sommet du Toubkal, chaque sortie est privée et organisée pour votre groupe.",
-    "en": "From a day in Imlil to four days to the summit of Toubkal, every trip is private and organised for your group."
+  "about_why_title": {
+    "fr": "Partager le vrai Atlas,<br>loin des foules.",
+    "en": "Sharing the real Atlas,<br>away from the crowds."
   },
-  "about_button": {
-    "fr": "Parlez-nous de votre projet ↗",
-    "en": "Tell us about your plans ↗"
+  "about_why_text": {
+    "fr": "Nous aimons montrer l’Atlas tel que nous le vivons, loin des itinéraires les plus fréquentés. Chaque lieu a son caractère :",
+    "en": "We love showing the Atlas the way we live it, away from the busiest routes. Each place has its own character:"
   },
-  "about_steps": {
+  "about_places": {
     "fr": [
       [
-        "01 / LOCAL",
-        "Des guides de la montagne",
-        "Nos guides connaissent les sentiers, les villages et la météo de l’Atlas. Ils adaptent le rythme à votre groupe."
+        "La vallée du Zat",
+        "ses douars et les familles qui accueillent les marcheurs pour la nuit.",
+        "treks/vallee-oued-zat-4-jours.html"
       ],
       [
-        "02 / CLAIR",
-        "Des niveaux annoncés franchement",
-        "Temps de marche, altitude, conditions selon la saison : vous savez à quoi vous attendre avant de réserver."
+        "Le plateau du Yagour",
+        "ses gravures rupestres et le silence des hauts plateaux.",
+        "treks/vallee-oued-zat-4-jours.html"
       ],
       [
-        "03 / RESPECTUEUX",
-        "Avec les villages",
-        "Gîtes, familles d’accueil et muletiers des vallées : votre voyage profite aussi à ceux qui vous reçoivent."
+        "Imlil",
+        "le village au pied du Toubkal, entre noyers et sentiers de montagne.",
+        "excursions/excursion-imlil.html"
+      ],
+      [
+        "Le Toubkal",
+        "le plus haut sommet d’Afrique du Nord, que l’on atteint au lever du soleil.",
+        "treks/toubkal-voie-classique-4-jours.html"
+      ],
+      [
+        "La vallée de l’Ourika",
+        "sa rivière et ses villages accrochés aux pentes.",
+        "excursions/excursion-vallee-ourika.html"
       ]
     ],
     "en": [
       [
-        "01 / LOCAL",
-        "Mountain guides",
-        "Our guides know the trails, villages and weather of the Atlas. They adapt the pace to your group."
+        "The Zat valley",
+        "its douars and the families who welcome walkers for the night.",
+        "treks/vallee-oued-zat-4-jours.html"
       ],
       [
-        "02 / CLEAR",
-        "Honest about difficulty",
-        "Walking times, altitude, seasonal conditions: you know what to expect before you book."
+        "The Yagour plateau",
+        "its rock engravings and the silence of the high plateaus.",
+        "treks/vallee-oued-zat-4-jours.html"
       ],
       [
-        "03 / RESPECTFUL",
-        "With the villages",
-        "Gîtes, host families and valley muleteers: your trip also benefits the people who welcome you."
+        "Imlil",
+        "the village at the foot of Toubkal, among walnut trees and mountain paths.",
+        "excursions/excursion-imlil.html"
+      ],
+      [
+        "Toubkal",
+        "the highest summit in North Africa, reached at sunrise.",
+        "treks/toubkal-voie-classique-4-jours.html"
+      ],
+      [
+        "The Ourika valley",
+        "its river and its villages clinging to the slopes.",
+        "excursions/excursion-vallee-ourika.html"
       ]
     ]
+  },
+  "about_walk_kicker": {
+    "fr": "CE QUE NOUS VIVONS ENSEMBLE",
+    "en": "WHAT WE SHARE ON THE WAY"
+  },
+  "about_walk_title": {
+    "fr": "Le rythme<br>de la montagne.",
+    "en": "The rhythm<br>of the mountains."
+  },
+  "about_walk_text": {
+    "fr": [
+      "Nous marchons ensemble sur les sentiers muletiers, à un rythme qui laisse le temps de regarder, de parler et de souffler. Les mules portent les bagages ; vous ne gardez que votre sac de la journée.",
+      "Le soir, nous dormons chez des familles des villages. On partage le thé à la menthe, le pain cuit au village et le repas, assis ensemble autour du plat.",
+      "Il y a aussi le silence des hauts plateaux, le lever du soleil au sommet, et toutes les personnes rencontrées en chemin : bergers, muletiers, familles des douars."
+    ],
+    "en": [
+      "We walk together on the mule paths, at a pace that leaves time to look around, talk and catch your breath. The mules carry the luggage; you only keep your day pack.",
+      "In the evening we stay with village families. We share mint tea, bread baked in the village and the meal, sitting together around the dish.",
+      "There is also the silence of the high plateaus, sunrise on the summit, and all the people we meet along the way: shepherds, muleteers, families from the douars."
+    ]
+  },
+  "about_moments_kicker": {
+    "fr": "SUR LE CHEMIN",
+    "en": "ALONG THE WAY"
+  },
+  "about_moments_title": {
+    "fr": "Des moments inoubliables",
+    "en": "Unforgettable moments"
+  },
+  "about_moments_text": {
+    "fr": "Quelques scènes de nos sorties dans le Haut Atlas.",
+    "en": "A few scenes from our trips in the High Atlas."
+  },
+  "about_moments": {
+    "fr": [
+      [
+        "Le thé à l’arrivée",
+        "Après la marche, la théière arrive avant même que les sacs soient posés : thé à la menthe et pain encore chaud."
+      ],
+      [
+        "Le silence du Yagour",
+        "Sur le plateau, on n’entend plus que le vent. On s’arrête, on écoute, on regarde les gravures sur la roche."
+      ],
+      [
+        "Le soleil au sommet",
+        "Départ dans la nuit, lampe frontale allumée, puis la lumière qui monte sur les crêtes au moment d’atteindre le Toubkal."
+      ],
+      [
+        "Les rencontres",
+        "Un berger qui partage le chemin, une famille qui nous invite à entrer : en montagne, les rencontres font partie du voyage."
+      ]
+    ],
+    "en": [
+      [
+        "Tea on arrival",
+        "After the walk, the teapot arrives before the bags are even down: mint tea and bread still warm."
+      ],
+      [
+        "The silence of the Yagour",
+        "On the plateau, all you hear is the wind. We stop, listen and look at the engravings on the rock."
+      ],
+      [
+        "Sunrise on the summit",
+        "Setting off in the dark with a head torch, then the light rising over the ridges as we reach Toubkal."
+      ],
+      [
+        "The people we meet",
+        "A shepherd sharing the path, a family inviting us in: in the mountains, the people you meet are part of the journey."
+      ]
+    ]
+  },
+  "about_values_kicker": {
+    "fr": "NOS VALEURS",
+    "en": "OUR VALUES"
+  },
+  "about_values_title": {
+    "fr": "Ce qui compte pour nous.",
+    "en": "What matters to us."
+  },
+  "about_values": {
+    "fr": [
+      [
+        "01 / PETITS GROUPES",
+        "Des groupes à taille humaine",
+        "Chaque sortie est privée, pour votre groupe seulement. Nous prenons le temps de connaître chacun et d’adapter le rythme."
+      ],
+      [
+        "02 / RESPECT",
+        "Le respect des villages",
+        "Nous entrons dans les douars comme des invités : discrétion, tenue adaptée, photos avec l’accord des habitants."
+      ],
+      [
+        "03 / ÉQUITÉ",
+        "Un travail juste",
+        "Les familles qui vous accueillent et les muletiers qui nous accompagnent sont payés justement pour leur travail."
+      ],
+      [
+        "04 / SÉCURITÉ",
+        "La sécurité d’abord",
+        "En montagne, la météo et la forme du groupe décident. Nous adaptons l’itinéraire dès que la sécurité l’exige."
+      ]
+    ],
+    "en": [
+      [
+        "01 / SMALL GROUPS",
+        "Groups on a human scale",
+        "Every trip is private, for your group only. We take the time to get to know everyone and adapt the pace."
+      ],
+      [
+        "02 / RESPECT",
+        "Respect for the villages",
+        "We enter the douars as guests: discreet, suitably dressed, and taking photos only with people’s consent."
+      ],
+      [
+        "03 / FAIRNESS",
+        "Fair work",
+        "The families who host you and the muleteers who travel with us are paid fairly for their work."
+      ],
+      [
+        "04 / SAFETY",
+        "Safety first",
+        "In the mountains, the weather and the group’s fitness decide. We adapt the route whenever safety requires it."
+      ]
+    ]
+  },
+  "about_cta_kicker": {
+    "fr": "ET SI ON MARCHAIT ENSEMBLE ?",
+    "en": "SHALL WE WALK TOGETHER?"
+  },
+  "about_cta_title": {
+    "fr": "Préparez votre sortie<br>avec nous.",
+    "en": "Plan your trip<br>with us."
+  },
+  "about_cta_text": {
+    "fr": "Dites-nous vos dates, votre groupe et vos envies : nous vous répondons avec un programme adapté.",
+    "en": "Tell us your dates, your group and what you would like to do: we reply with a programme that suits you."
+  },
+  "about_cta_plan": {
+    "fr": "Préparer ma sortie ↗",
+    "en": "Plan my trip ↗"
+  },
+  "about_cta_whatsapp": {
+    "fr": "Écrire sur WhatsApp ↗",
+    "en": "Message us on WhatsApp ↗"
+  },
+  "about_whatsapp_text": {
+    "fr": "Bonjour Mohamed et Hassan, j’aimerais préparer une sortie dans le Haut Atlas avec vous.",
+    "en": "Hello Mohamed and Hassan, I would like to plan a trip in the High Atlas with you."
   },
   "plan_meta_title": {
     "fr": "Préparer votre trek ou votre excursion dans l’Atlas",

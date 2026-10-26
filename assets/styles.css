@@ -2177,3 +2177,132 @@ pre {
     font-size:20px;
   }
 }
+
+/* Our story page: natural-ratio photos (never cropped), two-column text blocks, scenes and values */
+.about-hero {
+  margin-top:0;
+  margin-bottom:10px;
+}
+.about-hero img {
+  width:100%;
+  height:auto;
+}
+.about-hero figcaption,
+.about-gallery figcaption {
+  margin-top:12px;
+  font-size:14px;
+  line-height:1.5;
+  color:var(--muted);
+}
+.about-block {
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:70px;
+  align-items:start;
+  border-bottom:1px solid var(--line);
+}
+.about-heading h2 {
+  font-size:40px;
+}
+.about-copy p {
+  font-size:16px;
+  line-height:1.75;
+}
+.about-places {
+  list-style:none;
+  margin:22px 0 0;
+  padding:0;
+}
+.about-places li {
+  padding:14px 0;
+  border-top:1px solid var(--line);
+  font-size:15px;
+  line-height:1.6;
+}
+.about-moments {
+  background:var(--sand);
+}
+.about-moments h2 {
+  font-size:40px;
+}
+.about-moments-lead {
+  max-width:620px;
+}
+.about-scenes {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:28px;
+  margin-top:30px;
+}
+.about-scenes article {
+  padding-top:20px;
+  border-top:2px solid var(--clay);
+}
+.about-scenes h3 {
+  font-size:22px;
+  margin-bottom:10px;
+}
+.about-scenes p {
+  font-size:14px;
+  margin:0;
+}
+.about-gallery.trip-gallery {
+  display:flex;
+  gap:22px;
+  margin-top:44px;
+}
+.about-gallery figure {
+  min-width:0;
+}
+.about-gallery .gallery-link {
+  aspect-ratio:auto;
+}
+.about-gallery img {
+  height:auto;
+}
+.about-values-title {
+  margin-bottom:34px;
+}
+.steps.steps-four {
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:34px;
+}
+.about-cta .button-row {
+  flex-shrink:0;
+}
+@media(max-width:1000px) {
+  .about-block {
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  .about-scenes,
+  .steps.steps-four {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:700px) {
+  .about-gallery.trip-gallery {
+    flex-direction:column;
+  }
+  .about-gallery figure {
+    flex:none !important;
+  }
+  .about-cta {
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+@media(max-width:560px) {
+  .about-heading h2,
+  .about-moments h2 {
+    font-size:31px;
+  }
+  .about-scenes,
+  .steps.steps-four {
+    grid-template-columns:1fr;
+  }
+  .about-cta .button-row {
+    flex-direction:column;
+    align-self:stretch;
+  }
+}
