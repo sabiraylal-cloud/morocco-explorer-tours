@@ -12,7 +12,8 @@ const TEXT = {
     copied: 'Copié. Vous pouvez coller votre projet dans un message. Il n’a pas encore été envoyé.',
     copyUnavailable: 'La copie n’est pas disponible dans ce navigateur. Sélectionnez le texte pour le copier, ou utilisez Télécharger (.txt).',
     downloadName: 'projet-sortie-atlas.txt', downloaded: 'Votre fichier est prêt. Ce projet n’a pas encore été envoyé.',
-    social: 'Nos réseaux sociaux officiels', contact: 'Contact', chat: 'Discuter avec Morocco Explorer Tours sur WhatsApp'
+    social: 'Nos réseaux sociaux officiels', contact: 'Contact', chat: 'Discuter avec Morocco Explorer Tours sur WhatsApp', photos: 'Photos sur le site et les réseaux', photosYes: 'J’accepte', photosNo: 'Je n’accepte pas',
+    gallery: 'Galerie photo', close: 'Fermer', previous: 'Photo précédente', next: 'Photo suivante'
   },
   en: {
     testimonial: 'Testimonial {i} of {n}: {name}, {country}.',
@@ -24,7 +25,8 @@ const TEXT = {
     copied: 'Copied. You can paste your brief into a message. It has not been sent.',
     copyUnavailable: 'Copy is unavailable in this browser. Select the brief text to copy it, or use Download .txt.',
     downloadName: 'atlas-trip-brief.txt', downloaded: 'Your download is ready. This brief has not been sent.',
-    social: 'Official social media channels', contact: 'Contact', chat: 'Chat with Morocco Explorer Tours on WhatsApp'
+    social: 'Official social media channels', contact: 'Contact', chat: 'Chat with Morocco Explorer Tours on WhatsApp', photos: 'Photos on the website and social media', photosYes: 'I agree', photosNo: 'I do not agree',
+    gallery: 'Photo gallery', close: 'Close', previous: 'Previous photo', next: 'Next photo'
   }
 }[LANG];
 const format = (text, values) => text.replace(/\{(\w+)\}/g, (match, key) => values[key] ?? match);
@@ -166,6 +168,40 @@ document.querySelectorAll('.testimonials').forEach(carousel => {
   carousel.querySelector('.testimonial-controls').hidden = false;
   update();
 });
+document.querySelectorAll('.trip-gallery').forEach(gallery => {
+  const links = [...gallery.querySelectorAll('.gallery-link')];
+  if (!links.length || typeof HTMLDialogElement === 'undefined') return;
+  const dialog = document.createElement('dialog');
+  dialog.className = 'lightbox';
+  dialog.setAttribute('aria-label', TEXT.gallery);
+  dialog.innerHTML = `<figure><img alt=""><figcaption></figcaption></figure><button type="button" class="lightbox-close" aria-label="${TEXT.close}">×</button><button type="button" class="lightbox-prev" aria-label="${TEXT.previous}">‹</button><button type="button" class="lightbox-next" aria-label="${TEXT.next}">›</button>`;
+  document.body.append(dialog);
+  const image = dialog.querySelector('img');
+  const caption = dialog.querySelector('figcaption');
+  const [close, previous, next] = dialog.querySelectorAll('button');
+  previous.hidden = next.hidden = links.length < 2;
+  let index = 0;
+  function show(position) {
+    index = (position + links.length) % links.length;
+    const link = links[index];
+    image.src = link.href;
+    image.alt = link.querySelector('img').alt;
+    caption.textContent = link.closest('figure').querySelector('figcaption').textContent;
+  }
+  links.forEach((link, position) => link.addEventListener('click', event => {
+    event.preventDefault();
+    show(position);
+    dialog.showModal();
+  }));
+  close.addEventListener('click', () => dialog.close());
+  previous.addEventListener('click', () => show(index - 1));
+  next.addEventListener('click', () => show(index + 1));
+  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+  dialog.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' && links.length > 1) show(index - 1);
+    if (event.key === 'ArrowRight' && links.length > 1) show(index + 1);
+  });
+});
 const form = document.querySelector('#trip-form');
 if (form) {
   form.hidden = false;
@@ -186,7 +222,7 @@ if (form) {
     const value = name => String(data.get(name) || '').trim();
     const sep = LANG === 'fr' ? ' : ' : ': ';
     const line = (label, text) => `${label}${sep}${text}`;
-    brief = [TEXT.briefTitle, '', line(TEXT.name, value('name') || TEXT.notProvided), line(TEXT.month, value('month') || TEXT.flexible), line(TEXT.type, value('type')), line(TEXT.travellers, value('travellers')), line(TEXT.days, value('days')), line(TEXT.level, value('level')), line(TEXT.interest, value('interest') || TEXT.openToIdeas), '', `${TEXT.ideas}${sep.trimEnd()}`, value('notes') || TEXT.helpMe, '', TEXT.notBooking].join('\n');
+    brief = [TEXT.briefTitle, '', line(TEXT.name, value('name') || TEXT.notProvided), line(TEXT.month, value('month') || TEXT.flexible), line(TEXT.type, value('type')), line(TEXT.travellers, value('travellers')), line(TEXT.days, value('days')), line(TEXT.level, value('level')), line(TEXT.interest, value('interest') || TEXT.openToIdeas), line(TEXT.photos, data.get('photo_consent') ? TEXT.photosYes : TEXT.photosNo), '', `${TEXT.ideas}${sep.trimEnd()}`, value('notes') || TEXT.helpMe, '', TEXT.notBooking].join('\n');
     document.querySelector('#brief-text').textContent = brief;
     const share = document.querySelector('#share-brief');
     const phone = form.dataset.whatsapp.replace(/\D/g, '');

@@ -4,7 +4,7 @@ All visible text lives in data/*.json: each translatable value has a French ("fr
 """
 from pathlib import Path
 from html import escape as esc
-import hashlib, json, os
+import hashlib, json, os, re
 from urllib.parse import urlencode
 ROOT=Path(__file__).resolve().parents[1]
 def load(name):return json.loads((ROOT/'data'/name).read_text(encoding='utf-8'))
@@ -168,16 +168,19 @@ def intro(kicker,title,text):
  return f'<section class="page-intro container"><p class="eyebrow">{kicker}</p><h1>{title}</h1><p class="lead">{text}</p></section>'
 def legal_contact():
  sep=' : ' if lang=='fr' else ': '
- return f'''<section class="legal-contact"><h2>{t('contact_details')}</h2><p>{t('email')}{sep}<a href="mailto:{esc(site['email'],quote=True)}">{esc(site['email'])}</a><br>{t('phone_whatsapp')}{sep}<a href="tel:{esc(site['whatsapp'],quote=True)}">{esc(site['phone'])}</a><br>{t('location_label')}{sep}{esc(t('location'))}</p><p>{t('last_updated')}</p></section>'''
+ return f'''<section class="legal-contact"><h2>{t('contact_details')}</h2><p>{t('email')}{sep}<a href="mailto:{esc(site['legal_email'],quote=True)}">{esc(site['legal_email'])}</a><br>{t('phone_whatsapp')}{sep}<a href="tel:{esc(site['whatsapp'],quote=True)}">{esc(site['phone'])}</a><br>{t('location_label')}{sep}{esc(t('location'))}</p><p>{t('last_updated')}</p></section>'''
 def crumbs(parent,label):
  return f'<nav class="breadcrumbs container" aria-label="{t("breadcrumb")}">{a("index.html",t("home"))}<span aria-hidden="true">/</span>{a(parent,label)}<span aria-hidden="true">/</span><span aria-current="page">{t("overview")}</span></nav>'
 def steps(items):
  return '<div class="steps">'+''.join(f'<article><span>{label}</span><h3>{title}</h3><p>{text}</p></article>' for label,title,text in items)+'</div>'
+def todo(text):
+ # Placeholders the owner still has to fill in are highlighted on the page.
+ return re.sub(r'\[(?:À COMPLÉTER|TO BE COMPLETED)[^\]]*\]',lambda m:f'<mark class="todo">{m.group(0)}</mark>',text)
 def legal_page(doc):
  text=legal[doc][lang]
  def block(item):
-  if isinstance(item,dict):return '<ul>'+''.join(f'<li>{li}</li>' for li in item['list'])+'</ul>'
-  return '<p>'+item.replace('{privacy_link}',a('privacy.html',t('footer_privacy')))+'</p>'
+  if isinstance(item,dict):return '<ul>'+''.join(f'<li>{todo(li)}</li>' for li in item['list'])+'</ul>'
+  return '<p>'+todo(item.replace('{privacy_link}',a('privacy.html',t('footer_privacy'))))+'</p>'
  sections=''.join(f'<h2>{section["heading"]}</h2>'+''.join(block(item) for item in section['content']) for section in text['sections'])
  body=intro(text['kicker'],text['title'],text['lead'])+f'<section class="container prose collection legal-page">{"".join(block(p) for p in text["intro"])}{sections}{legal_contact()}</section>'
  write(text['meta_title'],text['meta_description'],body)
@@ -186,6 +189,11 @@ def plan_link(trip):
  return 'plan-your-trip.html?'+urlencode({'tour':tx(trip)['title'],'type':t_list('form_type_options')[1 if trip['type']=='trek' else 2]})
 def item_list(items,cls=''):
  return f'<ul class="{cls}">'+''.join(f'<li>{esc(item)}</li>' for item in items)+'</ul>'
+def gallery_img(key):
+ # Optional "focus" in data/images.json keeps the subject in the 4:3 gallery frame (CSS object-position).
+ html=img(key,image_alt(key),'gallery-photo')
+ focus=images[key].get('focus')
+ return html.replace('<img ',f'<img style="object-position:{esc(focus,quote=True)}" ',1) if focus else html
 def trip_page(trip):
  text=tx(trip);is_trek=trip['type']=='trek'
  start_page(trip_path(trip))
@@ -207,7 +215,7 @@ def trip_page(trip):
  highlights=f'<p class="eyebrow space-top">{t("trip_highlights_kicker")}</p><h2>{t("trip_highlights")}</h2>{item_list(text["highlights"],"experience-list")}'
  gallery=''
  if trip['gallery']:
-  figures=''.join(f'<figure>{img(key,image_alt(key),"gallery-photo")}<figcaption>{esc(image_alt(key))}</figcaption></figure>' for key in trip['gallery'])
+  figures=''.join(f'<figure><a class="gallery-link" href="{link(image_file(key,max(image_widths(key))))}">{gallery_img(key)}</a><figcaption>{esc(image_alt(key))}</figcaption></figure>' for key in trip['gallery'])
   gallery=f'<section class="container section trip-gallery-section"><p class="eyebrow">{t("trip_gallery_kicker")}</p><h2>{t("trip_gallery")}</h2><div class="trip-gallery">{figures}</div></section>'
  others=[other for other in trips if other['type']==trip['type'] and other is not trip]
  more=f'<section class="container section"><div class="section-heading"><div><h2>{t("trip_more_treks" if is_trek else "trip_more_excursions")}</h2></div>{a(section+"/index.html",t("treks_section_all" if is_trek else "excursions_section_all"),"text-link")}</div><div class="tour-grid">{"".join(tripcard(other) for other in others)}</div></section>'
@@ -225,8 +233,8 @@ def build_language():
  faq=''.join(f'<details><summary>{q}</summary><p>{v}</p></details>' for q,v in t_list('faqs'))
  start_page('index.html')
  values=''.join(f'<div><strong>{title}</strong><span>{text}</span></div>' for title,text in t_list('story_values'))
- body=f'''<section class="hero">{img(HERO_IMAGE,image_alt(HERO_IMAGE),'hero-photo',True)}</section>
-<section class="hero-intro"><div class="container hero-intro-inner"><div><p class="eyebrow">{t('hero_kicker')}</p><h1>{t('hero_title')}</h1></div><div><p>{t('hero_text')}</p><div class="button-row">{a('treks/index.html',t('hero_find'),'button')}{a('excursions/index.html',t('hero_create'),'button secondary')}</div></div></div></section>
+ body=f'''<section class="hero">{img(HERO_IMAGE,image_alt(HERO_IMAGE),'hero-photo',True)}<div class="hero-overlay"><div class="container"><p class="eyebrow">{t('hero_kicker')}</p><h1>{t('hero_title')}</h1></div></div></section>
+<section class="hero-intro"><div class="container hero-intro-inner"><p>{t('hero_text')}</p><div class="button-row">{a('treks/index.html',t('hero_find'),'button')}{a('excursions/index.html',t('hero_create'),'button secondary')}</div></div></section>
 <div class="promise-bar"><div class="container"><span><b>01</b> {t('promise_1')}</span><span><b>02</b> {t('promise_2')}</span><span><b>03</b> {t('promise_3')}</span></div></div>
 <section class="section container" id="treks"><div class="section-heading"><div><p class="eyebrow">{t('treks_section_kicker')}</p><h2>{t('treks_section_title')}</h2></div><div><p>{t('treks_section_text')}</p>{a('treks/index.html',t('treks_section_all'),'text-link')}</div></div><div class="tour-grid">{''.join(tripcard(trip) for trip in treks)}</div></section>
 <section class="section container excursions-preview" id="excursions"><div class="section-heading"><div><p class="eyebrow">{t('excursions_section_kicker')}</p><h2>{t('excursions_section_title')}</h2></div><div><p>{t('excursions_section_text')}</p>{a('excursions/index.html',t('excursions_section_all'),'text-link')}</div></div><div class="tour-grid excursion-grid">{''.join(tripcard(trip) for trip in excursions)}</div></section>
@@ -268,7 +276,7 @@ def build_language():
  type_options=''.join(f'<option>{option}</option>' for option in t_list('form_type_options'))
  level_options=''.join(f'<option>{option}</option>' for option in t_list('form_level_options'))
  plan_steps=''.join(f'<li>{item}</li>' for item in t_list('plan_steps'))
- body=intro(t('plan_kicker'),t('plan_title'),t('plan_lead'))+f'''<section class="container planner-layout collection"><aside><p class="eyebrow">{t('plan_aside_kicker')}</p><h2>{t('plan_aside_title')}</h2><p>{t('plan_aside_text')}</p><ol class="planner-steps">{plan_steps}</ol><p class="notice">{t('plan_notice')}</p></aside><div><form id="trip-form" class="trip-form" data-email="{esc(site['email'],quote=True)}" data-whatsapp="{esc(site['whatsapp'],quote=True)}" hidden><div class="form-grid"><label>{t('form_name')} {optional}<input name="name" autocomplete="name" maxlength="100"></label><label>{t('form_month')} {optional}<input type="month" name="month"></label><label>{t('form_type')}<select name="type">{type_options}</select></label><label>{t('form_travellers')}<input name="travellers" type="number" min="1" max="100" value="2" required></label><label>{t('form_days')}<input name="days" type="number" min="1" max="30" value="1" required></label><label>{t('form_level')}<select name="level">{level_options}</select></label></div><label>{t('form_interest')} {optional}<input name="interest" maxlength="200" placeholder="{t('form_interest_placeholder')}"></label><label>{t('form_notes')} {optional}<textarea name="notes" maxlength="2000" rows="5" placeholder="{t('form_notes_placeholder')}"></textarea></label><p class="form-note">{t('form_note',privacy=a('privacy.html',t('form_privacy_link')))}</p><button class="button" type="submit">{t('form_submit')}</button></form><noscript><div class="planning-note"><h2>{t('noscript_title')}</h2><p>{t('noscript_text')}</p></div></noscript><section id="trip-result" class="trip-result" hidden aria-labelledby="brief-title"><p class="eyebrow">{t('result_kicker')}</p><h2 id="brief-title" tabindex="-1">{t('result_title')}</h2><p>{t('result_text')}</p><pre id="brief-text"></pre><div class="button-row"><button class="button" id="copy-brief" type="button">{t('result_copy')}</button><button class="button secondary" id="download-brief" type="button">{t('result_download')}</button><a class="button" id="share-brief" hidden>{t('result_share')}</a></div><p id="brief-status" role="status"></p><button class="text-button" id="edit-brief" type="button">{t('result_edit')}</button></section></div></section>'''
+ body=intro(t('plan_kicker'),t('plan_title'),t('plan_lead'))+f'''<section class="container planner-layout collection"><aside><p class="eyebrow">{t('plan_aside_kicker')}</p><h2>{t('plan_aside_title')}</h2><p>{t('plan_aside_text')}</p><ol class="planner-steps">{plan_steps}</ol><p class="notice">{t('plan_notice')}</p></aside><div><form id="trip-form" class="trip-form" data-email="{esc(site['email'],quote=True)}" data-whatsapp="{esc(site['whatsapp'],quote=True)}" hidden><div class="form-grid"><label>{t('form_name')} {optional}<input name="name" autocomplete="name" maxlength="100"></label><label>{t('form_month')} {optional}<input type="month" name="month"></label><label>{t('form_type')}<select name="type">{type_options}</select></label><label>{t('form_travellers')}<input name="travellers" type="number" min="1" max="100" value="2" required></label><label>{t('form_days')}<input name="days" type="number" min="1" max="30" value="1" required></label><label>{t('form_level')}<select name="level">{level_options}</select></label></div><label>{t('form_interest')} {optional}<input name="interest" maxlength="200" placeholder="{t('form_interest_placeholder')}"></label><label>{t('form_notes')} {optional}<textarea name="notes" maxlength="2000" rows="5" placeholder="{t('form_notes_placeholder')}"></textarea></label><label class="consent-check"><input type="checkbox" name="photo_consent" value="yes"><span>{t('form_photo_consent')}<small>{t('form_photo_consent_note',terms=a('terms-and-conditions.html',t('footer_terms')),privacy=a('privacy.html',t('footer_privacy')))}</small></span></label><p class="form-note">{t('form_note',privacy=a('privacy.html',t('form_privacy_link')))}</p><button class="button" type="submit">{t('form_submit')}</button></form><noscript><div class="planning-note"><h2>{t('noscript_title')}</h2><p>{t('noscript_text')}</p></div></noscript><section id="trip-result" class="trip-result" hidden aria-labelledby="brief-title"><p class="eyebrow">{t('result_kicker')}</p><h2 id="brief-title" tabindex="-1">{t('result_title')}</h2><p>{t('result_text')}</p><pre id="brief-text"></pre><div class="button-row"><button class="button" id="copy-brief" type="button">{t('result_copy')}</button><button class="button secondary" id="download-brief" type="button">{t('result_download')}</button><a class="button" id="share-brief" hidden>{t('result_share')}</a></div><p id="brief-status" role="status"></p><button class="text-button" id="edit-brief" type="button">{t('result_edit')}</button></section></div></section>'''
  write(t('plan_meta_title'),t('plan_meta_description'),body)
 
  start_page('contact.html')

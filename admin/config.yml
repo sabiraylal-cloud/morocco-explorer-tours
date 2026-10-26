@@ -244,6 +244,7 @@ collections:
           - { label: Contact email, name: email, widget: string, pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter a valid email address.'] }
           - { label: WhatsApp number, name: whatsapp, widget: string, hint: International E.164 format, for example +212700000000., pattern: ['^\+[1-9][0-9]{7,14}$', 'Use + followed by 8 to 15 digits.'] }
           - { label: Display phone number, name: phone, widget: string }
+          - { label: Legal and privacy email, name: legal_email, widget: string, hint: Shown on the terms and privacy pages., pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter a valid email address.'] }
           - { label: Location, name: location, widget: string, hint: Not shown on the pages; the displayed location is the "location" text in data/ui.json. }
           - { label: Facebook URL, name: facebook, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
           - { label: Instagram URL, name: instagram, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }

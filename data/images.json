@@ -287,5 +287,163 @@
       "fr": "Deux randonneurs souriants sur un sentier de montagne caillouteux de l’Atlas, sous un ciel bleu",
       "en": "Two smiling hikers on a stony Atlas mountain trail under a blue sky"
     }
+  },
+  "ouzoud-waterfalls": {
+    "source": "images/ouzoud-waterfalls.jpg",
+    "width": 1280,
+    "height": 1600,
+    "widths": [
+      480,
+      960,
+      1280
+    ],
+    "alt": {
+      "fr": "Les cascades d’Ouzoud et les barques au pied des chutes, entre falaises ocre et végétation",
+      "en": "The Ouzoud waterfalls with boats at the foot of the falls, between ochre cliffs and greenery"
+    }
+  },
+  "atlas-valley-village-clouds": {
+    "source": "images/atlas-valley-village-clouds.jpg",
+    "width": 1500,
+    "height": 1000,
+    "widths": [
+      480,
+      960,
+      1500
+    ],
+    "alt": {
+      "fr": "Village berbère et vergers en terrasses au fond d’une vallée de l’Atlas, sous les nuages",
+      "en": "Berber village and terraced orchards in an Atlas valley, under the clouds"
+    }
+  },
+  "ourika-red-village": {
+    "source": "images/ourika-red-village.jpg",
+    "width": 2000,
+    "height": 1226,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "alt": {
+      "fr": "Village de terre rouge et son minaret dans une vallée boisée de l’Atlas",
+      "en": "Red earth village with its minaret in a wooded Atlas valley"
+    }
+  },
+  "douar-terraced-fields": {
+    "source": "images/douar-terraced-fields.jpg",
+    "width": 1024,
+    "height": 768,
+    "widths": [
+      480,
+      960,
+      1024
+    ],
+    "alt": {
+      "fr": "Douar aux maisons de terre au-dessus de cultures en terrasses, montagnes du Haut Atlas en arrière-plan",
+      "en": "Village of earthen houses above terraced fields, with High Atlas mountains behind"
+    }
+  },
+  "atlas-green-valley-snow-peak": {
+    "source": "images/atlas-green-valley-snow-peak.jpg",
+    "width": 720,
+    "height": 480,
+    "widths": [
+      480,
+      720
+    ],
+    "alt": {
+      "fr": "Vallée verdoyante et cultures au pied de montagnes boisées, sommet enneigé du Haut Atlas au loin",
+      "en": "Green valley and fields below wooded hills, with a snowy High Atlas summit in the distance"
+    }
+  },
+  "tlatast-pottery-workshop": {
+    "source": "images/tlatast-pottery-workshop.jpg",
+    "width": 480,
+    "height": 367,
+    "widths": [
+      480
+    ],
+    "alt": {
+      "fr": "Potiers au travail dans un atelier en terre du vieux village de Tlatast, avec une visiteuse",
+      "en": "Potters at work in an earthen workshop in the old village of Tlatast, with a visitor"
+    }
+  },
+  "tlatast-pottery-drying": {
+    "source": "images/tlatast-pottery-drying.jpg",
+    "width": 459,
+    "height": 306,
+    "widths": [
+      459
+    ],
+    "alt": {
+      "fr": "Poteries en terre qui sèchent au soleil devant les murs du village de Tlatast",
+      "en": "Clay pots drying in the sun by the walls of the village of Tlatast"
+    }
+  },
+  "plateau-red-rocks-snow-peaks": {
+    "source": "images/plateau-red-rocks-snow-peaks.jpg",
+    "width": 1096,
+    "height": 606,
+    "widths": [
+      480,
+      960,
+      1096
+    ],
+    "alt": {
+      "fr": "Haut plateau herbeux et rochers rouges au pied de sommets enneigés",
+      "en": "Grassy high plateau and red rocks below snowy summits"
+    }
+  },
+  "yagour-rock-engraving": {
+    "source": "images/yagour-rock-engraving.jpg",
+    "width": 398,
+    "height": 450,
+    "widths": [
+      398
+    ],
+    "alt": {
+      "fr": "Gravure rupestre en forme de cercle sur une roche rouge du plateau du Yagour",
+      "en": "Circular rock engraving on a red rock of the Yagour plateau"
+    }
+  },
+  "plateau-bivouac-tents": {
+    "source": "images/plateau-bivouac-tents.jpg",
+    "width": 516,
+    "height": 387,
+    "widths": [
+      480,
+      516
+    ],
+    "alt": {
+      "fr": "Tentes de bivouac sur un plateau verdoyant, chevaux au pâturage et cultures en terrasses",
+      "en": "Camp tents on a green plateau, with grazing horses and terraced fields"
+    }
+  },
+  "village-below-snow-wall": {
+    "source": "images/village-below-snow-wall.jpg",
+    "width": 387,
+    "height": 516,
+    "widths": [
+      387
+    ],
+    "alt": {
+      "fr": "Village berbère aux maisons de pierre étagées, au pied d’une immense paroi enneigée du Haut Atlas",
+      "en": "Berber village of stacked stone houses below a vast snow-covered High Atlas face"
+    },
+    "focus": "center 75%"
+  },
+  "hikers-rocky-ridge": {
+    "source": "images/hikers-rocky-ridge.jpg",
+    "width": 648,
+    "height": 433,
+    "widths": [
+      480,
+      648
+    ],
+    "alt": {
+      "fr": "Groupe de randonneurs sur une crête rocheuse en haute montagne, plaques de neige et sommets du Haut Atlas autour",
+      "en": "Group of hikers on a rocky high-mountain ridge, with snow patches and High Atlas peaks all around"
+    }
   }
 }

@@ -200,8 +200,8 @@
     "en": "Location"
   },
   "last_updated": {
-    "fr": "Dernière mise à jour : 9 octobre 2026",
-    "en": "Last updated: October 9, 2026"
+    "fr": "Dernière mise à jour : 26 octobre 2026",
+    "en": "Last updated: October 26, 2026"
   },
   "home": {
     "fr": "Accueil",
@@ -1000,5 +1000,13 @@
       "Moderate",
       "Challenging"
     ]
+  },
+  "form_photo_consent": {
+    "fr": "J’accepte que des photos où j’apparais soient utilisées sur le site et les réseaux sociaux.",
+    "en": "I agree that photos in which I appear may be used on the website and social media."
+  },
+  "form_photo_consent_note": {
+    "fr": "Facultatif. Vous pouvez retirer votre accord à tout moment par e-mail ou WhatsApp. Voir nos {terms} et notre {privacy}.",
+    "en": "Optional. You can withdraw your consent at any time by email or WhatsApp. See our {terms} and our {privacy}."
   }
 }

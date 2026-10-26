@@ -1,171 +1,315 @@
 {
-  "privacy": {
-    "fr": {
-      "meta_title": "Politique de confidentialité",
-      "meta_description": "Découvrez comment Morocco Explorer Tours collecte, utilise et protège les informations partagées sur ce site et lors de la préparation de votre voyage privé au Maroc.",
-      "kicker": "VOS INFORMATIONS",
-      "title": "Politique de confidentialité",
-      "lead": "Comment Morocco Explorer Tours collecte, utilise et protège les informations partagées sur ce site et lors de la préparation de votre voyage.",
-      "intro": ["Morocco Explorer Tours respecte votre vie privée et s’engage à protéger les informations personnelles que vous nous confiez lorsque vous consultez ce site, nous contactez, demandez un circuit privé au Maroc ou finalisez une réservation."],
-      "sections": [
-        {"heading": "1. Pourquoi nous collectons des informations personnelles", "content": [
-          "Nous collectons des informations personnelles pour répondre à vos demandes, préparer des propositions de voyage, organiser des circuits privés, gérer les réservations, assurer le suivi client et respecter les obligations légales ou opérationnelles liées aux services de voyage.",
-          "Selon le service demandé, Morocco Explorer Tours peut agir en tant que responsable du traitement pour les prestations de voyage, les demandes d’information et les communications commerciales."]},
-        {"heading": "2. Les informations que nous pouvons collecter", "content": [
-          "Les informations collectées dépendent de la façon dont vous échangez avec nous. Il peut s’agir de votre nom, de votre adresse e-mail, de votre numéro de téléphone, de vos dates de voyage, de vos horaires d’arrivée et de départ, de la taille du groupe, de vos préférences d’hébergement, des circuits qui vous intéressent et de toute remarque que vous choisissez de partager.",
-          "Lorsque c’est nécessaire pour organiser un voyage confirmé, nous pouvons vous demander les informations de votre passeport ou de vos documents de voyage, vos régimes alimentaires, des informations médicales ou d’accessibilité, un contact d’urgence et des informations liées au paiement. Les informations sensibles ne sont demandées que lorsqu’elles sont utiles à l’organisation de votre voyage, et avec votre consentement."]},
-        {"heading": "3. Comment nous collectons ces informations", "content": [
-          "Nous collectons les informations directement auprès de vous lorsque vous nous contactez par e-mail, WhatsApp, téléphone, réseaux sociaux ou formulaire en ligne ; lorsque vous demandez un devis ; lorsque vous confirmez un circuit ; ou lorsqu’un de vos compagnons de voyage nous transmet des informations en votre nom.",
-          "L’outil de préparation de voyage de ce site crée un projet directement dans votre navigateur. Il n’envoie pas automatiquement le formulaire à un serveur et n’enregistre pas vos réponses dans le stockage du navigateur. Si vous choisissez de copier, télécharger, envoyer par e-mail ou par WhatsApp votre projet, le service choisi traite ces informations selon ses propres conditions de confidentialité."]},
-        {"heading": "4. Comment nous utilisons vos informations", "content": [
-          "Nous utilisons les informations personnelles pour répondre aux demandes, concevoir les itinéraires, vérifier les disponibilités, traiter les réservations, coordonner hôtels, transports, guides et activités, vous tenir informé pendant le voyage, améliorer nos services et respecter la loi applicable.",
-          "Nous pouvons aussi utiliser vos coordonnées pour assurer le suivi d’une proposition ou d’une réservation demandée. Nous n’envoyons de messages commerciaux que lorsque la loi le permet ou lorsque vous avez choisi de les recevoir."]},
-        {"heading": "5. Partage des informations avec nos prestataires", "content": [
-          "Nous ne vendons, ne louons et n’échangeons aucune information personnelle. Nous partageons uniquement les informations nécessaires à la réalisation de votre voyage avec des prestataires de confiance : hébergements, transporteurs, guides locaux, prestataires d’activités, prestataires de paiement et fournisseurs de services techniques.",
-          "Chaque prestataire ne reçoit que les informations nécessaires à sa part du service, y compris les informations alimentaires, médicales ou d’accessibilité pertinentes lorsqu’elles sont utiles à votre sécurité et à votre confort."]},
-        {"heading": "6. Transferts internationaux", "content": [
-          "La préparation d’un voyage peut nécessiter de partager des informations avec des prestataires situés hors de votre pays de résidence. Nous prenons des mesures raisonnables pour que les informations personnelles soient traitées de manière appropriée, et uniquement pour organiser ou accompagner les services de voyage demandés."]},
-        {"heading": "7. Cookies et données du site", "content": [
-          "Ce site utilise des fichiers locaux, comme des images, des feuilles de style et des scripts, pour assurer la navigation. La version actuelle n’intègre ni traceurs publicitaires, ni polices externes, ni outils de mesure d’audience. Les journaux d’hébergement standard peuvent traiter des données techniques, comme l’adresse IP, le type de navigateur, la page demandée et l’heure de la requête, afin d’afficher et de sécuriser le site."]},
-        {"heading": "8. Vos droits", "content": [
-          "Dans le cadre de la loi applicable, vous pouvez demander à accéder aux informations personnelles que nous détenons sur vous, à les corriger, les mettre à jour, en limiter l’utilisation ou les supprimer. Vous pouvez aussi vous opposer à certains traitements ou demander une copie de vos informations dans un format portable.",
-          "Pour exercer ces droits, contactez-nous à l’aide des coordonnées ci-dessous. Nous pourrons être amenés à vérifier votre identité avant de répondre."]},
-        {"heading": "9. Sécurité et durée de conservation", "content": [
-          "Nous appliquons des mesures de protection physiques, électroniques et organisationnelles raisonnables pour protéger les informations personnelles contre la perte, l’utilisation abusive, l’accès non autorisé, la modification ou la divulgation.",
-          "Nous conservons les informations personnelles uniquement le temps nécessaire à la finalité pour laquelle elles ont été collectées, y compris pour la gestion des réservations et les obligations légales, comptables, de règlement des litiges et d’amélioration du service."]},
-        {"heading": "10. Liens et services tiers", "content": [
-          "Notre site peut contenir des liens vers des services tiers comme WhatsApp, des applications de messagerie, des réseaux sociaux ou des plateformes d’avis et de réservation. Leurs pratiques en matière de confidentialité relèvent de leurs propres politiques : nous vous invitons à les consulter avant de leur communiquer des informations."]},
-        {"heading": "11. Mises à jour de cette politique", "content": [
-          "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Toute nouvelle version sera publiée sur cette page avec une date de mise à jour. En continuant à utiliser le site ou nos services après la publication des modifications, vous acceptez la politique mise à jour."]}
-      ]
-    },
-    "en": {
-      "meta_title": "Privacy Policy",
-      "meta_description": "Read how Morocco Explorer Tours collects, uses and protects information shared through this website and during private Morocco trip planning.",
-      "kicker": "YOUR INFORMATION",
-      "title": "Privacy Policy",
-      "lead": "How Morocco Explorer Tours collects, uses and protects information shared through this website and during trip planning.",
-      "intro": ["Morocco Explorer Tours respects your privacy and is committed to protecting the personal information you share with us when you browse this website, contact us, request a private Morocco tour or continue with a booking."],
-      "sections": [
-        {"heading": "1. Why we collect personal information", "content": [
-          "We collect personal information so we can answer enquiries, prepare travel proposals, arrange private tours, manage bookings, provide customer support and meet legal or operational requirements related to travel services.",
-          "Depending on the service requested, Morocco Explorer Tours may act as the data controller for retail travel services, enquiries and marketing communications."]},
-        {"heading": "2. Personal information we may collect", "content": [
-          "The information we collect depends on how you interact with us. It may include your name, email address, phone number, travel dates, arrival and departure details, group size, accommodation preferences, tour interests and any notes you choose to share.",
-          "When needed to arrange a confirmed trip, we may ask for passport or travel-document details, dietary requirements, medical or accessibility information, emergency contact details and payment-related information. Sensitive information is requested only when relevant to your travel arrangements and with your consent."]},
-        {"heading": "3. How we collect information", "content": [
-          "We collect information directly from you when you contact us by email, WhatsApp, phone, social media or an online form; when you request a quote; when you confirm a tour; or when someone travelling with you provides details on your behalf.",
-          "The trip planner on this website prepares a brief in your browser. It does not automatically submit the form to a server or store your answers in browser storage. If you choose to copy, download, email or send the brief by WhatsApp, the selected service handles that information under its own privacy terms."]},
-        {"heading": "4. How we use your information", "content": [
-          "We use personal information to respond to enquiries, design itineraries, confirm availability, process bookings, coordinate hotels, transport, guides and activities, provide travel updates, improve our services and comply with applicable laws.",
-          "We may also use your contact details to follow up on a requested proposal or booking. We only send marketing messages where permitted by law or where you have chosen to receive them."]},
-        {"heading": "5. Sharing information with suppliers", "content": [
-          "We do not sell, rent or trade personal information. We share only the information needed to provide your travel services with trusted suppliers such as accommodation providers, transport operators, local guides, activity providers, payment processors and technology providers.",
-          "Suppliers receive only the details required for their part of the service, including relevant dietary, medical or accessibility information when necessary for your safety and comfort."]},
-        {"heading": "6. International transfers", "content": [
-          "Travel planning may require information to be shared with suppliers or service providers outside your home country. We take reasonable steps to ensure that personal information is handled appropriately and only for the purpose of arranging or supporting your requested travel services."]},
-        {"heading": "7. Cookies and website data", "content": [
-          "This website uses local files such as images, styles and scripts to provide the browsing experience. The current version does not include advertising trackers, third-party fonts or analytics scripts. Standard hosting logs may process technical information such as IP address, browser type, requested page and request time to deliver and secure the site."]},
-        {"heading": "8. Your rights", "content": [
-          "Subject to applicable law, you may ask to access, correct, update, restrict or delete personal information we hold about you. You may also object to certain processing or request a copy of your information in a portable format.",
-          "To make a privacy request, contact us using the details below. We may need to verify your identity before responding."]},
-        {"heading": "9. Security and retention", "content": [
-          "We use reasonable physical, electronic and procedural safeguards to protect personal information against loss, misuse, unauthorised access, alteration or disclosure.",
-          "We keep personal information only for as long as needed for the purpose collected, including booking administration, legal, accounting, dispute-resolution and service-improvement requirements."]},
-        {"heading": "10. Third-party links and services", "content": [
-          "Our website may link to third-party services such as WhatsApp, email apps, social media platforms or review and booking platforms. Their privacy practices are governed by their own policies, and you should review those policies before sharing information with them."]},
-        {"heading": "11. Updates to this policy", "content": [
-          "We may update this Privacy Policy from time to time. Any updated version will be posted on this page with a revised date. Continuing to use the website or our services after changes are posted means you accept the updated policy."]}
-      ]
-    }
-  },
   "terms": {
     "fr": {
       "meta_title": "Conditions générales",
-      "meta_description": "Consultez les conditions de réservation des circuits privés au Maroc organisés par Morocco Explorer Tours : acompte, annulation, assurance et modifications d’itinéraire.",
+      "meta_description": "Conditions générales des treks et excursions dans le Haut Atlas au départ de Marrakech : réservation, paiement, annulation, santé et altitude, autorité du guide, assurance, responsabilité, photos.",
       "kicker": "CONDITIONS DE RÉSERVATION",
       "title": "Conditions générales",
-      "lead": "Les conditions de réservation des circuits privés au Maroc organisés par Morocco Explorer Tours.",
-      "intro": ["Les présentes conditions générales s’appliquent lorsque vous vous renseignez, réservez ou voyagez sur un circuit privé organisé par Morocco Explorer Tours. En confirmant une réservation, vous acceptez ces conditions pour vous-même et pour chaque participant inclus dans votre réservation."],
+      "lead": "Les règles qui s’appliquent à nos treks et à nos excursions dans le Haut Atlas. Merci de les lire avant de réserver : elles vous protègent autant qu’elles nous engagent.",
+      "intro": [
+        "Les présentes conditions générales s’appliquent à toute demande, réservation et participation à un trek ou à une excursion organisé par Morocco Explorer Tours, [À COMPLÉTER : raison sociale et forme juridique], dont le siège est situé [À COMPLÉTER : adresse complète], Marrakech, Maroc, immatriculée sous le numéro [À COMPLÉTER : RC / ICE] et titulaire de [À COMPLÉTER : numéro de licence d’agence de voyages ou d’autorisation de guide].",
+        "En confirmant une réservation, vous déclarez avoir lu et accepté ces conditions, pour vous-même et pour chaque personne inscrite avec vous. La personne qui réserve s’engage à les transmettre à tous les participants de son groupe."
+      ],
       "sections": [
-        {"heading": "1. Confirmation de la réservation et paiement", "content": [
-          "Une fois l’itinéraire, les dates, les prestations incluses et le prix final convenus, Morocco Explorer Tours vous communique les modalités de paiement. Sauf conditions écrites différentes pour votre réservation, celle-ci est confirmée à réception d’un acompte de 20 % à 30 % du montant total de la facture.",
-          "Le solde est dû selon les termes de la proposition écrite ou de la facture. Pour certains circuits, il peut être réglé en espèces le jour du départ. Vérifiez attentivement votre proposition écrite ou votre facture avant tout paiement."]},
-        {"heading": "2. Modifications et annulations", "content": [
-          "Si vous devez modifier votre réservation, contactez-nous le plus tôt possible. Nous ferons notre possible pour vous aider, mais les modifications dépendent des disponibilités des prestataires, des horaires de transport et des frais déjà engagés.",
-          "En cas d’annulation, les frais sont calculés à partir de la date à laquelle nous recevons votre demande écrite :",
-          {"list": ["30 jours ou plus avant la date de début du circuit : l’acompte est conservé.", "Moins de 30 jours avant la date de début du circuit : aucun remboursement n’est possible et le paiement intégral peut être exigé."]},
-          "D’autres conditions d’annulation peuvent s’appliquer si elles figurent clairement dans votre proposition écrite, votre facture ou les conditions des prestataires."]},
-        {"heading": "3. Événements indépendants de notre volonté", "content": [
-          "Nous ne pouvons être tenus responsables des pertes, dommages, retards, frais supplémentaires ou demandes de remboursement causés par des événements indépendants de notre volonté. Il peut s’agir notamment de guerre ou menace de guerre, de troubles civils, de fermetures d’aéroports, de grèves, de terrorisme ou menace de terrorisme, de catastrophes naturelles, d’intempéries, de fermetures de routes, de restrictions sanitaires, de recommandations gouvernementales ou de toute autre circonstance rendant le voyage dangereux ou impossible."]},
-        {"heading": "4. Besoins particuliers", "content": [
-          "Avant de confirmer votre réservation, signalez-nous vos restrictions alimentaires, besoins médicaux, difficultés de mobilité, allergies ou toute autre exigence pouvant avoir une incidence sur votre voyage. Nous transmettrons les informations utiles aux prestataires lorsque c’est nécessaire pour votre confort et votre sécurité.",
-          "Les demandes concernant le type de chambre, l’emplacement de l’hôtel ou la configuration des lits doivent être faites au moment de la réservation. Nous ferons notre possible pour y répondre, mais elles ne sont garanties que si elles sont confirmées par écrit."]},
-        {"heading": "5. Transport", "content": [
-          "Les véhicules utilisés pour les services de Morocco Explorer Tours sont fournis par des transporteurs locaux agréés, adaptés au nombre de passagers et à l’itinéraire. Le nombre de places, l’espace pour les bagages et le type de véhicule doivent être confirmés dans votre proposition écrite."]},
-        {"heading": "6. Assurance voyage", "content": [
-          "Chaque voyageur doit être couvert par une assurance voyage adaptée. Votre contrat doit couvrir les effets personnels, l’argent et les passeports, les accidents et blessures, les frais médicaux, les soins d’urgence, le rapatriement et l’annulation.",
-          "Si votre itinéraire comprend des activités comme les balades à dos de dromadaire ou à cheval, la randonnée, le vélo, le quad, des itinéraires de montagne ou un passage au-dessus de 2 000 mètres d’altitude, vérifiez que votre assurance couvre bien ces activités."]},
-        {"heading": "7. Responsabilité et prestataires locaux", "content": [
-          "Morocco Explorer Tours organise des services de voyage privés en faisant appel à des prestataires locaux : transporteurs, hébergements, guides et organisateurs d’activités. Nous ne sommes pas responsables des blessures, maladies, décès, pertes, retards ou dommages causés par les actes, omissions ou conditions de prestataires tiers dès lors que nous avons fait preuve d’une diligence raisonnable dans l’organisation du service.",
-          "Les normes de sécurité, les équipements et les pratiques au Maroc peuvent différer de ceux de votre pays. Il appartient aux voyageurs de respecter les consignes locales, les instructions des prestataires et les conseils de sécurité raisonnables."]},
-        {"heading": "8. Modifications d’itinéraire", "content": [
-          "L’itinéraire peut changer en raison de la météo, de l’état des routes, de problèmes mécaniques, de la disponibilité des prestataires, de l’état de santé du chauffeur ou du guide, d’événements locaux ou d’autres circonstances indépendantes de notre volonté. Morocco Explorer Tours peut adapter le parcours, les horaires ou l’ordre des activités lorsque c’est nécessaire pour votre sécurité, votre confort ou des raisons pratiques.",
-          "Nous vous recommandons de ne pas prévoir de correspondance avant le lendemain de la fin d’un long circuit privé, car des retards peuvent survenir sur les routes marocaines et dans les régions isolées."]},
-        {"heading": "9. Documents de voyage", "content": [
-          "Il vous appartient de vérifier avant le départ les conditions de passeport, de visa, d’entrée, de santé et de billet retour pour le Maroc. Morocco Explorer Tours ne saurait être tenu responsable des prestations manquées, d’un refus d’entrée, de frais de rapatriement ou de dépenses supplémentaires liés à des documents de voyage incomplets ou non valides."]},
-        {"heading": "10. Équipement et sécurité pendant les activités", "content": [
-          "Pour les activités comme le vélo, la randonnée, l’équitation, les balades à dos de dromadaire ou le quad, la disponibilité et la qualité de l’équipement peuvent varier selon le prestataire et le lieu. Apportez votre propre équipement de sécurité spécifique lorsque votre assurance, votre niveau de confort ou les normes de votre pays l’exigent."]},
-        {"heading": "11. Confidentialité et utilisation des informations", "content": [
-          "Les informations personnelles fournies lors de la demande ou de la réservation servent à organiser les services de voyage et à communiquer avec vous au sujet de votre séjour. Les informations utiles peuvent être transmises aux hôtels, transporteurs, guides et prestataires d’activités. Pour en savoir plus, consultez notre {privacy_link}.",
-          "Nous pouvons vous demander l’autorisation d’utiliser des photos, des avis ou des témoignages de votre voyage sur notre site ou nos réseaux sociaux. Si vous ne souhaitez pas apparaître, dites-le-nous avant ou pendant votre voyage."]},
-        {"heading": "12. Réclamations", "content": [
-          "Si un problème survient pendant votre circuit, signalez-le dès que possible à votre chauffeur, à votre guide, à votre hébergement ou à Morocco Explorer Tours, afin que nous puissions le résoudre pendant que vous êtes encore en voyage.",
-          "Si le problème ne peut pas être réglé sur place, contactez-nous en nous donnant tous les détails. Nous examinerons la situation et vous répondrons de la manière la plus juste possible, en tenant compte des services réservés, des informations des prestataires et des circonstances."]}
+        {"heading": "1. Nos voyages", "content": [
+          "Nous organisons des treks de plusieurs jours et des excursions à la journée dans le Haut Atlas, au départ de Marrakech. Le programme, le niveau, les étapes, ce qui est inclus et ce qui ne l’est pas sont décrits sur la page de chaque voyage et confirmés dans notre proposition écrite. En cas de différence, la proposition écrite que vous avez acceptée fait foi.",
+          "Les itinéraires publiés sur le site sont des programmes types : en montagne, ils peuvent être adaptés pour des raisons de sécurité, de météo ou d’organisation (voir les articles 6, 8 et 10)."]},
+        {"heading": "2. Réservation", "content": [
+          "Vous pouvez nous contacter par e-mail, par WhatsApp, par téléphone ou via l’outil « Préparer ma sortie » du site. Votre demande ne constitue pas une réservation. Nous vous envoyons une proposition écrite précisant le programme, les dates, le prix et les prestations.",
+          "La réservation est ferme lorsque nous avons reçu votre acceptation de la proposition et le paiement de l’acompte, et que nous vous avons envoyé une confirmation écrite.",
+          "Pour chaque participant, nous pouvons vous demander : nom complet, âge, nationalité et numéro de passeport (pour l’enregistrement obligatoire dans certains hébergements), un contact d’urgence, ainsi que les informations de santé utiles à sa sécurité (voir l’article 7)."]},
+        {"heading": "3. Prix, acompte et paiement", "content": [
+          "Nos prix sont établis sur demande, selon la date, le voyage et la taille du groupe. Sauf indication contraire, une proposition de prix est valable [À COMPLÉTER : durée de validité du devis, par exemple 14 jours].",
+          {"list": [
+            "Treks de plusieurs jours : un acompte de [À COMPLÉTER : pourcentage] % du prix total est demandé à la réservation. Le solde est à régler [À COMPLÉTER : par exemple au plus tard 30 jours avant le départ, ou le jour du départ].",
+            "Excursions à la journée : [À COMPLÉTER : conditions de paiement, par exemple acompte de X % à la réservation et solde le jour de l’excursion].",
+            "Moyens de paiement acceptés : [À COMPLÉTER : virement, espèces, paiement en ligne…]. Les frais bancaires ou de change éventuels sont à la charge du client."
+          ]},
+          "Si le solde n’est pas réglé dans les délais, nous pouvons considérer la réservation comme annulée par le client et appliquer les frais prévus à l’article 5."]},
+        {"heading": "4. Ce qui est inclus et ce qui ne l’est pas", "content": [
+          "Les prestations comprises et non comprises sont indiquées dans les rubriques « Inclus » et « Non inclus » de chaque page de voyage, puis confirmées dans la proposition écrite. Tout ce qui n’y figure pas n’est pas compris, notamment l’hébergement à Marrakech, l’assurance, les boissons en dehors des repas, la location de matériel et les pourboires, sauf mention contraire."]},
+        {"heading": "5. Annulation ou modification par le client", "content": [
+          "Toute annulation doit nous être adressée par écrit (e-mail ou message WhatsApp). La date de réception fixe les frais applicables :",
+          {"list": [
+            "Treks — 30 jours ou plus avant le départ : l’acompte est conservé.",
+            "Treks — de 29 à 15 jours avant le départ : 50 % du prix total.",
+            "Treks — de 14 à 3 jours avant le départ : 75 % du prix total.",
+            "Treks — moins de 3 jours avant le départ, ou absence le jour du départ : 100 % du prix total.",
+            "Excursions — 48 heures ou plus avant le départ : remboursement intégral, hors frais de paiement éventuels.",
+            "Excursions — entre 48 et 24 heures avant le départ : 50 % du prix.",
+            "Excursions — moins de 24 heures avant le départ, ou absence : 100 % du prix."
+          ]},
+          "Un changement de date demandé par le client est possible selon les disponibilités. À moins de 15 jours d’un trek ou de 48 heures d’une excursion, il est traité comme une annulation suivie d’une nouvelle réservation.",
+          "Une journée, une étape ou une prestation non utilisée de votre fait (arrivée tardive, abandon, départ anticipé) ne donne lieu à aucun remboursement. Nous vous conseillons vivement une assurance annulation."]},
+        {"heading": "6. Annulation ou modification par Morocco Explorer Tours", "content": [
+          "Nous pouvons être amenés à modifier ou à annuler un voyage avant le départ si la sécurité ne peut pas être assurée (météo, enneigement, crues, fermeture de routes ou de refuges, décision des autorités) ou en cas d’indisponibilité imprévue du guide.",
+          "En cas d’annulation de notre part avant le départ, nous vous proposons une autre date ou un voyage équivalent ; si vous refusez, nous vous remboursons intégralement les sommes versées. Aucune autre indemnité n’est due lorsque l’annulation est liée à la sécurité, à la météo ou à un cas de force majeure.",
+          "Si nous devons modifier de façon importante un élément essentiel du voyage avant le départ, nous vous en informons au plus vite : vous pouvez accepter la modification ou annuler sans frais."]},
+        {"heading": "7. Condition physique, santé et altitude", "content": [
+          "Nos treks se déroulent en montagne, loin des secours et des structures médicales. En réservant, chaque participant déclare être en bonne santé et avoir une condition physique adaptée au niveau du voyage choisi, tel qu’il est décrit sur sa page (durée de marche, dénivelé, altitude).",
+          "Vous devez nous signaler avant la réservation toute condition médicale, maladie chronique, blessure récente, traitement en cours, allergie, grossesse ou difficulté de mobilité. Ces informations restent confidentielles et ne sont partagées qu’avec le guide, dans l’intérêt de votre sécurité. En cas de doute, consultez votre médecin avant de partir.",
+          "L’ascension du Toubkal mène à 4 167 m d’altitude. Au-delà de 2 500 à 3 000 m, le mal aigu des montagnes peut toucher n’importe qui, quelle que soit sa forme physique : maux de tête, nausées, fatigue intense, troubles du sommeil. S’y ajoutent le froid, le vent, le soleil, la neige ou la glace selon la saison, et des terrains raides ou instables. Ces symptômes doivent être signalés immédiatement au guide ; le seul traitement sûr est souvent la descente.",
+          "Le guide peut refuser le départ ou la poursuite d’un trek à un participant dont l’état présente un risque pour lui-même ou pour le groupe. Une condition médicale non déclarée peut entraîner l’exclusion du voyage sans remboursement."]},
+        {"heading": "8. Autorité du guide", "content": [
+          "Pendant le voyage, le guide est responsable de la sécurité du groupe. Ses décisions concernant l’itinéraire, les horaires, le rythme et la poursuite ou non de l’activité doivent être respectées.",
+          "Il peut à tout moment modifier, raccourcir, retarder ou interrompre un itinéraire, renoncer à un sommet ou à un col, ou faire redescendre un participant (accompagné), notamment en raison de la météo, de la neige ou de la glace, du niveau des rivières, de l’état du terrain, de l’heure, du rythme du groupe ou de l’état de santé ou de fatigue d’un participant.",
+          "Ces décisions, prises pour la sécurité de tous, ne donnent droit à aucun remboursement des parties non effectuées. Les frais supplémentaires qui en découlent (nuit ou transport supplémentaire, évacuation) sont à la charge du participant ou de son assurance."]},
+        {"heading": "9. Assurance", "content": [
+          "Une assurance voyage est exigée pour tous les participants à un trek, et fortement recommandée pour les excursions. Elle doit couvrir au minimum :",
+          {"list": [
+            "les frais médicaux et d’hospitalisation à l’étranger ;",
+            "la recherche, le secours et l’évacuation en montagne, y compris par hélicoptère lorsque ce moyen est disponible ;",
+            "le rapatriement ;",
+            "la randonnée en montagne jusqu’à l’altitude du voyage (4 200 m pour le Toubkal) et, en hiver, la marche sur neige avec crampons et piolet."
+          ]},
+          "Une assurance annulation et bagages est vivement conseillée. Nous pouvons vous demander une attestation avant le départ. Dans le Haut Atlas, une évacuation se fait souvent à pied, à dos de mule ou en véhicule jusqu’à la route, et les moyens aériens ne sont pas garantis : les frais de secours et d’évacuation restent à la charge du participant ou de son assureur."]},
+        {"heading": "10. Météo et force majeure", "content": [
+          "En montagne, les conditions changent vite. Les itinéraires peuvent être adaptés ou annulés en raison des conditions météorologiques, de la neige, des crues, des éboulements, de la fermeture de routes, de pistes ou de refuges, ou de décisions des autorités.",
+          "Nous ne pouvons être tenus responsables d’un retard, d’une modification ou d’une annulation dus à un événement extérieur, imprévisible et irrésistible (force majeure) : catastrophe naturelle, intempéries exceptionnelles, séisme, épidémie, troubles, grève, décision administrative. Dans ce cas, nous proposons une solution de remplacement lorsque c’est possible ; les frais supplémentaires éventuels restent à la charge du client."]},
+        {"heading": "11. Risques inhérents à la montagne et responsabilité", "content": [
+          "La randonnée et le trek en montagne comportent des risques qui ne peuvent pas être entièrement supprimés : chutes, glissades, chutes de pierres, terrains instables, traversées de rivières, froid et chaleur extrêmes, altitude, contact avec les animaux (mules, chiens), éloignement des secours et des soins. En réservant, chaque participant reconnaît être informé de ces risques et les accepter.",
+          "Nous organisons nos voyages avec soin et faisons appel à des guides et à des prestataires locaux choisis pour leur sérieux. Notre responsabilité ne peut pas être engagée pour un dommage résultant : du non-respect des consignes du guide ; d’une information de santé non déclarée ; du comportement du participant ; d’un prestataire ou d’un tiers étranger à l’organisation du voyage ; d’un cas de force majeure. Nous ne sommes pas responsables de la perte, du vol ou de la détérioration des effets personnels.",
+          "Dans les limites permises par la loi, notre responsabilité est limitée au montant du prix du voyage payé, sauf en cas de faute lourde ou intentionnelle et sauf pour les dommages corporels dont la loi interdit de limiter la réparation."]},
+        {"heading": "12. Mules et bagages", "content": [
+          "Sur les treks, les bagages sont portés par des mules conduites par un muletier. Chaque participant a droit à un sac souple d’un poids maximum de [À COMPLÉTER : poids maximum par personne, par exemple 12 kg] ; les valises rigides ne sont pas acceptées. Au-delà, un supplément peut être demandé ou l’excédent laissé à Marrakech.",
+          "Les mules n’empruntent pas toujours le même chemin que le groupe et peuvent arriver après vous : gardez dans votre sac de journée l’eau, les vêtements chauds et de pluie, la protection solaire, vos médicaments, vos papiers et vos objets de valeur. Nous ne surchargeons pas les animaux et nous déclinons toute responsabilité pour les objets fragiles placés dans les bagages."]},
+        {"heading": "13. Hébergement en montagne", "content": [
+          "Pendant les treks, vous dormez en gîte d’étape, en refuge, chez l’habitant ou en bivouac, selon le programme. Le confort y est simple : chambres ou dortoirs partagés, matelas au sol, sanitaires communs, eau chaude et électricité parfois limitées, chauffage rare. Les refuges sont partagés avec d’autres randonneurs et leurs places dépendent des disponibilités.",
+          "Les nuits chez l’habitant se passent dans des maisons familiales : merci de respecter l’intimité et les habitudes de vos hôtes. Un sac de couchage est [À COMPLÉTER : fourni / à apporter / disponible en location]."]},
+        {"heading": "14. Mineurs", "content": [
+          "Les mineurs peuvent participer uniquement s’ils sont accompagnés d’un parent ou d’un adulte responsable légalement autorisé, qui reste responsable d’eux pendant tout le voyage. L’âge minimum pour les treks avec ascension du Toubkal est de [À COMPLÉTER : âge minimum]. Le guide peut refuser la participation d’un mineur à une étape s’il estime qu’elle n’est pas adaptée."]},
+        {"heading": "15. Comportement, coutumes locales et environnement", "content": [
+          "Chaque participant s’engage à respecter les autres membres du groupe, le guide, le muletier, les familles qui nous accueillent et les habitants des villages. Une tenue correcte est attendue dans les villages ; demandez toujours avant de photographier quelqu’un ; la consommation d’alcool doit rester discrète et ne doit pas compromettre la sécurité.",
+          "Nous voyageons dans des espaces fragiles : restez sur les sentiers, remportez vos déchets, n’abîmez pas la végétation et ne touchez pas les gravures rupestres, qui sont un patrimoine protégé. Un comportement dangereux, irrespectueux ou illégal peut entraîner l’exclusion du voyage, sans remboursement."]},
+        {"heading": "16. Photos et vidéos", "content": [
+          "Pendant nos voyages, le guide ou notre équipe peuvent prendre des photos et des vidéos, sur lesquelles des participants peuvent apparaître.",
+          "Nous n’utilisons une photo ou une vidéo où vous êtes reconnaissable sur notre site ou nos réseaux sociaux qu’avec votre accord. Cet accord est facultatif : vous pouvez le donner en cochant la case prévue dans le formulaire de demande, ou nous le confirmer par écrit. Refuser n’a aucune conséquence sur votre réservation.",
+          "Vous pouvez retirer votre accord à tout moment et nous demander de retirer une photo ou une vidéo par e-mail à contact@moroccoexplorertours.com ou par WhatsApp. Nous la retirons de notre site et de nos comptes dans les meilleurs délais ; nous ne pouvons pas contrôler les copies déjà partagées par des tiers.",
+          "Nous n’utilisons jamais la photo d’un enfant sans l’accord explicite et écrit de son parent ou de son représentant légal."]},
+        {"heading": "17. Réclamations", "content": [
+          "Si un problème survient pendant le voyage, signalez-le immédiatement au guide afin que nous puissions y remédier sur place. Toute réclamation doit ensuite nous être adressée par écrit, avec les justificatifs utiles, dans les 15 jours suivant la fin du voyage, à contact@moroccoexplorertours.com."]},
+        {"heading": "18. Données personnelles", "content": [
+          "Les informations que vous nous confiez sont traitées conformément à notre {privacy_link}."]},
+        {"heading": "19. Droit applicable et litiges", "content": [
+          "Les présentes conditions sont soumises au droit marocain. En cas de différend, nous rechercherons d’abord une solution amiable. À défaut, les tribunaux compétents de Marrakech seront seuls compétents, sous réserve des dispositions impératives protégeant les consommateurs dans leur pays de résidence."]}
       ]
     },
     "en": {
       "meta_title": "Terms and Conditions",
-      "meta_description": "Read the booking terms for private Morocco tours arranged with Morocco Explorer Tours, including deposits, cancellations, insurance and itinerary changes.",
+      "meta_description": "Terms and conditions for High Atlas treks and day trips from Marrakech: booking, payment, cancellation, health and altitude, the guide’s authority, insurance, liability and photos.",
       "kicker": "BOOKING TERMS",
       "title": "Terms and Conditions",
-      "lead": "The booking terms for private Morocco tours arranged with Morocco Explorer Tours.",
-      "intro": ["These Terms and Conditions apply when you enquire about, book or travel on a private tour arranged by Morocco Explorer Tours. By confirming a booking, you accept these terms for yourself and for every participant included in your reservation."],
+      "lead": "The rules that apply to our treks and day trips in the High Atlas. Please read them before booking: they protect you as much as they commit us.",
+      "intro": [
+        "These terms and conditions apply to every enquiry, booking and participation in a trek or day trip organised by Morocco Explorer Tours, [TO BE COMPLETED: company legal name and legal form], registered office at [TO BE COMPLETED: full address], Marrakech, Morocco, registration number [TO BE COMPLETED: RC / ICE], holder of [TO BE COMPLETED: travel agency licence or guide authorisation number].",
+        "By confirming a booking, you confirm that you have read and accepted these terms, for yourself and for everyone booked with you. The person making the booking agrees to share them with every participant in their group."
+      ],
       "sections": [
-        {"heading": "1. Booking confirmation and payment", "content": [
-          "After your itinerary, travel dates, inclusions and final price are agreed, Morocco Explorer Tours will provide payment instructions. Unless different written terms are agreed for your booking, your reservation is confirmed when we receive a deposit of 20% to 30% of the total invoice amount.",
-          "The remaining balance is due according to the written proposal or invoice. For some tours, the balance may be payable in cash on the day of the tour. Your written proposal or invoice should be checked carefully before payment."]},
-        {"heading": "2. Booking changes and cancellations", "content": [
-          "If you need to change your booking, contact us as soon as possible. We will try to help, but changes depend on supplier availability, transport schedules and any costs already committed.",
-          "If you cancel your trip, cancellation fees are calculated from the date we receive written notice from you:",
-          {"list": ["30 days or more before the tour start date: the deposit is retained.", "Less than 30 days before the tour start date: no refund is available and full payment may be required."]},
-          "Different cancellation terms may apply if they are clearly stated in your written proposal, invoice or supplier conditions."]},
-        {"heading": "3. Events outside our control", "content": [
-          "We cannot accept liability for loss, damage, delay, additional expense or refund requests caused by events outside our reasonable control. These may include war or threat of war, civil unrest, airport closures, industrial action, terrorism or threat of terrorism, natural disasters, severe weather, road closures, public-health restrictions, government advice or any other circumstances that make travel unsafe or impracticable."]},
-        {"heading": "4. Special requirements", "content": [
-          "Please tell us before confirming your booking about dietary restrictions, medical needs, mobility needs, allergies or other requirements that may affect your trip. We will share relevant information with suppliers where needed to support your comfort and safety.",
-          "Requests such as preferred room type, hotel location or bed configuration should be made at the time of booking. We will try to arrange them, but they cannot be guaranteed unless confirmed in writing."]},
-        {"heading": "5. Transportation", "content": [
-          "Vehicles used for Morocco Explorer Tours services are arranged with licensed local transport providers appropriate for the number of passengers and the route. Seat availability, luggage space and vehicle type should be confirmed in your written proposal."]},
-        {"heading": "6. Travel insurance", "content": [
-          "All travellers are responsible for having suitable travel insurance. Your policy should cover personal belongings, money and passports, personal accident or injury, medical expenses, emergency medical treatment, repatriation and cancellation.",
-          "If your itinerary includes activities such as camel riding, horse riding, trekking, cycling, quad biking, mountain routes or travel above 2,000 metres, make sure your insurance covers those activities."]},
-        {"heading": "7. Liability and local suppliers", "content": [
-          "Morocco Explorer Tours arranges private travel services using local suppliers such as transport providers, accommodation providers, guides and activity operators. We are not responsible for injury, illness, death, loss, delay or damage caused by the acts, omissions or conditions of third-party suppliers where we have acted with reasonable care in arranging the service.",
-          "Safety standards, facilities and operating practices in Morocco may differ from those in your home country. Travellers are responsible for following local guidance, supplier instructions and reasonable safety advice."]},
-        {"heading": "8. Itinerary changes", "content": [
-          "Itineraries may change because of weather, road conditions, mechanical issues, supplier availability, driver or guide health, local events or other conditions beyond our control. Morocco Explorer Tours may adjust the route, timing or order of activities where needed for safety, comfort or practicality.",
-          "We recommend scheduling onward travel no earlier than the day after the end of a long private tour, as delays can occur on Moroccan roads and in remote areas."]},
-        {"heading": "9. Travel documents", "content": [
-          "You are responsible for checking passport, visa, entry, health and onward-ticket requirements for Morocco before travel. Morocco Explorer Tours is not liable for missed services, denied entry, repatriation costs or additional expenses caused by incomplete or invalid travel documents."]},
-        {"heading": "10. Activity equipment and safety", "content": [
-          "For activities such as cycling, trekking, horse riding, camel riding or quad biking, equipment availability and standards may vary by supplier and location. Bring your own specialist safety equipment where required by your insurance, comfort level or home-country standards."]},
-        {"heading": "11. Privacy and use of information", "content": [
-          "Personal information provided during enquiry or booking is used to arrange travel services and communicate with you about your trip. Relevant details may be shared with hotels, transport providers, guides and activity suppliers. Read our {privacy_link} for more information.",
-          "We may request permission to use photographs, feedback or case studies from your tour on our website or social media. If you do not want to be featured, tell us before or during your trip."]},
-        {"heading": "12. Complaints", "content": [
-          "If something goes wrong during your tour, tell your driver, guide, accommodation provider or Morocco Explorer Tours as soon as possible so we have a chance to resolve the issue while you are still travelling.",
-          "If the issue cannot be resolved locally, contact us with full details. We will review the matter and respond as fairly as possible based on the services booked, supplier information and circumstances."]}
+        {"heading": "1. Our trips", "content": [
+          "We organise multi-day treks and day trips in the High Atlas from Marrakech. The programme, level, stages, and what is and is not included are described on each trip’s page and confirmed in our written proposal. Where they differ, the written proposal you accepted prevails.",
+          "The itineraries on the website are model programmes: in the mountains they may be adapted for safety, weather or organisational reasons (see sections 6, 8 and 10)."]},
+        {"heading": "2. Booking", "content": [
+          "You can contact us by email, WhatsApp, phone or through the website’s “Plan your trip” tool. An enquiry is not a booking. We send you a written proposal setting out the programme, dates, price and services.",
+          "Your booking is confirmed once we have received your acceptance of the proposal and the deposit, and have sent you a written confirmation.",
+          "For each participant we may ask for: full name, age, nationality and passport number (for the registration required by some accommodation), an emergency contact, and any health information relevant to their safety (see section 7)."]},
+        {"heading": "3. Prices, deposit and payment", "content": [
+          "Our prices are quoted on request, according to the date, the trip and the group size. Unless stated otherwise, a quote is valid for [TO BE COMPLETED: quote validity, for example 14 days].",
+          {"list": [
+            "Multi-day treks: a deposit of [TO BE COMPLETED: percentage]% of the total price is due on booking. The balance is due [TO BE COMPLETED: for example no later than 30 days before departure, or on the day of departure].",
+            "Day trips: [TO BE COMPLETED: payment terms, for example X% deposit on booking and the balance on the day].",
+            "Accepted payment methods: [TO BE COMPLETED: bank transfer, cash, online payment…]. Any bank or exchange fees are paid by the client."
+          ]},
+          "If the balance is not paid on time, we may treat the booking as cancelled by the client and apply the charges in section 5."]},
+        {"heading": "4. What is and is not included", "content": [
+          "The services included and not included are listed under “Included” and “Not included” on each trip page, then confirmed in the written proposal. Anything not listed there is not included, in particular accommodation in Marrakech, insurance, drinks outside meals, equipment hire and tips, unless stated otherwise."]},
+        {"heading": "5. Cancellation or changes by the client", "content": [
+          "Any cancellation must be sent to us in writing (email or WhatsApp message). The date we receive it determines the charges:",
+          {"list": [
+            "Treks — 30 days or more before departure: the deposit is retained.",
+            "Treks — 29 to 15 days before departure: 50% of the total price.",
+            "Treks — 14 to 3 days before departure: 75% of the total price.",
+            "Treks — less than 3 days before departure, or no-show: 100% of the total price.",
+            "Day trips — 48 hours or more before departure: full refund, less any payment fees.",
+            "Day trips — between 48 and 24 hours before departure: 50% of the price.",
+            "Day trips — less than 24 hours before departure, or no-show: 100% of the price."
+          ]},
+          "A change of date requested by the client is possible subject to availability. Less than 15 days before a trek or 48 hours before a day trip, it is treated as a cancellation followed by a new booking.",
+          "A day, stage or service not used because of you (late arrival, leaving the trip, early departure) is not refunded. We strongly recommend cancellation insurance."]},
+        {"heading": "6. Cancellation or changes by Morocco Explorer Tours", "content": [
+          "We may need to change or cancel a trip before departure if safety cannot be ensured (weather, snow, floods, closed roads or refuges, decisions by the authorities) or if the guide becomes unexpectedly unavailable.",
+          "If we cancel before departure, we offer another date or an equivalent trip; if you decline, we refund everything you have paid in full. No further compensation is due when the cancellation is related to safety, weather or force majeure.",
+          "If we have to make a significant change to an essential part of the trip before departure, we will tell you as soon as possible: you can accept the change or cancel free of charge."]},
+        {"heading": "7. Fitness, health and altitude", "content": [
+          "Our treks take place in the mountains, far from rescue services and medical facilities. By booking, each participant declares that they are in good health and have a level of fitness suited to the chosen trip as described on its page (walking time, ascent, altitude).",
+          "You must tell us before booking about any medical condition, chronic illness, recent injury, ongoing treatment, allergy, pregnancy or mobility difficulty. This information stays confidential and is shared only with the guide, for your safety. If in doubt, consult your doctor before travelling.",
+          "The Toubkal ascent reaches 4,167 m. Above 2,500 to 3,000 m, acute mountain sickness can affect anyone, however fit: headache, nausea, severe tiredness, poor sleep. Add cold, wind, sun, snow or ice depending on the season, and steep or unstable ground. Symptoms must be reported to the guide immediately; often the only safe treatment is to descend.",
+          "The guide may refuse to let a participant start or continue a trek if their condition puts themselves or the group at risk. An undeclared medical condition may lead to exclusion from the trip without refund."]},
+        {"heading": "8. The guide’s authority", "content": [
+          "During the trip, the guide is responsible for the group’s safety. Their decisions about the route, timing, pace and whether to continue must be followed.",
+          "They may at any time change, shorten, delay or stop an itinerary, give up a summit or pass, or send a participant back down (accompanied), in particular because of the weather, snow or ice, river levels, the state of the ground, the time of day, the group’s pace, or a participant’s health or tiredness.",
+          "These decisions, taken for everyone’s safety, give no right to a refund for the parts not completed. Any resulting extra costs (extra night or transport, evacuation) are paid by the participant or their insurer."]},
+        {"heading": "9. Insurance", "content": [
+          "Travel insurance is required for every trek participant and strongly recommended for day trips. It must cover at least:",
+          {"list": [
+            "medical and hospital costs abroad;",
+            "mountain search, rescue and evacuation, including by helicopter where available;",
+            "repatriation;",
+            "mountain trekking up to the trip’s altitude (4,200 m for Toubkal) and, in winter, walking on snow with crampons and an ice axe."
+          ]},
+          "Cancellation and baggage cover is strongly recommended. We may ask for proof of insurance before departure. In the High Atlas, evacuation is often on foot, by mule or by vehicle to the nearest road, and air rescue is not guaranteed: rescue and evacuation costs remain the responsibility of the participant or their insurer."]},
+        {"heading": "10. Weather and force majeure", "content": [
+          "Mountain conditions change quickly. Itineraries may be adapted or cancelled because of weather, snow, floods, rockfall, closed roads, tracks or refuges, or decisions by the authorities.",
+          "We cannot be held responsible for a delay, change or cancellation caused by an external, unforeseeable and unavoidable event (force majeure): natural disaster, exceptional weather, earthquake, epidemic, unrest, strikes, administrative decisions. In such cases we offer an alternative where possible; any extra costs remain the client’s responsibility."]},
+        {"heading": "11. Inherent risks of mountain activities and liability", "content": [
+          "Hiking and trekking in the mountains involve risks that cannot be entirely removed: falls, slips, rockfall, unstable ground, river crossings, extreme cold and heat, altitude, contact with animals (mules, dogs), and distance from rescue and medical care. By booking, each participant acknowledges being informed of these risks and accepts them.",
+          "We organise our trips with care and work with guides and local providers chosen for their reliability. We are not liable for damage resulting from: failure to follow the guide’s instructions; undeclared health information; the participant’s own behaviour; a provider or third party unconnected with the organisation of the trip; or force majeure. We are not responsible for the loss, theft or damage of personal belongings.",
+          "To the extent permitted by law, our liability is limited to the price paid for the trip, except in the case of gross negligence or wilful misconduct, and except for personal injury where the law does not allow liability to be limited."]},
+        {"heading": "12. Mules and luggage", "content": [
+          "On treks, luggage is carried by mules led by a muleteer. Each participant may bring one soft bag weighing no more than [TO BE COMPLETED: maximum weight per person, for example 12 kg]; hard suitcases are not accepted. Above this limit, a supplement may be charged or the excess left in Marrakech.",
+          "Mules do not always take the same path as the group and may arrive after you: keep water, warm and waterproof clothing, sun protection, medication, documents and valuables in your daypack. We do not overload the animals, and we accept no responsibility for fragile items packed in the luggage."]},
+        {"heading": "13. Mountain accommodation", "content": [
+          "On treks you sleep in mountain gîtes, refuges, family homes or camps, depending on the programme. Comfort is simple: shared rooms or dormitories, mattresses on the floor, shared bathrooms, sometimes limited hot water and electricity, rarely heating. Refuges are shared with other hikers and places depend on availability.",
+          "Homestay nights are spent in family houses: please respect your hosts’ privacy and habits. A sleeping bag is [TO BE COMPLETED: provided / to bring / available to hire]."]},
+        {"heading": "14. Minors", "content": [
+          "Minors may take part only if accompanied by a parent or a legally authorised responsible adult, who remains responsible for them throughout the trip. The minimum age for treks that include the Toubkal ascent is [TO BE COMPLETED: minimum age]. The guide may refuse to let a minor take part in a stage they consider unsuitable."]},
+        {"heading": "15. Behaviour, local customs and the environment", "content": [
+          "Each participant agrees to respect the other group members, the guide, the muleteer, the families hosting us and the village residents. Modest clothing is expected in villages; always ask before photographing someone; any alcohol must be consumed discreetly and must not compromise safety.",
+          "We travel through fragile places: stay on the trails, carry out your rubbish, do not damage plants and do not touch the rock engravings, which are protected heritage. Dangerous, disrespectful or illegal behaviour may lead to exclusion from the trip without refund."]},
+        {"heading": "16. Photos and videos", "content": [
+          "During our trips, the guide or our team may take photos and videos in which participants may appear.",
+          "We only use a photo or video in which you are recognisable on our website or social media with your consent. Consent is optional: you can give it by ticking the box on the enquiry form, or by confirming it to us in writing. Saying no has no effect on your booking.",
+          "You can withdraw your consent at any time and ask us to remove a photo or video by emailing contact@moroccoexplorertours.com or by WhatsApp. We remove it from our website and accounts as soon as possible; we cannot control copies already shared by third parties.",
+          "We never use a photo of a child without the explicit written consent of their parent or legal guardian."]},
+        {"heading": "17. Complaints", "content": [
+          "If something goes wrong during the trip, tell the guide straight away so we can put it right on the spot. Any complaint must then be sent to us in writing, with supporting details, within 15 days of the end of the trip, to contact@moroccoexplorertours.com."]},
+        {"heading": "18. Personal data", "content": [
+          "The information you give us is handled in accordance with our {privacy_link}."]},
+        {"heading": "19. Applicable law and disputes", "content": [
+          "These terms are governed by Moroccan law. In the event of a dispute, we will first seek an amicable solution. Failing that, the competent courts of Marrakech will have sole jurisdiction, without prejudice to mandatory consumer-protection rules in the client’s country of residence."]}
+      ]
+    }
+  },
+  "privacy": {
+    "fr": {
+      "meta_title": "Politique de confidentialité",
+      "meta_description": "Comment Morocco Explorer Tours collecte, utilise, conserve et protège vos données personnelles, conformément à la loi 09-08 et au RGPD, et comment exercer vos droits, y compris sur les photos.",
+      "kicker": "VOS DONNÉES",
+      "title": "Politique de confidentialité",
+      "lead": "Quelles informations nous recueillons, pourquoi, combien de temps nous les gardons, et comment exercer vos droits.",
+      "intro": [
+        "Le responsable du traitement est Morocco Explorer Tours, [À COMPLÉTER : raison sociale], [À COMPLÉTER : adresse complète], Marrakech, Maroc. Pour toute question ou demande liée à vos données : contact@moroccoexplorertours.com.",
+        "Nous traitons vos données conformément à la loi marocaine n° 09-08 relative à la protection des personnes physiques à l’égard du traitement des données à caractère personnel, sous le contrôle de la Commission nationale de contrôle de la protection des données à caractère personnel (CNDP) — déclaration n° [À COMPLÉTER : numéro de récépissé CNDP]. Lorsque vous résidez dans l’Union européenne ou l’Espace économique européen, nous appliquons également le Règlement général sur la protection des données (RGPD)."
+      ],
+      "sections": [
+        {"heading": "1. Les données que nous recueillons", "content": [
+          "Nous recueillons uniquement les données utiles à votre demande et à votre voyage :",
+          {"list": [
+            "Lorsque vous nous contactez (e-mail, WhatsApp, téléphone, réseaux sociaux) : votre nom, vos coordonnées et le contenu de vos messages.",
+            "Lorsque vous utilisez l’outil « Préparer ma sortie » : le projet est créé dans votre navigateur et rien n’est envoyé automatiquement. Nous recevons ces informations uniquement si vous choisissez de nous les envoyer par e-mail ou WhatsApp (dates, nombre de marcheurs, niveau, envies, choix concernant les photos).",
+            "Lorsque vous réservez : nom des participants, âge ou date de naissance, nationalité et numéro de passeport lorsque l’enregistrement dans un hébergement l’exige, contact d’urgence, préférences alimentaires, informations sur votre assurance et suivi des paiements.",
+            "Informations de santé : uniquement celles que vous nous communiquez pour votre sécurité (article 7 des conditions générales), avec votre consentement explicite.",
+            "Photos et vidéos prises pendant le voyage, utilisées publiquement uniquement avec votre accord (voir l’article 6).",
+            "Données techniques de navigation conservées par notre hébergeur (voir l’article 8)."
+          ]}]},
+        {"heading": "2. Pourquoi nous les utilisons", "content": [
+          {"list": [
+            "Répondre à vos demandes et préparer une proposition (mesures précontractuelles, à votre demande).",
+            "Organiser et réaliser votre voyage : guide, muletier, hébergements, transport (exécution du contrat).",
+            "Assurer votre sécurité en montagne et réagir en cas d’urgence (intérêt vital, consentement pour les données de santé).",
+            "Respecter nos obligations légales : comptabilité, facturation, enregistrement dans les hébergements.",
+            "Publier des photos ou vidéos où vous apparaissez (consentement, que vous pouvez retirer à tout moment)."
+          ]},
+          "Nous ne vendons pas vos données, nous ne les louons pas et nous ne les utilisons pas pour de la publicité ciblée. Nous ne vous envoyons pas d’offres commerciales sans votre accord."]},
+        {"heading": "3. Qui y a accès", "content": [
+          "Seules les personnes qui en ont besoin pour votre voyage reçoivent vos données, et seulement ce qui est nécessaire : notre guide et notre muletier, les gîtes, refuges et familles qui vous hébergent, nos transporteurs, et, en cas d’urgence, les services de secours, les médecins et votre assureur. Nous pouvons aussi être tenus de communiquer certaines informations aux autorités lorsque la loi l’exige.",
+          "Nous utilisons des outils de communication et d’hébergement fournis par des sociétés tierces : messagerie WhatsApp (Meta), notre service de messagerie électronique et notre hébergeur web (Hostinger). Certains de ces prestataires peuvent traiter des données en dehors du Maroc. Nous encadrons ces transferts conformément à la loi 09-08 et, le cas échéant, au RGPD, y compris par les formalités requises auprès de la CNDP."]},
+        {"heading": "4. Combien de temps nous les gardons", "content": [
+          {"list": [
+            "Demandes sans réservation : [À COMPLÉTER : durée, par exemple 12 mois] après notre dernier échange.",
+            "Données de réservation et de facturation : pendant la durée du voyage, puis le temps imposé par les obligations comptables et fiscales [À COMPLÉTER : durée légale applicable, par exemple 10 ans pour les pièces comptables].",
+            "Numéro de passeport et informations de santé : supprimés au plus tard [À COMPLÉTER : durée, par exemple 30 jours] après la fin du voyage, sauf obligation légale contraire.",
+            "Photos et vidéos publiées : tant que votre consentement n’a pas été retiré.",
+            "Journaux techniques du site : selon la durée de conservation de notre hébergeur [À COMPLÉTER : durée indiquée par Hostinger]."
+          ]}]},
+        {"heading": "5. Vos droits", "content": [
+          "Conformément à la loi 09-08, vous disposez d’un droit d’accès, de rectification et d’opposition, pour des motifs légitimes, au traitement de vos données, ainsi que du droit de demander leur suppression lorsqu’elles ne sont plus nécessaires. Si le RGPD s’applique à vous, vous disposez aussi d’un droit à la limitation du traitement et à la portabilité de vos données.",
+          "Vous pouvez retirer à tout moment un consentement donné, notamment pour l’utilisation de vos photos, sans que cela remette en cause les traitements déjà effectués.",
+          "Pour exercer vos droits, écrivez-nous à contact@moroccoexplorertours.com. Nous pouvons vous demander de justifier votre identité et nous vous répondons dans un délai d’un mois. Vous pouvez également adresser une réclamation à la CNDP (www.cndp.ma) ou, si vous résidez dans l’Union européenne, à l’autorité de protection des données de votre pays."]},
+        {"heading": "6. Photos et vidéos", "content": [
+          "Pendant nos voyages, nous pouvons prendre des photos et des vidéos. Nous n’utilisons sur notre site et nos réseaux sociaux une image où vous êtes reconnaissable qu’avec votre accord, donné en cochant la case prévue dans le formulaire de demande ou par écrit. Cet accord est facultatif.",
+          "Vous pouvez le retirer à tout moment et nous demander de retirer une photo ou une vidéo par e-mail à contact@moroccoexplorertours.com ou par WhatsApp : nous la retirons de notre site et de nos comptes dans les meilleurs délais. Nous n’utilisons jamais la photo d’un enfant sans l’accord explicite et écrit de son parent ou de son représentant légal."]},
+        {"heading": "7. Sécurité", "content": [
+          "Nous protégeons vos données par des mesures adaptées : accès limité aux personnes qui en ont besoin, comptes protégés par mot de passe, suppression des informations sensibles dès qu’elles ne sont plus utiles. Aucun système n’étant parfaitement sûr, nous vous demandons de ne jamais nous envoyer de numéro de carte bancaire par message."]},
+        {"heading": "8. Cookies et services tiers sur ce site", "content": [
+          "Ce site n’utilise aucun cookie, aucun outil de mesure d’audience, aucun traceur publicitaire et aucune police ou aucun script chargé depuis un service externe. L’outil « Préparer ma sortie » fonctionne entièrement dans votre navigateur et n’enregistre rien.",
+          "Le site est hébergé par Hostinger, dont les serveurs et le réseau de diffusion enregistrent des données techniques (adresse IP, date et heure, page demandée, type de navigateur) nécessaires à l’affichage et à la sécurité du site.",
+          "Le site contient de simples liens vers des services tiers : WhatsApp, Facebook, Instagram, YouTube, TourRadar et quelques sites d’information. Ces services ne sont pas chargés tant que vous ne cliquez pas sur le lien ; une fois sur leur site, leurs propres politiques de confidentialité s’appliquent. L’espace d’administration réservé à notre équipe utilise Decap CMS (via jsDelivr) et GitHub ; il n’est pas utilisé par les visiteurs.",
+          "Si nous ajoutons un jour un outil de mesure d’audience ou des cookies non essentiels, nous mettrons cette politique à jour et vous demanderons votre accord lorsque la loi l’exige."]},
+        {"heading": "9. Mineurs", "content": [
+          "Les données concernant un mineur nous sont communiquées par son parent ou son représentant légal, qui exerce aussi ses droits en son nom."]},
+        {"heading": "10. Modifications", "content": [
+          "Nous pouvons mettre à jour cette politique pour refléter une évolution de nos services ou de la loi. La date de dernière mise à jour figure en bas de cette page."]}
+      ]
+    },
+    "en": {
+      "meta_title": "Privacy Policy",
+      "meta_description": "How Morocco Explorer Tours collects, uses, keeps and protects your personal data under Moroccan Law 09-08 and the GDPR, and how to exercise your rights, including over photos.",
+      "kicker": "YOUR DATA",
+      "title": "Privacy Policy",
+      "lead": "What information we collect, why, how long we keep it, and how to exercise your rights.",
+      "intro": [
+        "The data controller is Morocco Explorer Tours, [TO BE COMPLETED: company legal name], [TO BE COMPLETED: full address], Marrakech, Morocco. For any question or request about your data: contact@moroccoexplorertours.com.",
+        "We process your data in accordance with Moroccan Law No. 09-08 on the protection of individuals with regard to the processing of personal data, under the supervision of the National Commission for the Control of Personal Data Protection (CNDP) — declaration No. [TO BE COMPLETED: CNDP receipt number]. If you live in the European Union or European Economic Area, we also apply the General Data Protection Regulation (GDPR)."
+      ],
+      "sections": [
+        {"heading": "1. The data we collect", "content": [
+          "We only collect the data needed for your request and your trip:",
+          {"list": [
+            "When you contact us (email, WhatsApp, phone, social media): your name, contact details and the content of your messages.",
+            "When you use the “Plan your trip” tool: the brief is created in your browser and nothing is sent automatically. We only receive this information if you choose to send it to us by email or WhatsApp (dates, number of walkers, level, wishes, your choice about photos).",
+            "When you book: participants’ names, age or date of birth, nationality and passport number where accommodation registration requires it, an emergency contact, dietary preferences, insurance details and payment records.",
+            "Health information: only what you give us for your safety (section 7 of the terms and conditions), with your explicit consent.",
+            "Photos and videos taken during the trip, used publicly only with your consent (see section 6).",
+            "Technical browsing data kept by our hosting provider (see section 8)."
+          ]}]},
+        {"heading": "2. Why we use it", "content": [
+          {"list": [
+            "To answer your enquiries and prepare a proposal (pre-contractual steps at your request).",
+            "To organise and run your trip: guide, muleteer, accommodation, transport (performance of the contract).",
+            "To keep you safe in the mountains and respond to emergencies (vital interests, and consent for health data).",
+            "To meet our legal obligations: accounting, invoicing, accommodation registration.",
+            "To publish photos or videos in which you appear (consent, which you can withdraw at any time)."
+          ]},
+          "We do not sell or rent your data and do not use it for targeted advertising. We do not send you marketing without your consent."]},
+        {"heading": "3. Who can access it", "content": [
+          "Only the people who need your data for your trip receive it, and only what is necessary: our guide and muleteer, the gîtes, refuges and families hosting you, our transport providers and, in an emergency, rescue services, doctors and your insurer. We may also be required to share certain information with the authorities where the law requires it.",
+          "We use communication and hosting tools provided by third-party companies: WhatsApp messaging (Meta), our email service and our web host (Hostinger). Some of these providers may process data outside Morocco. We handle these transfers in accordance with Law 09-08 and, where applicable, the GDPR, including the formalities required by the CNDP."]},
+        {"heading": "4. How long we keep it", "content": [
+          {"list": [
+            "Enquiries without a booking: [TO BE COMPLETED: period, for example 12 months] after our last exchange.",
+            "Booking and invoicing data: for the duration of the trip, then for the period required by accounting and tax rules [TO BE COMPLETED: applicable legal period, for example 10 years for accounting records].",
+            "Passport numbers and health information: deleted no later than [TO BE COMPLETED: period, for example 30 days] after the end of the trip, unless the law requires otherwise.",
+            "Published photos and videos: until you withdraw your consent.",
+            "Website technical logs: according to our host’s retention period [TO BE COMPLETED: period stated by Hostinger]."
+          ]}]},
+        {"heading": "5. Your rights", "content": [
+          "Under Law 09-08, you have the right to access and correct your data, to object to its processing on legitimate grounds, and to ask for its deletion when it is no longer needed. If the GDPR applies to you, you also have the right to restrict processing and to data portability.",
+          "You can withdraw any consent at any time, including for the use of your photos, without affecting processing already carried out.",
+          "To exercise your rights, email contact@moroccoexplorertours.com. We may ask you to prove your identity, and we reply within one month. You can also complain to the CNDP (www.cndp.ma) or, if you live in the European Union, to your country’s data protection authority."]},
+        {"heading": "6. Photos and videos", "content": [
+          "We may take photos and videos during our trips. We only use an image in which you are recognisable on our website and social media with your consent, given by ticking the box on the enquiry form or in writing. Consent is optional.",
+          "You can withdraw it at any time and ask us to remove a photo or video by emailing contact@moroccoexplorertours.com or by WhatsApp: we remove it from our website and accounts as soon as possible. We never use a photo of a child without the explicit written consent of their parent or legal guardian."]},
+        {"heading": "7. Security", "content": [
+          "We protect your data with appropriate measures: access limited to the people who need it, password-protected accounts, and deletion of sensitive information as soon as it is no longer needed. As no system is perfectly secure, please never send us a payment card number by message."]},
+        {"heading": "8. Cookies and third-party services on this website", "content": [
+          "This website uses no cookies, no audience-measurement tools, no advertising trackers and no fonts or scripts loaded from external services. The “Plan your trip” tool runs entirely in your browser and stores nothing.",
+          "The website is hosted by Hostinger, whose servers and content delivery network record technical data (IP address, date and time, page requested, browser type) needed to display and secure the site.",
+          "The website contains plain links to third-party services: WhatsApp, Facebook, Instagram, YouTube, TourRadar and a few information websites. These services are not loaded until you click the link; once on their site, their own privacy policies apply. The administration area used only by our team runs Decap CMS (via jsDelivr) and GitHub; visitors do not use it.",
+          "If we ever add an audience-measurement tool or non-essential cookies, we will update this policy and ask for your consent where the law requires it."]},
+        {"heading": "9. Minors", "content": [
+          "Data about a minor is given to us by their parent or legal guardian, who also exercises the minor’s rights on their behalf."]},
+        {"heading": "10. Changes", "content": [
+          "We may update this policy to reflect changes in our services or the law. The date of the last update is shown at the bottom of this page."]}
       ]
     }
   }
