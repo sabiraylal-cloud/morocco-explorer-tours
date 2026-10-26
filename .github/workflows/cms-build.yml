@@ -1,0 +1,51 @@
+name: Regenerate CMS content
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - data/articles.json
+      - data/tours.json
+      - data/destinations.json
+      - data/site.json
+      - images/uploads/**
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cms-build-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      startsWith(github.event.pull_request.head.ref, 'cms/')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build and validate edited content
+        run: |
+          python3 scripts/build.py
+          python3 scripts/check_site.py
+      - name: Commit generated public pages
+        env:
+          CMS_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          git add -- '*.html' sitemap.xml robots.txt
+          if git diff --cached --quiet; then
+            echo "Generated pages are already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "build: regenerate pages from CMS content"
+          git push origin "HEAD:${CMS_BRANCH}"

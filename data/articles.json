@@ -1,4 +1,5 @@
-[
+{
+  "articles": [
   {
     "slug": "choose-your-morocco-itinerary",
     "title": "Finding Your Morocco: Choose an Itinerary That Fits",
@@ -107,4 +108,5 @@
     "cta_text": "Explore our seven-day food and craft route, then share the meals, workshops and local experiences that interest you.",
     "tour_label": "Explore the food and craft journey"
   }
-]
+  ]
+}
