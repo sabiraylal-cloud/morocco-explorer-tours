@@ -8,7 +8,12 @@ RedirectMatch 301 ^/destinations/marrakech\.html$ /excursions/
 RedirectMatch 301 ^/destinations(/.*)?$ /
 RedirectMatch 301 ^/tours/5-day-atlas-valleys-kasbahs\.html$ /treks/
 RedirectMatch 301 ^/tours(/.*)?$ /treks/
+RedirectMatch 301 ^/sitemap\.html$ /
 
 # Source files are in the repository but are not part of the public website.
 RedirectMatch 404 ^/(data|scripts|docs|artifacts|node_modules|\.github|\.claude|\.git)(/|$)
 RedirectMatch 404 ^/(readme\.md|package\.json|package-lock\.json|\.gitignore)$
+
+# Original photos stay in the repository only; pages use the resized copies in assets/images/.
+# images/uploads/ remains public because CMS uploads are served from there.
+RedirectMatch 404 ^/images/(?!uploads/)

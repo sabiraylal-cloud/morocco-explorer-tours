@@ -13,7 +13,7 @@ function htmlFiles(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(item => {
     if (['node_modules', '.git', 'artifacts', 'admin'].includes(item.name)) return [];
     const full = path.join(dir, item.name);
-    return item.isDirectory() ? htmlFiles(full) : item.name.endsWith('.html') ? [path.relative(root, full)] : [];
+    return item.isDirectory() ? htmlFiles(full) : item.name.endsWith('.html') ? [path.relative(root, full).split(path.sep).join('/')] : [];
   });
 }
 (async () => {

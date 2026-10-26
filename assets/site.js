@@ -171,15 +171,7 @@ document.querySelectorAll('.testimonials').forEach(carousel => {
 document.querySelectorAll('.trip-gallery').forEach(gallery => {
   const links = [...gallery.querySelectorAll('.gallery-link')];
   if (!links.length || typeof HTMLDialogElement === 'undefined') return;
-  const dialog = document.createElement('dialog');
-  dialog.className = 'lightbox';
-  dialog.setAttribute('aria-label', TEXT.gallery);
-  dialog.innerHTML = `<figure><img alt=""><figcaption></figcaption></figure><button type="button" class="lightbox-close" aria-label="${TEXT.close}">×</button><button type="button" class="lightbox-prev" aria-label="${TEXT.previous}">‹</button><button type="button" class="lightbox-next" aria-label="${TEXT.next}">›</button>`;
-  document.body.append(dialog);
-  const image = dialog.querySelector('img');
-  const caption = dialog.querySelector('figcaption');
-  const [close, previous, next] = dialog.querySelectorAll('button');
-  previous.hidden = next.hidden = links.length < 2;
+  let dialog, image, caption;
   let index = 0;
   function show(position) {
     index = (position + links.length) % links.length;
@@ -188,19 +180,32 @@ document.querySelectorAll('.trip-gallery').forEach(gallery => {
     image.alt = link.querySelector('img').alt;
     caption.textContent = link.closest('figure').querySelector('figcaption').textContent;
   }
+  // The dialog is created on first use so the page holds no hidden, empty image until a photo is opened.
+  function createDialog() {
+    dialog = document.createElement('dialog');
+    dialog.className = 'lightbox';
+    dialog.setAttribute('aria-label', TEXT.gallery);
+    dialog.innerHTML = `<figure><img alt=""><figcaption></figcaption></figure><button type="button" class="lightbox-close" aria-label="${TEXT.close}">×</button><button type="button" class="lightbox-prev" aria-label="${TEXT.previous}">‹</button><button type="button" class="lightbox-next" aria-label="${TEXT.next}">›</button>`;
+    document.body.append(dialog);
+    image = dialog.querySelector('img');
+    caption = dialog.querySelector('figcaption');
+    const [close, previous, next] = dialog.querySelectorAll('button');
+    previous.hidden = next.hidden = links.length < 2;
+    close.addEventListener('click', () => dialog.close());
+    previous.addEventListener('click', () => show(index - 1));
+    next.addEventListener('click', () => show(index + 1));
+    dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+    dialog.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft' && links.length > 1) show(index - 1);
+      if (event.key === 'ArrowRight' && links.length > 1) show(index + 1);
+    });
+  }
   links.forEach((link, position) => link.addEventListener('click', event => {
     event.preventDefault();
+    if (!dialog) createDialog();
     show(position);
     dialog.showModal();
   }));
-  close.addEventListener('click', () => dialog.close());
-  previous.addEventListener('click', () => show(index - 1));
-  next.addEventListener('click', () => show(index + 1));
-  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
-  dialog.addEventListener('keydown', event => {
-    if (event.key === 'ArrowLeft' && links.length > 1) show(index - 1);
-    if (event.key === 'ArrowRight' && links.length > 1) show(index + 1);
-  });
 });
 const form = document.querySelector('#trip-form');
 if (form) {
