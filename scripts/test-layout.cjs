@@ -28,8 +28,8 @@ const server = http.createServer((request, response) => {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     const articles = JSON.parse(fs.readFileSync(path.join(root, 'data/articles.json'), 'utf8')).articles;
-    const tours = JSON.parse(fs.readFileSync(path.join(root, 'data/tours.json'), 'utf8')).tours;
-    const files = ['index.html', 'blog/index.html', 'tours/index.html', ...articles.map(article => `blog/${article.slug}.html`)];
+    const trips = JSON.parse(fs.readFileSync(path.join(root, 'data/trips.json'), 'utf8')).trips;
+    const files = ['index.html', 'blog/index.html', 'treks/index.html', 'excursions/index.html', ...articles.map(article => `blog/${article.slug}.html`)];
     fs.mkdirSync(path.join(root, 'artifacts'), { recursive: true });
     async function screenshot(file, name, width) {
       await page.goto(`${base}/${file}`);
@@ -75,7 +75,7 @@ const server = http.createServer((request, response) => {
           assert.ok(layout.menuLeft > layout.logoRight + 12, 'Logo and menu overlap');
           assert.ok(layout.menuHeight >= 44, 'Menu touch target too small');
         }
-        if (file === 'blog/index.html' || file === 'index.html') {
+        if (file === 'blog/index.html') {
           const cards = page.locator('.blog-card');
           const tops = await cards.evaluateAll(elements => elements.map(element => element.getBoundingClientRect().top));
           assert.ok(tops.every(top => Math.abs(top - tops[0]) < 1), 'Blog cards do not form one row');
@@ -90,17 +90,16 @@ const server = http.createServer((request, response) => {
         }
         if (file === 'index.html') {
           const cards = page.locator('.tour-card');
-          assert.equal(await cards.count(), 3);
-          const days = await cards.evaluateAll(elements => elements.map(element => Number(element.dataset.days)));
-          assert.ok(days.includes(5) && days.includes(7));
+          assert.equal(await cards.count(), trips.length);
           for (const href of await cards.locator('.card-photo').evaluateAll(elements => elements.map(element => element.href))) {
             const response = await page.request.get(href);
-            assert.equal(response.status(), 200, `Broken tour link: ${href}`);
+            assert.equal(response.status(), 200, `Broken trip link: ${href}`);
             const slug = new URL(href).pathname.split('/').pop().replace('.html', '');
-            assert.ok(tours.some(tour => tour.slug === slug), `Unknown tour: ${slug}`);
+            assert.ok(trips.some(trip => trip.slug === slug), `Unknown trip: ${slug}`);
           }
         }
-        if (file === 'tours/index.html') assert.equal(await page.locator('.tour-card').count(), tours.length);
+        if (file === 'treks/index.html') assert.equal(await page.locator('.tour-card').count(), trips.filter(trip => trip.type === 'trek').length);
+        if (file === 'excursions/index.html') assert.equal(await page.locator('.tour-card').count(), trips.filter(trip => trip.type === 'excursion').length);
         if (file.startsWith('blog/') && file !== 'blog/index.html') {
           await page.evaluate(() => window.scrollTo(0, 400));
           await page.waitForTimeout(50);
@@ -142,8 +141,7 @@ const server = http.createServer((request, response) => {
     await mobile.waitForTimeout(400);
     assert.ok(await mobile.locator('.blog-grid').evaluate(element => element.scrollLeft > 0), 'Touch swipe failed');
     assert.deepEqual(errors, []);
-    console.log(`PASS: ${files.length} pages at five widths; compact logo/header, aspect ratio, menu touch target, blog rows/snapping/touch swipe, five-word teasers, three homepage tours and links, all ${tours.length} tours retained, slow scroll header and article anchors. Screenshots in artifacts/.`);
-    console.log(`Available tour durations: ${[...new Set(tours.map(tour => tour.days))].sort((a, b) => a - b).join(', ')}. ${tours.some(tour => tour.days === 4) ? '4-day tour found.' : 'No existing 4-day tour; exact homepage combination remains unavailable.'}`);
+    console.log(`PASS: ${files.length} pages at five widths; compact logo/header, aspect ratio, menu touch target, blog rows/snapping/touch swipe, five-word teasers, all ${trips.length} homepage trips and links, slow scroll header and article anchors. Screenshots in artifacts/.`);
   } finally {
     if (browser) await browser.close();
     await new Promise(resolve => server.close(resolve));

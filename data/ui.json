@@ -1,274 +1,1004 @@
 {
-  "_note": {"fr": "Textes de l’interface et des pages. Chaque clé contient la version française (fr) et anglaise (en). Les balises <br> et <em> sont autorisées.", "en": "Interface and page text. Each key holds the French (fr) and English (en) version. <br> and <em> tags are allowed."},
-
-  "html_lang": {"fr": "fr", "en": "en"},
-  "og_locale": {"fr": "fr_FR", "en": "en_GB"},
-  "lang_name": {"fr": "Français", "en": "English"},
-  "lang_switch_label": {"fr": "Choisir la langue", "en": "Choose language"},
-  "skip": {"fr": "Aller au contenu", "en": "Skip to content"},
-  "main_nav": {"fr": "Navigation principale", "en": "Main navigation"},
-  "menu": {"fr": "Menu", "en": "Menu"},
-  "nav_tours": {"fr": "Nos circuits", "en": "Our tours"},
-  "nav_destinations": {"fr": "Destinations", "en": "Destinations"},
-  "nav_blog": {"fr": "Blog", "en": "Blog"},
-  "nav_about": {"fr": "Notre histoire", "en": "Our story"},
-  "nav_plan": {"fr": "Préparer mon voyage", "en": "Plan your trip"},
-  "location": {"fr": "Marrakech, Maroc", "en": "Marrakech, Morocco"},
-
-  "footer_tagline": {"fr": "Des voyages privés à travers le Maroc.<br>Pensés avec soin. Vécus à votre façon.", "en": "Private journeys through Morocco.<br>Thoughtfully planned. Personally explored."},
-  "footer_location": {"fr": "MARRAKECH · MAROC", "en": "MARRAKECH · MOROCCO"},
-  "footer_explore": {"fr": "Explorer", "en": "Explore"},
-  "footer_all": {"fr": "Tous nos voyages", "en": "All journeys"},
-  "footer_know": {"fr": "Mieux nous connaître", "en": "Get to know us"},
-  "footer_blog": {"fr": "Blog voyage", "en": "Travel blog"},
-  "footer_dests": {"fr": "Nos destinations", "en": "Our destinations"},
-  "footer_story": {"fr": "Notre histoire", "en": "Our story"},
-  "footer_faq": {"fr": "Questions fréquentes", "en": "Common questions"},
-  "footer_privacy": {"fr": "Politique de confidentialité", "en": "Privacy Policy"},
-  "footer_terms": {"fr": "Conditions générales", "en": "Terms and Conditions"},
-  "footer_own": {"fr": "Un voyage qui vous ressemble", "en": "A journey of your own"},
-  "footer_own_text": {"fr": "Un lieu en tête ?<br>Partez de ce qui vous inspire.", "en": "Have a place in mind?<br>Start with what inspires you."},
-  "footer_brief": {"fr": "Créer mon projet de voyage ↗", "en": "Create your trip brief ↗"},
-  "footer_motto": {"fr": "Routes du désert. Instants de médina. Votre Maroc.", "en": "Desert roads. Medina moments. Your Morocco."},
-  "footer_sitemap": {"fr": "Plan du site", "en": "Sitemap"},
-
-  "category_sahara-escapes": {"fr": "Escapades au Sahara", "en": "Sahara escapes"},
-  "category_cities-desert": {"fr": "Villes & désert", "en": "Cities & desert"},
-  "category_grand-journeys": {"fr": "Grands circuits", "en": "Grand journeys"},
-  "city_Fes": {"fr": "Fès", "en": "Fes"},
-  "city_Tangier": {"fr": "Tanger", "en": "Tangier"},
-
-  "cta_kicker": {"fr": "UN VOYAGE À VOTRE IMAGE", "en": "MAKE IT PERSONAL"},
-  "cta_title": {"fr": "Votre Maroc commence<br>par un peu de curiosité.", "en": "Your Morocco starts<br>with a little curiosity."},
-  "cta_text": {"fr": "Un lieu coup de cœur, quelques dates, une grande envie. Construisons un voyage autour de vous.", "en": "A favourite place, a few dates, a big idea. Build a journey around you."},
-  "cta_button": {"fr": "Préparons votre voyage ↗", "en": "Let’s plan your journey ↗"},
-
-  "card_days": {"fr": "{days} JOURS", "en": "{days} DAYS"},
-  "card_night": {"fr": "{nights} NUIT", "en": "{nights} NIGHT"},
-  "card_nights": {"fr": "{nights} NUITS", "en": "{nights} NIGHTS"},
-  "card_private": {"fr": "Privé · Sur mesure", "en": "Private · Tailor-made"},
-  "card_explore": {"fr": "Découvrir le voyage", "en": "Explore trip"},
-  "read_more": {"fr": "Lire la suite", "en": "Read More"},
-
-  "journal_kicker": {"fr": "LE CARNET MAROC", "en": "THE MOROCCO JOURNAL"},
-  "journal_title": {"fr": "Quelques conseils avant de partir.", "en": "A little insight before you go."},
-  "all_articles": {"fr": "Tous les articles", "en": "All blog articles"},
-
-  "reviews_kicker": {"fr": "ILS ONT VOYAGÉ AVEC NOUS", "en": "TRAVELLER EXPERIENCES"},
-  "reviews_title": {"fr": "Les voyageurs derrière nos circuits.", "en": "The people behind the journeys."},
-  "reviews_slide": {"fr": "{i} sur {n}", "en": "{i} of {n}"},
-  "reviews_stars": {"fr": "{rating} sur 5 étoiles", "en": "{rating} out of 5 stars"},
-  "reviews_show": {"fr": "Voir l’avis de {name}", "en": "Show testimonial from {name}"},
-  "reviews_track": {"fr": "Avis de voyageurs", "en": "Traveller testimonials"},
-  "reviews_prev": {"fr": "Avis précédent", "en": "Previous testimonial"},
-  "reviews_next": {"fr": "Avis suivant", "en": "Next testimonial"},
-  "reviews_choose": {"fr": "Choisir un avis", "en": "Choose a testimonial"},
-  "reviews_source": {"fr": "Résumés d’avis publiés sur {link}.", "en": "Review summaries from {link}."},
-  "reviews_tourradar": {"fr": "Lire les avis sur TourRadar", "en": "Read reviews on TourRadar"},
-
-  "contact_details": {"fr": "Coordonnées", "en": "Contact Details"},
-  "email": {"fr": "E-mail", "en": "Email"},
-  "phone_whatsapp": {"fr": "Téléphone / WhatsApp", "en": "Phone / WhatsApp"},
-  "location_label": {"fr": "Localisation", "en": "Location"},
-  "last_updated": {"fr": "Dernière mise à jour : 9 octobre 2026", "en": "Last updated: October 9, 2026"},
-  "home": {"fr": "Accueil", "en": "Home"},
-  "overview": {"fr": "Présentation", "en": "Overview"},
-  "breadcrumb": {"fr": "Fil d’Ariane", "en": "Breadcrumb"},
-  "crumb_tours": {"fr": "Circuits", "en": "Tours"},
-  "crumb_destinations": {"fr": "Destinations", "en": "Destinations"},
-
+  "_note": {
+    "fr": "Textes de l’interface et des pages. Chaque clé contient la version française (fr) et anglaise (en). Les balises <br> et <em> sont autorisées.",
+    "en": "Interface and page text. Each key holds the French (fr) and English (en) version. <br> and <em> tags are allowed."
+  },
+  "html_lang": {
+    "fr": "fr",
+    "en": "en"
+  },
+  "og_locale": {
+    "fr": "fr_FR",
+    "en": "en_GB"
+  },
+  "lang_name": {
+    "fr": "Français",
+    "en": "English"
+  },
+  "lang_switch_label": {
+    "fr": "Choisir la langue",
+    "en": "Choose language"
+  },
+  "skip": {
+    "fr": "Aller au contenu",
+    "en": "Skip to content"
+  },
+  "main_nav": {
+    "fr": "Navigation principale",
+    "en": "Main navigation"
+  },
+  "menu": {
+    "fr": "Menu",
+    "en": "Menu"
+  },
+  "nav_about": {
+    "fr": "Notre histoire",
+    "en": "Our story"
+  },
+  "nav_plan": {
+    "fr": "Préparer ma sortie",
+    "en": "Plan your trip"
+  },
+  "location": {
+    "fr": "Marrakech, Maroc",
+    "en": "Marrakech, Morocco"
+  },
+  "footer_tagline": {
+    "fr": "Treks et excursions dans le Haut Atlas.<br>Au départ de Marrakech, avec des guides de la montagne.",
+    "en": "Treks and day trips in the High Atlas.<br>From Marrakech, with mountain guides."
+  },
+  "footer_location": {
+    "fr": "MARRAKECH · HAUT ATLAS",
+    "en": "MARRAKECH · HIGH ATLAS"
+  },
+  "footer_explore": {
+    "fr": "Partir",
+    "en": "Explore"
+  },
+  "footer_know": {
+    "fr": "Mieux nous connaître",
+    "en": "Get to know us"
+  },
+  "footer_blog": {
+    "fr": "Blog voyage",
+    "en": "Travel blog"
+  },
+  "footer_story": {
+    "fr": "Notre histoire",
+    "en": "Our story"
+  },
+  "footer_faq": {
+    "fr": "Questions fréquentes",
+    "en": "Common questions"
+  },
+  "footer_privacy": {
+    "fr": "Politique de confidentialité",
+    "en": "Privacy Policy"
+  },
+  "footer_terms": {
+    "fr": "Conditions générales",
+    "en": "Terms and Conditions"
+  },
+  "footer_own": {
+    "fr": "Votre sortie dans l’Atlas",
+    "en": "Your Atlas trip"
+  },
+  "footer_own_text": {
+    "fr": "Un sommet, une vallée, un village ?<br>Dites-nous ce qui vous tente.",
+    "en": "A summit, a valley, a village?<br>Tell us what appeals to you."
+  },
+  "footer_brief": {
+    "fr": "Préparer ma sortie ↗",
+    "en": "Plan your trip ↗"
+  },
+  "footer_motto": {
+    "fr": "Sentiers de l’Atlas. Villages berbères. Votre montagne.",
+    "en": "Atlas trails. Berber villages. Your mountain."
+  },
+  "footer_sitemap": {
+    "fr": "Plan du site",
+    "en": "Sitemap"
+  },
+  "cta_kicker": {
+    "fr": "VOTRE SORTIE DANS L’ATLAS",
+    "en": "YOUR ATLAS TRIP"
+  },
+  "cta_title": {
+    "fr": "Votre Atlas commence<br>par une envie de marcher.",
+    "en": "Your Atlas starts<br>with a wish to walk."
+  },
+  "cta_text": {
+    "fr": "Une date, un niveau, une idée de sommet ou de village. Construisons votre sortie ensemble.",
+    "en": "A date, a fitness level, a summit or a village in mind. Let’s plan your trip together."
+  },
+  "cta_button": {
+    "fr": "Préparons votre sortie ↗",
+    "en": "Let’s plan your trip ↗"
+  },
+  "card_days": {
+    "fr": "{days} JOURS",
+    "en": "{days} DAYS"
+  },
+  "card_night": {
+    "fr": "{nights} NUIT",
+    "en": "{nights} NIGHT"
+  },
+  "card_nights": {
+    "fr": "{nights} NUITS",
+    "en": "{nights} NIGHTS"
+  },
+  "read_more": {
+    "fr": "Lire la suite",
+    "en": "Read More"
+  },
+  "journal_kicker": {
+    "fr": "LE CARNET MAROC",
+    "en": "THE MOROCCO JOURNAL"
+  },
+  "all_articles": {
+    "fr": "Tous les articles",
+    "en": "All blog articles"
+  },
+  "reviews_kicker": {
+    "fr": "ILS ONT VOYAGÉ AVEC NOUS",
+    "en": "TRAVELLER EXPERIENCES"
+  },
+  "reviews_title": {
+    "fr": "Ils nous ont fait confiance.",
+    "en": "They travelled with us."
+  },
+  "reviews_slide": {
+    "fr": "{i} sur {n}",
+    "en": "{i} of {n}"
+  },
+  "reviews_stars": {
+    "fr": "{rating} sur 5 étoiles",
+    "en": "{rating} out of 5 stars"
+  },
+  "reviews_show": {
+    "fr": "Voir l’avis de {name}",
+    "en": "Show testimonial from {name}"
+  },
+  "reviews_track": {
+    "fr": "Avis de voyageurs",
+    "en": "Traveller testimonials"
+  },
+  "reviews_prev": {
+    "fr": "Avis précédent",
+    "en": "Previous testimonial"
+  },
+  "reviews_next": {
+    "fr": "Avis suivant",
+    "en": "Next testimonial"
+  },
+  "reviews_choose": {
+    "fr": "Choisir un avis",
+    "en": "Choose a testimonial"
+  },
+  "reviews_source": {
+    "fr": "Résumés d’avis publiés sur {link}.",
+    "en": "Review summaries from {link}."
+  },
+  "reviews_tourradar": {
+    "fr": "Lire les avis sur TourRadar",
+    "en": "Read reviews on TourRadar"
+  },
+  "contact_details": {
+    "fr": "Coordonnées",
+    "en": "Contact Details"
+  },
+  "email": {
+    "fr": "E-mail",
+    "en": "Email"
+  },
+  "phone_whatsapp": {
+    "fr": "Téléphone / WhatsApp",
+    "en": "Phone / WhatsApp"
+  },
+  "location_label": {
+    "fr": "Localisation",
+    "en": "Location"
+  },
+  "last_updated": {
+    "fr": "Dernière mise à jour : 9 octobre 2026",
+    "en": "Last updated: October 9, 2026"
+  },
+  "home": {
+    "fr": "Accueil",
+    "en": "Home"
+  },
+  "overview": {
+    "fr": "Présentation",
+    "en": "Overview"
+  },
+  "breadcrumb": {
+    "fr": "Fil d’Ariane",
+    "en": "Breadcrumb"
+  },
   "faqs": {
     "fr": [
-      ["Est-ce un circuit privé ?", "Oui. Ces voyages sont organisés uniquement pour vous et vos compagnons de route. L’itinéraire peut être adapté à votre groupe."],
-      ["Peut-on modifier l’itinéraire ou ajouter des nuits ?", "Oui. Chaque itinéraire est un point de départ. Des nuits supplémentaires rendent les longues routes plus confortables et vous laissent plus de temps là où vous vous plaisez."],
-      ["Que comprend mon devis ?", "Votre proposition finale doit préciser le transport, l’hébergement, les repas, les guides, les activités et les droits d’entrée. Relisez les prestations incluses et les conditions de réservation avant tout paiement."],
-      ["Pouvez-vous organiser l’accueil à l’aéroport ?", "Oui. La prise en charge et le retour à l’aéroport s’organisent selon l’itinéraire convenu. Communiquez-nous vos horaires de vol et votre hébergement pour confirmer le point de rendez-vous et le programme."],
-      ["Comment choisir son expérience dans le désert ?", "Merzouga, M’Hamid et l’Erg Chegaga impliquent des itinéraires et des temps de route différents. Choisissez selon les jours dont vous disposez, le confort souhaité et le reste de votre voyage."]
+      [
+        "Faut-il être sportif pour gravir le Toubkal ?",
+        "Il faut une bonne condition physique et l’habitude de marcher plusieurs heures en montée. En été, l’ascension ne demande pas de technique d’escalade, mais la journée du sommet est longue. Si vous hésitez, l’excursion à Imlil est une bonne première approche."
+      ],
+      [
+        "Quelle est la meilleure saison ?",
+        "Pour les treks, de la fin du printemps à l’automne. En hiver et au début du printemps, le Toubkal est enneigé et demande crampons et piolet. Les excursions à la journée se font toute l’année, selon la météo."
+      ],
+      [
+        "Où dort-on pendant les treks ?",
+        "Selon l’itinéraire, en gîte d’étape, au refuge du Toubkal ou chez des familles des villages. Le confort est simple, souvent en chambres ou dortoirs partagés."
+      ],
+      [
+        "Que faut-il emporter ?",
+        "De bonnes chaussures de marche, des vêtements chauds et coupe-vent, une lampe frontale, de la crème solaire et une gourde. Les mules portent les bagages : gardez l’essentiel dans un sac de journée."
+      ],
+      [
+        "Venez-vous nous chercher à Marrakech ?",
+        "Oui. Le transport depuis Marrakech est compris dans toutes nos sorties. Indiquez-nous l’adresse de votre hébergement pour fixer le lieu et l’heure de prise en charge."
+      ]
     ],
     "en": [
-      ["Is this a private tour?", "Yes. These journeys are planned for you and the people travelling with you. The route can be adapted around your group."],
-      ["Can we change the route or add nights?", "Yes. Treat each itinerary as a starting point. Extra nights can make long driving routes more comfortable and leave more time for places you enjoy."],
-      ["What does my quote include?", "Your final proposal should confirm transport, accommodation, meals, guides, activities and any entry fees. Review the written inclusions and booking terms before making a payment."],
-      ["Can you arrange an airport pickup?", "Airport pickup and drop-off can be arranged around the agreed route. Share your flight times and accommodation so the meeting point and travel schedule can be confirmed."],
-      ["How do we choose a desert experience?", "Merzouga, Mhamid and Erg Chegaga involve different routes and travel times. Choose around the days you have available, your comfort preferences and the rest of your itinerary."]
+      [
+        "Do I need to be fit to climb Toubkal?",
+        "You need good fitness and experience of walking uphill for several hours. In summer the ascent needs no climbing technique, but summit day is long. If you are unsure, the Imlil day trip is a good first taste."
+      ],
+      [
+        "When is the best season?",
+        "For treks, from late spring to autumn. In winter and early spring Toubkal is snow-covered and requires crampons and an ice axe. Day trips run all year round, weather permitting."
+      ],
+      [
+        "Where do we sleep on the treks?",
+        "Depending on the route, in mountain gîtes, at the Toubkal refuge or with village families. Comfort is simple, often in shared rooms or dormitories."
+      ],
+      [
+        "What should I bring?",
+        "Good walking boots, warm and windproof layers, a head torch, sun cream and a water bottle. Mules carry the luggage: keep the essentials in a daypack."
+      ],
+      [
+        "Do you pick us up in Marrakech?",
+        "Yes. Transport from Marrakech is included on every trip. Send us your accommodation address so we can confirm the pickup place and time."
+      ]
     ]
   },
-
-  "home_meta_title": {"fr": "Circuits privés au Maroc & voyages sur mesure", "en": "Private Morocco Tours & Tailor-Made Journeys"},
-  "home_meta_description": {"fr": "Découvrez nos circuits privés au Maroc : Sahara, villes impériales et montagnes de l’Atlas. Trouvez votre itinéraire et préparez un voyage personnalisé.", "en": "Explore private Morocco tours through the Sahara, imperial cities and Atlas Mountains. Find your route and plan a personalised journey."},
-  "social_alt": {"fr": "Caravane de dromadaires traversant les dunes au coucher du soleil", "en": "Camel caravan crossing the dunes at sunset"},
-  "hero_alt": {"fr": "Voyageurs souriants avec leur guide Morocco Explorer Tours devant la mosquée Hassan II à Casablanca", "en": "Smiling travellers with their Morocco Explorer Tours guide at the Hassan II Mosque in Casablanca"},
-  "hero_kicker": {"fr": "VOYAGES PRIVÉS · REGARDS LOCAUX", "en": "PRIVATE JOURNEYS · LOCAL PERSPECTIVES"},
-  "hero_title": {"fr": "Un peu plus loin.<br>Un peu plus près<br>du <em>Maroc.</em>", "en": "A little further.<br>A little closer<br>to <em>Morocco.</em>"},
-  "hero_text": {"fr": "Du premier matin dans la médina au dernier coucher de soleil sur les dunes.<br> Découvrez le Maroc au fil d’un voyage qui vous ressemble.", "en": "From the first medina morning to the last desert sunset.<br> Discover Morocco on a journey that feels like yours."},
-  "hero_find": {"fr": "Trouver mon voyage ↗", "en": "Find your journey ↗"},
-  "hero_create": {"fr": "Créer le mien", "en": "Create your own"},
-  "hero_caption": {"fr": "MOSQUÉE HASSAN II, CASABLANCA", "en": "HASSAN II MOSQUE, CASABLANCA"},
-  "promise_1": {"fr": "Un voyage rien que pour vous", "en": "Your own private journey"},
-  "promise_2": {"fr": "Connaissance locale, attention personnelle", "en": "Local knowledge, personal care"},
-  "promise_3": {"fr": "Un itinéraire construit autour de vous", "en": "A route shaped around you"},
-  "collection_kicker": {"fr": "NOTRE COLLECTION DE VOYAGES", "en": "THE JOURNEY COLLECTION"},
-  "collection_title": {"fr": "Des routes différentes.<br>Un Maroc extraordinaire.", "en": "Different roads.<br>Extraordinary Morocco."},
-  "collection_text": {"fr": "Trois points de départ pour écrire votre propre histoire.<br>Choisissez votre route, puis faites-la vôtre.", "en": "Three starting points for a story of your own.<br>Find your route, then make it yours."},
-  "collection_all": {"fr": "Voir tous les circuits ↗", "en": "Explore all tours ↗"},
-  "departures_kicker": {"fr": "COMMENCEZ LÀ OÙ VOUS ATTERRISSEZ", "en": "BEGIN WHERE YOU LAND"},
-  "departures_title": {"fr": "Par où commencer ?", "en": "Where do we start?"},
-  "departures_custom": {"fr": "sur mesure", "en": "custom"},
-  "places_kicker": {"fr": "UN PAYS, MILLE VISAGES", "en": "MANY WORLDS, ONE MOROCCO"},
-  "places_title": {"fr": "Laissez parler votre curiosité.", "en": "Follow your curiosity."},
-  "places_all": {"fr": "Toutes les destinations ↗", "en": "All destinations ↗"},
-  "story_alt": {"fr": "Thé servi près du feu lors d’une soirée dans le désert", "en": "Tea being poured beside a fire during a desert evening"},
-  "story_note": {"fr": "L’accueil fait partie du voyage.", "en": "A warm welcome is part of the journey."},
-  "story_kicker": {"fr": "LE MAROC, AVEC UNE ATTENTION PERSONNELLE", "en": "MOROCCO, WITH A PERSONAL TOUCH"},
-  "story_title": {"fr": "Les lieux restent en mémoire.<br>Les rencontres aussi.", "en": "The places stay with you.<br>So do the people."},
-  "story_p1": {"fr": "Il y a le Maroc que l’on vient voir. Et celui que l’on découvre en chemin : un thé partagé après une longue route, une conversation dans la médina, un moment pour s’arrêter et tout savourer.", "en": "There is the Morocco you come to see. And the Morocco you discover along the way: tea shared after a long drive, a conversation in the medina, a moment to stop and take it all in."},
-  "story_p2": {"fr": "Chez Morocco Explorer Tours, nous mettons notre connaissance du terrain et une attention personnelle au service de voyages privés. Dites-nous ce qui compte pour vous, et nous construirons l’itinéraire ensemble.", "en": "At Morocco Explorer Tours, we bring local knowledge and personal attention to private journeys. Tell us what matters to you, and we’ll help shape the route."},
-  "story_link": {"fr": "Faire connaissance ↗", "en": "Get to know us ↗"},
-  "story_values": {"fr": [["Vos proches", "Une expérience privée"], ["Votre rythme", "Un itinéraire personnalisé"]], "en": [["Your people", "A private experience"], ["Your pace", "A personalised route"]]},
-  "steps_kicker": {"fr": "DE L’IDÉE À L’ITINÉRAIRE", "en": "FROM AN IDEA TO AN ITINERARY"},
-  "steps_title": {"fr": "Faites de la place à l’expérience.", "en": "Make room for the experience."},
-  "steps_text": {"fr": "Un programme clair avant de partir.<br>Plus de temps pour profiter sur place.", "en": "A clear plan before you go.<br>More time to enjoy being there."},
+  "home_meta_title": {
+    "fr": "Treks et excursions dans le Haut Atlas au départ de Marrakech",
+    "en": "High Atlas Treks and Day Trips from Marrakech"
+  },
+  "home_meta_description": {
+    "fr": "Treks de 4 jours jusqu’au sommet du Toubkal, nuits chez l’habitant dans la vallée de l’Oued Zat et excursions à la journée depuis Marrakech : Imlil, Ourika, Ouzoud, trois vallées.",
+    "en": "4-day treks to the summit of Toubkal, homestays in the Oued Zat valley and day trips from Marrakech: Imlil, Ourika, Ouzoud and the three valleys."
+  },
+  "social_alt": {
+    "fr": "Mule chargée sur un sentier du Haut Atlas, sommets enneigés en arrière-plan",
+    "en": "Loaded mule on a High Atlas trail, with snowy peaks behind"
+  },
+  "hero_alt": {
+    "fr": "Voyageurs souriants avec leur guide Morocco Explorer Tours devant la mosquée Hassan II à Casablanca",
+    "en": "Smiling travellers with their Morocco Explorer Tours guide at the Hassan II Mosque in Casablanca"
+  },
+  "hero_kicker": {
+    "fr": "TREKS & EXCURSIONS · HAUT ATLAS",
+    "en": "TREKS & DAY TRIPS · HIGH ATLAS"
+  },
+  "hero_title": {
+    "fr": "Le Haut Atlas,<br>à deux pas<br>de <em>Marrakech.</em>",
+    "en": "The High Atlas,<br>just beyond<br><em>Marrakech.</em>"
+  },
+  "hero_text": {
+    "fr": "Treks jusqu’au sommet du Toubkal, nuits chez l’habitant et excursions dans les vallées berbères.<br> Avec des guides de la montagne, au départ de Marrakech.",
+    "en": "Treks to the summit of Toubkal, homestays and day trips into the Berber valleys.<br> With mountain guides, from Marrakech."
+  },
+  "hero_find": {
+    "fr": "Voir nos treks ↗",
+    "en": "See our treks ↗"
+  },
+  "hero_create": {
+    "fr": "Excursions à la journée",
+    "en": "Day trips"
+  },
+  "promise_1": {
+    "fr": "Guides de la montagne",
+    "en": "Local mountain guides"
+  },
+  "promise_2": {
+    "fr": "Sorties privées, à votre rythme",
+    "en": "Private trips, at your pace"
+  },
+  "promise_3": {
+    "fr": "Départ et retour à Marrakech",
+    "en": "From and back to Marrakech"
+  },
+  "story_note": {
+    "fr": "Les vallées vivent au rythme des troupeaux et des saisons.",
+    "en": "The valleys live to the rhythm of flocks and seasons."
+  },
+  "story_kicker": {
+    "fr": "LA MONTAGNE, CÔTÉ VILLAGES",
+    "en": "THE MOUNTAINS, VILLAGE SIDE"
+  },
+  "story_title": {
+    "fr": "On vient pour les sommets.<br>On repart avec les rencontres.",
+    "en": "You come for the summits.<br>You leave with the people."
+  },
+  "story_p1": {
+    "fr": "Il y a les sentiers, les cols et la lumière sur les crêtes. Et il y a ce qu’on découvre en chemin : un thé partagé dans une maison de pierre, un berger qui rentre avec son troupeau, un repas préparé par la famille qui vous accueille.",
+    "en": "There are the trails, the passes and the light on the ridges. And there is what you find along the way: tea shared in a stone house, a shepherd heading home with his flock, a meal cooked by the family hosting you."
+  },
+  "story_p2": {
+    "fr": "Morocco Explorer Tours organise des treks et des excursions privés au départ de Marrakech, avec des guides de montagne et des familles des villages du Haut Atlas. Dites-nous votre niveau et vos envies : nous adaptons l’itinéraire.",
+    "en": "Morocco Explorer Tours organises private treks and day trips from Marrakech, with mountain guides and families from High Atlas villages. Tell us your level and what you would like to do: we adapt the route."
+  },
+  "story_link": {
+    "fr": "Faire connaissance ↗",
+    "en": "Get to know us ↗"
+  },
+  "story_values": {
+    "fr": [
+      [
+        "À votre rythme",
+        "Un itinéraire adapté à votre niveau"
+      ],
+      [
+        "Avec les habitants",
+        "Gîtes, refuges et familles d’accueil"
+      ]
+    ],
+    "en": [
+      [
+        "Your pace",
+        "A route matched to your level"
+      ],
+      [
+        "With local people",
+        "Gîtes, refuges and host families"
+      ]
+    ]
+  },
+  "steps_kicker": {
+    "fr": "DE L’IDÉE AU SENTIER",
+    "en": "FROM IDEA TO TRAIL"
+  },
+  "steps_title": {
+    "fr": "Bien préparer, mieux marcher.",
+    "en": "Plan well, walk better."
+  },
+  "steps_text": {
+    "fr": "Un programme clair avant de partir.<br>L’esprit libre une fois sur le sentier.",
+    "en": "A clear plan before you leave.<br>A free mind once on the trail."
+  },
   "home_steps": {
-    "fr": [["01 / RÊVER", "Choisissez ce qui vous attire", "Désert, médinas, montagnes… ou un peu de tout. Partez d’un circuit ou de votre propre liste d’envies."], ["02 / CONSTRUIRE", "Rassemblez les détails", "Associez vos dates et votre ville d’arrivée à un itinéraire réaliste, avec le temps qu’il faut."], ["03 / EXPLORER", "Un programme clair, des journées sereines", "Confirmez l’itinéraire, les prestations incluses et les détails de prise en charge avant le départ."]],
-    "en": [["01 / DREAM", "Choose what draws you in", "Desert, medinas, mountains — or a little of each. Start with a route or your own wish list."], ["02 / SHAPE", "Bring the details together", "Match your dates and arrival city with a realistic route and the right amount of time."], ["03 / EXPLORE", "Know the plan, enjoy the day", "Confirm your itinerary, inclusions and pickup details before your journey begins."]]
+    "fr": [
+      [
+        "01 / CHOISIR",
+        "Trek ou excursion ?",
+        "Une journée dans les vallées ou quatre jours jusqu’au Toubkal : choisissez selon votre temps et votre forme."
+      ],
+      [
+        "02 / PRÉPARER",
+        "Les bons détails",
+        "Dates, niveau, matériel, prise en charge à Marrakech : nous faisons le point ensemble avant le départ."
+      ],
+      [
+        "03 / MARCHER",
+        "Le reste, on s’en occupe",
+        "Transport, guide, mules, nuits et repas : vous n’avez plus qu’à profiter de la montagne."
+      ]
+    ],
+    "en": [
+      [
+        "01 / CHOOSE",
+        "Trek or day trip?",
+        "A day in the valleys or four days to Toubkal: choose according to your time and fitness."
+      ],
+      [
+        "02 / PREPARE",
+        "The right details",
+        "Dates, level, equipment, pickup in Marrakech: we go through it all together before you leave."
+      ],
+      [
+        "03 / WALK",
+        "We handle the rest",
+        "Transport, guide, mules, nights and meals: all you have to do is enjoy the mountains."
+      ]
+    ]
   },
-  "faq_kicker": {"fr": "QUELQUES BONNES QUESTIONS", "en": "A FEW GOOD QUESTIONS"},
-  "faq_title": {"fr": "Avant que<br>l’aventure commence.", "en": "Before the<br>adventure begins."},
-  "faq_link": {"fr": "Commencer à préparer ↗", "en": "Start planning ↗"},
-
-  "blog_meta_title": {"fr": "Blog voyage Maroc : itinéraires, Sahara & culture", "en": "Morocco Travel Blog: Itineraries, Sahara & Culture"},
-  "blog_meta_description": {"fr": "Cinq guides de voyage originaux sur le Maroc : choisir son itinéraire, partir au Sahara, la meilleure saison, la route de Marrakech à Merzouga, la cuisine et la culture locales.", "en": "Read five original Morocco travel guides covering itinerary planning, Sahara tours, seasons, Marrakech to Merzouga and local food and culture."},
-  "blog_title": {"fr": "Blog voyage Maroc", "en": "Morocco travel blog"},
-  "blog_lead": {"fr": "Itinéraires, saisons et expériences du quotidien pour vous aider à préparer votre propre voyage au Maroc.", "en": "Routes, seasons and everyday experiences to help you plan your own Morocco journey."},
-  "blog_list_label": {"fr": "Articles de voyage", "en": "Travel articles"},
-  "article_in_this": {"fr": "Dans cet article", "en": "In this article"},
-  "article_further": {"fr": "Pour aller plus loin :", "en": "Further reading:"},
-  "article_enquire": {"fr": "Parlez-nous de votre voyage ↗", "en": "Enquire about your journey ↗"},
-
-  "tours_meta_title": {"fr": "Notre collection de circuits privés au Maroc", "en": "Private Morocco Tour Collection"},
-  "tours_meta_description": {"fr": "Comparez nos itinéraires privés au Maroc par ville de départ, type de voyage et durée. Des circuits de 2 à 16 jours, à adapter selon vos envies.", "en": "Compare private Morocco itineraries by departure city, experience and duration. Explore 2 to 16-day routes and tailor your own journey."},
-  "tours_kicker": {"fr": "TROUVEZ VOTRE VOYAGE", "en": "FIND YOUR JOURNEY"},
-  "tours_title": {"fr": "Un itinéraire pour<br>chaque <em>aventure.</em>", "en": "A route for your kind<br>of <em>adventure.</em>"},
-  "tours_lead": {"fr": "Découvrez nos idées d’itinéraires privés. Chacun s’adapte à vos dates, à vos envies et au rythme qui vous convient.", "en": "Explore our private itinerary ideas. Each can be adapted around your dates, interests and preferred pace."},
-  "filter_departure": {"fr": "Départ", "en": "Departure"},
-  "filter_all_departures": {"fr": "Tous les départs", "en": "All departures"},
-  "filter_experience": {"fr": "Type de voyage", "en": "Experience"},
-  "filter_all_experiences": {"fr": "Tous les types", "en": "All experiences"},
-  "filter_duration": {"fr": "Durée", "en": "Duration"},
-  "filter_any_length": {"fr": "Toutes durées", "en": "Any length"},
-  "filter_days": {"fr": "{days} jours", "en": "{days} days"},
-  "filter_reset": {"fr": "Réinitialiser les filtres", "en": "Reset filters"},
-  "results_count": {"fr": "{count} voyages à découvrir", "en": "{count} journeys to explore"},
-  "empty_title": {"fr": "Une autre combinaison ?", "en": "A different combination?"},
-  "empty_text": {"fr": "Aucun circuit ne correspond à ces filtres. Réinitialisez-les ou créez votre projet de voyage sur mesure.", "en": "No listed route matches these filters. Reset them or create a custom trip brief."},
-  "empty_button": {"fr": "Préparer un voyage sur mesure ↗", "en": "Plan a custom journey ↗"},
-  "collection_note": {"fr": "Les prix sont établis sur devis. Hébergements, activités et repas sont confirmés dans votre proposition écrite.", "en": "Prices are quoted individually. Accommodation, activities and meals are confirmed in your written proposal."},
-
-  "tour_private": {"fr": "VOYAGE PRIVÉ", "en": "PRIVATE JOURNEY"},
-  "tour_days": {"fr": "{days} jours", "en": "{days} days"},
-  "tour_night": {"fr": "{nights} nuit", "en": "{nights} night"},
-  "tour_nights": {"fr": "{nights} nuits", "en": "{nights} nights"},
-  "tour_start": {"fr": "Départ", "en": "Start here"},
-  "tour_end": {"fr": "Arrivée", "en": "Finish here"},
-  "tour_personalise": {"fr": "Personnaliser ce voyage ↗", "en": "Personalise this journey ↗"},
-  "tour_route_kicker": {"fr": "VOTRE ITINÉRAIRE", "en": "YOUR ROUTE"},
-  "tour_daybyday": {"fr": "Un programme jour par jour, comme point de départ.", "en": "A day-by-day starting point."},
-  "tour_flexible": {"fr": "Ces itinéraires sont flexibles. Confirmez avec nous le programme final et les étapes de nuit avant de réserver.", "en": "These itinerary ideas are flexible. Confirm the final schedule and overnight locations with us before booking."},
-  "tour_day": {"fr": "JOUR", "en": "DAY"},
-  "tour_places": {"fr": "Les lieux traversés", "en": "Places along the way"},
-  "tour_good_kicker": {"fr": "BON À SAVOIR", "en": "GOOD TO KNOW"},
-  "tour_pace": {"fr": "Le rythme de ce voyage", "en": "The pace of this trip"},
-  "tour_details_title": {"fr": "Personnalisez les détails", "en": "Make the details yours"},
-  "tour_details": {"fr": ["Choisissez votre style d’hébergement.", "Confirmez le transport, les guides et les activités.", "Vérifiez les repas, les droits d’entrée et ce qui n’est pas inclus.", "Convenez des lieux de prise en charge et de dépose."], "en": ["Choose your accommodation style.", "Confirm transport, guides and activities.", "Review meals, entry fees and exclusions.", "Agree on pickup and drop-off details."]},
-  "tour_price": {"fr": "<strong>Prix sur demande.</strong><br>Le devis dépend de vos dates et de la taille du groupe.", "en": "<strong>Price on request.</strong><br>Your dates and group size shape the quote."},
-  "tour_brief": {"fr": "Créer mon projet de voyage ↗", "en": "Build your trip brief ↗"},
-  "tour_type": {"fr": "Voyage privé", "en": "Private travel"},
-
-  "dests_meta_title": {"fr": "Destinations au Maroc : désert, villes et montagnes", "en": "Morocco Destinations: Desert, Cities & Mountains"},
-  "dests_meta_description": {"fr": "Découvrez le Maroc à travers huit guides de destination : expériences, conseils pratiques et circuits privés pour les relier.", "en": "Discover Morocco through eight destination guides, with experiences, practical planning notes and private tours that connect them."},
-  "dests_kicker": {"fr": "DES LIEUX QUI ATTIRENT", "en": "PLACES WITH A PULL"},
-  "dests_title": {"fr": "Un seul pays.<br>Mille façons de le <em>ressentir.</em>", "en": "One country.<br>So many ways to <em>feel it.</em>"},
-  "dests_lead": {"fr": "Trouvez les lieux qui vous parlent, puis reliez-les dans un voyage qui a du sens.", "en": "Find the places that speak to you, then connect them in a journey that makes sense."},
-  "dest_meta_title": {"fr": "{name} : guide de voyage et circuits privés", "en": "{name} Travel Guide & Private Tours"},
-  "dest_meta_suffix": {"fr": " Idées de voyage et conseils pratiques pour préparer votre séjour.", "en": " Explore trip ideas and practical planning notes."},
-  "dest_add": {"fr": "Ajouter à mon voyage ↗", "en": "Add to your journey ↗"},
-  "dest_time_kicker": {"fr": "DU TEMPS BIEN EMPLOYÉ", "en": "TIME WELL SPENT"},
-  "dest_explore": {"fr": "Quelques façons de découvrir.", "en": "A few ways to explore."},
-  "dest_plan_kicker": {"fr": "BIEN PRÉPARER", "en": "PLAN WITH PERSPECTIVE"},
-  "dest_before": {"fr": "Avant de partir", "en": "Before you go"},
-  "dest_connect_kicker": {"fr": "RELIER LES LIEUX", "en": "CONNECT THE PLACES"},
-  "dest_journeys": {"fr": "Les voyages qui passent par ici.", "en": "Journeys that take you here."},
-  "dest_all_tours": {"fr": "Tous les circuits ↗", "en": "All tours ↗"},
-
-  "about_meta_title": {"fr": "Qui sommes-nous : voyages privés au Maroc", "en": "About Our Private Morocco Journeys"},
-  "about_meta_description": {"fr": "Découvrez l’approche de Morocco Explorer Tours : connaissance du terrain, préparation personnalisée et voyages privés construits autour de vos envies.", "en": "Meet the approach behind Morocco Explorer Tours: local knowledge, personal planning and private journeys shaped around your interests."},
-  "about_kicker": {"fr": "NOTRE HISTOIRE", "en": "OUR STORY"},
-  "about_title": {"fr": "Un accueil personnel.<br>Un regard plus <em>large.</em>", "en": "A personal welcome.<br>A wider <em>perspective.</em>"},
-  "about_lead": {"fr": "Morocco Explorer Tours met sa connaissance du pays et une organisation soignée au service de votre voyage privé.", "en": "Morocco Explorer Tours brings local knowledge and thoughtful planning to your private journey."},
-  "about_alt": {"fr": "Des voyageurs et leur hôte lors d’un voyage au Maroc", "en": "Travellers and their host on a journey through Morocco"},
-  "about_care_kicker": {"fr": "VOYAGER AVEC DES GENS QUI S’IMPLIQUENT", "en": "TRAVEL WITH PEOPLE WHO CARE"},
-  "about_care_title": {"fr": "Bien plus que les lieux<br>de votre itinéraire.", "en": "More than the places<br>on your itinerary."},
-  "about_p1": {"fr": "Un itinéraire bien pensé laisse de la place aux petits moments. Nous vous aidons à relier les villes, le désert et les montagnes du Maroc selon le temps dont vous disposez.", "en": "A well-planned route gives you room to enjoy the small moments. We help you connect Morocco’s cities, desert and mountains in a way that suits the time you have."},
-  "about_p2": {"fr": "Notre approche est personnelle : comprendre ce que vous voulez vivre, parler ensemble des distances et convenir des détails avant le départ.", "en": "Our approach is personal: understand what you want to experience, talk through the distances, and agree on the details before you travel."},
-  "about_p3": {"fr": "D’une courte escapade dans le désert à un long voyage à travers le pays, votre séjour est organisé pour votre groupe uniquement.", "en": "From a short desert escape to a longer journey across the country, your trip is planned for your own group."},
-  "about_button": {"fr": "Parlez-nous de votre voyage ↗", "en": "Tell us about your journey ↗"},
+  "faq_kicker": {
+    "fr": "QUELQUES BONNES QUESTIONS",
+    "en": "A FEW GOOD QUESTIONS"
+  },
+  "faq_title": {
+    "fr": "Avant de<br>prendre le sentier.",
+    "en": "Before you<br>hit the trail."
+  },
+  "faq_link": {
+    "fr": "Préparer ma sortie ↗",
+    "en": "Plan your trip ↗"
+  },
+  "blog_meta_title": {
+    "fr": "Blog voyage Maroc : itinéraires, Sahara & culture",
+    "en": "Morocco Travel Blog: Itineraries, Sahara & Culture"
+  },
+  "blog_meta_description": {
+    "fr": "Cinq guides de voyage originaux sur le Maroc : choisir son itinéraire, partir au Sahara, la meilleure saison, la route de Marrakech à Merzouga, la cuisine et la culture locales.",
+    "en": "Read five original Morocco travel guides covering itinerary planning, Sahara tours, seasons, Marrakech to Merzouga and local food and culture."
+  },
+  "blog_title": {
+    "fr": "Blog voyage Maroc",
+    "en": "Morocco travel blog"
+  },
+  "blog_lead": {
+    "fr": "Itinéraires, saisons et expériences du quotidien pour vous aider à préparer votre propre voyage au Maroc.",
+    "en": "Routes, seasons and everyday experiences to help you plan your own Morocco journey."
+  },
+  "blog_list_label": {
+    "fr": "Articles de voyage",
+    "en": "Travel articles"
+  },
+  "article_in_this": {
+    "fr": "Dans cet article",
+    "en": "In this article"
+  },
+  "article_further": {
+    "fr": "Pour aller plus loin :",
+    "en": "Further reading:"
+  },
+  "article_enquire": {
+    "fr": "Parlez-nous de votre voyage ↗",
+    "en": "Enquire about your journey ↗"
+  },
+  "tour_type": {
+    "fr": "Randonnée en montagne",
+    "en": "Mountain hiking"
+  },
+  "about_meta_title": {
+    "fr": "Notre histoire : guides et villages du Haut Atlas",
+    "en": "Our Story: High Atlas Guides and Villages"
+  },
+  "about_meta_description": {
+    "fr": "Morocco Explorer Tours organise des treks et des excursions privés dans le Haut Atlas au départ de Marrakech, avec des guides de montagne et des familles des villages.",
+    "en": "Morocco Explorer Tours organises private treks and day trips in the High Atlas from Marrakech, with mountain guides and village families."
+  },
+  "about_kicker": {
+    "fr": "NOTRE HISTOIRE",
+    "en": "OUR STORY"
+  },
+  "about_title": {
+    "fr": "Les sentiers de l’Atlas,<br>partagés avec <em>vous.</em>",
+    "en": "Atlas trails,<br>shared with <em>you.</em>"
+  },
+  "about_lead": {
+    "fr": "Basé à Marrakech, au pied du Haut Atlas, Morocco Explorer Tours vous emmène marcher dans la montagne, à la rencontre des villages qui la font vivre.",
+    "en": "Based in Marrakech at the foot of the High Atlas, Morocco Explorer Tours takes you walking in the mountains, to meet the villages that bring them to life."
+  },
+  "about_care_kicker": {
+    "fr": "MARCHER AVEC DES GENS DU PAYS",
+    "en": "WALK WITH PEOPLE WHO LIVE HERE"
+  },
+  "about_care_title": {
+    "fr": "Plus qu’un sommet<br>sur une carte.",
+    "en": "More than a summit<br>on a map."
+  },
+  "about_p1": {
+    "fr": "Une belle sortie, c’est un itinéraire adapté à votre forme, des étapes réalistes et du temps pour profiter des villages. Nous préparons chaque sortie avec vous : niveau, saison, matériel et rythme.",
+    "en": "A good trip means a route matched to your fitness, realistic stages and time to enjoy the villages. We plan every trip with you: level, season, equipment and pace."
+  },
+  "about_p2": {
+    "fr": "Sur le terrain, vous marchez avec un guide de montagne, les mules portent les bagages et vous dormez en gîte, en refuge ou chez des familles qui vous ouvrent leur porte.",
+    "en": "On the trail you walk with a mountain guide, mules carry the luggage and you sleep in gîtes, refuges or with families who open their homes to you."
+  },
+  "about_p3": {
+    "fr": "D’une journée à Imlil à quatre jours jusqu’au sommet du Toubkal, chaque sortie est privée et organisée pour votre groupe.",
+    "en": "From a day in Imlil to four days to the summit of Toubkal, every trip is private and organised for your group."
+  },
+  "about_button": {
+    "fr": "Parlez-nous de votre projet ↗",
+    "en": "Tell us about your plans ↗"
+  },
   "about_steps": {
-    "fr": [["01 / PERSONNEL", "Construit autour de vos envies", "Partagez les lieux que vous voulez voir et votre façon de voyager. L’itinéraire part de là."], ["02 / RÉFLÉCHI", "Honnêtes sur les distances", "Certains voyages impliquent de longues routes. Nous annonçons clairement le rythme et vous aidons à choisir où ajouter du temps."], ["03 / CLAIR", "Des détails décidés ensemble", "Connaissez vos hébergements, vos activités et les prestations incluses avant de vous engager."]],
-    "en": [["01 / PERSONAL", "Built around your interests", "Share the places you want to see and the kind of travel you enjoy. The route starts there."], ["02 / CONSIDERED", "Honest about the distances", "Some journeys involve long drives. We make the pace clear and help you decide where to add time."], ["03 / CLEAR", "Details agreed together", "Know your accommodation, activities and inclusions before you commit to a booking."]]
+    "fr": [
+      [
+        "01 / LOCAL",
+        "Des guides de la montagne",
+        "Nos guides connaissent les sentiers, les villages et la météo de l’Atlas. Ils adaptent le rythme à votre groupe."
+      ],
+      [
+        "02 / CLAIR",
+        "Des niveaux annoncés franchement",
+        "Temps de marche, altitude, conditions selon la saison : vous savez à quoi vous attendre avant de réserver."
+      ],
+      [
+        "03 / RESPECTUEUX",
+        "Avec les villages",
+        "Gîtes, familles d’accueil et muletiers des vallées : votre voyage profite aussi à ceux qui vous reçoivent."
+      ]
+    ],
+    "en": [
+      [
+        "01 / LOCAL",
+        "Mountain guides",
+        "Our guides know the trails, villages and weather of the Atlas. They adapt the pace to your group."
+      ],
+      [
+        "02 / CLEAR",
+        "Honest about difficulty",
+        "Walking times, altitude, seasonal conditions: you know what to expect before you book."
+      ],
+      [
+        "03 / RESPECTFUL",
+        "With the villages",
+        "Gîtes, host families and valley muleteers: your trip also benefits the people who welcome you."
+      ]
+    ]
   },
-
-  "plan_meta_title": {"fr": "Préparer votre voyage privé au Maroc", "en": "Plan Your Private Morocco Trip"},
-  "plan_meta_description": {"fr": "Créez votre projet de voyage au Maroc : dates, ville d’arrivée, nombre de voyageurs et envies. Gardez vos idées pour un voyage sur mesure.", "en": "Create a personal Morocco trip brief with your travel dates, arrival city, group size and interests. Save your ideas for a tailor-made journey."},
-  "plan_kicker": {"fr": "VOTRE VOYAGE, À VOTRE FAÇON", "en": "YOUR JOURNEY, YOUR WAY"},
-  "plan_title": {"fr": "Donnons à vos idées<br>un point de <em>départ.</em>", "en": "Let’s give your ideas<br>a place to <em>begin.</em>"},
-  "plan_lead": {"fr": "Choisissez vos dates, partagez vos envies et rassemblez les premiers détails de votre voyage au Maroc.", "en": "Choose your dates, share your interests and bring the first details of your Morocco journey together."},
-  "plan_aside_kicker": {"fr": "QUELQUES DÉTAILS SUFFISENT", "en": "A FEW DETAILS GO A LONG WAY"},
-  "plan_aside_title": {"fr": "Partez de ce que vous savez.", "en": "Start with what you know."},
-  "plan_aside_text": {"fr": "Pas encore d’itinéraire précis ? Aucun problème. Votre ville d’arrivée et le temps dont vous disposez suffisent pour commencer.", "en": "No fixed route yet? That’s fine. Your arrival city and the time you have are a useful starting point."},
-  "plan_steps": {"fr": ["Choisissez votre période de voyage.", "Dites-nous qui vous accompagne.", "Ajoutez les lieux que vous rêvez de voir."], "en": ["Choose your travel window.", "Tell us who is coming.", "Add the places you would love to see."]},
-  "plan_notice": {"fr": "Cet outil crée un projet de voyage que vous pouvez copier ou télécharger. Rien n’est envoyé automatiquement, et il ne s’agit pas d’une réservation.", "en": "This planner creates a trip brief you can copy or download. Nothing is sent automatically, and this is not a booking."},
-  "optional": {"fr": "(facultatif)", "en": "(optional)"},
-  "form_name": {"fr": "Votre nom", "en": "Your name"},
-  "form_month": {"fr": "Mois du voyage", "en": "Travel month"},
-  "form_arrival": {"fr": "Ville d’arrivée", "en": "Arrival city"},
-  "form_not_sure": {"fr": "Je ne sais pas encore", "en": "Not sure yet"},
-  "form_arrival_cities": {"fr": ["Marrakech", "Casablanca", "Fès", "Tanger", "Agadir"], "en": ["Marrakech", "Casablanca", "Fes", "Tangier", "Agadir"]},
-  "form_travellers": {"fr": "Nombre de voyageurs", "en": "Number of travellers"},
-  "form_days": {"fr": "Jours au Maroc", "en": "Days in Morocco"},
-  "form_comfort": {"fr": "Hébergement souhaité", "en": "Accommodation preference"},
-  "form_comfort_options": {"fr": ["Aidez-moi à choisir", "Riads et hôtels confortables", "Hébergements haut de gamme", "Un mélange des deux"], "en": ["Help me choose", "Comfortable riads and hotels", "Premium stays", "A mix of styles"]},
-  "form_interest": {"fr": "Circuit ou destination", "en": "Tour or destination"},
-  "form_interest_placeholder": {"fr": "Un circuit, un lieu, ou un peu des deux", "en": "A route, a place, or a little of both"},
-  "form_notes": {"fr": "Qu’est-ce qui rendrait ce voyage unique pour vous ?", "en": "What would make this trip yours?"},
-  "form_notes_placeholder": {"fr": "Couchers de soleil dans le désert, cuisine locale, rythme tranquille…", "en": "Desert sunsets, local food, a slower pace…"},
-  "form_note": {"fr": "Vos informations restent dans ce navigateur jusqu’à ce que vous choisissiez de les copier, de les télécharger ou de les partager. Merci de ne pas indiquer de données de passeport ou de paiement. {privacy}.", "en": "Your details stay in this browser until you choose to copy, download or share them. Please leave out passport and payment information. {privacy}."},
-  "form_privacy_link": {"fr": "En savoir plus sur la confidentialité", "en": "Privacy details"},
-  "form_submit": {"fr": "Créer mon projet de voyage ↗", "en": "Create my trip brief ↗"},
-  "noscript_title": {"fr": "Préparez votre projet", "en": "Plan your brief"},
-  "noscript_text": {"fr": "Notez votre ville d’arrivée, le mois du voyage, le nombre de voyageurs, la durée du séjour et les lieux que vous souhaitez voir. Activez JavaScript pour utiliser l’outil interactif.", "en": "Write down your arrival city, travel month, number of travellers, trip length and the places you want to see. Enable JavaScript to use the interactive planner."},
-  "result_kicker": {"fr": "PRÊT POUR LA SUITE", "en": "READY FOR YOUR NEXT STEP"},
-  "result_title": {"fr": "Votre projet de voyage au Maroc", "en": "Your Morocco trip brief"},
-  "result_text": {"fr": "Relisez votre projet ci-dessous. Il n’a pas encore été envoyé.", "en": "Review your brief below. It has not been sent."},
-  "result_copy": {"fr": "Copier", "en": "Copy brief"},
-  "result_download": {"fr": "Télécharger (.txt)", "en": "Download .txt"},
-  "result_share": {"fr": "Envoyer ma demande ↗", "en": "Share your enquiry ↗"},
-  "result_edit": {"fr": "← Modifier mes informations", "en": "← Edit my details"},
-
-  "contact_meta_title": {"fr": "Nous contacter", "en": "Contact"},
-  "contact_meta_description": {"fr": "Contactez Morocco Explorer Tours pour un voyage privé au Maroc, un itinéraire sur mesure ou des conseils pour préparer votre séjour.", "en": "Contact Morocco Explorer Tours for private Morocco journeys, custom itineraries, and planning help."},
-  "contact_kicker": {"fr": "CONTACT", "en": "CONTACT"},
-  "contact_title": {"fr": "Préparons une escapade au Maroc à votre rythme.", "en": "Plan a Morocco escape that fits your pace."},
-  "contact_lead": {"fr": "Partagez vos dates, vos envies et votre façon de voyager : nous vous aiderons à construire un itinéraire privé autour de vous.", "en": "Share your dates, interests, and travel style, and we will help shape a private itinerary around you."},
-  "contact_email_text": {"fr": "Pour les itinéraires sur mesure, les circuits privés et toutes vos questions sur la préparation du voyage.", "en": "For custom itineraries, private tours, and travel planning inquiries."},
-  "contact_whatsapp": {"fr": "Écrivez-nous sur WhatsApp", "en": "Message us on WhatsApp"},
-  "contact_follow": {"fr": "Suivez-nous", "en": "Follow us"},
-  "social_label": {"fr": "Nos réseaux sociaux officiels", "en": "Official social media channels"},
-
-  "notfound_meta_title": {"fr": "Page introuvable", "en": "Page Not Found"},
-  "notfound_meta_description": {"fr": "Retrouvez votre chemin sur Morocco Explorer Tours.", "en": "Find your way back to Morocco Explorer Tours."},
-  "notfound_kicker": {"fr": "UN PETIT DÉTOUR", "en": "A SMALL DETOUR"},
-  "notfound_title": {"fr": "Ce chemin s’arrête ici.", "en": "This path ends here."},
-  "notfound_lead": {"fr": "Cette page a peut-être changé d’adresse. Votre prochain voyage, lui, vous attend toujours.", "en": "The page may have moved. Your next journey is still waiting."},
-  "notfound_home": {"fr": "Retour à l’accueil ↗", "en": "Back to home ↗"},
-  "notfound_tours": {"fr": "Voir les circuits", "en": "Explore tours"}
+  "plan_meta_title": {
+    "fr": "Préparer votre trek ou votre excursion dans l’Atlas",
+    "en": "Plan Your Atlas Trek or Day Trip"
+  },
+  "plan_meta_description": {
+    "fr": "Créez votre projet de sortie dans le Haut Atlas : dates, nombre de marcheurs, niveau et envies. Nous vous répondons avec un programme adapté.",
+    "en": "Create your High Atlas trip brief: dates, number of walkers, fitness level and wishes. We reply with a programme that suits you."
+  },
+  "plan_kicker": {
+    "fr": "VOTRE SORTIE, À VOTRE FAÇON",
+    "en": "YOUR TRIP, YOUR WAY"
+  },
+  "plan_title": {
+    "fr": "Donnons à vos envies<br>un point de <em>départ.</em>",
+    "en": "Let’s give your plans<br>a place to <em>begin.</em>"
+  },
+  "plan_lead": {
+    "fr": "Choisissez vos dates, indiquez votre niveau et le trek ou l’excursion qui vous tente.",
+    "en": "Choose your dates, tell us your fitness level and the trek or day trip you have in mind."
+  },
+  "plan_aside_kicker": {
+    "fr": "QUELQUES DÉTAILS SUFFISENT",
+    "en": "A FEW DETAILS GO A LONG WAY"
+  },
+  "plan_aside_title": {
+    "fr": "Partez de ce que vous savez.",
+    "en": "Start with what you know."
+  },
+  "plan_aside_text": {
+    "fr": "Pas encore d’idée précise ? Aucun problème. Une période et votre niveau de marche suffisent pour commencer.",
+    "en": "No fixed idea yet? That’s fine. A time window and your walking level are enough to start."
+  },
+  "plan_steps": {
+    "fr": [
+      "Choisissez une date ou une période.",
+      "Dites-nous qui vous accompagne et votre niveau.",
+      "Ajoutez le trek ou l’excursion qui vous tente."
+    ],
+    "en": [
+      "Choose a date or a time window.",
+      "Tell us who is coming and your level.",
+      "Add the trek or day trip you have in mind."
+    ]
+  },
+  "plan_notice": {
+    "fr": "Cet outil crée un projet de voyage que vous pouvez copier ou télécharger. Rien n’est envoyé automatiquement, et il ne s’agit pas d’une réservation.",
+    "en": "This planner creates a trip brief you can copy or download. Nothing is sent automatically, and this is not a booking."
+  },
+  "optional": {
+    "fr": "(facultatif)",
+    "en": "(optional)"
+  },
+  "form_name": {
+    "fr": "Votre nom",
+    "en": "Your name"
+  },
+  "form_month": {
+    "fr": "Mois du voyage",
+    "en": "Travel month"
+  },
+  "form_travellers": {
+    "fr": "Nombre de marcheurs",
+    "en": "Number of walkers"
+  },
+  "form_days": {
+    "fr": "Nombre de jours",
+    "en": "Number of days"
+  },
+  "form_interest": {
+    "fr": "Trek ou excursion",
+    "en": "Trek or day trip"
+  },
+  "form_interest_placeholder": {
+    "fr": "Le Toubkal, Imlil, l’Oued Zat…",
+    "en": "Toubkal, Imlil, Oued Zat…"
+  },
+  "form_notes": {
+    "fr": "Qu’est-ce qui rendrait cette sortie unique pour vous ?",
+    "en": "What would make this trip yours?"
+  },
+  "form_notes_placeholder": {
+    "fr": "Rythme tranquille, nuit chez l’habitant, sommet du Toubkal…",
+    "en": "Gentle pace, a homestay night, the Toubkal summit…"
+  },
+  "form_note": {
+    "fr": "Vos informations restent dans ce navigateur jusqu’à ce que vous choisissiez de les copier, de les télécharger ou de les partager. Merci de ne pas indiquer de données de passeport ou de paiement. {privacy}.",
+    "en": "Your details stay in this browser until you choose to copy, download or share them. Please leave out passport and payment information. {privacy}."
+  },
+  "form_privacy_link": {
+    "fr": "En savoir plus sur la confidentialité",
+    "en": "Privacy details"
+  },
+  "form_submit": {
+    "fr": "Créer mon projet de sortie ↗",
+    "en": "Create my trip brief ↗"
+  },
+  "noscript_title": {
+    "fr": "Préparez votre projet",
+    "en": "Plan your brief"
+  },
+  "noscript_text": {
+    "fr": "Notez vos dates, le nombre de marcheurs, votre niveau et le trek ou l’excursion qui vous intéresse. Activez JavaScript pour utiliser l’outil interactif.",
+    "en": "Write down your dates, number of walkers, walking level and the trek or day trip you are interested in. Enable JavaScript to use the interactive planner."
+  },
+  "result_kicker": {
+    "fr": "PRÊT POUR LA SUITE",
+    "en": "READY FOR YOUR NEXT STEP"
+  },
+  "result_title": {
+    "fr": "Votre projet de sortie dans l’Atlas",
+    "en": "Your Atlas trip brief"
+  },
+  "result_text": {
+    "fr": "Relisez votre projet ci-dessous. Il n’a pas encore été envoyé.",
+    "en": "Review your brief below. It has not been sent."
+  },
+  "result_copy": {
+    "fr": "Copier",
+    "en": "Copy brief"
+  },
+  "result_download": {
+    "fr": "Télécharger (.txt)",
+    "en": "Download .txt"
+  },
+  "result_share": {
+    "fr": "Envoyer ma demande ↗",
+    "en": "Share your enquiry ↗"
+  },
+  "result_edit": {
+    "fr": "← Modifier mes informations",
+    "en": "← Edit my details"
+  },
+  "contact_meta_title": {
+    "fr": "Nous contacter",
+    "en": "Contact"
+  },
+  "contact_meta_description": {
+    "fr": "Contactez Morocco Explorer Tours pour un trek ou une excursion dans le Haut Atlas au départ de Marrakech.",
+    "en": "Contact Morocco Explorer Tours for a High Atlas trek or day trip from Marrakech."
+  },
+  "contact_kicker": {
+    "fr": "CONTACT",
+    "en": "CONTACT"
+  },
+  "contact_title": {
+    "fr": "Préparons votre sortie dans l’Atlas.",
+    "en": "Let’s plan your Atlas trip."
+  },
+  "contact_lead": {
+    "fr": "Partagez vos dates, votre niveau et vos envies : nous vous aidons à choisir le trek ou l’excursion qui vous convient.",
+    "en": "Share your dates, your fitness level and your wishes: we will help you choose the right trek or day trip."
+  },
+  "contact_email_text": {
+    "fr": "Pour les treks, les excursions à la journée et toutes vos questions sur la préparation.",
+    "en": "For treks, day trips and any questions about planning."
+  },
+  "contact_whatsapp": {
+    "fr": "Écrivez-nous sur WhatsApp",
+    "en": "Message us on WhatsApp"
+  },
+  "contact_follow": {
+    "fr": "Suivez-nous",
+    "en": "Follow us"
+  },
+  "social_label": {
+    "fr": "Nos réseaux sociaux officiels",
+    "en": "Official social media channels"
+  },
+  "notfound_meta_title": {
+    "fr": "Page introuvable",
+    "en": "Page Not Found"
+  },
+  "notfound_meta_description": {
+    "fr": "Retrouvez votre chemin sur Morocco Explorer Tours.",
+    "en": "Find your way back to Morocco Explorer Tours."
+  },
+  "notfound_kicker": {
+    "fr": "UN PETIT DÉTOUR",
+    "en": "A SMALL DETOUR"
+  },
+  "notfound_title": {
+    "fr": "Ce chemin s’arrête ici.",
+    "en": "This path ends here."
+  },
+  "notfound_lead": {
+    "fr": "Cette page a peut-être changé d’adresse. Votre prochain voyage, lui, vous attend toujours.",
+    "en": "The page may have moved. Your next journey is still waiting."
+  },
+  "notfound_home": {
+    "fr": "Retour à l’accueil ↗",
+    "en": "Back to home ↗"
+  },
+  "notfound_tours": {
+    "fr": "Voir nos treks",
+    "en": "See our treks"
+  },
+  "nav_treks": {
+    "fr": "Nos treks",
+    "en": "Our treks"
+  },
+  "nav_excursions": {
+    "fr": "Nos excursions",
+    "en": "Day trips"
+  },
+  "nav_contact": {
+    "fr": "Contact",
+    "en": "Contact"
+  },
+  "footer_treks": {
+    "fr": "Treks de plusieurs jours",
+    "en": "Multi-day treks"
+  },
+  "footer_excursions": {
+    "fr": "Excursions à la journée",
+    "en": "Day trips"
+  },
+  "footer_toubkal": {
+    "fr": "Ascension du Toubkal",
+    "en": "Toubkal ascent"
+  },
+  "footer_oued_zat": {
+    "fr": "Trek chez l’habitant",
+    "en": "Homestay trek"
+  },
+  "footer_contact": {
+    "fr": "Contact",
+    "en": "Contact"
+  },
+  "card_day_trip": {
+    "fr": "1 JOURNÉE",
+    "en": "FULL DAY"
+  },
+  "card_from": {
+    "fr": "Privé · Départ de Marrakech",
+    "en": "Private · From Marrakech"
+  },
+  "card_view_trek": {
+    "fr": "Voir le trek",
+    "en": "View trek"
+  },
+  "card_view_excursion": {
+    "fr": "Voir l’excursion",
+    "en": "View day trip"
+  },
+  "photo_coming": {
+    "fr": "Photo à venir",
+    "en": "Photo coming soon"
+  },
+  "type_trek": {
+    "fr": "TREK DE {days} JOURS",
+    "en": "{days}-DAY TREK"
+  },
+  "type_excursion": {
+    "fr": "EXCURSION À LA JOURNÉE",
+    "en": "DAY TRIP"
+  },
+  "treks_section_kicker": {
+    "fr": "NOS TREKS",
+    "en": "OUR TREKS"
+  },
+  "treks_section_title": {
+    "fr": "Plusieurs jours<br>dans la montagne.",
+    "en": "Several days<br>in the mountains."
+  },
+  "treks_section_text": {
+    "fr": "Deux itinéraires différents jusqu’au sommet du Toubkal, et une traversée chez l’habitant dans la vallée de l’Oued Zat.<br>Guide, mules, nuits et repas compris.",
+    "en": "Two different routes to the summit of Toubkal, and a homestay crossing of the Oued Zat valley.<br>Guide, mules, nights and meals included."
+  },
+  "treks_section_all": {
+    "fr": "Tous nos treks ↗",
+    "en": "All our treks ↗"
+  },
+  "excursions_section_kicker": {
+    "fr": "NOS EXCURSIONS",
+    "en": "DAY TRIPS"
+  },
+  "excursions_section_title": {
+    "fr": "Une journée<br>dans l’Atlas.",
+    "en": "One day<br>in the Atlas."
+  },
+  "excursions_section_text": {
+    "fr": "Villages, vallées et cascades à moins de trois heures de Marrakech.<br>Départ le matin, retour le soir.",
+    "en": "Villages, valleys and waterfalls within three hours of Marrakech.<br>Leave in the morning, back in the evening."
+  },
+  "excursions_section_all": {
+    "fr": "Toutes nos excursions ↗",
+    "en": "All day trips ↗"
+  },
+  "treks_meta_title": {
+    "fr": "Nos treks dans le Haut Atlas : Toubkal et vallée de l’Oued Zat",
+    "en": "Our High Atlas Treks: Toubkal and the Oued Zat Valley"
+  },
+  "treks_meta_description": {
+    "fr": "Trois treks de 4 jours au départ de Marrakech : deux itinéraires jusqu’au sommet du Toubkal (4 167 m) et une traversée chez l’habitant dans la vallée de l’Oued Zat.",
+    "en": "Three 4-day treks from Marrakech: two routes to the summit of Toubkal (4,167 m) and a homestay crossing of the Oued Zat valley."
+  },
+  "treks_kicker": {
+    "fr": "NOS TREKS",
+    "en": "OUR TREKS"
+  },
+  "treks_title": {
+    "fr": "Plusieurs jours<br>au rythme de la <em>montagne.</em>",
+    "en": "Several days<br>at the pace of the <em>mountains.</em>"
+  },
+  "treks_lead": {
+    "fr": "Trois treks de 4 jours au départ de Marrakech. Le transport, le guide, les mules, les nuits en gîte, en refuge ou chez l’habitant, et tous les repas sont compris.",
+    "en": "Three 4-day treks from Marrakech. Transport, guide, mules, nights in gîtes, refuges or family homes, and all meals are included."
+  },
+  "excursions_meta_title": {
+    "fr": "Excursions d’une journée depuis Marrakech : Imlil, Ourika, Ouzoud",
+    "en": "Day Trips from Marrakech: Imlil, Ourika, Ouzoud"
+  },
+  "excursions_meta_description": {
+    "fr": "Quatre excursions à la journée au départ de Marrakech : Imlil et les villages de l’Atlas, la vallée de l’Ourika, les cascades d’Ouzoud et les trois vallées.",
+    "en": "Four day trips from Marrakech: Imlil and the Atlas villages, the Ourika valley, the Ouzoud waterfalls and the three valleys."
+  },
+  "excursions_kicker": {
+    "fr": "NOS EXCURSIONS",
+    "en": "DAY TRIPS"
+  },
+  "excursions_title": {
+    "fr": "Une journée<br>pour respirer l’<em>Atlas.</em>",
+    "en": "One day<br>to breathe the <em>Atlas.</em>"
+  },
+  "excursions_lead": {
+    "fr": "Quatre excursions à la journée au départ de Marrakech, entre villages berbères, vallées et cascades. Prise en charge le matin à votre hébergement, retour en fin de journée.",
+    "en": "Four day trips from Marrakech, among Berber villages, valleys and waterfalls. Pickup from your accommodation in the morning, back by the end of the day."
+  },
+  "listing_note": {
+    "fr": "Toutes nos sorties sont privées. Les prix sont établis sur demande selon la date et la taille du groupe.",
+    "en": "All our trips are private. Prices are quoted on request according to the date and group size."
+  },
+  "fact_duration": {
+    "fr": "Durée",
+    "en": "Duration"
+  },
+  "fact_start": {
+    "fr": "Départ",
+    "en": "Start"
+  },
+  "fact_level": {
+    "fr": "Niveau",
+    "en": "Level"
+  },
+  "fact_key": {
+    "fr": "Temps fort",
+    "en": "Highlight"
+  },
+  "fact_road": {
+    "fr": "Route",
+    "en": "Drive"
+  },
+  "trek_duration": {
+    "fr": "{days} jours / {nights} nuits",
+    "en": "{days} days / {nights} nights"
+  },
+  "trip_route_kicker": {
+    "fr": "VOTRE ITINÉRAIRE",
+    "en": "YOUR ROUTE"
+  },
+  "trip_daybyday": {
+    "fr": "Jour par jour",
+    "en": "Day by day"
+  },
+  "trip_day": {
+    "fr": "JOUR",
+    "en": "DAY"
+  },
+  "day_walk": {
+    "fr": "Marche",
+    "en": "Walking"
+  },
+  "day_altitude": {
+    "fr": "Altitude",
+    "en": "Altitude"
+  },
+  "day_overnight": {
+    "fr": "Nuit",
+    "en": "Overnight"
+  },
+  "day_meals": {
+    "fr": "Repas",
+    "en": "Meals"
+  },
+  "trip_highlights_kicker": {
+    "fr": "LES TEMPS FORTS",
+    "en": "HIGHLIGHTS"
+  },
+  "trip_highlights": {
+    "fr": "Ce que vous allez vivre",
+    "en": "What you will experience"
+  },
+  "trip_program": {
+    "fr": "Programme de la journée",
+    "en": "Day programme"
+  },
+  "trip_included": {
+    "fr": "Inclus",
+    "en": "Included"
+  },
+  "trip_excluded": {
+    "fr": "Non inclus",
+    "en": "Not included"
+  },
+  "trip_price": {
+    "fr": "<strong>Prix sur demande.</strong><br>Le tarif dépend de la date et de la taille du groupe.",
+    "en": "<strong>Price on request.</strong><br>The rate depends on the date and group size."
+  },
+  "trip_good_kicker": {
+    "fr": "BON À SAVOIR",
+    "en": "GOOD TO KNOW"
+  },
+  "trip_request_trek": {
+    "fr": "Demander ce trek ↗",
+    "en": "Ask about this trek ↗"
+  },
+  "trip_request_excursion": {
+    "fr": "Demander cette excursion ↗",
+    "en": "Ask about this day trip ↗"
+  },
+  "trip_gallery_kicker": {
+    "fr": "EN IMAGES",
+    "en": "PHOTOS"
+  },
+  "trip_gallery": {
+    "fr": "Galerie photo",
+    "en": "Photo gallery"
+  },
+  "trip_more_treks": {
+    "fr": "Nos autres treks",
+    "en": "Our other treks"
+  },
+  "trip_more_excursions": {
+    "fr": "Nos autres excursions",
+    "en": "Our other day trips"
+  },
+  "form_type": {
+    "fr": "Type de sortie",
+    "en": "Type of trip"
+  },
+  "form_type_options": {
+    "fr": [
+      "Je ne sais pas encore",
+      "Un trek de plusieurs jours",
+      "Une excursion à la journée"
+    ],
+    "en": [
+      "Not sure yet",
+      "A multi-day trek",
+      "A day trip"
+    ]
+  },
+  "form_level": {
+    "fr": "Niveau de marche",
+    "en": "Walking level"
+  },
+  "form_level_options": {
+    "fr": [
+      "Je ne sais pas",
+      "Facile",
+      "Modéré",
+      "Sportif"
+    ],
+    "en": [
+      "Not sure",
+      "Easy",
+      "Moderate",
+      "Challenging"
+    ]
+  }
 }

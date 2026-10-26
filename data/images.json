@@ -27,7 +27,11 @@
   "atlas": {
     "source": "images/FB_IMG_1671279967225.jpg",
     "width": 720,
-    "height": 960
+    "height": 960,
+    "alt": {
+      "fr": "Village en terrasses dans une vallée du Haut Atlas, vu depuis un sentier de montagne",
+      "en": "Terraced village in a High Atlas valley, seen from a mountain trail"
+    }
   },
   "hospitality": {
     "source": "images/FB_IMG_1712293099027.jpg",
@@ -47,11 +51,241 @@
   "guests": {
     "source": "images/travel experience (104).jpeg",
     "width": 950,
-    "height": 712
+    "height": 712,
+    "alt": {
+      "fr": "Des voyageurs et leur guide lors d’une sortie au Maroc",
+      "en": "Travellers and their guide on a trip in Morocco"
+    }
   },
-  "hero-guests": {
-    "source": "images/hassan-ii-mosque-guests-casablanca.jpg",
-    "width": 950,
-    "height": 950
+  "atlas-mule-trail": {
+    "source": "images/mule-on-the-walk-between-oukaimeden-and-tacheddirt-2026-03-09-05-20-26-utc.jpg",
+    "width": 5250,
+    "height": 3493,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "alt": {
+      "fr": "Mule chargée de bagages sur le sentier entre Oukaïmeden et Tachdirt, sommets enneigés du Haut Atlas en arrière-plan",
+      "en": "Mule carrying luggage on the trail between Oukaïmeden and Tachdirt, with snowy High Atlas peaks behind"
+    }
+  },
+  "atlas-hiker-high-valley": {
+    "source": "images/hiking-in-high-atlas-mountains-in-morocco-2026-03-20-04-50-35-utc.jpg",
+    "width": 6000,
+    "height": 4000,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "alt": {
+      "fr": "Randonneuse dans une haute vallée rocailleuse du Haut Atlas",
+      "en": "Hiker in a rocky high valley of the High Atlas"
+    }
+  },
+  "atlas-shepherds-flock": {
+    "source": "images/herd-of-sheep-in-the-atlas-mountains-of-morocco-2026-03-18-08-02-01-utc.jpg",
+    "width": 6000,
+    "height": 4000,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "alt": {
+      "fr": "Bergers et troupeau de moutons sur un sentier d’une vallée du Haut Atlas",
+      "en": "Shepherds and a flock of sheep on a High Atlas valley trail"
+    }
+  },
+  "trek-hikers-mules-snow": {
+    "source": "images/trek-hikers-mules-snow.webp",
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      960,
+      1536
+    ],
+    "alt": {
+      "fr": "Randonneurs et mules sur un sentier de montagne, village de terre et sommets enneigés du Haut Atlas",
+      "en": "Hikers and mules on a mountain trail, with an earthen village and snowy High Atlas peaks"
+    }
+  },
+  "village-earth-builders": {
+    "source": "images/village-earth-builders.webp",
+    "width": 760,
+    "height": 508,
+    "widths": [
+      480,
+      760
+    ],
+    "alt": {
+      "fr": "Deux hommes construisent un mur en pisé sur un toit, falaises et collines boisées en arrière-plan",
+      "en": "Two men building a rammed-earth wall on a rooftop, with cliffs and wooded hills behind"
+    }
+  },
+  "atlas-stone-village": {
+    "source": "images/atlas-stone-village.jpg",
+    "width": 1280,
+    "height": 851,
+    "widths": [
+      480,
+      960,
+      1280
+    ],
+    "alt": {
+      "fr": "Ruelle et maisons en pierre d’un village de montagne, au soleil du soir",
+      "en": "Lane and stone houses of a mountain village in the evening sun"
+    }
+  },
+  "terraced-village-snow-peaks": {
+    "source": "images/terraced-village-snow-peaks.webp",
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      960,
+      1536
+    ],
+    "alt": {
+      "fr": "Village berbère en pierre au-dessus de cultures en terrasses, sous les sommets enneigés du Haut Atlas",
+      "en": "Stone Berber village above terraced fields, below the snowy High Atlas peaks"
+    }
+  },
+  "turquoise-cascades": {
+    "source": "images/turquoise-cascades.webp",
+    "width": 300,
+    "height": 400,
+    "widths": [
+      300
+    ],
+    "alt": {
+      "fr": "Petites cascades et bassins turquoise au pied d’une falaise boisée",
+      "en": "Small waterfalls and turquoise pools below a wooded cliff"
+    }
+  },
+  "valley-bridge-riverbed": {
+    "source": "images/valley-bridge-riverbed.jpg",
+    "width": 800,
+    "height": 533,
+    "widths": [
+      480,
+      800
+    ],
+    "alt": {
+      "fr": "Pont routier sur un large lit de rivière, collines et montagnes en arrière-plan",
+      "en": "Road bridge across a wide riverbed, with hills and mountains behind"
+    }
+  },
+  "village-below-snow-slope": {
+    "source": "images/village-below-snow-slope.jpg",
+    "width": 1280,
+    "height": 851,
+    "widths": [
+      480,
+      960,
+      1280
+    ],
+    "alt": {
+      "fr": "Maisons d’un village de montagne au pied d’une pente enneigée du Haut Atlas",
+      "en": "Mountain village houses at the foot of a snowy High Atlas slope"
+    }
+  },
+  "mule-mountain-trail": {
+    "source": "images/mule-mountain-trail.jpg",
+    "width": 640,
+    "height": 360,
+    "widths": [
+      480,
+      640
+    ],
+    "alt": {
+      "fr": "Mule chargée sur un sentier caillouteux de haute montagne",
+      "en": "Loaded mule on a stony high-mountain trail"
+    }
+  },
+  "plateau-vehicle-stop": {
+    "source": "images/plateau-vehicle-stop.jpg",
+    "width": 640,
+    "height": 426,
+    "widths": [
+      480,
+      640
+    ],
+    "alt": {
+      "fr": "Halte en véhicule tout-terrain sur un haut plateau herbeux",
+      "en": "Off-road vehicle stop on a grassy high plateau"
+    }
+  },
+  "donkey-flowering-fields": {
+    "source": "images/donkey-flowering-fields.jpg",
+    "width": 2000,
+    "height": 1125,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "alt": {
+      "fr": "Âne bâté broutant au bord d’une route, champs fleuris et montagnes en arrière-plan",
+      "en": "Pack donkey grazing by a road, with flowering fields and mountains behind"
+    }
+  },
+  "art-workshop-window": {
+    "source": "images/art-workshop-window.jpg",
+    "width": 640,
+    "height": 425,
+    "widths": [
+      480,
+      640
+    ],
+    "alt": {
+      "fr": "Volet peint « Atelier d’art – Galerie » dans un mur en terre",
+      "en": "Painted “Atelier d’art – Galerie” shutter in an earthen wall"
+    }
+  },
+  "winding-mountain-road": {
+    "source": "images/winding-mountain-road.jpg",
+    "width": 1280,
+    "height": 853,
+    "widths": [
+      480,
+      960,
+      1280
+    ],
+    "alt": {
+      "fr": "Route de montagne en lacets à travers les reliefs ocre de l’Atlas",
+      "en": "Winding mountain road through the ochre Atlas ranges"
+    }
+  },
+  "villager-mule-terraced-valley": {
+    "source": "images/villager-mule-terraced-valley.jpg",
+    "width": 1280,
+    "height": 960,
+    "widths": [
+      480,
+      960,
+      1280
+    ],
+    "alt": {
+      "fr": "Villageois en djellaba menant un âne chargé au-dessus d’une vallée en terrasses",
+      "en": "Villager in a djellaba leading a loaded donkey above a terraced valley"
+    }
+  },
+  "atlas-trail-hikers": {
+    "source": "images/atlas-trail-hikers.webp",
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      960,
+      1448
+    ],
+    "alt": {
+      "fr": "Deux randonneurs souriants sur un sentier de montagne caillouteux de l’Atlas, sous un ciel bleu",
+      "en": "Two smiling hikers on a stony Atlas mountain trail under a blue sky"
+    }
   }
 }

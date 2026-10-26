@@ -21,7 +21,7 @@ const url = pathToFileURL(path.join(root, 'index.html')).href + '#testimonials';
       const carousel = page.locator('#testimonials');
       const track = carousel.locator('.testimonial-track');
       assert.ok(await carousel.isVisible(), 'Testimonials missing from the actual local index.html');
-      assert.equal(await carousel.evaluate(element => element.nextElementSibling.classList.contains('blog-preview')), true, 'Carousel must be directly above the blog');
+      assert.equal(await carousel.evaluate(element => element.nextElementSibling), null, 'Carousel must close the homepage');
       assert.deepEqual(await carousel.locator('.testimonial-name').allTextContents(), ['Lissa Gomez', 'Ben Tanaka', 'Martin Lovers']);
       assert.deepEqual(await carousel.locator('.testimonial-country').allTextContents(), ['USA', 'Japan', 'UK']);
       assert.deepEqual(await carousel.locator('.testimonial-rating').evaluateAll(elements => elements.map(element => [element.getAttribute('aria-label'), element.textContent.trim()])), Array(3).fill(['5 out of 5 stars', '★★★★★']));

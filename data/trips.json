@@ -1,0 +1,409 @@
+{
+  "trips": [
+    {
+      "slug": "toubkal-voie-classique-4-jours",
+      "type": "trek",
+      "days": 4,
+      "image": "trek-hikers-mules-snow",
+      "gallery": ["trek-hikers-mules-snow", "mule-mountain-trail"],
+      "fr": {
+        "name": "Toubkal par la voie classique",
+        "title": "Trek de 4 jours : ascension du Toubkal par la voie classique",
+        "description": "Au départ d’Imlil, la voie historique vers le plus haut sommet d’Afrique du Nord : Aroumd, Sidi Chamharouch, une nuit en refuge et le sommet du Toubkal à 4 167 m.",
+        "intro": "L’itinéraire le plus direct vers le Toubkal. On monte progressivement depuis la vallée d’Imlil, on dort au refuge au pied du sommet et on part avant l’aube pour atteindre le toit de l’Afrique du Nord, avant de redescendre vers les villages.",
+        "level": "Sportif",
+        "key_fact": "4 167 m (Toubkal)",
+        "route": ["Marrakech", "Imlil", "Aroumd", "Sidi Chamharouch", "Refuge du Toubkal", "Sommet du Toubkal", "Imlil", "Marrakech"],
+        "highlights": [
+          "Le sommet du Toubkal (4 167 m), point culminant de l’Afrique du Nord",
+          "Le village d’Aroumd et ses cultures en terrasses",
+          "Le sanctuaire de Sidi Chamharouch, au bord du torrent",
+          "Une nuit en refuge au cœur du parc national du Toubkal",
+          "Le lever du jour sur les crêtes du Haut Atlas"
+        ],
+        "days": [
+          {"title": "Marrakech – Imlil – Aroumd", "text": "Départ de Marrakech le matin, environ 1 h 30 de route par Asni. À Imlil, les mules sont chargées et nous montons à travers les noyers et les vergers jusqu’au village d’Aroumd. Après-midi tranquille pour s’acclimater autour du village.", "walk": "2 à 3 h", "altitude": "Imlil 1 740 m → Aroumd env. 1 900 m", "overnight": "Gîte d’étape à Aroumd", "meals": "Déjeuner, dîner"},
+          {"title": "Aroumd – Sidi Chamharouch – Refuge du Toubkal", "text": "On traverse la plaine alluviale d’Aroumd, puis on remonte la vallée jusqu’au sanctuaire de Sidi Chamharouch, lieu de pèlerinage au bord du torrent. Le sentier devient ensuite plus raide jusqu’au refuge, au pied des pentes du Toubkal.", "walk": "5 à 6 h", "altitude": "Sidi Chamharouch 2 310 m → refuge 3 207 m", "overnight": "Refuge du Toubkal (dortoir)", "meals": "Petit-déjeuner, déjeuner, dîner"},
+          {"title": "Sommet du Toubkal (4 167 m) – Imlil", "text": "Départ avant l’aube pour l’ascension, entre éboulis et crêtes. Au sommet, la vue s’ouvre sur les crêtes du Haut Atlas. Retour au refuge, puis longue descente par Sidi Chamharouch jusqu’à Imlil.", "walk": "8 à 9 h", "altitude": "Refuge 3 207 m → sommet 4 167 m → Imlil 1 740 m", "overnight": "Gîte d’étape à Imlil", "meals": "Petit-déjeuner, déjeuner, dîner"},
+          {"title": "Imlil – Marrakech", "text": "Matinée tranquille à Imlil, puis route vers Marrakech, avec une arrivée en début d’après-midi.", "walk": "", "altitude": "", "overnight": "Fin du trek (non inclus à Marrakech)", "meals": "Petit-déjeuner, déjeuner"}
+        ],
+        "included": ["Transport Marrakech – Imlil – Marrakech", "Guide de montagne", "Mules et muletier pour les bagages", "Tous les hébergements pendant le trek (gîtes et refuge)", "Tous les repas pendant le trek"],
+        "excluded": ["Hébergement à Marrakech", "Boissons en dehors des repas", "Assurance voyage", "Location de matériel (crampons, piolet, sac de couchage)", "Pourboires", "Tout ce qui n’est pas mentionné dans « Inclus »"],
+        "note": "Sans difficulté technique de la fin du printemps à l’automne. En hiver et au début du printemps, la neige impose crampons et piolet : nous vous conseillons sur la période et l’équipement. La journée du sommet est longue et demande une bonne condition physique."
+      },
+      "en": {
+        "name": "Toubkal by the classic route",
+        "title": "4-day trek: Toubkal ascent by the classic route",
+        "description": "From Imlil, the historic route to North Africa’s highest summit: Aroumd, Sidi Chamharouch, a night in the refuge and the summit of Toubkal at 4,167 m.",
+        "intro": "The most direct route to Toubkal. You climb gradually from the Imlil valley, sleep at the refuge below the summit and set off before dawn to reach the roof of North Africa, before heading back down to the villages.",
+        "level": "Challenging",
+        "key_fact": "4,167 m (Toubkal)",
+        "route": ["Marrakech", "Imlil", "Aroumd", "Sidi Chamharouch", "Toubkal refuge", "Toubkal summit", "Imlil", "Marrakech"],
+        "highlights": [
+          "The summit of Toubkal (4,167 m), the highest point in North Africa",
+          "The village of Aroumd and its terraced fields",
+          "The shrine of Sidi Chamharouch beside the mountain stream",
+          "A night in a refuge at the heart of Toubkal National Park",
+          "Daybreak over the High Atlas ridges"
+        ],
+        "days": [
+          {"title": "Marrakech – Imlil – Aroumd", "text": "Leave Marrakech in the morning, about 1 h 30 by road via Asni. In Imlil the mules are loaded and we walk up through walnut trees and orchards to the village of Aroumd. A quiet afternoon to acclimatise around the village.", "walk": "2–3 h", "altitude": "Imlil 1,740 m → Aroumd approx. 1,900 m", "overnight": "Gîte (mountain guesthouse) in Aroumd", "meals": "Lunch, dinner"},
+          {"title": "Aroumd – Sidi Chamharouch – Toubkal refuge", "text": "Cross the Aroumd flood plain, then follow the valley up to the shrine of Sidi Chamharouch, a pilgrimage site beside the stream. The trail then steepens all the way to the refuge at the foot of Toubkal’s slopes.", "walk": "5–6 h", "altitude": "Sidi Chamharouch 2,310 m → refuge 3,207 m", "overnight": "Toubkal refuge (dormitory)", "meals": "Breakfast, lunch, dinner"},
+          {"title": "Toubkal summit (4,167 m) – Imlil", "text": "Start before dawn for the ascent over scree and ridges. From the summit the view opens over the High Atlas ridges. Back to the refuge, then a long descent via Sidi Chamharouch to Imlil.", "walk": "8–9 h", "altitude": "Refuge 3,207 m → summit 4,167 m → Imlil 1,740 m", "overnight": "Gîte in Imlil", "meals": "Breakfast, lunch, dinner"},
+          {"title": "Imlil – Marrakech", "text": "A relaxed morning in Imlil, then the drive back to Marrakech, arriving in the early afternoon.", "walk": "", "altitude": "", "overnight": "End of trek (Marrakech not included)", "meals": "Breakfast, lunch"}
+        ],
+        "included": ["Transport Marrakech – Imlil – Marrakech", "Mountain guide", "Mules and muleteer for luggage", "All accommodation during the trek (gîtes and refuge)", "All meals during the trek"],
+        "excluded": ["Accommodation in Marrakech", "Drinks outside meals", "Travel insurance", "Equipment hire (crampons, ice axe, sleeping bag)", "Tips", "Anything not listed under “Included”"],
+        "note": "No technical difficulty from late spring to autumn. In winter and early spring, snow means crampons and an ice axe are needed: we will advise you on timing and equipment. Summit day is long and requires good fitness."
+      }
+    },
+    {
+      "slug": "toubkal-vallee-azzaden-4-jours",
+      "type": "trek",
+      "days": 4,
+      "image": "atlas-hiker-high-valley",
+      "gallery": ["atlas-hiker-high-valley"],
+      "fr": {
+        "name": "Toubkal par la vallée d’Azzaden",
+        "title": "Trek de 4 jours : boucle du Toubkal par la vallée d’Azzaden",
+        "description": "Une boucle plus sauvage vers le Toubkal : le col de Tizi n’Mzik, les villages de la vallée d’Azzaden, la cascade d’Irhoulidene, le col de Tizi n’Aguelzim et le sommet à 4 167 m.",
+        "intro": "Pour ceux qui veulent plus que la voie classique. On rejoint le Toubkal par l’ouest, à travers la vallée d’Azzaden, ses villages de pierre et ses noyers, puis on franchit un haut col avant de gravir le sommet. Un itinéraire plus long et plus exigeant, mais bien plus varié.",
+        "level": "Sportif à exigeant",
+        "key_fact": "4 167 m (Toubkal)",
+        "route": ["Marrakech", "Imlil", "Tizi n’Mzik", "Tizi Oussem", "Azib Tamsoult", "Tizi n’Aguelzim", "Refuge du Toubkal", "Sommet du Toubkal", "Aroumd", "Imlil", "Marrakech"],
+        "highlights": [
+          "Le col de Tizi n’Mzik et la vue sur la vallée d’Azzaden",
+          "Le village de Tizi Oussem et ses cultures en terrasses",
+          "La cascade d’Irhoulidene, près des bergeries d’Azib Tamsoult",
+          "Le passage du col de Tizi n’Aguelzim, vers 3 560 m",
+          "Le sommet du Toubkal (4 167 m)"
+        ],
+        "days": [
+          {"title": "Marrakech – Imlil – Tizi n’Mzik – Tizi Oussem", "text": "Route vers Imlil, environ 1 h 30. Montée par les villages jusqu’au col de Tizi n’Mzik, puis descente dans la vallée d’Azzaden jusqu’au village de Tizi Oussem.", "walk": "5 à 6 h", "altitude": "Imlil 1 740 m → Tizi n’Mzik 2 489 m → Tizi Oussem env. 1 850 m", "overnight": "Gîte d’étape à Tizi Oussem", "meals": "Déjeuner, dîner"},
+          {"title": "Tizi Oussem – Azib Tamsoult – Tizi n’Aguelzim – Refuge du Toubkal", "text": "Remontée de la vallée d’Azzaden jusqu’aux bergeries d’Azib Tamsoult et à la cascade d’Irhoulidene, puis longue montée vers le col de Tizi n’Aguelzim. De l’autre côté, descente jusqu’au refuge du Toubkal. C’est la journée la plus dure du trek. Selon l’état du col, les mules rejoignent le refuge par la vallée d’Imlil : gardez l’essentiel dans votre sac de journée.", "walk": "8 à 9 h", "altitude": "Tizi Oussem env. 1 850 m → Tizi n’Aguelzim env. 3 560 m → refuge 3 207 m", "overnight": "Refuge du Toubkal (dortoir)", "meals": "Petit-déjeuner, déjeuner, dîner"},
+          {"title": "Sommet du Toubkal (4 167 m) – Aroumd", "text": "Départ avant l’aube pour l’ascension du sommet. Retour au refuge, puis descente par Sidi Chamharouch jusqu’au village d’Aroumd.", "walk": "8 à 9 h", "altitude": "Refuge 3 207 m → sommet 4 167 m → Aroumd env. 1 900 m", "overnight": "Gîte d’étape à Aroumd", "meals": "Petit-déjeuner, déjeuner, dîner"},
+          {"title": "Aroumd – Imlil – Marrakech", "text": "Courte descente jusqu’à Imlil, puis route vers Marrakech.", "walk": "env. 1 h", "altitude": "Aroumd env. 1 900 m → Imlil 1 740 m", "overnight": "Fin du trek (non inclus à Marrakech)", "meals": "Petit-déjeuner, déjeuner"}
+        ],
+        "included": ["Transport Marrakech – Imlil – Marrakech", "Guide de montagne", "Mules et muletier pour les bagages", "Tous les hébergements pendant le trek (gîtes et refuge)", "Tous les repas pendant le trek"],
+        "excluded": ["Hébergement à Marrakech", "Boissons en dehors des repas", "Assurance voyage", "Location de matériel (crampons, piolet, sac de couchage)", "Pourboires", "Tout ce qui n’est pas mentionné dans « Inclus »"],
+        "note": "Réservé aux randonneurs en très bonne condition physique, à l’aise sur sentier raide et dans les éboulis. Le col de Tizi n’Aguelzim peut rester enneigé jusqu’au printemps : l’itinéraire se confirme selon la saison."
+      },
+      "en": {
+        "name": "Toubkal via the Azzaden valley",
+        "title": "4-day trek: Toubkal circuit via the Azzaden valley",
+        "description": "A wilder loop to Toubkal: the Tizi n’Mzik pass, the villages of the Azzaden valley, the Irhoulidene waterfall, the Tizi n’Aguelzim pass and the 4,167 m summit.",
+        "intro": "For those who want more than the classic route. You approach Toubkal from the west, through the Azzaden valley with its stone villages and walnut trees, then cross a high pass before climbing the summit. A longer, more demanding route, but far more varied.",
+        "level": "Challenging to demanding",
+        "key_fact": "4,167 m (Toubkal)",
+        "route": ["Marrakech", "Imlil", "Tizi n’Mzik", "Tizi Oussem", "Azib Tamsoult", "Tizi n’Aguelzim", "Toubkal refuge", "Toubkal summit", "Aroumd", "Imlil", "Marrakech"],
+        "highlights": [
+          "The Tizi n’Mzik pass and its view over the Azzaden valley",
+          "The village of Tizi Oussem and its terraced fields",
+          "The Irhoulidene waterfall near the Azib Tamsoult shepherds’ huts",
+          "Crossing the Tizi n’Aguelzim pass, around 3,560 m",
+          "The summit of Toubkal (4,167 m)"
+        ],
+        "days": [
+          {"title": "Marrakech – Imlil – Tizi n’Mzik – Tizi Oussem", "text": "Drive to Imlil, about 1 h 30. Climb through the villages to the Tizi n’Mzik pass, then descend into the Azzaden valley to the village of Tizi Oussem.", "walk": "5–6 h", "altitude": "Imlil 1,740 m → Tizi n’Mzik 2,489 m → Tizi Oussem approx. 1,850 m", "overnight": "Gîte in Tizi Oussem", "meals": "Lunch, dinner"},
+          {"title": "Tizi Oussem – Azib Tamsoult – Tizi n’Aguelzim – Toubkal refuge", "text": "Walk up the Azzaden valley to the Azib Tamsoult shepherds’ huts and the Irhoulidene waterfall, then a long climb to the Tizi n’Aguelzim pass. On the far side, descend to the Toubkal refuge. This is the hardest day of the trek. Depending on the pass, the mules reach the refuge via the Imlil valley: keep the essentials in your daypack.", "walk": "8–9 h", "altitude": "Tizi Oussem approx. 1,850 m → Tizi n’Aguelzim approx. 3,560 m → refuge 3,207 m", "overnight": "Toubkal refuge (dormitory)", "meals": "Breakfast, lunch, dinner"},
+          {"title": "Toubkal summit (4,167 m) – Aroumd", "text": "Start before dawn for the summit. Back to the refuge, then descend via Sidi Chamharouch to the village of Aroumd.", "walk": "8–9 h", "altitude": "Refuge 3,207 m → summit 4,167 m → Aroumd approx. 1,900 m", "overnight": "Gîte in Aroumd", "meals": "Breakfast, lunch, dinner"},
+          {"title": "Aroumd – Imlil – Marrakech", "text": "A short walk down to Imlil, then the drive back to Marrakech.", "walk": "approx. 1 h", "altitude": "Aroumd approx. 1,900 m → Imlil 1,740 m", "overnight": "End of trek (Marrakech not included)", "meals": "Breakfast, lunch"}
+        ],
+        "included": ["Transport Marrakech – Imlil – Marrakech", "Mountain guide", "Mules and muleteer for luggage", "All accommodation during the trek (gîtes and refuge)", "All meals during the trek"],
+        "excluded": ["Accommodation in Marrakech", "Drinks outside meals", "Travel insurance", "Equipment hire (crampons, ice axe, sleeping bag)", "Tips", "Anything not listed under “Included”"],
+        "note": "For very fit hikers who are comfortable on steep trails and scree. The Tizi n’Aguelzim pass can hold snow into spring: the route is confirmed according to the season."
+      }
+    },
+    {
+      "slug": "vallee-oued-zat-4-jours",
+      "type": "trek",
+      "days": 4,
+      "image": "atlas",
+      "gallery": ["atlas"],
+      "fr": {
+        "name": "Vallée de l’Oued Zat & plateau du Yagour",
+        "title": "Trek de 4 jours dans la vallée de l’Oued Zat, chez l’habitant",
+        "description": "Au départ de Tighdouine : les poteries du vieux village de Tlatast, des nuits chez des familles berbères et les gravures rupestres du plateau du Yagour.",
+        "intro": "Un trek loin des sentiers fréquentés, au rythme des douars de la vallée de l’Oued Zat. Vous dormez chez des familles, partagez leurs repas et montez jusqu’au plateau du Yagour, connu pour ses gravures rupestres antérieures à notre ère.",
+        "level": "Modéré",
+        "key_fact": "Gravures rupestres du Yagour",
+        "route": ["Marrakech", "Tighdouine", "Tlatast", "Azgour", "Plateau du Yagour", "Aït Inzal", "Tighdouine", "Marrakech"],
+        "highlights": [
+          "Le vieux village de Tlatast et ses ateliers de poterie",
+          "La vallée de l’Oued Zat et ses douars",
+          "Les gravures rupestres du plateau du Yagour, antérieures à notre ère",
+          "Des nuits chez l’habitant et la cuisine des familles berbères"
+        ],
+        "days": [
+          {"title": "Marrakech – Tighdouine – Tlatast – douar Azgour", "text": "Départ de Marrakech le matin et arrivée à Tighdouine vers 10 h. Visite du vieux village de Tlatast et de ses ateliers de poterie, puis marche jusqu’au douar Azgour, près de l’Oued Zat.", "walk": "", "altitude": "", "overnight": "Chez une famille du douar Azgour", "meals": "Déjeuner, dîner"},
+          {"title": "Azgour – plateau du Yagour", "text": "Marche vers le plateau du Yagour, célèbre pour ses gravures rupestres préhistoriques, antérieures à notre ère. Du temps pour découvrir les gravures et les grands espaces du plateau.", "walk": "", "altitude": "", "overnight": "Chez l’habitant ou en bivouac", "meals": "Petit-déjeuner, déjeuner, dîner"},
+          {"title": "Yagour – région d’Aït Inzal", "text": "Traversée vers le versant opposé, dans la région d’Aït Inzal.", "walk": "", "altitude": "", "overnight": "Chez une famille du douar Aït Ali (ou d’un douar voisin)", "meals": "Petit-déjeuner, déjeuner, dîner"},
+          {"title": "Retour à Tighdouine – Marrakech", "text": "Retour à pied jusqu’à Tighdouine, puis route vers Marrakech.", "walk": "", "altitude": "", "overnight": "Fin du trek (non inclus à Marrakech)", "meals": "Petit-déjeuner, déjeuner"}
+        ],
+        "included": ["Transport Marrakech – Tighdouine – Marrakech", "Hébergement chez l’habitant ou en bivouac", "Tous les repas", "Mules (selon la taille du groupe)", "Guide"],
+        "excluded": ["Hébergement à Marrakech", "Tout ce qui n’est pas mentionné dans « Inclus »"],
+        "note": "Les nuits chez l’habitant sont simples et chaleureuses : le confort est sommaire et les pièces souvent partagées. Les étapes et les douars d’accueil peuvent varier selon la saison et la disponibilité des familles."
+      },
+      "en": {
+        "name": "Oued Zat valley & Yagour plateau",
+        "title": "4-day trek in the Oued Zat valley with local families",
+        "description": "From Tighdouine: the pottery of the old village of Tlatast, nights with Berber families and the rock engravings of the Yagour plateau.",
+        "intro": "A trek away from the busy trails, at the pace of the Oued Zat valley villages. You sleep in family homes, share their meals and walk up to the Yagour plateau, known for rock engravings that predate the Common Era.",
+        "level": "Moderate",
+        "key_fact": "Yagour rock engravings",
+        "route": ["Marrakech", "Tighdouine", "Tlatast", "Azgour", "Yagour plateau", "Aït Inzal", "Tighdouine", "Marrakech"],
+        "highlights": [
+          "The old village of Tlatast and its pottery workshops",
+          "The Oued Zat valley and its villages",
+          "The Yagour plateau rock engravings, older than the Common Era",
+          "Nights with local families and Berber home cooking"
+        ],
+        "days": [
+          {"title": "Marrakech – Tighdouine – Tlatast – Azgour village", "text": "Leave Marrakech in the morning and arrive in Tighdouine around 10:00. Visit the old village of Tlatast and its pottery workshops, then walk to the village of Azgour near the Oued Zat.", "walk": "", "altitude": "", "overnight": "With a family in Azgour", "meals": "Lunch, dinner"},
+          {"title": "Azgour – Yagour plateau", "text": "Walk to the Yagour plateau, famous for its prehistoric rock engravings that predate the Common Era. Time to discover the engravings and the wide open plateau.", "walk": "", "altitude": "", "overnight": "With a local family or in a camp", "meals": "Breakfast, lunch, dinner"},
+          {"title": "Yagour – Aït Inzal area", "text": "Cross to the opposite side, into the Aït Inzal area.", "walk": "", "altitude": "", "overnight": "With a family in the village of Aït Ali (or a nearby village)", "meals": "Breakfast, lunch, dinner"},
+          {"title": "Back to Tighdouine – Marrakech", "text": "Walk back to Tighdouine, then drive to Marrakech.", "walk": "", "altitude": "", "overnight": "End of trek (Marrakech not included)", "meals": "Breakfast, lunch"}
+        ],
+        "included": ["Transport Marrakech – Tighdouine – Marrakech", "Accommodation with local families or in a camp", "All meals", "Mules (according to group size)", "Guide"],
+        "excluded": ["Accommodation in Marrakech", "Anything not listed under “Included”"],
+        "note": "Nights with local families are simple and warm: comfort is basic and rooms are often shared. Stages and host villages may vary with the season and the families’ availability."
+      }
+    },
+    {
+      "slug": "excursion-imlil",
+      "type": "excursion",
+      "days": 1,
+      "image": "terraced-village-snow-peaks",
+      "gallery": ["terraced-village-snow-peaks", "village-below-snow-slope"],
+      "fr": {
+        "name": "Imlil et les villages de l’Atlas",
+        "title": "Excursion d’une journée de Marrakech à Imlil",
+        "description": "Une journée dans la vallée d’Imlil, porte d’entrée du parc national du Toubkal : villages berbères, vergers en terrasses et vues sur les sommets du massif.",
+        "intro": "À environ 1 h 30 de Marrakech, Imlil est le point de départ des randonnées vers le Toubkal. Cette excursion vous fait découvrir la vallée à pied, entre noyers, cultures en terrasses et villages de terre et de pierre, avec les sommets du massif en toile de fond.",
+        "level": "Facile à modéré",
+        "duration": "Journée complète (environ 8 h 30)",
+        "distance": "Environ 65 km, 1 h 30 de route",
+        "highlights": [
+          "La route du Haut Atlas par les gorges de Moulay Brahim et Asni",
+          "Une balade guidée jusqu’au village d’Aroumd",
+          "Les vues sur les sommets du parc national du Toubkal",
+          "Une pause thé dans un village berbère"
+        ],
+        "program": [
+          ["8 h 30", "Prise en charge à votre hébergement à Marrakech."],
+          ["10 h", "Arrivée à Imlil après la traversée d’Asni."],
+          ["10 h – 13 h 30", "Balade guidée vers Aroumd, entre vergers et cultures en terrasses, avec une pause thé."],
+          ["13 h 30", "Déjeuner à Imlil (en option)."],
+          ["15 h 30", "Route de retour vers Marrakech."],
+          ["17 h", "Arrivée à votre hébergement."]
+        ],
+        "included": ["Transport aller-retour depuis Marrakech avec chauffeur", "Prise en charge et retour à votre hébergement", "Guide local pour la balade"],
+        "excluded": ["Déjeuner et boissons", "Pourboires", "Dépenses personnelles", "Tout ce qui n’est pas mentionné dans « Inclus »"],
+        "note": "Balade accessible à la plupart des marcheurs. Prévoyez de bonnes chaussures et une couche chaude : il fait plus frais en montagne qu’à Marrakech. Les horaires sont indicatifs."
+      },
+      "en": {
+        "name": "Imlil and the Atlas villages",
+        "title": "Day trip from Marrakech to Imlil",
+        "description": "A day in the Imlil valley, gateway to Toubkal National Park: Berber villages, terraced orchards and views of the massif’s peaks.",
+        "intro": "About 1 h 30 from Marrakech, Imlil is the starting point for hikes to Toubkal. This day trip lets you explore the valley on foot, among walnut trees, terraced fields and villages of earth and stone, with the peaks of the massif as a backdrop.",
+        "level": "Easy to moderate",
+        "duration": "Full day (about 8 h 30)",
+        "distance": "About 65 km, 1 h 30 by road",
+        "highlights": [
+          "The High Atlas road through the Moulay Brahim gorges and Asni",
+          "A guided walk to the village of Aroumd",
+          "Views of the peaks of Toubkal National Park",
+          "A tea break in a Berber village"
+        ],
+        "program": [
+          ["8:30", "Pickup from your accommodation in Marrakech."],
+          ["10:00", "Arrive in Imlil after passing through Asni."],
+          ["10:00 – 13:30", "Guided walk to Aroumd through orchards and terraced fields, with a tea break."],
+          ["13:30", "Lunch in Imlil (optional)."],
+          ["15:30", "Drive back to Marrakech."],
+          ["17:00", "Arrive at your accommodation."]
+        ],
+        "included": ["Return transport from Marrakech with driver", "Pickup and drop-off at your accommodation", "Local guide for the walk"],
+        "excluded": ["Lunch and drinks", "Tips", "Personal expenses", "Anything not listed under “Included”"],
+        "note": "A walk suited to most walkers. Bring good shoes and a warm layer: the mountains are cooler than Marrakech. Times are approximate."
+      }
+    },
+    {
+      "slug": "excursion-vallee-ourika",
+      "type": "excursion",
+      "days": 1,
+      "image": "",
+      "gallery": [],
+      "fr": {
+        "name": "Vallée de l’Ourika",
+        "title": "Excursion d’une journée de Marrakech à la vallée de l’Ourika",
+        "description": "La vallée de l’Atlas la plus proche de Marrakech : villages berbères, coopérative d’argan, maison traditionnelle et cascades de Setti Fatma.",
+        "intro": "La vallée de l’Ourika suit la rivière au pied du Haut Atlas, entre villages de terre, vergers et petits restaurants au bord de l’eau. Au bout de la route, le village de Setti Fatma est le point de départ d’un sentier vers une série de cascades.",
+        "level": "Facile à modéré",
+        "duration": "Journée complète (environ 8 h)",
+        "distance": "Environ 65 km, 1 h 30 de route",
+        "highlights": [
+          "Une coopérative féminine d’huile d’argan",
+          "La visite d’une maison berbère traditionnelle",
+          "Le village de Setti Fatma, au bout de la vallée",
+          "La balade vers les cascades de Setti Fatma"
+        ],
+        "program": [
+          ["9 h", "Prise en charge à votre hébergement à Marrakech."],
+          ["10 h", "Arrêt dans une coopérative d’argan et visite d’une maison berbère."],
+          ["11 h 30", "Arrivée à Setti Fatma et balade guidée vers les cascades (environ 2 h aller-retour)."],
+          ["13 h 30", "Déjeuner au bord de la rivière (en option)."],
+          ["15 h 30", "Route de retour vers Marrakech."],
+          ["17 h", "Arrivée à votre hébergement."]
+        ],
+        "included": ["Transport aller-retour depuis Marrakech avec chauffeur", "Prise en charge et retour à votre hébergement", "Guide local pour la balade aux cascades"],
+        "excluded": ["Déjeuner et boissons", "Pourboires", "Achats et dépenses personnelles", "Tout ce qui n’est pas mentionné dans « Inclus »"],
+        "note": "Le sentier vers les cascades passe sur des rochers : de bonnes chaussures sont indispensables. Après de fortes pluies, l’accès peut être limité. Les horaires sont indicatifs."
+      },
+      "en": {
+        "name": "Ourika valley",
+        "title": "Day trip from Marrakech to the Ourika valley",
+        "description": "The Atlas valley closest to Marrakech: Berber villages, an argan cooperative, a traditional house and the Setti Fatma waterfalls.",
+        "intro": "The Ourika valley follows the river at the foot of the High Atlas, among earthen villages, orchards and small riverside restaurants. At the end of the road, the village of Setti Fatma is the starting point of a trail to a series of waterfalls.",
+        "level": "Easy to moderate",
+        "duration": "Full day (about 8 h)",
+        "distance": "About 65 km, 1 h 30 by road",
+        "highlights": [
+          "A women’s argan oil cooperative",
+          "A visit to a traditional Berber house",
+          "The village of Setti Fatma at the end of the valley",
+          "The walk to the Setti Fatma waterfalls"
+        ],
+        "program": [
+          ["9:00", "Pickup from your accommodation in Marrakech."],
+          ["10:00", "Stop at an argan cooperative and visit a Berber house."],
+          ["11:30", "Arrive in Setti Fatma for a guided walk to the waterfalls (about 2 h return)."],
+          ["13:30", "Lunch by the river (optional)."],
+          ["15:30", "Drive back to Marrakech."],
+          ["17:00", "Arrive at your accommodation."]
+        ],
+        "included": ["Return transport from Marrakech with driver", "Pickup and drop-off at your accommodation", "Local guide for the waterfall walk"],
+        "excluded": ["Lunch and drinks", "Tips", "Shopping and personal expenses", "Anything not listed under “Included”"],
+        "note": "The waterfall trail crosses rocks: good shoes are essential. After heavy rain, access may be limited. Times are approximate."
+      }
+    },
+    {
+      "slug": "excursion-cascades-ouzoud",
+      "type": "excursion",
+      "days": 1,
+      "image": "",
+      "gallery": [],
+      "fr": {
+        "name": "Cascades d’Ouzoud",
+        "title": "Excursion d’une journée de Marrakech aux cascades d’Ouzoud",
+        "description": "Des chutes d’environ 110 mètres, parmi les plus hautes du Maroc, au milieu des oliviers et des singes magots.",
+        "intro": "Dans la province d’Azilal, l’oued Ouzoud se jette d’une falaise d’environ 110 mètres dans une gorge verdoyante. Un sentier descend au pied des chutes, entre oliviers et terrasses ombragées, où vivent des singes magots.",
+        "level": "Facile",
+        "duration": "Journée complète (environ 10 h)",
+        "distance": "Environ 150 km, 2 h 30 à 3 h de route",
+        "highlights": [
+          "Les chutes d’Ouzoud, d’environ 110 mètres",
+          "La descente au pied des cascades par le sentier des oliviers",
+          "Les singes magots qui vivent autour du site",
+          "Une balade en barque au pied des chutes (en option)"
+        ],
+        "program": [
+          ["8 h", "Prise en charge à votre hébergement à Marrakech."],
+          ["10 h 30", "Arrivée à Ouzoud, balade guidée vers les points de vue puis descente au pied des chutes."],
+          ["13 h", "Déjeuner face aux cascades (en option)."],
+          ["14 h 30", "Temps libre ou balade en barque (en option)."],
+          ["15 h 30", "Route de retour vers Marrakech."],
+          ["18 h – 18 h 30", "Arrivée à votre hébergement."]
+        ],
+        "included": ["Transport aller-retour depuis Marrakech avec chauffeur", "Prise en charge et retour à votre hébergement", "Guide local sur le site"],
+        "excluded": ["Déjeuner et boissons", "Balade en barque", "Pourboires", "Tout ce qui n’est pas mentionné dans « Inclus »"],
+        "note": "La route est longue, aller et retour dans la journée. Le sentier vers le bas des chutes comporte des marches. Merci de ne pas nourrir les singes. Les horaires sont indicatifs."
+      },
+      "en": {
+        "name": "Ouzoud waterfalls",
+        "title": "Day trip from Marrakech to the Ouzoud waterfalls",
+        "description": "Falls of about 110 metres, among the highest in Morocco, surrounded by olive trees and Barbary macaques.",
+        "intro": "In the province of Azilal, the Ouzoud river drops from a cliff of about 110 metres into a green gorge. A path leads down to the foot of the falls, through olive trees and shaded terraces where Barbary macaques live.",
+        "level": "Easy",
+        "duration": "Full day (about 10 h)",
+        "distance": "About 150 km, 2 h 30 to 3 h by road",
+        "highlights": [
+          "The Ouzoud falls, about 110 metres high",
+          "The walk down to the foot of the falls along the olive-tree path",
+          "The Barbary macaques that live around the site",
+          "A boat ride at the foot of the falls (optional)"
+        ],
+        "program": [
+          ["8:00", "Pickup from your accommodation in Marrakech."],
+          ["10:30", "Arrive in Ouzoud for a guided walk to the viewpoints, then down to the foot of the falls."],
+          ["13:00", "Lunch facing the waterfalls (optional)."],
+          ["14:30", "Free time or boat ride (optional)."],
+          ["15:30", "Drive back to Marrakech."],
+          ["18:00 – 18:30", "Arrive at your accommodation."]
+        ],
+        "included": ["Return transport from Marrakech with driver", "Pickup and drop-off at your accommodation", "Local guide on site"],
+        "excluded": ["Lunch and drinks", "Boat ride", "Tips", "Anything not listed under “Included”"],
+        "note": "It is a long drive there and back in one day. The path to the foot of the falls includes steps. Please do not feed the monkeys. Times are approximate."
+      }
+    },
+    {
+      "slug": "excursion-trois-vallees",
+      "type": "excursion",
+      "days": 1,
+      "image": "",
+      "gallery": [],
+      "fr": {
+        "name": "Les trois vallées de l’Atlas",
+        "title": "Excursion d’une journée de Marrakech aux trois vallées de l’Atlas",
+        "description": "Trois visages du Haut Atlas en une journée : la vallée de l’Ourika, la vallée d’Asni par les gorges de Moulay Brahim, et la vallée d’Imlil.",
+        "intro": "Une journée pour découvrir plusieurs paysages de l’Atlas sans longue marche : les vergers et les coopératives de l’Ourika, les gorges de Moulay Brahim et le bourg d’Asni, puis la vallée d’Imlil et ses villages en terrasses, avec des arrêts aux points de vue.",
+        "level": "Facile",
+        "duration": "Journée complète (environ 9 h)",
+        "distance": "Boucle au départ de Marrakech, avec plusieurs arrêts",
+        "highlights": [
+          "La vallée de l’Ourika et une coopérative d’argan",
+          "Les gorges de Moulay Brahim et le bourg d’Asni (souk le samedi)",
+          "La vallée d’Imlil et la vue sur les sommets du Toubkal",
+          "Un déjeuner dans un village berbère (en option)"
+        ],
+        "program": [
+          ["8 h 30", "Prise en charge à votre hébergement à Marrakech."],
+          ["9 h 30", "Vallée de l’Ourika : coopérative d’argan et village berbère."],
+          ["11 h 30", "Route vers Asni par les gorges de Moulay Brahim, avec arrêts photo."],
+          ["12 h 30", "Vallée d’Imlil : courte balade et déjeuner (en option)."],
+          ["15 h 30", "Route de retour par Asni."],
+          ["17 h 30", "Arrivée à votre hébergement."]
+        ],
+        "included": ["Transport aller-retour depuis Marrakech avec chauffeur", "Prise en charge et retour à votre hébergement", "Accompagnement pendant les arrêts"],
+        "excluded": ["Déjeuner et boissons", "Pourboires", "Achats et dépenses personnelles", "Tout ce qui n’est pas mentionné dans « Inclus »"],
+        "note": "Peu de marche : idéale si vous voulez voir plusieurs paysages de l’Atlas en une journée. L’ordre des étapes peut être adapté selon la saison et la circulation. Les horaires sont indicatifs."
+      },
+      "en": {
+        "name": "The three Atlas valleys",
+        "title": "Day trip from Marrakech to the three Atlas valleys",
+        "description": "Three faces of the High Atlas in one day: the Ourika valley, the Asni valley through the Moulay Brahim gorges, and the Imlil valley.",
+        "intro": "A day to see several Atlas landscapes without a long walk: the orchards and cooperatives of the Ourika, the Moulay Brahim gorges and the market town of Asni, then the Imlil valley and its terraced villages, with stops at the viewpoints.",
+        "level": "Easy",
+        "duration": "Full day (about 9 h)",
+        "distance": "Loop from Marrakech with several stops",
+        "highlights": [
+          "The Ourika valley and an argan cooperative",
+          "The Moulay Brahim gorges and the town of Asni (Saturday market)",
+          "The Imlil valley and views of the Toubkal peaks",
+          "Lunch in a Berber village (optional)"
+        ],
+        "program": [
+          ["8:30", "Pickup from your accommodation in Marrakech."],
+          ["9:30", "Ourika valley: argan cooperative and Berber village."],
+          ["11:30", "Drive to Asni through the Moulay Brahim gorges, with photo stops."],
+          ["12:30", "Imlil valley: short walk and lunch (optional)."],
+          ["15:30", "Drive back via Asni."],
+          ["17:30", "Arrive at your accommodation."]
+        ],
+        "included": ["Return transport from Marrakech with driver", "Pickup and drop-off at your accommodation", "Guidance during the stops"],
+        "excluded": ["Lunch and drinks", "Tips", "Shopping and personal expenses", "Anything not listed under “Included”"],
+        "note": "Little walking: ideal if you want to see several Atlas landscapes in one day. The order of stops may change with the season and traffic. Times are approximate."
+      }
+    }
+  ]
+}

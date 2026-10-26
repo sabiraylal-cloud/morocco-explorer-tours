@@ -6,7 +6,9 @@ const path = require('node:path');
 const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:8000';
 const root = path.resolve(__dirname, '..');
 const articles = JSON.parse(fs.readFileSync(path.join(root, 'data/articles.json'), 'utf8')).articles;
-const tours = JSON.parse(fs.readFileSync(path.join(root, 'data/tours.json'), 'utf8')).tours;
+const trips = JSON.parse(fs.readFileSync(path.join(root, 'data/trips.json'), 'utf8')).trips;
+const treks = trips.filter(trip => trip.type === 'trek');
+const excursions = trips.filter(trip => trip.type === 'excursion');
 function htmlFiles(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(item => {
     if (['node_modules', '.git', 'artifacts', 'admin'].includes(item.name)) return [];
@@ -32,8 +34,8 @@ function htmlFiles(dir) {
         }
         if (file === 'index.html') {
           assert.equal(await page.evaluate(() => {
-            const hero = document.querySelector('.hero').getBoundingClientRect();
-            return [...document.querySelectorAll('.hero .button')].every(button => {
+            const hero = document.querySelector('.hero-intro').getBoundingClientRect();
+            return [...document.querySelectorAll('.hero-intro .button')].every(button => {
               const rect = button.getBoundingClientRect();
               return rect.bottom <= hero.bottom && rect.right <= hero.right && rect.left >= hero.left;
             });
@@ -48,15 +50,13 @@ function htmlFiles(dir) {
     }
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(base);
-    assert.equal(await page.locator('.blog-preview .blog-card').count(), 2);
-    assert.equal(await page.evaluate(() => document.querySelector('main').lastElementChild.classList.contains('blog-preview')), true);
-    const previewLinks = await page.locator('.blog-preview .card-bottom a').evaluateAll(links => links.map(link => link.href));
-    await page.locator('.blog-preview').getByRole('link', { name: 'Tous les articles' }).click();
+    assert.equal(await page.locator('#treks .tour-card').count(), treks.length);
+    assert.equal(await page.locator('#excursions .tour-card').count(), excursions.length);
+    await page.locator('footer').getByRole('link', { name: 'Blog voyage' }).click();
     assert.equal(new URL(page.url()).pathname, '/blog/index.html');
     assert.equal(await page.locator('.blog-card').count(), articles.length);
     const articleLinks = await page.locator('.blog-card .card-bottom a').evaluateAll(links => links.map(link => link.href));
     assert.equal(new Set(articleLinks).size, articles.length);
-    assert.ok(previewLinks.every(link => articleLinks.includes(link)));
     for (let index = 0; index < articleLinks.length; index++) {
       await page.goto(`${base}/blog/index.html`);
       const teaser = await page.locator('.blog-teaser').nth(index).textContent();
@@ -74,41 +74,41 @@ function htmlFiles(dir) {
     const menu = page.getByRole('button', { name: 'Menu' });
     await menu.click();
     assert.equal(await menu.getAttribute('aria-expanded'), 'true');
-    await page.getByRole('navigation', { name: 'Navigation principale' }).getByRole('link', { name: 'Nos circuits' }).waitFor({ state: 'visible' });
+    await page.getByRole('navigation', { name: 'Navigation principale' }).getByRole('link', { name: 'Nos treks' }).waitFor({ state: 'visible' });
     await page.keyboard.press('Escape');
     assert.equal(await menu.getAttribute('aria-expanded'), 'false');
     assert.equal(await menu.evaluate(element => element === document.activeElement), true);
-    await page.goto(`${base}/tours/?start=Marrakech`);
-    assert.ok(await page.locator('.tour-card:visible').count() > 1);
-    await page.locator('[name="days"]').selectOption('16');
-    assert.equal(await page.locator('.tour-card:visible').count(), 0);
-    assert.equal(await page.locator('#empty-results').isVisible(), true);
-    await page.getByRole('button', { name: 'Réinitialiser les filtres' }).click();
-    await page.waitForFunction(expected => document.querySelectorAll('.tour-card:not([hidden])').length === expected, tours.length);
-    await page.locator('[name="category"]').selectOption('cities-desert');
-    assert.equal(await page.locator('.tour-card:visible').filter({ hasText: 'Saveurs, artisanat & villes impériales' }).count(), 0);
-    await page.locator('[name="category"]').selectOption('grand-journeys');
-    assert.equal(await page.locator('.tour-card:visible').filter({ hasText: 'Saveurs, artisanat & villes impériales' }).count(), 1);
-    await page.goto(`${base}/destinations/mhamid.html`);
-    assert.equal(await page.locator('.tour-card').filter({ hasText: 'Le grand tour complet du Maroc' }).count(), 0);
-    assert.equal(await page.locator('.tour-card').filter({ hasText: 'Au cœur du désert : l’Erg Chigaga' }).count(), 1);
-    await page.goto(`${base}/plan-your-trip.html?tour=Test+route&arrival=F%C3%A8s`);
-    assert.equal(await page.locator('[name="arrival"]').inputValue(), 'Fès');
+    await page.goto(`${base}/treks/`);
+    assert.equal(await page.locator('.tour-card').count(), treks.length);
+    await page.goto(`${base}/excursions/`);
+    assert.equal(await page.locator('.tour-card').count(), excursions.length);
+    for (const trip of trips) {
+      await page.goto(`${base}/${trip.type === 'trek' ? 'treks' : 'excursions'}/${trip.slug}.html`);
+      assert.equal(await page.locator('h1').textContent(), trip.fr.title);
+      assert.equal(await page.locator('.check-list li').count(), trip.fr.included.length);
+      assert.equal(await page.locator('.cross-list li').count(), trip.fr.excluded.length);
+      if (trip.type === 'trek') assert.equal(await page.locator('.itinerary details').count(), trip.days);
+      else assert.equal(await page.locator('.program li').count(), trip.fr.program.length);
+      assert.equal(await page.locator('.trip-gallery figure').count(), trip.gallery.length);
+      if (!trip.image) assert.equal(await page.locator('.detail-hero .photo-placeholder').count(), 1);
+    }
+    await page.goto(`${base}/plan-your-trip.html?tour=Test+route&type=Un+trek+de+plusieurs+jours`);
+    assert.equal(await page.locator('[name="type"]').inputValue(), 'Un trek de plusieurs jours');
     assert.equal(await page.locator('[name="interest"]').inputValue(), 'Test route');
     await page.locator('[name="travellers"]').fill('0');
-    await page.getByRole('button', { name: 'Créer mon projet de voyage' }).click();
+    await page.getByRole('button', { name: 'Créer mon projet de sortie' }).click();
     assert.equal(await page.locator('#trip-result').isVisible(), false);
     await page.locator('[name="travellers"]').fill('4');
     await page.locator('[name="notes"]').fill('<script>alert("test")</script>');
-    await page.getByRole('button', { name: 'Créer mon projet de voyage' }).click();
-    assert.match(await page.locator('#brief-text').textContent(), /Voyageurs : 4/);
+    await page.getByRole('button', { name: 'Créer mon projet de sortie' }).click();
+    assert.match(await page.locator('#brief-text').textContent(), /Marcheurs : 4/);
     assert.match(await page.locator('#brief-text').textContent(), /<script>/);
     assert.equal(await page.locator('#share-brief').isVisible(), true);
     assert.match(await page.locator('#share-brief').getAttribute('href'), /^https:\/\/wa\.me\/212704321335\?text=/);
     const downloadPromise = page.waitForEvent('download');
     await page.getByRole('button', { name: 'Télécharger (.txt)' }).click();
     const download = await downloadPromise;
-    assert.equal(download.suggestedFilename(), 'projet-voyage-maroc.txt');
+    assert.equal(download.suggestedFilename(), 'projet-sortie-atlas.txt');
     await page.getByRole('button', { name: 'Modifier mes informations' }).click();
     assert.equal(await page.locator('[name="travellers"]').inputValue(), '4');
     await page.goto(base);
@@ -127,7 +127,7 @@ function htmlFiles(dir) {
     await page.screenshot({ path: path.join(root, 'artifacts/home-mobile.png'), fullPage: true });
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.screenshot({ path: path.join(root, 'artifacts/home-desktop.png'), fullPage: true });
-    await page.goto(`${base}/tours/7-day-grand-morocco.html`);
+    await page.goto(`${base}/treks/${treks[0].slug}.html`);
     for (const image of await page.locator('img').all()) { await image.scrollIntoViewIfNeeded(); await image.evaluate(element => element.decode()); }
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
     await page.screenshot({ path: path.join(root, 'artifacts/tour-desktop.png'), fullPage: true });
@@ -143,11 +143,11 @@ function htmlFiles(dir) {
     const noJS = await browser.newPage({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
     await noJS.goto(base);
     assert.equal(await noJS.getByRole('navigation', { name: 'Navigation principale' }).isVisible(), true);
-    await noJS.goto(`${base}/tours/`);
-    assert.equal(await noJS.locator('.tour-card').count(), tours.length);
+    await noJS.goto(`${base}/treks/`);
+    assert.equal(await noJS.locator('.tour-card').count(), treks.length);
     await noJS.goto(`${base}/blog/index.html`);
     assert.equal(await noJS.locator('.blog-card').count(), articles.length);
     assert.deepEqual(failures, []);
-    console.log(`PASS: ${pages.length} pages × 5 widths, images, footer links, blog cards/navigation/teasers, mobile menu, language switcher, filters, planner validation, safe text, download, FAQ, no-JS navigation; no browser errors.`);
+    console.log(`PASS: ${pages.length} pages × 5 widths, images, footer links, blog cards/navigation/teasers, mobile menu, language switcher, trek and day-trip pages, planner validation, safe text, download, FAQ, no-JS navigation; no browser errors.`);
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exit(1); });

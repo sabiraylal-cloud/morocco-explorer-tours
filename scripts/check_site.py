@@ -66,6 +66,8 @@ for path,p in pages.items():
  if p.alternates.get(expected)!=p.canonical:errors.append(f'{relative}: hreflang {expected} must match canonical')
 
 articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))['articles']
+trips=json.loads((ROOT/'data/trips.json').read_text(encoding='utf-8'))['trips']
+SECTION={'trek':'treks','excursion':'excursions'}
 if not articles or len({article['slug'] for article in articles})!=len(articles):errors.append('Blog articles need unique slugs')
 sitemap_urls={element.text for element in ET.parse(ROOT/'sitemap.xml').findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
 for code,prefix in LANGS.items():
@@ -75,16 +77,20 @@ for code,prefix in LANGS.items():
   path=(ROOT/prefix/'blog'/f'{article["slug"]}.html').resolve()
   if len(article[code]['teaser'].split())!=5:errors.append(f'{article["slug"]} ({code}): teaser must contain exactly five words')
   if not blog or f'{article["slug"]}.html' not in blog.refs:errors.append(f'{article["slug"]} ({code}): unreachable from blog')
-  if i<2 and f'blog/{article["slug"]}.html' not in home.refs:errors.append(f'{article["slug"]} ({code}): missing homepage preview')
   if path not in pages:errors.append(f'{article["slug"]} ({code}): missing article page');continue
   page=pages[path]
   if page.canonical not in sitemap_urls:errors.append(f'{article["slug"]} ({code}): missing from sitemap')
-  if f'../tours/{article["tour"]}.html' not in page.refs or '../contact.html' not in page.refs:errors.append(f'{article["slug"]} ({code}): missing relevant call to action')
-tours=json.loads((ROOT/'data/tours.json').read_text(encoding='utf-8'))['tours'];dests=json.loads((ROOT/'data/destinations.json').read_text(encoding='utf-8'))['destinations']
+  related=next((trip for trip in trips if trip['slug']==article['trip']),None)
+  if not related or f'../{SECTION[related["type"]]}/{related["slug"]}.html' not in page.refs or '../contact.html' not in page.refs:errors.append(f'{article["slug"]} ({code}): missing relevant call to action')
+ for trip in trips:
+  path=(ROOT/prefix/SECTION.get(trip['type'],'?')/f'{trip["slug"]}.html').resolve()
+  if path not in pages:errors.append(f'{trip["slug"]} ({code}): missing trip page');continue
+  if pages[path].canonical not in sitemap_urls:errors.append(f'{trip["slug"]} ({code}): missing from sitemap')
+  if f'{SECTION[trip["type"]]}/{trip["slug"]}.html' not in home.refs:errors.append(f'{trip["slug"]} ({code}): missing from homepage')
 images=json.loads((ROOT/'data/images.json').read_text(encoding='utf-8'))
 site=json.loads((ROOT/'data/site.json').read_text(encoding='utf-8'))
 slug_pattern=re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
-for label,items in [('article',articles),('tour',tours),('destination',dests)]:
+for label,items in [('article',articles),('trip',trips)]:
  slugs=[item['slug'] for item in items]
  if len(slugs)!=len(set(slugs)):errors.append(f'Duplicate {label} slug')
  for slug in slugs:
@@ -104,21 +110,31 @@ for upload in upload_root.rglob('*') if upload_root.exists() else []:
  if suffix=='.png' and not data.startswith(allowed[suffix]):errors.append(f'Invalid PNG upload: {upload.relative_to(ROOT)}')
  if suffix=='.gif' and data[:6] not in (b'GIF87a',b'GIF89a'):errors.append(f'Invalid GIF upload: {upload.relative_to(ROOT)}')
  if suffix=='.webp' and not (data[:4]==b'RIFF' and data[8:12]==b'WEBP'):errors.append(f'Invalid WebP upload: {upload.relative_to(ROOT)}')
-for item in articles+tours+dests:
+for item in articles+trips:
  image=item.get('uploaded_image') or item.get('image','')
+ if not image and item in trips:continue
  if item.get('uploaded_image'):
   relative=image.replace('\\','/').lstrip('/');candidate=(ROOT/relative).resolve()
   if not relative.startswith('images/uploads/') or not candidate.is_relative_to(upload_root):errors.append(f'{item["slug"]}: upload must stay inside images/uploads')
   elif not candidate.is_file():errors.append(f'{item["slug"]}: missing uploaded image {relative}')
  elif image not in images:errors.append(f'{item["slug"]}: unknown image key {image}')
-for t in tours:
+for t in trips:
+ if t['type'] not in SECTION:errors.append(f'{t["slug"]}: type must be trek or excursion');continue
+ for key in t.get('gallery',[]):
+  if key not in images:errors.append(f'{t["slug"]}: unknown gallery image {key}')
  for code in LANGS:
-  if len(t[code]['itinerary'])!=t['days']:errors.append(f'{t["slug"]} ({code}): itinerary length')
- if not set(t['destinations'])<={d['slug'] for d in dests}:errors.append('Unknown destination')
+  text=t[code]
+  if t['type']=='trek' and len(text['days'])!=t['days']:errors.append(f'{t["slug"]} ({code}): day-by-day length must equal days')
+  if t['type']=='excursion' and not text['program']:errors.append(f'{t["slug"]} ({code}): missing day programme')
+  if not text['included'] or not text['excluded']:errors.append(f'{t["slug"]} ({code}): included and not-included lists are required')
+for key,image in images.items():
+ if 'alt' in image and not all(image['alt'].get(code) for code in LANGS):errors.append(f'{key}: alt text needed in each language')
+ for width in image.get('widths',[]):
+  if not (ROOT/f'assets/images/{key}-{width}.webp').exists():errors.append(f'{key}: missing assets/images/{key}-{width}.webp')
 for article in articles:
- if article['tour'] not in {tour['slug'] for tour in tours}:errors.append(f'{article["slug"]}: unknown related tour')
+ if article['trip'] not in {trip['slug'] for trip in trips}:errors.append(f'{article["slug"]}: unknown related trip')
 for file in [ROOT/'assets/styles.css']:
  for ref in re.findall(r'url\([\"\']?([^\)\"\']+)',file.read_text(encoding='utf-8')):
   if not ref.startswith('data:') and not (file.parent/ref).exists():errors.append(f'Missing CSS asset {ref}')
 if errors:raise SystemExit('\n'.join(errors))
-print(f'PASS: {len(pages)} pages; local links, fragments, image paths, metadata, JSON-LD, sitemap, itinerary data and blog reachability/teasers.')
+print(f'PASS: {len(pages)} pages; local links, fragments, image paths, metadata, JSON-LD, sitemap, trip data, image sizes/alt text and blog reachability/teasers.')

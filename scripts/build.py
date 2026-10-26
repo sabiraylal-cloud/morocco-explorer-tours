@@ -9,8 +9,9 @@ from urllib.parse import urlencode
 ROOT=Path(__file__).resolve().parents[1]
 def load(name):return json.loads((ROOT/'data'/name).read_text(encoding='utf-8'))
 site=load('site.json')
-tours=load('tours.json')['tours']
-dests=load('destinations.json')['destinations']
+trips=load('trips.json')['trips']
+treks=[trip for trip in trips if trip['type']=='trek']
+excursions=[trip for trip in trips if trip['type']=='excursion']
 images=load('images.json')
 articles=load('articles.json')['articles']
 testimonials=load('testimonials.json')
@@ -23,8 +24,8 @@ pages=[]
 lang=DEFAULT_LANG
 base='index.html'
 current='index.html'
-CATEGORY_ORDER=['sahara-escapes','cities-desert','grand-journeys']
-HOME_TOUR_SLUGS=['5-day-casablanca-marrakech','2-day-mhamid-desert','7-day-grand-morocco']
+TRIP_SECTION={'trek':'treks','excursion':'excursions'}
+HERO_IMAGE='atlas-trail-hikers'
 UPLOAD_ROOT=(ROOT/'images/uploads').resolve()
 SHARED=('assets/','images/','sitemap.xml')
 def t(key,**values):
@@ -75,78 +76,79 @@ def image_dimensions(path):
   if data[12:16]==b'VP8L' and len(data)>=25 and data[20]==0x2f:
    bits=int.from_bytes(data[21:25],'little');return 1+(bits&0x3fff),1+((bits>>14)&0x3fff)
  raise ValueError(f'Unsupported or invalid image: {path.relative_to(ROOT)}')
-def image_url(value):
- if value in images:return site['url'].rstrip('/')+f'/assets/images/{value}-960.webp'
+def image_widths(key):
+ return images[key].get('widths',[480,960,1600] if key=='sahara' else [480,960])
+def image_file(key,width=None):
+ widths=image_widths(key)
+ width=width or max([w for w in widths if w<=960] or widths[:1])
+ return f'assets/images/{key}-{width}.webp'
+def image_url(value,width=None):
+ if value in images:return site['url'].rstrip('/')+'/'+image_file(value,width)
  relative,_=uploaded_image_path(value)
  return site['url'].rstrip('/')+'/'+relative
+def image_alt(key,fallback=''):
+ return images.get(key,{}).get('alt',{}).get(lang) or fallback
 def img(key,alt,cls='',eager=False):
  sizes='100vw' if cls=='hero-photo' else '(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 33vw'
  if cls=='article-photo':sizes='(max-width: 560px) calc(100vw - 36px), (max-width: 1100px) calc(100vw - 56px), (max-width: 1336px) calc(100vw - 96px), 1240px'
  if cls=='blog-featured-photo':sizes='(max-width: 560px) 92vw, 46vw'
+ if cls=='gallery-photo':sizes='(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 31vw'
  if key not in images:
   relative,path=uploaded_image_path(key);width,height=image_dimensions(path)
   return f'<img class="{cls}" src="{esc(link(relative),quote=True)}" width="{width}" height="{height}" alt="{esc(alt,quote=True)}" {"fetchpriority=high" if eager else "loading=lazy"} decoding="async">'
- widths=[480,960,1600] if key=='sahara' else [480,960]
- srcset=', '.join(f'{link(f"assets/images/{key}-{w}.webp")} {min(w,images[key]["width"])}w' for w in widths)
- return f'<img class="{cls}" src="{link(f"assets/images/{key}-960.webp")}" srcset="{srcset}" sizes="{sizes}" width="{images[key]["width"]}" height="{images[key]["height"]}" alt="{esc(alt,quote=True)}" {"fetchpriority=high" if eager else "loading=lazy"} decoding="async">'
+ srcset=', '.join(f'{link(image_file(key,w))} {min(w,images[key]["width"])}w' for w in image_widths(key))
+ return f'<img class="{cls}" src="{link(image_file(key))}" srcset="{srcset}" sizes="{sizes}" width="{images[key]["width"]}" height="{images[key]["height"]}" alt="{esc(alt,quote=True)}" {"fetchpriority=high" if eager else "loading=lazy"} decoding="async">'
+def photo_placeholder(cls=''):
+ return f'<div class="photo-placeholder {cls}" role="img" aria-label="{t("photo_coming")}"><span>{t("photo_coming")}</span></div>'
 def brand():
  return f'<img class="brand-logo" src="{link("assets/logo-morocco-explorer-tours.png")}" width="1008" height="687" alt="Morocco Explorer Tours">'
-def category_label(key):
- return t('category_'+key)
-def homepage_tours():
- by_slug={tour['slug']:tour for tour in tours}
- return [by_slug[slug] for slug in HOME_TOUR_SLUGS if slug in by_slug]
-def filter_options(values):
- return ''.join(f'<option value="{esc(str(value),quote=True)}">{esc(str(label))}</option>' for value,label in values)
-def duration_options():
- return ''.join(f'<option value="{days}">{t("filter_days",days=days)}</option>' for days in sorted({tour["days"] for tour in tours}))
+def trip_path(trip):
+ return f'{TRIP_SECTION[trip["type"]]}/{trip["slug"]}.html'
+def trip_label(trip):
+ return t('type_trek',days=trip['days']) if trip['type']=='trek' else t('type_excursion')
 def language_switch():
  links=''.join(f'<a href="{esc(link(page_path(base,code)),quote=True)}" hreflang="{code}" lang="{code}" title="{ui["lang_name"][code]}"'+(' aria-current="true"' if code==lang else '')+f'>{code.upper()}</a>' for code in LANGS)
  return f'<nav class="lang-switch" aria-label="{t("lang_switch_label")}">{links}</nav>'
 def header():
- blog_section=PREFIX[lang]+'blog/'
- nav=''.join(a(p,label,'active' if current==page_path(p) or (p=='blog/index.html' and current.startswith(blog_section)) else '') for p,label in [('tours/index.html',t('nav_tours')),('destinations/index.html',t('nav_destinations')),('blog/index.html',t('nav_blog')),('about.html',t('nav_about'))])
+ def active(p):
+  section=p.split('/')[0]+'/'
+  return current==page_path(p) or (p.endswith('index.html') and '/' in p and current.startswith(PREFIX[lang]+section))
+ nav=''.join(a(p,label,'active' if active(p) else '') for p,label in [('treks/index.html',t('nav_treks')),('excursions/index.html',t('nav_excursions')),('about.html',t('nav_about')),('contact.html',t('nav_contact'))])
  return f'''<a class="skip-link" href="#main">{t('skip')}</a><header class="site-header"><div class="container header-inner">{a('index.html',brand(),'brand')}{language_switch()}<button class="menu-toggle" aria-expanded="false" aria-controls="navigation" hidden>{t('menu')} <span aria-hidden="true">☰</span></button><nav id="navigation" aria-label="{t('main_nav')}">{nav}{a('plan-your-trip.html',t('nav_plan')+' <span aria-hidden="true">↗</span>','button small')}</nav></div></header>'''
 def footer():
- categories=''.join(a('tours/index.html?'+urlencode({'category':key}),category_label(key)) for key in CATEGORY_ORDER)
- return f'''<footer><div class="container footer-grid"><div>{a('index.html',brand(),'brand')}<p>{t('footer_tagline')}</p><span class="footer-location">{t('footer_location')}</span></div><div><h2>{t('footer_explore')}</h2>{a('tours/index.html',t('footer_all'))}{categories}</div><div><h2>{t('footer_know')}</h2>{a('blog/index.html',t('footer_blog'))}{a('destinations/index.html',t('footer_dests'))}{a('about.html',t('footer_story'))}{a('index.html#questions',t('footer_faq'))}{a('privacy.html',t('footer_privacy'))}{a('terms-and-conditions.html',t('footer_terms'))}</div><div><h2>{t('footer_own')}</h2><p>{t('footer_own_text')}</p>{a('plan-your-trip.html',t('footer_brief'),'footer-plan')}</div></div><div class="container footer-bottom"><span>© 2026 Morocco Explorer Tours</span><span>{t('footer_motto')}</span>{a('sitemap.xml',t('footer_sitemap'))}</div></footer>'''
+ return f'''<footer><div class="container footer-grid"><div>{a('index.html',brand(),'brand')}<p>{t('footer_tagline')}</p><span class="footer-location">{t('footer_location')}</span></div><div><h2>{t('footer_explore')}</h2>{a('treks/index.html',t('footer_treks'))}{a('excursions/index.html',t('footer_excursions'))}{a(trip_path(treks[0]),t('footer_toubkal'))}{a('treks/vallee-oued-zat-4-jours.html',t('footer_oued_zat'))}</div><div><h2>{t('footer_know')}</h2>{a('about.html',t('footer_story'))}{a('blog/index.html',t('footer_blog'))}{a('index.html#questions',t('footer_faq'))}{a('contact.html',t('footer_contact'))}{a('privacy.html',t('footer_privacy'))}{a('terms-and-conditions.html',t('footer_terms'))}</div><div><h2>{t('footer_own')}</h2><p>{t('footer_own_text')}</p>{a('plan-your-trip.html',t('footer_brief'),'footer-plan')}</div></div><div class="container footer-bottom"><span>© 2026 Morocco Explorer Tours</span><span>{t('footer_motto')}</span>{a('sitemap.xml',t('footer_sitemap'))}</div></footer>'''
 def cta():
  return f'<section class="cta container"><div><p class="eyebrow">{t("cta_kicker")}</p><h2>{t("cta_title")}</h2><p>{t("cta_text")}</p></div>{a("plan-your-trip.html",t("cta_button"),"button light")}</section>'
 def start_page(path):
  global base,current
  base=path;current=page_path(path)
-def write(title,description,body,section='',schema=None):
+def write(title,description,body,section='',schema=None,social=None):
  path=base
  canonical=canonical_url(path,lang)
  alternates=''.join(f'<link rel="alternate" hreflang="{code}" href="{canonical_url(path,code)}">' for code in LANGS)+f'<link rel="alternate" hreflang="x-default" href="{canonical_url(path,DEFAULT_LANG)}">'
- base_schema={'@context':'https://schema.org','@type':'TravelAgency','name':site['name'],'url':site['url'],'areaServed':{'@type':'Country','name':'Morocco'}}
+ base_schema={'@context':'https://schema.org','@type':'TravelAgency','name':site['name'],'url':site['url'],'areaServed':{'@type':'Place','name':'High Atlas, Morocco'}}
  if schema:base_schema=schema
- if schema and schema.get('@type')=='BlogPosting':
-  social_image=schema['image']
-  social_alt=next(tx(article)['alt'] for article in articles if path=='blog/'+article['slug']+'.html')
- else:
-  social_image=site['url']+'/assets/images/sahara-1600.webp'
-  social_alt=t('social_alt')
+ social_image,social_alt=social or (image_url(HERO_IMAGE,max(image_widths(HERO_IMAGE))),image_alt(HERO_IMAGE,t('social_alt')))
  og_type='article' if schema and schema.get('@type')=='BlogPosting' else 'website'
  other_locales=''.join(f'<meta property="og:locale:alternate" content="{ui["og_locale"][code]}">' for code in LANGS if code!=lang)
  robots='<meta name="robots" content="noindex, follow">' if path=='404.html' else ''
  doc=f'''<!doctype html>
 <html lang="{t('html_lang')}"><head><meta charset="utf-8">{robots}<meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} | Morocco Explorer Tours</title><meta name="description" content="{esc(description,quote=True)}"><link rel="canonical" href="{canonical}">{alternates}<meta property="og:type" content="{og_type}"><meta property="og:locale" content="{t('og_locale')}">{other_locales}<meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Morocco Explorer Tours"><meta property="og:image" content="{social_image}"><meta property="og:image:alt" content="{esc(social_alt,quote=True)}"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#703d2b"><link rel="icon" href="{link('assets/favicon.svg')}" type="image/svg+xml"><link rel="stylesheet" href="{link('assets/styles.css')}"><script src="{link('assets/site.js')}" defer></script><script type="application/ld+json">{json.dumps(base_schema,ensure_ascii=False).replace('<',chr(92)+'u003c')}</script></head><body class="{section}">{header()}<main id="main">{body}</main>{footer()}</body></html>'''
  out=ROOT/current;out.parent.mkdir(parents=True,exist_ok=True);out.write_text(doc+'\n',encoding='utf-8');pages.append((current,path,lang,canonical))
-def tourcard(tour):
- text=tx(tour);path='tours/'+tour['slug']+'.html'
- nights=t('card_night' if tour['nights']==1 else 'card_nights',nights=tour['nights'])
- return f'''<article class="tour-card" data-start="{esc(text['start'],quote=True)}" data-category="{tour['category']}" data-days="{tour['days']}"><a class="card-photo" href="{link(page_path(path))}" tabindex="-1" aria-hidden="true">{img(content_image(tour),text['title'])}<span class="photo-label">{t('card_days',days=tour['days'])} · {nights}</span></a><div class="card-body"><p class="eyebrow">{esc(category_label(tour['category']))}</p><h3>{a(path,esc(text['name']))}</h3><p class="route-line">{esc(text['start'])} <span aria-hidden="true">→</span> {esc(text['end'])}</p><p>{esc(text['description'])}</p><div class="card-bottom"><span>{t('card_private')}</span>{a(path,t('card_explore')+' <span aria-hidden="true">↗</span>')}</div></div></article>'''
-def destcard(dest):
- text=tx(dest)
- return f'''<a class="destination-card" href="{link(page_path('destinations/'+dest['slug']+'.html'))}">{img(content_image(dest),text['name'])}<div><span>{esc(text['category'])}</span><h3>{esc(text['name'])}</h3></div><span class="circle-arrow" aria-hidden="true">↗</span></a>'''
+def trip_photo(trip,cls='',eager=False):
+ key=content_image(trip)
+ return img(key,image_alt(key,tx(trip)['title']),cls,eager) if key else photo_placeholder(cls)
+def tripcard(trip):
+ text=tx(trip);path=trip_path(trip)
+ label=f"{t('card_days',days=trip['days'])} · {t('card_nights',nights=trip['days']-1)}" if trip['type']=='trek' else t('card_day_trip')
+ detail=text['key_fact'] if trip['type']=='trek' else text['distance']
+ view=t('card_view_trek' if trip['type']=='trek' else 'card_view_excursion')
+ return f'''<article class="tour-card" data-type="{trip['type']}" data-days="{trip['days']}"><a class="card-photo" href="{link(page_path(path))}" tabindex="-1" aria-hidden="true">{trip_photo(trip)}<span class="photo-label">{label}</span></a><div class="card-body"><p class="eyebrow">{trip_label(trip)}</p><h3>{a(path,esc(text['name']))}</h3><p class="route-line">{esc(text['level'])} · {esc(detail)}</p><p>{esc(text['description'])}</p><div class="card-bottom"><span>{t('card_from')}</span>{a(path,view+' <span aria-hidden="true">↗</span>')}</div></div></article>'''
 
 def articlecard(article,heading='h2'):
  text=tx(article);path='blog/'+article['slug']+'.html'
  return f'''<article class="blog-card"><a class="card-photo" href="{link(page_path(path))}" tabindex="-1" aria-hidden="true">{img(content_image(article),text['alt'],'blog-featured-photo' if heading=='h3' else '')}</a><div class="card-body"><p class="eyebrow">{esc(text['category'])}</p><{heading}>{a(path,esc(text['title']))}</{heading}><p class="blog-teaser">{esc(text['teaser'])}...</p><div class="card-bottom">{a(path,t('read_more')+'<span class="sr-only">: '+esc(text['title'])+'</span> <span aria-hidden="true">↗</span>')}</div></div></article>'''
 
-def blog_preview():
- return f'''<section class="section container blog-preview" aria-labelledby="blog-preview-title"><div class="section-heading"><div><p class="eyebrow">{t('journal_kicker')}</p><h2 id="blog-preview-title">{t('journal_title')}</h2></div>{a('blog/index.html','<span aria-hidden="true">←</span> '+t('all_articles'),'text-link')}</div><div class="blog-grid blog-grid-featured">{''.join(articlecard(article,'h3') for article in articles[:2])}</div></section>'''
 def testimonial_carousel():
  reviews=testimonials['reviews']
  slides=''.join(f'''<article class="testimonial-card" role="group" aria-roledescription="slide" aria-label="{t('reviews_slide',i=i+1,n=len(reviews))}"><p class="testimonial-rating" role="img" aria-label="{t('reviews_stars',rating=review['rating'])}"><span aria-hidden="true">{"★"*review['rating']}</span></p><h3>{esc(tx(review)['title'])}</h3><p class="testimonial-summary">{esc(tx(review)['summary'])}</p><div class="testimonial-person"><span class="testimonial-avatar" aria-hidden="true">{esc(review['initials'])}</span><div><strong class="testimonial-name">{esc(review['name'])}</strong><span class="testimonial-country">{esc(tx(review)['country'])}</span></div></div></article>''' for i,review in enumerate(reviews))
@@ -172,22 +174,66 @@ def legal_page(doc):
  body=intro(text['kicker'],text['title'],text['lead'])+f'<section class="container prose collection legal-page">{"".join(block(p) for p in text["intro"])}{sections}{legal_contact()}</section>'
  write(text['meta_title'],text['meta_description'],body)
 SOCIAL_ICONS=[('facebook','Facebook','M13.5 22v-8h2.7l.4-3h-3.1V7.6c0-.9.3-1.5 1.7-1.5H16V3.1c-.3-.1-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.4V11H7v3h2.3v8h4.2Z'),('instagram','Instagram','M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.5-3.3a1.2 1.2 0 1 1-1.2-1.2 1.2 1.2 0 0 1 1.2 1.2Z'),('youtube','YouTube','M22.5 7.2a3 3 0 0 0-2.1-2.1C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.4.4A3 3 0 0 0 1.5 7.2 31 31 0 0 0 1 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.7.4 8.4.4 8.4.4s6.7 0 8.4-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23 12a31 31 0 0 0-.5-4.8ZM10 15.5v-7l6 3.5-6 3.5Z')]
+def plan_link(trip):
+ return 'plan-your-trip.html?'+urlencode({'tour':tx(trip)['title'],'type':t_list('form_type_options')[1 if trip['type']=='trek' else 2]})
+def item_list(items,cls=''):
+ return f'<ul class="{cls}">'+''.join(f'<li>{esc(item)}</li>' for item in items)+'</ul>'
+def trip_page(trip):
+ text=tx(trip);is_trek=trip['type']=='trek'
+ start_page(trip_path(trip))
+ section=TRIP_SECTION[trip['type']]
+ if is_trek:
+  facts=[(t('trek_duration',days=trip['days'],nights=trip['days']-1),t('fact_duration')),('Marrakech',t('fact_start')),(text['level'],t('fact_level')),(text['key_fact'],t('fact_key'))]
+ else:
+  facts=[(text['duration'],t('fact_duration')),('Marrakech',t('fact_start')),(text['distance'],t('fact_road')),(text['level'],t('fact_level'))]
+ fact_html=''.join(f'<span><b>{esc(value)}</b>{label}</span>' for value,label in facts)
+ if is_trek:
+  def day(i,d):
+   rows=[(t('day_walk'),d['walk']),(t('day_altitude'),d['altitude']),(t('day_overnight'),d['overnight']),(t('day_meals'),d['meals'])]
+   facts_dl=''.join(f'<div><dt>{label}</dt><dd>{esc(value)}</dd></div>' for label,value in rows if value)
+   return f'<details {"open" if i==0 else ""}><summary><span class="day-number">{t("trip_day")} {i+1:02}</span> {esc(d["title"])}</summary><p>{esc(d["text"])}</p><dl class="day-facts">{facts_dl}</dl></details>'
+  arrow=' <span aria-hidden="true">→</span> '
+  plan=f'<p class="route-ribbon">{arrow.join(esc(stop) for stop in text["route"])}</p><h2>{t("trip_daybyday")}</h2><div class="itinerary">{"".join(day(i,d) for i,d in enumerate(text["days"]))}</div>'
+ else:
+  plan=f'<h2>{t("trip_program")}</h2><ol class="program">'+''.join(f'<li><span class="program-time">{esc(time)}</span><span>{esc(step)}</span></li>' for time,step in text['program'])+'</ol>'
+ highlights=f'<p class="eyebrow space-top">{t("trip_highlights_kicker")}</p><h2>{t("trip_highlights")}</h2>{item_list(text["highlights"],"experience-list")}'
+ gallery=''
+ if trip['gallery']:
+  figures=''.join(f'<figure>{img(key,image_alt(key),"gallery-photo")}<figcaption>{esc(image_alt(key))}</figcaption></figure>' for key in trip['gallery'])
+  gallery=f'<section class="container section trip-gallery-section"><p class="eyebrow">{t("trip_gallery_kicker")}</p><h2>{t("trip_gallery")}</h2><div class="trip-gallery">{figures}</div></section>'
+ others=[other for other in trips if other['type']==trip['type'] and other is not trip]
+ more=f'<section class="container section"><div class="section-heading"><div><h2>{t("trip_more_treks" if is_trek else "trip_more_excursions")}</h2></div>{a(section+"/index.html",t("treks_section_all" if is_trek else "excursions_section_all"),"text-link")}</div><div class="tour-grid">{"".join(tripcard(other) for other in others)}</div></section>'
+ request=a(plan_link(trip),t('trip_request_trek' if is_trek else 'trip_request_excursion'),'button')
+ body=crumbs(section+'/index.html',t('nav_treks' if is_trek else 'nav_excursions'))+f'''<section class="container detail-hero"><div><p class="eyebrow">{trip_label(trip)}</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['intro'])}</p><div class="facts">{fact_html}</div>{request}</div>{trip_photo(trip,'detail-photo',True)}</section><section class="container section detail-layout"><div><p class="eyebrow">{t('trip_route_kicker')}</p>{plan}{highlights}</div><aside class="planning-note"><h2>{t('trip_included')}</h2>{item_list(text['included'],'check-list')}<h2>{t('trip_excluded')}</h2>{item_list(text['excluded'],'cross-list')}<p>{t('trip_price')}</p><hr><p class="eyebrow">{t('trip_good_kicker')}</p><p>{esc(text['note'])}</p>{request}</aside></section>{gallery}{more}'''+cta()
+ schema={'@context':'https://schema.org','@type':'TouristTrip','name':text['title'],'description':text['description'],'inLanguage':lang,'touristType':t('tour_type'),'provider':{'@type':'TravelAgency','name':site['name'],'url':site['url']}}
+ if is_trek:schema['itinerary']={'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':name} for i,name in enumerate(text['route'])]}
+ key=content_image(trip)
+ social=(image_url(key),image_alt(key)) if key else None
+ write(text['title'],text['description'],body,schema=schema,social=social)
+def t_list(key):
+ return ui[key][lang]
 
 def build_language():
  faq=''.join(f'<details><summary>{q}</summary><p>{v}</p></details>' for q,v in t_list('faqs'))
  start_page('index.html')
- departures=''.join(a('tours/index.html?'+urlencode({'start':city}),city+' ↗','departure-link') for city in ['Casablanca','Marrakech'])+''.join(a('plan-your-trip.html?'+urlencode({'arrival':t('city_'+city)}),t('city_'+city)+' · '+t('departures_custom')+' ↗','departure-link') for city in ['Fes','Tangier'])
  values=''.join(f'<div><strong>{title}</strong><span>{text}</span></div>' for title,text in t_list('story_values'))
- body=f'''<section class="hero"><img class="hero-backdrop" src="{link('assets/images/hero-guests-480.webp')}" width="480" height="480" alt="" aria-hidden="true" decoding="async">{img('hero-guests',t('hero_alt'),'hero-photo',True)}<div class="hero-shade"></div><div class="container hero-inner"><p class="eyebrow">{t('hero_kicker')}</p><h1>{t('hero_title')}</h1><p>{t('hero_text')}</p><div class="button-row">{a('tours/index.html',t('hero_find'),'button')}{a('plan-your-trip.html',t('hero_create'),'button outline')}</div></div><div class="hero-caption"><span>33° N / 07° W</span><span>{t('hero_caption')}</span></div></section>
+ body=f'''<section class="hero">{img(HERO_IMAGE,image_alt(HERO_IMAGE),'hero-photo',True)}</section>
+<section class="hero-intro"><div class="container hero-intro-inner"><div><p class="eyebrow">{t('hero_kicker')}</p><h1>{t('hero_title')}</h1></div><div><p>{t('hero_text')}</p><div class="button-row">{a('treks/index.html',t('hero_find'),'button')}{a('excursions/index.html',t('hero_create'),'button secondary')}</div></div></div></section>
 <div class="promise-bar"><div class="container"><span><b>01</b> {t('promise_1')}</span><span><b>02</b> {t('promise_2')}</span><span><b>03</b> {t('promise_3')}</span></div></div>
-<section class="section container" id="tours"><div class="section-heading"><div><p class="eyebrow">{t('collection_kicker')}</p><h2>{t('collection_title')}</h2></div><div><p>{t('collection_text')}</p>{a('tours/index.html',t('collection_all'),'text-link')}</div></div><div class="tour-grid">{''.join(tourcard(tour) for tour in homepage_tours())}</div></section>
-<section class="departures"><div class="container"><p class="eyebrow">{t('departures_kicker')}</p><div class="departure-row"><h2>{t('departures_title')}</h2>{departures}</div></div></section>
-<section class="section container" id="destinations"><div class="section-heading"><div><p class="eyebrow">{t('places_kicker')}</p><h2>{t('places_title')}</h2></div>{a('destinations/index.html',t('places_all'),'text-link')}</div><div class="destination-grid">{''.join(destcard(next(d for d in dests if d['slug']==slug)) for slug in ['sahara','fes','ait-ben-haddou','atlas-mountains'])}</div></section>
-<section class="story-section" id="about"><div class="container story-grid"><div class="story-image">{img('hospitality',t('story_alt'))}<span class="image-note">{t('story_note')}</span></div><div class="story-copy"><p class="eyebrow">{t('story_kicker')}</p><h2>{t('story_title')}</h2><p>{t('story_p1')}</p><p>{t('story_p2')}</p>{a('about.html',t('story_link'),'text-link')}<div class="story-values">{values}</div></div></div></section>
+<section class="section container" id="treks"><div class="section-heading"><div><p class="eyebrow">{t('treks_section_kicker')}</p><h2>{t('treks_section_title')}</h2></div><div><p>{t('treks_section_text')}</p>{a('treks/index.html',t('treks_section_all'),'text-link')}</div></div><div class="tour-grid">{''.join(tripcard(trip) for trip in treks)}</div></section>
+<section class="section container excursions-preview" id="excursions"><div class="section-heading"><div><p class="eyebrow">{t('excursions_section_kicker')}</p><h2>{t('excursions_section_title')}</h2></div><div><p>{t('excursions_section_text')}</p>{a('excursions/index.html',t('excursions_section_all'),'text-link')}</div></div><div class="tour-grid excursion-grid">{''.join(tripcard(trip) for trip in excursions)}</div></section>
+<section class="story-section" id="about"><div class="container story-grid"><div class="story-image">{img('atlas-shepherds-flock',image_alt('atlas-shepherds-flock'))}<span class="image-note">{t('story_note')}</span></div><div class="story-copy"><p class="eyebrow">{t('story_kicker')}</p><h2>{t('story_title')}</h2><p>{t('story_p1')}</p><p>{t('story_p2')}</p>{a('about.html',t('story_link'),'text-link')}<div class="story-values">{values}</div></div></div></section>
 <section class="section container"><div class="section-heading"><div><p class="eyebrow">{t('steps_kicker')}</p><h2>{t('steps_title')}</h2></div><p>{t('steps_text')}</p></div>{steps(t_list('home_steps'))}</section>
 <section class="faq-section" id="questions"><div class="container faq-grid"><div><p class="eyebrow">{t('faq_kicker')}</p><h2>{t('faq_title')}</h2>{a('plan-your-trip.html',t('faq_link'),'text-link')}</div><div class="faq">{faq}</div></div></section>{cta()}'''
- body+=testimonial_carousel()+blog_preview()
+ body+=testimonial_carousel()
  write(t('home_meta_title'),t('home_meta_description'),body,'home')
+
+ for kind,items in [('trek',treks),('excursion',excursions)]:
+  section=TRIP_SECTION[kind]
+  start_page(section+'/index.html')
+  body=intro(t(section+'_kicker'),t(section+'_title'),t(section+'_lead'))+f'<section class="container collection"><div class="tour-grid{" excursion-grid" if kind=="excursion" else ""}">'+''.join(tripcard(trip) for trip in items)+f'</div><p class="collection-note">{t("listing_note")}</p></section>'+cta()
+  write(t(section+'_meta_title'),t(section+'_meta_description'),body)
+  for trip in items:trip_page(trip)
 
  start_page('blog/index.html')
  body=intro(t('journal_kicker'),t('blog_title'),t('blog_lead'))+f'<section class="container collection" aria-label="{t("blog_list_label")}"><div class="blog-grid">'+''.join(articlecard(article) for article in articles)+'</div></section>'+cta()
@@ -200,47 +246,21 @@ def build_language():
   contents=''.join(f'<li><a href="#{article["slug"]}-section-{i}">{esc(section["heading"])}</a></li>' for i,section in enumerate(text['sections']))
   source=text.get('source')
   source_note=f'<p class="article-source">{t("article_further")} <a href="{esc(source["url"],quote=True)}">{esc(source["label"])}</a>.</p>' if source else ''
-  related=next(tour for tour in tours if tour['slug']==article['tour'])
-  body=f'''<nav class="breadcrumbs container" aria-label="{t('breadcrumb')}">{a('index.html',t('home'))}<span aria-hidden="true">/</span>{a('blog/index.html',t('nav_blog'))}<span aria-hidden="true">/</span><span aria-current="page">{esc(text['category'])}</span></nav><article class="container blog-article"><header class="article-header"><p class="eyebrow">{esc(text['category'])} · MOROCCO EXPLORER TOURS</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['intro'])}</p></header><figure class="article-image">{img(content_image(article),text['alt'],'article-photo',True)}</figure><div class="article-layout"><nav class="article-contents" aria-label="{t('article_in_this')}"><h2>{t('article_in_this')}</h2><ol>{contents}</ol></nav><div class="article-copy">{sections}{source_note}<section class="article-next"><h2>{esc(text['cta_title'])}</h2><p>{esc(text['cta_text'])}</p><div class="button-row">{a('tours/'+related['slug']+'.html',esc(text['tour_label'])+' ↗','button')}{a('contact.html',t('article_enquire'),'text-link')}</div></section>{a('blog/index.html','<span aria-hidden="true">←</span> '+t('all_articles'),'text-link')}</div></div></article>'''
+  related=next(trip for trip in trips if trip['slug']==article['trip'])
+  body=f'''<nav class="breadcrumbs container" aria-label="{t('breadcrumb')}">{a('index.html',t('home'))}<span aria-hidden="true">/</span>{a('blog/index.html',t('footer_blog'))}<span aria-hidden="true">/</span><span aria-current="page">{esc(text['category'])}</span></nav><article class="container blog-article"><header class="article-header"><p class="eyebrow">{esc(text['category'])} · MOROCCO EXPLORER TOURS</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['intro'])}</p></header><figure class="article-image">{img(content_image(article),text['alt'],'article-photo',True)}</figure><div class="article-layout"><nav class="article-contents" aria-label="{t('article_in_this')}"><h2>{t('article_in_this')}</h2><ol>{contents}</ol></nav><div class="article-copy">{sections}{source_note}<section class="article-next"><h2>{esc(text['cta_title'])}</h2><p>{esc(text['cta_text'])}</p><div class="button-row">{a(trip_path(related),esc(text['tour_label'])+' ↗','button')}{a('contact.html',t('article_enquire'),'text-link')}</div></section>{a('blog/index.html','<span aria-hidden="true">←</span> '+t('all_articles'),'text-link')}</div></div></article>'''
   schema={'@context':'https://schema.org','@type':'BlogPosting','headline':text['title'],'description':text['description'],'image':image_url(content_image(article)),'author':{'@type':'Organization','name':site['name']},'publisher':{'@type':'Organization','name':site['name']},'mainEntityOfPage':article_url,'articleSection':text['category'],'inLanguage':lang}
-  write(text['title'],text['description'],body,'blog-detail',schema=schema)
-
- start_page('tours/index.html')
- starts=sorted({tx(tour)['start'] for tour in tours})
- categories=[key for key in CATEGORY_ORDER if any(tour['category']==key for tour in tours)]
- filters=f'''<form class="filters" id="tour-filters" hidden><label>{t('filter_departure')}<select name="start"><option value="">{t('filter_all_departures')}</option>{filter_options((city,city) for city in starts)}</select></label><label>{t('filter_experience')}<select name="category"><option value="">{t('filter_all_experiences')}</option>{filter_options((key,category_label(key)) for key in categories)}</select></label><label>{t('filter_duration')}<select name="days"><option value="">{t('filter_any_length')}</option>{duration_options()}</select></label><button class="text-button" type="reset">{t('filter_reset')}</button></form>'''
- body=intro(t('tours_kicker'),t('tours_title'),t('tours_lead'))+f'<section class="container collection">{filters}<p id="result-count" aria-live="polite">{t("results_count",count=len(tours))}</p><div class="tour-grid" id="tour-results">'+''.join(tourcard(tour) for tour in tours)+f'</div><div id="empty-results" class="empty-results" hidden><h2>{t("empty_title")}</h2><p>{t("empty_text")}</p>{a("plan-your-trip.html",t("empty_button"),"button")}</div><p class="collection-note">{t("collection_note")}</p></section>'+cta()
- write(t('tours_meta_title'),t('tours_meta_description'),body)
- for tour in tours:
-  start_page('tours/'+tour['slug']+'.html')
-  text=tx(tour)
-  daylist=''.join(f'<details {"open" if i==0 else ""}><summary><span class="day-number">{t("tour_day")} {i+1:02}</span> {esc(title)}</summary><p>{esc(copy)}</p></details>' for i,(title,copy) in enumerate(text['itinerary']))
-  related=''.join(a('destinations/'+d['slug']+'.html',esc(tx(d)['name'])+' ↗','pill') for d in dests if d['slug'] in tour['destinations'])
-  plan_link='plan-your-trip.html?'+urlencode({'tour':text['title'],'arrival':text['start']})
-  nights=t('tour_night' if tour['nights']==1 else 'tour_nights',nights=tour['nights'])
-  details=''.join(f'<li>{item}</li>' for item in t_list('tour_details'))
-  body=crumbs('tours/index.html',t('crumb_tours'))+f'''<section class="container detail-hero"><div><p class="eyebrow">{esc(category_label(tour['category']))} · {t('tour_private')}</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['description'])}</p><div class="facts"><span><b>{t('tour_days',days=tour['days'])}</b>{nights}</span><span><b>{esc(text['start'])}</b>{t('tour_start')}</span><span><b>{esc(text['end'])}</b>{t('tour_end')}</span></div>{a(plan_link,t('tour_personalise'),'button')}</div>{img(content_image(tour),text['title'],'detail-photo',True)}</section><section class="container section detail-layout"><div><p class="eyebrow">{t('tour_route_kicker')}</p><p class="route-ribbon">{' <span aria-hidden="true">→</span> '.join(esc(stop) for stop in text['route'])}</p><h2>{t('tour_daybyday')}</h2><p>{t('tour_flexible')}</p><div class="itinerary">{daylist}</div><h2 class="space-top">{t('tour_places')}</h2><div class="pills">{related}</div></div><aside class="planning-note"><p class="eyebrow">{t('tour_good_kicker')}</p><h2>{t('tour_pace')}</h2><p>{esc(text['pace'])}</p><hr><h3>{t('tour_details_title')}</h3><ul>{details}</ul><p>{t('tour_price')}</p>{a(plan_link,t('tour_brief'),'button')}</aside></section>'''+cta()
-  write(text['title'],text['description'],body,schema={'@context':'https://schema.org','@type':'TouristTrip','name':text['title'],'description':text['description'],'inLanguage':lang,'touristType':t('tour_type'),'provider':{'@type':'TravelAgency','name':site['name'],'url':site['url']},'itinerary':{'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':name} for i,name in enumerate(text['route'])]}})
-
- start_page('destinations/index.html')
- write(t('dests_meta_title'),t('dests_meta_description'),intro(t('dests_kicker'),t('dests_title'),t('dests_lead'))+'<section class="container collection"><div class="destination-grid destination-index">'+''.join(destcard(d) for d in dests)+'</div></section>'+cta())
- for dest in dests:
-  start_page('destinations/'+dest['slug']+'.html')
-  text=tx(dest)
-  matches=[tour for tour in tours if dest['slug'] in tour['destinations']]
-  body=crumbs('destinations/index.html',t('crumb_destinations'))+f'''<section class="container detail-hero"><div><p class="eyebrow">{esc(text['category'])}</p><h1>{esc(text['name'])}</h1><p class="lead">{esc(text['description'])}</p><p>{esc(text['body'])}</p>{a('plan-your-trip.html?'+urlencode({'destination':text['name']}),t('dest_add'),'button')}</div>{img(content_image(dest),text['name'],'detail-photo',True)}</section><section class="container section destination-details"><div><p class="eyebrow">{t('dest_time_kicker')}</p><h2>{t('dest_explore')}</h2><ul class="experience-list">{''.join('<li>'+esc(x)+'</li>' for x in text['experiences'])}</ul></div><aside class="planning-note"><p class="eyebrow">{t('dest_plan_kicker')}</p><h2>{t('dest_before')}</h2><p>{esc(text['planning'])}</p></aside></section><section class="container section"><div class="section-heading"><div><p class="eyebrow">{t('dest_connect_kicker')}</p><h2>{t('dest_journeys')}</h2></div>{a('tours/index.html',t('dest_all_tours'),'text-link')}</div><div class="tour-grid">{''.join(tourcard(tour) for tour in matches)}</div></section>'''+cta()
-  write(t('dest_meta_title',name=text['name']),text['description']+t('dest_meta_suffix'),body)
+  write(text['title'],text['description'],body,'blog-detail',schema=schema,social=(schema['image'],text['alt']))
 
  start_page('about.html')
- body=intro(t('about_kicker'),t('about_title'),t('about_lead'))+f'''<section class="container story-grid about-story"><div class="story-image">{img('guests',t('about_alt'))}</div><div><p class="eyebrow">{t('about_care_kicker')}</p><h2>{t('about_care_title')}</h2><p>{t('about_p1')}</p><p>{t('about_p2')}</p><p>{t('about_p3')}</p>{a('plan-your-trip.html',t('about_button'),'button')}</div></section><section class="container section">{steps(t_list('about_steps'))}</section>'''+cta()
+ body=intro(t('about_kicker'),t('about_title'),t('about_lead'))+f'''<section class="container story-grid about-story"><div class="story-image">{img('guests',image_alt('guests'))}</div><div><p class="eyebrow">{t('about_care_kicker')}</p><h2>{t('about_care_title')}</h2><p>{t('about_p1')}</p><p>{t('about_p2')}</p><p>{t('about_p3')}</p>{a('plan-your-trip.html',t('about_button'),'button')}</div></section><section class="container section">{steps(t_list('about_steps'))}</section>'''+cta()
  write(t('about_meta_title'),t('about_meta_description'),body)
 
  start_page('plan-your-trip.html')
  optional=f'<span>{t("optional")}</span>'
- arrival_options=f'<option>{t("form_not_sure")}</option>'+''.join(f'<option>{city}</option>' for city in t_list('form_arrival_cities'))
- comfort_options=''.join(f'<option>{option}</option>' for option in t_list('form_comfort_options'))
+ type_options=''.join(f'<option>{option}</option>' for option in t_list('form_type_options'))
+ level_options=''.join(f'<option>{option}</option>' for option in t_list('form_level_options'))
  plan_steps=''.join(f'<li>{item}</li>' for item in t_list('plan_steps'))
- body=intro(t('plan_kicker'),t('plan_title'),t('plan_lead'))+f'''<section class="container planner-layout collection"><aside><p class="eyebrow">{t('plan_aside_kicker')}</p><h2>{t('plan_aside_title')}</h2><p>{t('plan_aside_text')}</p><ol class="planner-steps">{plan_steps}</ol><p class="notice">{t('plan_notice')}</p></aside><div><form id="trip-form" class="trip-form" data-email="{esc(site['email'],quote=True)}" data-whatsapp="{esc(site['whatsapp'],quote=True)}" hidden><div class="form-grid"><label>{t('form_name')} {optional}<input name="name" autocomplete="name" maxlength="100"></label><label>{t('form_month')} {optional}<input type="month" name="month"></label><label>{t('form_arrival')}<select name="arrival">{arrival_options}</select></label><label>{t('form_travellers')}<input name="travellers" type="number" min="1" max="100" value="2" required></label><label>{t('form_days')}<input name="days" type="number" min="1" max="90" value="7" required></label><label>{t('form_comfort')}<select name="comfort">{comfort_options}</select></label></div><label>{t('form_interest')} {optional}<input name="interest" maxlength="200" placeholder="{t('form_interest_placeholder')}"></label><label>{t('form_notes')} {optional}<textarea name="notes" maxlength="2000" rows="5" placeholder="{t('form_notes_placeholder')}"></textarea></label><p class="form-note">{t('form_note',privacy=a('privacy.html',t('form_privacy_link')))}</p><button class="button" type="submit">{t('form_submit')}</button></form><noscript><div class="planning-note"><h2>{t('noscript_title')}</h2><p>{t('noscript_text')}</p></div></noscript><section id="trip-result" class="trip-result" hidden aria-labelledby="brief-title"><p class="eyebrow">{t('result_kicker')}</p><h2 id="brief-title" tabindex="-1">{t('result_title')}</h2><p>{t('result_text')}</p><pre id="brief-text"></pre><div class="button-row"><button class="button" id="copy-brief" type="button">{t('result_copy')}</button><button class="button secondary" id="download-brief" type="button">{t('result_download')}</button><a class="button" id="share-brief" hidden>{t('result_share')}</a></div><p id="brief-status" role="status"></p><button class="text-button" id="edit-brief" type="button">{t('result_edit')}</button></section></div></section>'''
+ body=intro(t('plan_kicker'),t('plan_title'),t('plan_lead'))+f'''<section class="container planner-layout collection"><aside><p class="eyebrow">{t('plan_aside_kicker')}</p><h2>{t('plan_aside_title')}</h2><p>{t('plan_aside_text')}</p><ol class="planner-steps">{plan_steps}</ol><p class="notice">{t('plan_notice')}</p></aside><div><form id="trip-form" class="trip-form" data-email="{esc(site['email'],quote=True)}" data-whatsapp="{esc(site['whatsapp'],quote=True)}" hidden><div class="form-grid"><label>{t('form_name')} {optional}<input name="name" autocomplete="name" maxlength="100"></label><label>{t('form_month')} {optional}<input type="month" name="month"></label><label>{t('form_type')}<select name="type">{type_options}</select></label><label>{t('form_travellers')}<input name="travellers" type="number" min="1" max="100" value="2" required></label><label>{t('form_days')}<input name="days" type="number" min="1" max="30" value="1" required></label><label>{t('form_level')}<select name="level">{level_options}</select></label></div><label>{t('form_interest')} {optional}<input name="interest" maxlength="200" placeholder="{t('form_interest_placeholder')}"></label><label>{t('form_notes')} {optional}<textarea name="notes" maxlength="2000" rows="5" placeholder="{t('form_notes_placeholder')}"></textarea></label><p class="form-note">{t('form_note',privacy=a('privacy.html',t('form_privacy_link')))}</p><button class="button" type="submit">{t('form_submit')}</button></form><noscript><div class="planning-note"><h2>{t('noscript_title')}</h2><p>{t('noscript_text')}</p></div></noscript><section id="trip-result" class="trip-result" hidden aria-labelledby="brief-title"><p class="eyebrow">{t('result_kicker')}</p><h2 id="brief-title" tabindex="-1">{t('result_title')}</h2><p>{t('result_text')}</p><pre id="brief-text"></pre><div class="button-row"><button class="button" id="copy-brief" type="button">{t('result_copy')}</button><button class="button secondary" id="download-brief" type="button">{t('result_download')}</button><a class="button" id="share-brief" hidden>{t('result_share')}</a></div><p id="brief-status" role="status"></p><button class="text-button" id="edit-brief" type="button">{t('result_edit')}</button></section></div></section>'''
  write(t('plan_meta_title'),t('plan_meta_description'),body)
 
  start_page('contact.html')
@@ -252,9 +272,7 @@ def build_language():
  start_page('privacy.html');legal_page('privacy')
  start_page('terms-and-conditions.html');legal_page('terms')
  start_page('404.html')
- write(t('notfound_meta_title'),t('notfound_meta_description'),intro(t('notfound_kicker'),t('notfound_title'),t('notfound_lead'))+f'<div class="container collection button-row">{a("index.html",t("notfound_home"),"button")}{a("tours/index.html",t("notfound_tours"),"button secondary")}</div>')
-def t_list(key):
- return ui[key][lang]
+ write(t('notfound_meta_title'),t('notfound_meta_description'),intro(t('notfound_kicker'),t('notfound_title'),t('notfound_lead'))+f'<div class="container collection button-row">{a("index.html",t("notfound_home"),"button")}{a("treks/index.html",t("notfound_tours"),"button secondary")}</div>')
 
 for lang in LANGS:build_language()
 sitemap_entries=''

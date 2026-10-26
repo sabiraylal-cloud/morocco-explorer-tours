@@ -5,8 +5,8 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - data/articles.json
-      - data/tours.json
-      - data/destinations.json
+      - data/trips.json
+      - data/images.json
       - data/site.json
       - data/testimonials.json
       - data/ui.json

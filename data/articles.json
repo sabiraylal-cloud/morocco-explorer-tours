@@ -3,7 +3,7 @@
     {
       "slug": "choose-your-morocco-itinerary",
       "image": "journey",
-      "tour": "12-day-slow-morocco-cities-desert-coast",
+      "trip": "excursion-imlil",
       "fr": {
         "title": "Votre Maroc à vous : choisir l’itinéraire qui vous ressemble",
         "category": "Préparer son voyage",
@@ -47,9 +47,9 @@
             ]
           }
         ],
-        "cta_title": "Donnez à vos lieux préférés le temps qu’ils méritent",
-        "cta_text": "Partez de notre circuit de 12 jours en douceur, ou envoyez-nous vos dates et vos priorités : nous vous proposerons un itinéraire sur mesure.",
-        "tour_label": "Voir le circuit de 12 jours en douceur"
+        "cta_title": "Ajoutez une journée dans l’Atlas",
+        "cta_text": "Quel que soit votre itinéraire, une journée à Imlil suffit pour découvrir les villages et les sommets du Haut Atlas, à 1 h 30 de Marrakech.",
+        "tour_label": "Voir l’excursion à Imlil"
       },
       "en": {
         "title": "Finding Your Morocco: Choose an Itinerary That Fits",
@@ -94,15 +94,15 @@
             ]
           }
         ],
-        "cta_title": "Give your favourite places enough time",
-        "cta_text": "Start with our 12-day slower circuit, or send your dates and priorities so we can suggest a route around them.",
-        "tour_label": "Explore the 12-day slow circuit"
+        "cta_title": "Add a day in the Atlas",
+        "cta_text": "Whatever your itinerary, one day in Imlil is enough to discover the villages and peaks of the High Atlas, 1 h 30 from Marrakech.",
+        "tour_label": "See the Imlil day trip"
       }
     },
     {
       "slug": "first-sahara-desert-tour",
       "image": "sahara",
-      "tour": "5-day-erg-chigaga-deep-desert",
+      "trip": "excursion-trois-vallees",
       "fr": {
         "title": "Votre premier voyage au Sahara : de la route jusqu’aux dunes",
         "category": "Voyage dans le désert",
@@ -146,9 +146,9 @@
             ]
           }
         ],
-        "cta_title": "Choisissez le désert qui vous convient",
-        "cta_text": "Découvrez notre circuit de cinq jours vers l’Erg Chigaga, ou demandez-nous de comparer un séjour à Merzouga avec un départ depuis M’Hamid.",
-        "tour_label": "Voir le circuit Erg Chigaga"
+        "cta_title": "La montagne, avant ou après le désert",
+        "cta_text": "Au départ de Marrakech, notre excursion des trois vallées vous fait découvrir plusieurs paysages du Haut Atlas en une journée.",
+        "tour_label": "Voir l’excursion des trois vallées"
       },
       "en": {
         "title": "Your First Sahara Tour: From the Road to the Dunes",
@@ -193,15 +193,15 @@
             ]
           }
         ],
-        "cta_title": "Choose the desert journey that suits you",
-        "cta_text": "Explore our five-day Erg Chigaga route, or ask us to compare a Merzouga stay with a journey from Mhamid.",
-        "tour_label": "Explore the Erg Chigaga journey"
+        "cta_title": "The mountains, before or after the desert",
+        "cta_text": "From Marrakech, our three valleys day trip shows you several High Atlas landscapes in a single day.",
+        "tour_label": "See the three valleys day trip"
       }
     },
     {
       "slug": "best-time-to-visit-morocco",
       "image": "atlas",
-      "tour": "8-day-desert-ocean-route",
+      "trip": "toubkal-voie-classique-4-jours",
       "fr": {
         "title": "Quand partir au Maroc : choisir la saison selon votre itinéraire",
         "category": "Saisons & météo",
@@ -246,9 +246,9 @@
             ]
           }
         ],
-        "cta_title": "Construisez votre voyage autour de vos dates",
-        "cta_text": "Partez de notre circuit de huit jours entre désert et océan, puis demandez-nous quelles étapes conviennent le mieux à votre mois de voyage.",
-        "tour_label": "Voir le circuit désert et océan",
+        "cta_title": "Choisissez la bonne saison pour le Toubkal",
+        "cta_text": "De la fin du printemps à l’automne, le sommet se gravit sans matériel technique. Découvrez notre trek de 4 jours par la voie classique.",
+        "tour_label": "Voir le trek du Toubkal",
         "source": {
           "label": "Office National Marocain du Tourisme : climat et saisons",
           "url": "https://www.visitmorocco.com/en/travel-info/climate-and-seasons"
@@ -298,9 +298,9 @@
             ]
           }
         ],
-        "cta_title": "Shape a journey around your travel window",
-        "cta_text": "Use our eight-day desert and ocean route as a starting point, then ask which stops and stays best suit your month.",
-        "tour_label": "Explore the desert and ocean route",
+        "cta_title": "Pick the right season for Toubkal",
+        "cta_text": "From late spring to autumn, the summit can be climbed without technical equipment. Discover our 4-day trek by the classic route.",
+        "tour_label": "See the Toubkal trek",
         "source": {
           "label": "Moroccan National Tourist Office: climate and seasons",
           "url": "https://www.visitmorocco.com/en/travel-info/climate-and-seasons"
@@ -310,7 +310,7 @@
     {
       "slug": "marrakech-to-merzouga-stops",
       "image": "kasbah",
-      "tour": "6-day-marrakech-fes-desert-crossing",
+      "trip": "excursion-cascades-ouzoud",
       "fr": {
         "title": "De Marrakech à Merzouga : faites de la route un vrai voyage",
         "category": "Itinéraires & paysages",
@@ -355,9 +355,9 @@
             ]
           }
         ],
-        "cta_title": "Reliez Marrakech, les dunes et Fès",
-        "cta_text": "Notre traversée de six jours est une bonne base de discussion, avec des étapes pour la nuit en chemin et une arrivée à Fès.",
-        "tour_label": "Voir la traversée de six jours",
+        "cta_title": "Une autre route au départ de Marrakech",
+        "cta_text": "Si vous préférez les montagnes et les cascades à la route du désert, nos excursions à la journée partent elles aussi de Marrakech.",
+        "tour_label": "Voir l’excursion à Ouzoud",
         "source": {
           "label": "UNESCO : Ksar d’Aït-Ben-Haddou",
           "url": "https://whc.unesco.org/fr/list/444/"
@@ -407,9 +407,9 @@
             ]
           }
         ],
-        "cta_title": "Connect Marrakech, the dunes and Fes",
-        "cta_text": "Our six-day crossing provides a route to discuss, with overnight stops along the way and an onward finish in Fes.",
-        "tour_label": "Explore the six-day desert crossing",
+        "cta_title": "Another road from Marrakech",
+        "cta_text": "If you prefer mountains and waterfalls to the desert road, our day trips also leave from Marrakech.",
+        "tour_label": "See the Ouzoud day trip",
         "source": {
           "label": "UNESCO: Ksar of Ait-Ben-Haddou",
           "url": "https://whc.unesco.org/en/list/444/"
@@ -419,7 +419,7 @@
     {
       "slug": "moroccan-culture-food-local-experiences",
       "image": "hospitality",
-      "tour": "7-day-food-craft-cities",
+      "trip": "vallee-oued-zat-4-jours",
       "fr": {
         "title": "Au-delà des monuments : cuisine, artisanat et Maroc du quotidien",
         "category": "Culture & cuisine",
@@ -464,9 +464,9 @@
             ]
           }
         ],
-        "cta_title": "Mettez la cuisine et l’artisanat au cœur du voyage",
-        "cta_text": "Découvrez notre circuit de sept jours autour des saveurs et de l’artisanat, puis dites-nous quels repas, ateliers et rencontres vous intéressent.",
-        "tour_label": "Voir le circuit saveurs et artisanat",
+        "cta_title": "Partagez la vie des villages de l’Atlas",
+        "cta_text": "Dans la vallée de l’Oued Zat, vous dormez chez des familles berbères et partagez leurs repas pendant quatre jours de marche.",
+        "tour_label": "Voir le trek de l’Oued Zat",
         "source": {
           "label": "Office National Marocain du Tourisme : gastronomie",
           "url": "https://www.visitmorocco.com/en/discover-morocco/gastronomy"
@@ -516,9 +516,9 @@
             ]
           }
         ],
-        "cta_title": "Make food and craft part of your journey",
-        "cta_text": "Explore our seven-day food and craft route, then share the meals, workshops and local experiences that interest you.",
-        "tour_label": "Explore the food and craft journey",
+        "cta_title": "Share village life in the Atlas",
+        "cta_text": "In the Oued Zat valley you sleep in Berber family homes and share their meals over four days of walking.",
+        "tour_label": "See the Oued Zat trek",
         "source": {
           "label": "Moroccan National Tourist Office: gastronomy",
           "url": "https://www.visitmorocco.com/en/discover-morocco/gastronomy"

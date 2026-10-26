@@ -4,30 +4,26 @@ const LANG = document.documentElement.lang === 'en' ? 'en' : 'fr';
 const TEXT = {
   fr: {
     testimonial: 'Avis {i} sur {n} : {name}, {country}.',
-    journey: 'voyage à découvrir',
-    journeys: 'voyages à découvrir',
-    briefTitle: 'MOROCCO EXPLORER TOURS — MON PROJET DE VOYAGE',
-    name: 'Nom', month: 'Mois du voyage', arrival: 'Ville d’arrivée', travellers: 'Voyageurs', days: 'Jours au Maroc', comfort: 'Hébergement', interest: 'Circuit ou destination', ideas: 'Mes envies',
+    briefTitle: 'MOROCCO EXPLORER TOURS — MON PROJET DE SORTIE DANS L’ATLAS',
+    name: 'Nom', month: 'Mois du voyage', type: 'Type de sortie', travellers: 'Marcheurs', days: 'Nombre de jours', level: 'Niveau de marche', interest: 'Trek ou excursion', ideas: 'Mes envies',
     notProvided: 'Non renseigné', flexible: 'Flexible', openToIdeas: 'Ouvert à toutes les idées', helpMe: 'Aidez-moi à trouver un itinéraire adapté.',
     notBooking: 'Ceci est une demande d’information, pas une réservation confirmée.',
-    whatsappDraft: 'Ouvrir le message WhatsApp ↗', emailDraft: 'Ouvrir l’e-mail ↗', emailSubject: 'Mon projet de voyage au Maroc',
+    whatsappDraft: 'Ouvrir le message WhatsApp ↗', emailDraft: 'Ouvrir l’e-mail ↗', emailSubject: 'Mon projet de sortie dans l’Atlas',
     copied: 'Copié. Vous pouvez coller votre projet dans un message. Il n’a pas encore été envoyé.',
     copyUnavailable: 'La copie n’est pas disponible dans ce navigateur. Sélectionnez le texte pour le copier, ou utilisez Télécharger (.txt).',
-    downloadName: 'projet-voyage-maroc.txt', downloaded: 'Votre fichier est prêt. Ce projet n’a pas encore été envoyé.',
+    downloadName: 'projet-sortie-atlas.txt', downloaded: 'Votre fichier est prêt. Ce projet n’a pas encore été envoyé.',
     social: 'Nos réseaux sociaux officiels', contact: 'Contact', chat: 'Discuter avec Morocco Explorer Tours sur WhatsApp'
   },
   en: {
     testimonial: 'Testimonial {i} of {n}: {name}, {country}.',
-    journey: 'journey to explore',
-    journeys: 'journeys to explore',
-    briefTitle: 'MOROCCO EXPLORER TOURS — MY TRIP BRIEF',
-    name: 'Name', month: 'Travel month', arrival: 'Arrival city', travellers: 'Travellers', days: 'Days in Morocco', comfort: 'Accommodation', interest: 'Tour or destination', ideas: 'My ideas',
+    briefTitle: 'MOROCCO EXPLORER TOURS — MY ATLAS TRIP BRIEF',
+    name: 'Name', month: 'Travel month', type: 'Type of trip', travellers: 'Walkers', days: 'Number of days', level: 'Walking level', interest: 'Trek or day trip', ideas: 'My ideas',
     notProvided: 'Not provided', flexible: 'Flexible', openToIdeas: 'Open to ideas', helpMe: 'Help me find a route that fits.',
     notBooking: 'This is a planning enquiry, not a confirmed booking.',
-    whatsappDraft: 'Open WhatsApp draft ↗', emailDraft: 'Open email draft ↗', emailSubject: 'My Morocco trip enquiry',
+    whatsappDraft: 'Open WhatsApp draft ↗', emailDraft: 'Open email draft ↗', emailSubject: 'My Atlas trip enquiry',
     copied: 'Copied. You can paste your brief into a message. It has not been sent.',
     copyUnavailable: 'Copy is unavailable in this browser. Select the brief text to copy it, or use Download .txt.',
-    downloadName: 'morocco-trip-brief.txt', downloaded: 'Your download is ready. This brief has not been sent.',
+    downloadName: 'atlas-trip-brief.txt', downloaded: 'Your download is ready. This brief has not been sent.',
     social: 'Official social media channels', contact: 'Contact', chat: 'Chat with Morocco Explorer Tours on WhatsApp'
   }
 }[LANG];
@@ -170,41 +166,12 @@ document.querySelectorAll('.testimonials').forEach(carousel => {
   carousel.querySelector('.testimonial-controls').hidden = false;
   update();
 });
-const filters = document.querySelector('#tour-filters');
-if (filters) {
-  filters.hidden = false;
-  const cards = [...document.querySelectorAll('.tour-card')];
-  const params = new URLSearchParams(location.search);
-  for (const name of ['start', 'category', 'days']) {
-    const select = filters.elements.namedItem(name);
-    if ([...select.options].some(option => option.value === params.get(name))) select.value = params.get(name);
-  }
-  function applyFilters(updateURL = true) {
-    const data = new FormData(filters);
-    let count = 0;
-    for (const card of cards) {
-      const visible = [...data].every(([key, value]) => !value || card.dataset[key] === value);
-      card.hidden = !visible;
-      if (visible) count++;
-    }
-    document.querySelector('#result-count').textContent = `${count} ${count === 1 ? TEXT.journey : TEXT.journeys}`;
-    document.querySelector('#empty-results').hidden = count > 0;
-    if (updateURL) {
-      const query = new URLSearchParams([...data].filter(([, value]) => value));
-      history.replaceState(null, '', location.pathname + (query.size ? '?' + query : ''));
-    }
-  }
-  filters.addEventListener('change', () => applyFilters());
-  filters.addEventListener('submit', event => event.preventDefault());
-  filters.addEventListener('reset', () => setTimeout(() => applyFilters(), 0));
-  applyFilters(false);
-}
 const form = document.querySelector('#trip-form');
 if (form) {
   form.hidden = false;
   const params = new URLSearchParams(location.search);
-  const arrival = form.elements.namedItem('arrival');
-  if ([...arrival.options].some(option => option.value === params.get('arrival'))) arrival.value = params.get('arrival');
+  const type = form.elements.namedItem('type');
+  if ([...type.options].some(option => option.value === params.get('type'))) type.value = params.get('type');
   form.elements.namedItem('interest').value = (params.get('tour') || params.get('destination') || '').slice(0, 200);
   const month = form.elements.namedItem('month');
   const now = new Date();
@@ -219,7 +186,7 @@ if (form) {
     const value = name => String(data.get(name) || '').trim();
     const sep = LANG === 'fr' ? ' : ' : ': ';
     const line = (label, text) => `${label}${sep}${text}`;
-    brief = [TEXT.briefTitle, '', line(TEXT.name, value('name') || TEXT.notProvided), line(TEXT.month, value('month') || TEXT.flexible), line(TEXT.arrival, value('arrival')), line(TEXT.travellers, value('travellers')), line(TEXT.days, value('days')), line(TEXT.comfort, value('comfort')), line(TEXT.interest, value('interest') || TEXT.openToIdeas), '', `${TEXT.ideas}${sep.trimEnd()}`, value('notes') || TEXT.helpMe, '', TEXT.notBooking].join('\n');
+    brief = [TEXT.briefTitle, '', line(TEXT.name, value('name') || TEXT.notProvided), line(TEXT.month, value('month') || TEXT.flexible), line(TEXT.type, value('type')), line(TEXT.travellers, value('travellers')), line(TEXT.days, value('days')), line(TEXT.level, value('level')), line(TEXT.interest, value('interest') || TEXT.openToIdeas), '', `${TEXT.ideas}${sep.trimEnd()}`, value('notes') || TEXT.helpMe, '', TEXT.notBooking].join('\n');
     document.querySelector('#brief-text').textContent = brief;
     const share = document.querySelector('#share-brief');
     const phone = form.dataset.whatsapp.replace(/\D/g, '');
@@ -300,7 +267,7 @@ if (form) {
         <a href="mailto:${official.email}">${official.email}</a>
         <a href="tel:${official.phoneTel}">${official.phoneDisplay}</a>
         <a href="${official.whatsapp}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        <a href="${location.pathname.includes('/tours/') || location.pathname.includes('/destinations/') || location.pathname.includes('/blog/') ? '../' : ''}contact.html">${TEXT.contact}</a>
+        <a href="${/\/(treks|excursions|blog)\//.test(location.pathname) ? '../' : ''}contact.html">${TEXT.contact}</a>
       </div>
       ${socialIcons}`;
     const bottom = footer.querySelector('.footer-bottom');

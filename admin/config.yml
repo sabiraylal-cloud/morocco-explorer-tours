@@ -32,6 +32,128 @@ editor:
 
 collections:
   # Every text field exists twice: "Français" (fr, main site) and "English" (en, /en/ pages).
+  - label: Treks & excursions
+    name: trips
+    files:
+      - label: Treks and day trips
+        name: trips
+        file: data/trips.json
+        fields:
+          - label: Trips
+            name: trips
+            widget: list
+            summary: "{{fields.type}} · {{fields.slug}}"
+            minimize_collapsed: true
+            fields:
+              - { label: URL slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
+              - label: Type
+                name: type
+                widget: select
+                hint: Treks are published under /treks/, day trips under /excursions/.
+                options:
+                  - { label: "Trek (plusieurs jours)", value: trek }
+                  - { label: "Excursion (une journée)", value: excursion }
+              - { label: Days, name: days, widget: number, value_type: int, min: 1, max: 30, hint: For a trek, the day-by-day list must have this many days. Use 1 for a day trip. }
+              - &trip_image
+                label: Main photo
+                name: image
+                widget: select
+                required: false
+                hint: Card and page photo. Leave empty to show "Photo à venir". Each photo's French and English alt text is in data/images.json.
+                options: &image_options
+                  - { label: "Atlas – mule on the Oukaïmeden–Tachdirt trail", value: atlas-mule-trail }
+                  - { label: "Atlas – hiker in a high valley", value: atlas-hiker-high-valley }
+                  - { label: "Atlas – shepherds and flock", value: atlas-shepherds-flock }
+                  - { label: "Atlas – terraced village from a trail", value: atlas }
+                  - { label: "Hikers and mules below snowy peaks", value: trek-hikers-mules-snow }
+                  - { label: "Mule on a stony mountain trail", value: mule-mountain-trail }
+                  - { label: "Terraced stone village below snowy peaks", value: terraced-village-snow-peaks }
+                  - { label: "Village below a snowy slope", value: village-below-snow-slope }
+                  - { label: "Stone village lane", value: atlas-stone-village }
+                  - { label: "Rammed-earth builders on a roof", value: village-earth-builders }
+                  - { label: "Turquoise cascades", value: turquoise-cascades }
+                  - { label: "Bridge over a riverbed", value: valley-bridge-riverbed }
+                  - { label: "Off-road stop on a plateau", value: plateau-vehicle-stop }
+                  - { label: "Donkey in flowering fields", value: donkey-flowering-fields }
+                  - { label: "Villager with a donkey above a terraced valley", value: villager-mule-terraced-valley }
+                  - { label: "Winding mountain road", value: winding-mountain-road }
+                  - { label: "Art workshop window", value: art-workshop-window }
+              - label: New uploaded photo
+                name: uploaded_image
+                widget: image
+                required: false
+                choose_url: false
+                hint: Optional. JPG, PNG, GIF or WebP, maximum 8 MB. Takes priority over the main photo above.
+              - label: Gallery
+                name: gallery
+                widget: list
+                required: false
+                hint: Photos shown in full (not cropped) at the bottom of the page.
+                field: { label: Photo, name: photo, widget: select, options: *image_options }
+              - &trip_text
+                label: Français
+                name: fr
+                widget: object
+                collapsed: false
+                fields:
+                  - { label: Card name, name: name, widget: string }
+                  - { label: Page title, name: title, widget: string }
+                  - { label: Short description (cards and search engines), name: description, widget: text }
+                  - { label: Introduction, name: intro, widget: text }
+                  - { label: Level, name: level, widget: string }
+                  - { label: Key fact (treks), name: key_fact, widget: string, required: false, hint: "For example: 4 167 m (Toubkal)" }
+                  - { label: Duration (day trips), name: duration, widget: string, required: false }
+                  - { label: Distance and drive (day trips), name: distance, widget: string, required: false }
+                  - label: Route stops (treks)
+                    name: route
+                    widget: list
+                    required: false
+                    field: { label: Place, name: place, widget: string }
+                  - label: Highlights
+                    name: highlights
+                    widget: list
+                    min: 1
+                    field: { label: Highlight, name: highlight, widget: string }
+                  - label: Day by day (treks)
+                    name: days
+                    widget: list
+                    required: false
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Day title, name: title, widget: string }
+                      - { label: Description, name: text, widget: text }
+                      - { label: Walking time, name: walk, widget: string, required: false }
+                      - { label: Altitude, name: altitude, widget: string, required: false }
+                      - { label: Overnight, name: overnight, widget: string, required: false }
+                      - { label: Meals, name: meals, widget: string, required: false }
+                  - label: Day programme (day trips)
+                    name: program
+                    widget: list
+                    required: false
+                    hint: Each step contains two values, the time first, then what happens.
+                    field:
+                      label: Time and step
+                      name: step
+                      widget: list
+                      min: 2
+                      max: 2
+                      field: { label: Text, name: text, widget: string }
+                  - label: Included
+                    name: included
+                    widget: list
+                    min: 1
+                    field: { label: Item, name: item, widget: string }
+                  - label: Not included
+                    name: excluded
+                    widget: list
+                    min: 1
+                    field: { label: Item, name: item, widget: string }
+                  - { label: Good to know, name: note, widget: text }
+              - <<: *trip_text
+                label: English
+                name: en
+                collapsed: true
+
   - label: Blog articles
     name: blog
     files:
@@ -46,8 +168,7 @@ collections:
             minimize_collapsed: true
             fields:
               - { label: URL slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
-              - &existing_image
-                label: Existing site image
+              - label: Existing site image
                 name: image
                 widget: select
                 hint: Used unless a new uploaded image is selected below.
@@ -62,14 +183,16 @@ collections:
                   - { label: Marrakech, value: marrakech }
                   - { label: Journey, value: journey }
                   - { label: Guests, value: guests }
-              - &uploaded_image
-                label: New uploaded image
+                  - { label: "Atlas – mule on the trail", value: atlas-mule-trail }
+                  - { label: "Atlas – hiker in a high valley", value: atlas-hiker-high-valley }
+                  - { label: "Atlas – shepherds and flock", value: atlas-shepherds-flock }
+              - label: New uploaded image
                 name: uploaded_image
                 widget: image
                 required: false
                 choose_url: false
                 hint: Optional. JPG, PNG, GIF or WebP, maximum 8 MB. This takes priority over the existing image.
-              - { label: Related tour slug, name: tour, widget: string, hint: Must match an existing tour URL slug. }
+              - { label: Related trek or day trip slug, name: trip, widget: string, hint: Must match an existing trip URL slug. }
               - &article_text
                 label: Français
                 name: fr
@@ -96,7 +219,7 @@ collections:
                         field: { label: Paragraph, name: paragraph, widget: text }
                   - { label: Call-to-action heading, name: cta_title, widget: string }
                   - { label: Call-to-action text, name: cta_text, widget: text }
-                  - { label: Related tour link label, name: tour_label, widget: string }
+                  - { label: Related trip link label, name: tour_label, widget: string }
                   - label: Further-reading source
                     name: source
                     widget: object
@@ -105,108 +228,6 @@ collections:
                       - { label: Link label, name: label, widget: string }
                       - { label: URL, name: url, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
               - <<: *article_text
-                label: English
-                name: en
-                collapsed: true
-
-  - label: Tours
-    name: tours
-    files:
-      - label: Tours and itineraries
-        name: tours
-        file: data/tours.json
-        fields:
-          - label: Tours
-            name: tours
-            widget: list
-            summary: "{{fields.slug}}"
-            minimize_collapsed: true
-            fields:
-              - { label: URL slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
-              - { label: Days, name: days, widget: number, value_type: int, min: 1, max: 30 }
-              - { label: Nights, name: nights, widget: number, value_type: int, min: 0, max: 29 }
-              - label: Category
-                name: category
-                widget: select
-                options:
-                  - { label: "Escapades au Sahara / Sahara escapes", value: sahara-escapes }
-                  - { label: "Villes & désert / Cities & desert", value: cities-desert }
-                  - { label: "Grands circuits / Grand journeys", value: grand-journeys }
-              - *existing_image
-              - *uploaded_image
-              - label: Destination slugs
-                name: destinations
-                widget: list
-                min: 1
-                hint: Each value must match a destination URL slug.
-                field: { label: Destination slug, name: destination, widget: string }
-              - &tour_text
-                label: Français
-                name: fr
-                widget: object
-                collapsed: false
-                fields:
-                  - { label: Card name, name: name, widget: string }
-                  - { label: Page title, name: title, widget: string }
-                  - { label: Start city, name: start, widget: string }
-                  - { label: End city, name: end, widget: string }
-                  - { label: Description, name: description, widget: text }
-                  - label: Route stops
-                    name: route
-                    widget: list
-                    min: 2
-                    field: { label: Place, name: place, widget: string }
-                  - { label: Pace and planning note, name: pace, widget: text }
-                  - label: Day-by-day itinerary
-                    name: itinerary
-                    widget: list
-                    min: 1
-                    hint: One entry per day (as many as the Days field). Each day contains exactly two values, the day title first, then the full description.
-                    field:
-                      label: Day title and description
-                      name: day
-                      widget: list
-                      min: 2
-                      max: 2
-                      field: { label: Text, name: text, widget: text }
-              - <<: *tour_text
-                label: English
-                name: en
-                collapsed: true
-
-  - label: Destinations
-    name: destinations
-    files:
-      - label: Destinations
-        name: destinations
-        file: data/destinations.json
-        fields:
-          - label: Destinations
-            name: destinations
-            widget: list
-            summary: "{{fields.slug}}"
-            minimize_collapsed: true
-            fields:
-              - { label: URL slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
-              - *existing_image
-              - *uploaded_image
-              - &destination_text
-                label: Français
-                name: fr
-                widget: object
-                collapsed: false
-                fields:
-                  - { label: Name, name: name, widget: string }
-                  - { label: Category, name: category, widget: string }
-                  - { label: Card description, name: description, widget: text }
-                  - { label: Main description, name: body, widget: text }
-                  - label: Experiences
-                    name: experiences
-                    widget: list
-                    min: 1
-                    field: { label: Experience, name: experience, widget: string }
-                  - { label: Planning note, name: planning, widget: text }
-              - <<: *destination_text
                 label: English
                 name: en
                 collapsed: true
