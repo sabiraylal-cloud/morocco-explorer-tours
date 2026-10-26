@@ -1,0 +1,14 @@
+# Morocco Explorer Tours – Apache/LiteSpeed rules for Hostinger.
+
+ErrorDocument 404 /404.html
+
+# Pages removed by the High Atlas rebrand: send old links and search results to the closest new page.
+RedirectMatch 301 ^/destinations/atlas-mountains\.html$ /treks/
+RedirectMatch 301 ^/destinations/marrakech\.html$ /excursions/
+RedirectMatch 301 ^/destinations(/.*)?$ /
+RedirectMatch 301 ^/tours/5-day-atlas-valleys-kasbahs\.html$ /treks/
+RedirectMatch 301 ^/tours(/.*)?$ /treks/
+
+# Source files are in the repository but are not part of the public website.
+RedirectMatch 404 ^/(data|scripts|docs|artifacts|node_modules|\.github|\.claude|\.git)(/|$)
+RedirectMatch 404 ^/(readme\.md|package\.json|package-lock\.json|\.gitignore)$

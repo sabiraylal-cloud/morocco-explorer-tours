@@ -4,7 +4,7 @@ All visible text lives in data/*.json: each translatable value has a French ("fr
 """
 from pathlib import Path
 from html import escape as esc
-import json, os
+import hashlib, json, os
 from urllib.parse import urlencode
 ROOT=Path(__file__).resolve().parents[1]
 def load(name):return json.loads((ROOT/'data'/name).read_text(encoding='utf-8'))
@@ -38,6 +38,14 @@ def page_path(path,language=None):
  return path if path.startswith(SHARED) else PREFIX[language or lang]+path
 def link(path):
  return os.path.relpath(path, str(Path(current).parent)).replace(os.sep,'/')
+ASSET_VERSIONS={}
+def asset(path):
+ # A content hash in the URL stops Hostinger's CDN from serving an old copy after a release.
+ if path not in ASSET_VERSIONS:
+  data=(ROOT/path).read_bytes()
+  if path.endswith(('.css','.js','.svg')):data=data.replace(b'\r\n',b'\n')
+  ASSET_VERSIONS[path]=hashlib.sha256(data).hexdigest()[:12]
+ return link(path)+'?v='+ASSET_VERSIONS[path]
 def a(path,text,cls=''):
  return f'<a href="{esc(link(page_path(path)),quote=True)}" class="{cls}">{text}</a>'
 def canonical_url(path,language):
@@ -101,7 +109,7 @@ def img(key,alt,cls='',eager=False):
 def photo_placeholder(cls=''):
  return f'<div class="photo-placeholder {cls}" role="img" aria-label="{t("photo_coming")}"><span>{t("photo_coming")}</span></div>'
 def brand():
- return f'<img class="brand-logo" src="{link("assets/logo-morocco-explorer-tours.png")}" width="1008" height="687" alt="Morocco Explorer Tours">'
+ return f'<img class="brand-logo" src="{asset("assets/logo-morocco-explorer-tours.png")}" width="1008" height="687" alt="Morocco Explorer Tours">'
 def trip_path(trip):
  return f'{TRIP_SECTION[trip["type"]]}/{trip["slug"]}.html'
 def trip_label(trip):
@@ -133,7 +141,7 @@ def write(title,description,body,section='',schema=None,social=None):
  other_locales=''.join(f'<meta property="og:locale:alternate" content="{ui["og_locale"][code]}">' for code in LANGS if code!=lang)
  robots='<meta name="robots" content="noindex, follow">' if path=='404.html' else ''
  doc=f'''<!doctype html>
-<html lang="{t('html_lang')}"><head><meta charset="utf-8">{robots}<meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} | Morocco Explorer Tours</title><meta name="description" content="{esc(description,quote=True)}"><link rel="canonical" href="{canonical}">{alternates}<meta property="og:type" content="{og_type}"><meta property="og:locale" content="{t('og_locale')}">{other_locales}<meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Morocco Explorer Tours"><meta property="og:image" content="{social_image}"><meta property="og:image:alt" content="{esc(social_alt,quote=True)}"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#703d2b"><link rel="icon" href="{link('assets/favicon.svg')}" type="image/svg+xml"><link rel="stylesheet" href="{link('assets/styles.css')}"><script src="{link('assets/site.js')}" defer></script><script type="application/ld+json">{json.dumps(base_schema,ensure_ascii=False).replace('<',chr(92)+'u003c')}</script></head><body class="{section}">{header()}<main id="main">{body}</main>{footer()}</body></html>'''
+<html lang="{t('html_lang')}"><head><meta charset="utf-8">{robots}<meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} | Morocco Explorer Tours</title><meta name="description" content="{esc(description,quote=True)}"><link rel="canonical" href="{canonical}">{alternates}<meta property="og:type" content="{og_type}"><meta property="og:locale" content="{t('og_locale')}">{other_locales}<meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Morocco Explorer Tours"><meta property="og:image" content="{social_image}"><meta property="og:image:alt" content="{esc(social_alt,quote=True)}"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#703d2b"><link rel="icon" href="{asset('assets/favicon.svg')}" type="image/svg+xml"><link rel="stylesheet" href="{asset('assets/styles.css')}"><script src="{asset('assets/site.js')}" defer></script><script type="application/ld+json">{json.dumps(base_schema,ensure_ascii=False).replace('<',chr(92)+'u003c')}</script></head><body class="{section}">{header()}<main id="main">{body}</main>{footer()}</body></html>'''
  out=ROOT/current;out.parent.mkdir(parents=True,exist_ok=True);out.write_text(doc+'\n',encoding='utf-8');pages.append((current,path,lang,canonical))
 def trip_photo(trip,cls='',eager=False):
  key=content_image(trip)
