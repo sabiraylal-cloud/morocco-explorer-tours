@@ -49,6 +49,7 @@ for path,p in pages.items():
   if not target.exists():errors.append(f'{path.relative_to(ROOT)}: missing {ref}')
   elif u.fragment and target in pages and unquote(u.fragment) not in pages[target].ids:errors.append(f'{path.relative_to(ROOT)}: missing anchor {ref}')
  if 'your@email.com' in path.read_text(encoding='utf-8') or '+212 XX' in path.read_text(encoding='utf-8'):errors.append(f'{path}: placeholder contact')
+ if re.search(r'\[(?:À COMPL|TO BE COMPLETED)',path.read_text(encoding='utf-8'),re.I):errors.append(f'{path}: unfinished placeholder text')
 for key in ['title','canonical']:
  values=[getattr(p,key) for p in pages.values()]
  if len(values)!=len(set(values)):errors.append(f'Duplicate {key}')

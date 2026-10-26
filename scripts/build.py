@@ -172,7 +172,7 @@ def intro(kicker,title,text):
  return f'<section class="page-intro container"><p class="eyebrow">{kicker}</p><h1>{title}</h1><p class="lead">{text}</p></section>'
 def legal_contact():
  sep=' : ' if lang=='fr' else ': '
- return f'''<section class="legal-contact"><h2>{t('contact_details')}</h2><p>{t('email')}{sep}<a href="mailto:{esc(site['legal_email'],quote=True)}">{esc(site['legal_email'])}</a><br>{t('phone_whatsapp')}{sep}<a href="tel:{esc(site['whatsapp'],quote=True)}">{esc(site['phone'])}</a><br>{t('location_label')}{sep}{esc(t('location'))}</p><p>{t('last_updated')}</p></section>'''
+ return f'''<section class="legal-contact"><h2>{t('contact_details')}</h2><p>{t('email')}{sep}<a href="mailto:{esc(site['legal_email'],quote=True)}">{esc(site['legal_email'])}</a><br>WhatsApp{sep}<a href="https://wa.me/{site['whatsapp'].lstrip('+')}">{esc(site['phone'])}</a></p><p>{t('last_updated')}</p></section>'''
 def crumbs(parent,label):
  return f'<nav class="breadcrumbs container" aria-label="{t("breadcrumb")}">{a("index.html",t("home"))}<span aria-hidden="true">/</span>{a(parent,label)}<span aria-hidden="true">/</span><span aria-current="page">{t("overview")}</span></nav>'
 def steps(items):
@@ -180,14 +180,11 @@ def steps(items):
 def rich(text):
  # Escapes data text and turns [label](site/path.html) into a link for the current language.
  return re.sub(r'\[([^\]]+)\]\(([^)\s]+)\)',lambda m:a(m.group(2),m.group(1)),esc(text))
-def todo(text):
- # Placeholders the owner still has to fill in are highlighted on the page.
- return re.sub(r'\[(?:À COMPLÉTER|TO BE COMPLETED)[^\]]*\]',lambda m:f'<mark class="todo">{m.group(0)}</mark>',text)
 def legal_page(doc):
  text=legal[doc][lang]
  def block(item):
-  if isinstance(item,dict):return '<ul>'+''.join(f'<li>{todo(li)}</li>' for li in item['list'])+'</ul>'
-  return '<p>'+todo(item.replace('{privacy_link}',a('privacy.html',t('footer_privacy'))))+'</p>'
+  if isinstance(item,dict):return '<ul>'+''.join(f'<li>{li}</li>' for li in item['list'])+'</ul>'
+  return '<p>'+item.replace('{privacy_link}',a('privacy.html',t('footer_privacy')))+'</p>'
  sections=''.join(f'<h2>{section["heading"]}</h2>'+''.join(block(item) for item in section['content']) for section in text['sections'])
  body=intro(text['kicker'],text['title'],text['lead'])+f'<section class="container prose collection legal-page">{"".join(block(p) for p in text["intro"])}{sections}{legal_contact()}</section>'
  write(text['meta_title'],text['meta_description'],body)
@@ -227,7 +224,7 @@ def trip_page(trip):
  others=[other for other in trips if other['type']==trip['type'] and other is not trip]
  more=f'<section class="container section"><div class="section-heading"><div><h2>{t("trip_more_treks" if is_trek else "trip_more_excursions")}</h2></div>{a(section+"/index.html",t("treks_section_all" if is_trek else "excursions_section_all"),"text-link")}</div><div class="tour-grid">{"".join(tripcard(other) for other in others)}</div></section>'
  request=a(plan_link(trip),t('trip_request_trek' if is_trek else 'trip_request_excursion'),'button')
- body=crumbs(section+'/index.html',t('nav_treks' if is_trek else 'nav_excursions'))+f'''<section class="container detail-hero"><div><p class="eyebrow">{trip_label(trip)}</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['intro'])}</p><div class="facts">{fact_html}</div>{request}</div>{trip_photo(trip,'detail-photo',True)}</section><section class="container section detail-layout"><div><p class="eyebrow">{t('trip_route_kicker')}</p>{plan}{highlights}</div><aside class="planning-note"><h2>{t('trip_included')}</h2>{item_list(text['included'],'check-list')}<h2>{t('trip_excluded')}</h2>{item_list(text['excluded'],'cross-list')}<p>{t('trip_price')}</p><hr><p class="eyebrow">{t('trip_good_kicker')}</p><p>{esc(text['note'])}</p>{request}</aside></section>{gallery}{more}'''+cta()
+ body=crumbs(section+'/index.html',t('nav_treks' if is_trek else 'nav_excursions'))+f'''<section class="container detail-hero"><div><p class="eyebrow">{trip_label(trip)}</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['intro'])}</p><div class="facts">{fact_html}</div>{request}</div>{trip_photo(trip,'detail-photo',True)}</section><section class="container section detail-layout"><div><p class="eyebrow">{t('trip_route_kicker')}</p>{plan}{highlights}</div><aside class="planning-note"><h2>{t('trip_included')}</h2>{item_list(text['included'],'check-list')}<h2>{t('trip_excluded')}</h2>{item_list(text['excluded'],'cross-list')}<p class="trip-age">{t('trip_age')}</p><p>{t('trip_price')}</p><hr><p class="eyebrow">{t('trip_good_kicker')}</p><p>{esc(text['note'])}</p>{request}</aside></section>{gallery}{more}'''+cta()
  schema={'@context':'https://schema.org','@type':'TouristTrip','name':text['title'],'description':text['description'],'inLanguage':lang,'touristType':t('tour_type'),'provider':{'@type':'TravelAgency','name':site['name'],'url':site['url']}}
  if is_trek:schema['itinerary']={'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':name} for i,name in enumerate(text['route'])]}
  key=content_image(trip)

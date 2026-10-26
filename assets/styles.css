@@ -201,7 +201,7 @@ em {
   position:sticky;
   top:0;
   z-index:50;
-  background:rgba(255,253,249,.97);
+  background:var(--paper);
   border-bottom:1px solid var(--line);
   transition:transform .22s ease, box-shadow .22s ease;
   will-change:transform;
@@ -1993,12 +1993,6 @@ pre {
 }
 
 /* Legal pages and consent */
-mark.todo {
-  padding:0 3px;
-  background:#fbe7a8;
-  color:var(--ink);
-  border-radius:2px;
-}
 .trip-form .consent-check {
   display:flex;
   flex-direction:row;
