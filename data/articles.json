@@ -1,112 +1,529 @@
 {
   "articles": [
-  {
-    "slug": "choose-your-morocco-itinerary",
-    "title": "Finding Your Morocco: Choose an Itinerary That Fits",
-    "category": "Trip planning",
-    "description": "Choose a Morocco itinerary around your arrival city, available days and travel style, with practical advice on desert drives and slower routes.",
-    "teaser": "Find routes matching your rhythm",
-    "image": "journey",
-    "alt": "Traveller looking across the ochre landscape near Ouarzazate",
-    "intro": "A good Morocco itinerary begins with the time you actually have, rather than a list of every place you have heard about. Cities, mountain valleys and the Sahara offer different experiences. The right route leaves room to enjoy them.",
-    "sections": [
-      {"heading": "Count usable days, then choose your starting point", "paragraphs": ["Put your arrival and departure times on the calendar before choosing a tour. A late landing is not a sightseeing day, and an early flight usually means staying near your departure city the night before. Separate full travel days from those partial days when comparing routes.", "Marrakech works well for a journey through the High Atlas and southern valleys. Casablanca can suit a wider circuit connecting imperial cities with the desert. Finishing in a different city can reduce backtracking, but compare the flight arrangements before committing to an open-ended route."]},
-      {"heading": "Pick two priorities instead of five", "paragraphs": ["Think about the moments you want most: a guided medina walk, a night near the dunes, village visits, food workshops or time by the ocean. Choose two anchors and let the remaining stops connect them. A route built around food and architecture will feel different from one built around mountain landscapes.", "With five or six days, concentrate on one region or a focused crossing. Seven or eight days can combine several places, although a desert itinerary still needs substantial driving time. Ten to sixteen days give more scope for a circuit and extra nights in the places that interest you."]},
-      {"heading": "Look at overnight stops, not just the map", "paragraphs": ["Ask where you sleep each night and which days are mainly spent on the road. A line between Marrakech and Merzouga crosses mountains and valleys; it is not a short city transfer. If every day changes hotel, you may spend more time packing than exploring.", "Adding a second night in a city or valley makes space for an unhurried walk, a cooking session or simply a morning without a departure deadline. Families and travellers who dislike frequent transfers should make this a priority when discussing the plan."]},
-      {"heading": "Choose comfort and activities separately", "paragraphs": ["An attractive hotel does not automatically make a fast route comfortable. Review the driving pace as well as accommodation. For a desert stay, ask about the tent, bathroom arrangement, camp location and transfer method. Confirm which guides, meals, activities and entrance fees belong to the quoted package.", "Share any walking limitations and preferences before booking. You can enjoy a landscape without doing every optional hike or camel ride. A useful proposal explains what is planned, what is optional and where the route can change."]},
-      {"heading": "Turn your shortlist into a practical brief", "paragraphs": ["Write down your travel dates, arrival and departure cities, group size, two priorities and your preferred pace. Add any places you would happily skip. These details make it easier to shape a route that fits your holiday instead of squeezing your holiday into a fixed schedule."]}
-    ],
-    "tour": "12-day-slow-morocco-cities-desert-coast",
-    "cta_title": "Give your favourite places enough time",
-    "cta_text": "Start with our 12-day slower circuit, or send your dates and priorities so we can suggest a route around them.",
-    "tour_label": "Explore the 12-day slow circuit"
-  },
-  {
-    "slug": "first-sahara-desert-tour",
-    "title": "Your First Sahara Tour: From the Road to the Dunes",
-    "category": "Desert travel",
-    "description": "Prepare for your first Morocco Sahara tour with advice on travel pace, desert camps, packing, camel rides and choosing the right dune experience.",
-    "teaser": "Prepare for your desert adventure",
-    "image": "sahara",
-    "alt": "Camel caravan crossing a ridge of Sahara sand dunes at sunset",
-    "intro": "The desert experience starts well before you reach the sand. The journey through mountain passes, kasbah country and oasis valleys is part of the trip. Knowing how the route and camp stay work helps you arrive with realistic expectations.",
-    "sections": [
-      {"heading": "Choose the desert by the whole route", "paragraphs": ["Merzouga is the village gateway to the Erg Chebbi dunes in eastern Morocco. Mhamid provides access to another desert region, with journeys towards Erg Chigaga generally involving an off-road transfer. These are different routes, rather than interchangeable names for the same overnight stop.", "Choose according to your available days, departure city and tolerance for driving. If Merzouga is the main goal from Marrakech, allow time for overnight stops along the way. Ask to see the full schedule, including the return or onward journey, before comparing packages."]},
-      {"heading": "Understand the arrival and camp transfer", "paragraphs": ["You may leave your main vehicle or larger luggage at a meeting point before continuing to camp. The final transfer could involve a camel ride or a vehicle, depending on the camp and agreed arrangements. Confirm the timing and alternatives in advance, especially if you prefer not to ride.", "Sunset is a popular time to be near the dunes, but arrival depends on the route and conditions. Avoid treating a sunset photograph as a guaranteed appointment. A comfortable journey gives the driver room to manage stops and reach the transfer point without rushing."]},
-      {"heading": "Ask what a camp night actually includes", "paragraphs": ["Camps vary considerably. Ask whether your tent is private, whether the bathroom is shared or ensuite, how electricity works and what bedding is provided. If a particular comfort matters to you, request confirmation rather than relying on a label such as luxury.", "A stay often includes dinner and breakfast, but check your proposal. Music may be part of the evening; do not assume it is offered at every camp or every night. Wind, clouds and moonlight also change the experience, so stars and perfectly clear skies are never a promise."]},
-      {"heading": "Pack for the transfer and the night", "paragraphs": ["Keep a small overnight bag easy to reach. Useful items include a warm layer, sun hat, sunscreen, sunglasses, a refillable water bottle, a torch and closed shoes for walking on uneven ground. Sand gets into open bags quickly, so keep your phone and camera protected when you are not using them.", "Temperatures can change sharply between daytime and night. Check the forecast close to departure and ask your host about current camp conditions. Bring the things you need overnight with you; large suitcases may remain elsewhere during the transfer."]},
-      {"heading": "Leave room for a quiet morning", "paragraphs": ["If your schedule allows, wake early for a short walk or simply sit and watch the light change. Follow the camp team's advice on where to go and arrange any longer outing with a guide. Before leaving, make sure you know the breakfast time, luggage collection plan and next overnight stop."]}
-    ],
-    "tour": "5-day-erg-chigaga-deep-desert",
-    "cta_title": "Choose the desert journey that suits you",
-    "cta_text": "Explore our five-day Erg Chigaga route, or ask us to compare a Merzouga stay with a journey from Mhamid.",
-    "tour_label": "Explore the Erg Chigaga journey"
-  },
-  {
-    "slug": "best-time-to-visit-morocco",
-    "title": "When to Visit Morocco: Match the Season to Your Route",
-    "category": "Seasons & timing",
-    "description": "Plan when to visit Morocco by region and season, from spring desert journeys to summer coastal stays and winter city breaks.",
-    "teaser": "Match Morocco seasons with experiences",
-    "image": "atlas",
-    "alt": "Mountain scenery in Morocco's Atlas region",
-    "intro": "There is no single season that suits every Morocco journey. A coastal stay, an Atlas walk and a Sahara overnight can feel very different in the same month. Start with the places and activities you want, then choose a travel window that supports them.",
-    "sections": [
-      {"heading": "Spring: a useful starting point for mixed routes", "paragraphs": ["Spring often suits travellers hoping to combine cities, valleys and desert landscapes. It is one of the seasons the Moroccan National Tourist Office highlights for Sahara travel. Even so, conditions vary across the country, and a pleasant city afternoon does not tell you how a mountain pass or desert night will feel.", "For a first visit, consider a route with some flexibility rather than scheduling a major outdoor activity every day. Pack layers and check local forecasts shortly before travel. Mountain excursions should be planned around the actual conditions, not the season's reputation."]},
-      {"heading": "Summer: consider the coast and a different pace", "paragraphs": ["Coastal breezes can make Atlantic destinations appealing when inland areas are hot. A route that spends more time near the ocean may suit you better than a packed desert circuit. If you are travelling inland, discuss early starts, shaded breaks and the comfort of your accommodation.", "School holidays may determine your dates. In that case, adapt the experience to the month instead of trying to reproduce a spring itinerary. Fewer transfers and longer stays can make planning easier, particularly when travelling with children."]},
-      {"heading": "Autumn: another option for desert and city journeys", "paragraphs": ["Autumn is also highlighted by the tourist office as a suitable season for the Sahara. It can be a useful window for combining medina visits with southern landscapes. Check the forecast and the route close to departure rather than expecting identical weather throughout your trip.", "If a particular riad or camp is central to your plans, ask about availability before fixing the rest of the journey. Popular travel windows can limit choice, and adding an extra night may be easier when your dates are flexible."]},
-      {"heading": "Winter: plan around daylight and regional conditions", "paragraphs": ["Winter changes the balance of a trip. Mountain areas can be cold and wet, and higher routes may be affected by snow. Shorter daylight makes it especially useful to avoid overloading driving days with several visits.", "City stays and selected southern routes can still be planned, but ask about heating and evening comfort in both riads and camps. An attractive outdoor courtyard may feel quite different after sunset. Keep a backup plan for excursions that depend on road or weather conditions."]},
-      {"heading": "Use your dates as a planning tool", "paragraphs": ["Before requesting a quote, share your month, fixed dates and the experiences you care about most. Ask which parts of the route work well then and which need adjustment. If your visit overlaps a holiday or Ramadan, confirm opening hours and meal arrangements with your hosts, as routines may differ.", "Seasonal guidance helps you choose a starting point; it is not a forecast. Review current conditions and your final schedule before travelling. A route built for your dates is more useful than a generic ranking of the best months."]}
-    ],
-    "source": {"label": "Moroccan National Tourist Office: climate and seasons", "url": "https://www.visitmorocco.com/en/travel-info/climate-and-seasons"},
-    "tour": "8-day-desert-ocean-route",
-    "cta_title": "Shape a journey around your travel window",
-    "cta_text": "Use our eight-day desert and ocean route as a starting point, then ask which stops and stays best suit your month.",
-    "tour_label": "Explore the desert and ocean route"
-  },
-  {
-    "slug": "marrakech-to-merzouga-stops",
-    "title": "Marrakech to Merzouga: Make the Road Part of the Journey",
-    "category": "Routes & landscapes",
-    "description": "Discover worthwhile stops between Marrakech and Merzouga, including the High Atlas, Ait Ben Haddou, Dades Valley and Todra Gorge.",
-    "teaser": "Discover memorable stops beyond Marrakech",
-    "image": "kasbah",
-    "alt": "Earthen towers and hillside buildings at Ait Ben Haddou",
-    "intro": "The road from Marrakech to Merzouga links some of Morocco's most striking landscapes. It also involves long stretches in a vehicle. Breaking the journey into manageable days makes the stops feel like places to explore, rather than names checked off through the window.",
-    "sections": [
-      {"heading": "The High Atlas: leave space for the crossing", "paragraphs": ["Routes towards Ouarzazate commonly cross the High Atlas through the Tizi n'Tichka pass. The landscape shifts as the road climbs, with bends, viewpoints and villages along the way. Plan the crossing as a substantial part of the day, especially if you want to stop for photographs.", "A winding mountain road is a reason to keep the schedule generous. Ask about likely driving time for your actual itinerary, including breaks. Conditions and traffic can change, so a map estimate should not become a deadline for the next visit."]},
-      {"heading": "Ait Ben Haddou: walk, rather than glance", "paragraphs": ["Ait Ben Haddou is a ksar: a group of earthen buildings within a fortified settlement, rather than one standalone kasbah. UNESCO recognises the site for its southern Moroccan earthen architecture. A visit is more rewarding when you allow time to walk the lanes and understand the setting.", "Discuss the walking route with your guide if steps or uneven surfaces are difficult for you. The approach and upper paths are not equally easy for everyone. Carry water, keep your bag light and allow time to pause rather than rushing straight to a viewpoint."]},
-      {"heading": "Ouarzazate and the valleys: choose what interests you", "paragraphs": ["Ouarzazate is a useful point to pause before continuing east. Depending on your interests, your schedule might include a kasbah visit, a film-related stop or simply lunch and a comfortable overnight stay. Adding every option is not necessary to have a worthwhile day.", "Further along the route, the Dades Valley offers villages, cultivated land and mountain scenery. An overnight in the valley can turn a driving corridor into part of the experience. Confirm whether your accommodation is in the valley itself and how much exploring time the itinerary allows."]},
-      {"heading": "Todra Gorge: a short visit or a longer walk", "paragraphs": ["Near Tinghir, Todra Gorge offers a striking change of scale, with rock walls rising above the valley floor. Some visitors prefer a brief walk; others want a guided outing with more time in the surrounding area. Tell your planner which version interests you so the stop is scheduled accordingly.", "Keep the day realistic if you are continuing to Merzouga. A longer gorge walk and a late desert transfer may compete for the same hours. Adding a night can be a better solution than shortening every experience to fit a crowded day."]},
-      {"heading": "Merzouga: arrive with time to settle in", "paragraphs": ["The final stage leads towards the Erg Chebbi dunes. Confirm where you meet the camp team, how the last transfer works and what luggage to take. It is easier to enjoy the arrival when those details are settled before leaving your previous overnight stop.", "If your journey continues to Fes, look at the onward driving day as carefully as the approach from Marrakech. If you return to Marrakech, consider how the return is divided. A good desert itinerary gives attention to both halves of the journey."]}
-    ],
-    "source": {"label": "UNESCO: Ksar of Ait-Ben-Haddou", "url": "https://whc.unesco.org/en/list/444/"},
-    "tour": "6-day-marrakech-fes-desert-crossing",
-    "cta_title": "Connect Marrakech, the dunes and Fes",
-    "cta_text": "Our six-day crossing provides a route to discuss, with overnight stops along the way and an onward finish in Fes.",
-    "tour_label": "Explore the six-day desert crossing"
-  },
-  {
-    "slug": "moroccan-culture-food-local-experiences",
-    "title": "Beyond the Sights: Food, Craft and Everyday Morocco",
-    "category": "Culture & food",
-    "description": "Make room for Moroccan food, craft and local encounters, with practical ideas for medina visits, cooking experiences and considerate travel.",
-    "teaser": "Experience Morocco through everyday encounters",
-    "image": "hospitality",
-    "alt": "Host pouring tea into small glasses during a desert evening",
-    "intro": "Memorable travel is often made of ordinary moments: a conversation over tea, watching a craftsperson work or learning why a dish matters to the person making it. Leave room for these encounters alongside the monuments and viewpoints on your route.",
-    "sections": [
-      {"heading": "Let a meal become an experience", "paragraphs": ["Moroccan cooking brings together regional traditions and a wide range of flavours. Tagines, couscous and pastilla are useful names to recognise, but a menu tells only part of the story. Ask your host what is typical locally and which ingredients are in season.", "A cooking session can give you time to ask questions that a quick restaurant stop does not. Check whether it includes a market visit, practical preparation and a shared meal. Tell the organiser about dietary preferences and allergies before confirming so they can explain what is possible."]},
-      {"heading": "Treat tea as a chance to pause", "paragraphs": ["Mint tea is closely associated with Moroccan hospitality. If you are invited to share it, leave time for the conversation as well as the drink. You can politely ask for your preference when possible, including less sugar, without expecting every host to serve it the same way.", "A visit should feel comfortable for the people receiving you too. Arrange hosted experiences openly, with a clear understanding of the duration and payment. An advertised village or home visit is not an invitation to enter private spaces elsewhere along the route."]},
-      {"heading": "Explore a medina with context", "paragraphs": ["In cities such as Fes and Marrakech, a guided medina walk can help connect architecture, neighbourhood life and workshops. Share your interests before the outing: food, textiles, tilework or history may each lead to a different walk. Ask how much time is spent visiting shops.", "If you want to buy something, take time to look closely and ask about materials and production. Discuss a price respectfully and be comfortable declining. A workshop visit does not need to become a purchase, and a guide should understand your shopping preferences."]},
-      {"heading": "Make photographs a conversation", "paragraphs": ["Ask before taking a recognisable photograph of someone, especially in a small workshop or private setting. If they decline, put the camera away. A quick request is more considerate than assuming that a person working or serving tea is part of the scenery.", "Follow guidance at religious sites and ask before entering places whose access is unclear. Dress and behaviour that fit the setting help make visits comfortable. Your guide can explain local expectations without treating every community as identical."]},
-      {"heading": "Give local experiences room in the itinerary", "paragraphs": ["A food walk, craft visit or hosted meal is easiest to enjoy when you are not watching the clock for a long transfer. Consider a second night in a city, or schedule one focused experience rather than several short stops. Ask who leads it, where it takes place and what is included.", "Choose experiences because they interest you, and leave space to listen. A thoughtful route balances famous sights with time spent learning from the people who know a place through everyday life."]}
-    ],
-    "source": {"label": "Moroccan National Tourist Office: gastronomy", "url": "https://www.visitmorocco.com/en/discover-morocco/gastronomy"},
-    "tour": "7-day-food-craft-cities",
-    "cta_title": "Make food and craft part of your journey",
-    "cta_text": "Explore our seven-day food and craft route, then share the meals, workshops and local experiences that interest you.",
-    "tour_label": "Explore the food and craft journey"
-  }
+    {
+      "slug": "choose-your-morocco-itinerary",
+      "image": "journey",
+      "tour": "12-day-slow-morocco-cities-desert-coast",
+      "fr": {
+        "title": "Votre Maroc à vous : choisir l’itinéraire qui vous ressemble",
+        "category": "Préparer son voyage",
+        "description": "Choisissez votre itinéraire au Maroc selon votre ville d’arrivée, le nombre de jours et votre façon de voyager, avec des conseils concrets sur les routes du désert et les circuits plus lents.",
+        "teaser": "Trouvez l’itinéraire qui vous ressemble",
+        "alt": "Voyageur contemplant les paysages ocre près de Ouarzazate",
+        "intro": "Un bon itinéraire au Maroc part du temps dont vous disposez vraiment, pas de la liste de tous les endroits dont vous avez entendu parler. Villes, vallées de montagne et Sahara offrent des expériences très différentes : le bon circuit vous laisse le temps d’en profiter.",
+        "sections": [
+          {
+            "heading": "Comptez vos jours utiles, puis choisissez votre point de départ",
+            "paragraphs": [
+              "Notez vos heures d’arrivée et de départ avant de choisir un circuit. Un atterrissage tardif n’est pas une journée de visite, et un vol matinal implique souvent de dormir près de l’aéroport la veille. Pour comparer les itinéraires, distinguez les journées pleines des journées partielles.",
+              "Marrakech est idéale pour un voyage par le Haut Atlas et les vallées du Sud. Casablanca convient bien à un circuit plus large, qui relie les villes impériales au désert. Terminer dans une autre ville évite parfois de revenir sur ses pas, mais comparez bien les vols avant de vous engager sur un itinéraire sans retour au point de départ."
+            ]
+          },
+          {
+            "heading": "Choisissez deux priorités plutôt que cinq",
+            "paragraphs": [
+              "Pensez aux moments qui comptent le plus pour vous : une visite guidée de la médina, une nuit près des dunes, des villages, des ateliers culinaires ou du temps au bord de l’océan. Choisissez deux temps forts et laissez les autres étapes les relier. Un circuit pensé autour de la cuisine et de l’architecture ne ressemblera pas à un voyage centré sur la montagne.",
+              "Avec cinq ou six jours, concentrez-vous sur une région ou sur une seule traversée. Sept ou huit jours permettent de combiner plusieurs lieux, même si un itinéraire avec le désert implique toujours beaucoup de route. Avec dix à seize jours, vous pouvez faire un vrai circuit et ajouter des nuits là où vous avez envie de rester."
+            ]
+          },
+          {
+            "heading": "Regardez les étapes, pas seulement la carte",
+            "paragraphs": [
+              "Demandez où vous dormez chaque soir et quelles journées se passent surtout sur la route. Entre Marrakech et Merzouga, on traverse des montagnes et des vallées : ce n’est pas un simple transfert entre deux villes. Si vous changez d’hôtel tous les jours, vous risquez de passer plus de temps à faire vos valises qu’à découvrir le pays.",
+              "Une deuxième nuit dans une ville ou une vallée vous laisse le temps d’une balade sans vous presser, d’un cours de cuisine ou simplement d’une matinée sans heure de départ. Les familles et ceux qui n’aiment pas les transferts fréquents devraient en faire une priorité lors de la préparation."
+            ]
+          },
+          {
+            "heading": "Pensez séparément au confort et aux activités",
+            "paragraphs": [
+              "Un bel hôtel ne rend pas un itinéraire rapide plus confortable. Regardez le rythme de la route autant que l’hébergement. Pour une nuit dans le désert, renseignez-vous sur la tente, les sanitaires, l’emplacement du bivouac et le mode de transfert. Vérifiez aussi quels guides, repas, activités et droits d’entrée sont compris dans le devis.",
+              "Signalez avant la réservation vos éventuelles difficultés à marcher et vos préférences. On peut profiter d’un paysage sans faire chaque randonnée ou chaque balade à dos de dromadaire proposée. Une bonne proposition explique ce qui est prévu, ce qui est en option et où l’itinéraire peut évoluer."
+            ]
+          },
+          {
+            "heading": "Transformez vos envies en une demande concrète",
+            "paragraphs": [
+              "Notez vos dates, vos villes d’arrivée et de départ, le nombre de voyageurs, vos deux priorités et le rythme souhaité. Ajoutez les lieux dont vous pourriez vous passer. Ces informations permettent de construire un itinéraire adapté à vos vacances, au lieu de faire entrer vos vacances dans un programme figé."
+            ]
+          }
+        ],
+        "cta_title": "Donnez à vos lieux préférés le temps qu’ils méritent",
+        "cta_text": "Partez de notre circuit de 12 jours en douceur, ou envoyez-nous vos dates et vos priorités : nous vous proposerons un itinéraire sur mesure.",
+        "tour_label": "Voir le circuit de 12 jours en douceur"
+      },
+      "en": {
+        "title": "Finding Your Morocco: Choose an Itinerary That Fits",
+        "category": "Trip planning",
+        "description": "Choose a Morocco itinerary around your arrival city, available days and travel style, with practical advice on desert drives and slower routes.",
+        "teaser": "Find routes matching your rhythm",
+        "alt": "Traveller looking across the ochre landscape near Ouarzazate",
+        "intro": "A good Morocco itinerary begins with the time you actually have, rather than a list of every place you have heard about. Cities, mountain valleys and the Sahara offer different experiences. The right route leaves room to enjoy them.",
+        "sections": [
+          {
+            "heading": "Count usable days, then choose your starting point",
+            "paragraphs": [
+              "Put your arrival and departure times on the calendar before choosing a tour. A late landing is not a sightseeing day, and an early flight usually means staying near your departure city the night before. Separate full travel days from those partial days when comparing routes.",
+              "Marrakech works well for a journey through the High Atlas and southern valleys. Casablanca can suit a wider circuit connecting imperial cities with the desert. Finishing in a different city can reduce backtracking, but compare the flight arrangements before committing to an open-ended route."
+            ]
+          },
+          {
+            "heading": "Pick two priorities instead of five",
+            "paragraphs": [
+              "Think about the moments you want most: a guided medina walk, a night near the dunes, village visits, food workshops or time by the ocean. Choose two anchors and let the remaining stops connect them. A route built around food and architecture will feel different from one built around mountain landscapes.",
+              "With five or six days, concentrate on one region or a focused crossing. Seven or eight days can combine several places, although a desert itinerary still needs substantial driving time. Ten to sixteen days give more scope for a circuit and extra nights in the places that interest you."
+            ]
+          },
+          {
+            "heading": "Look at overnight stops, not just the map",
+            "paragraphs": [
+              "Ask where you sleep each night and which days are mainly spent on the road. A line between Marrakech and Merzouga crosses mountains and valleys; it is not a short city transfer. If every day changes hotel, you may spend more time packing than exploring.",
+              "Adding a second night in a city or valley makes space for an unhurried walk, a cooking session or simply a morning without a departure deadline. Families and travellers who dislike frequent transfers should make this a priority when discussing the plan."
+            ]
+          },
+          {
+            "heading": "Choose comfort and activities separately",
+            "paragraphs": [
+              "An attractive hotel does not automatically make a fast route comfortable. Review the driving pace as well as accommodation. For a desert stay, ask about the tent, bathroom arrangement, camp location and transfer method. Confirm which guides, meals, activities and entrance fees belong to the quoted package.",
+              "Share any walking limitations and preferences before booking. You can enjoy a landscape without doing every optional hike or camel ride. A useful proposal explains what is planned, what is optional and where the route can change."
+            ]
+          },
+          {
+            "heading": "Turn your shortlist into a practical brief",
+            "paragraphs": [
+              "Write down your travel dates, arrival and departure cities, group size, two priorities and your preferred pace. Add any places you would happily skip. These details make it easier to shape a route that fits your holiday instead of squeezing your holiday into a fixed schedule."
+            ]
+          }
+        ],
+        "cta_title": "Give your favourite places enough time",
+        "cta_text": "Start with our 12-day slower circuit, or send your dates and priorities so we can suggest a route around them.",
+        "tour_label": "Explore the 12-day slow circuit"
+      }
+    },
+    {
+      "slug": "first-sahara-desert-tour",
+      "image": "sahara",
+      "tour": "5-day-erg-chigaga-deep-desert",
+      "fr": {
+        "title": "Votre premier voyage au Sahara : de la route jusqu’aux dunes",
+        "category": "Voyage dans le désert",
+        "description": "Préparez votre premier voyage dans le Sahara marocain : rythme de la route, bivouacs, bagages, balades à dos de dromadaire et choix de la bonne expérience dans les dunes.",
+        "teaser": "Préparez votre première aventure saharienne",
+        "alt": "Caravane de dromadaires sur la crête d’une dune du Sahara au coucher du soleil",
+        "intro": "L’expérience du désert commence bien avant d’arriver dans le sable. La route par les cols de montagne, le pays des kasbahs et les vallées-oasis fait partie du voyage. Savoir comment se déroulent le trajet et la nuit au bivouac vous permet d’arriver avec des attentes réalistes.",
+        "sections": [
+          {
+            "heading": "Choisissez votre désert en pensant à tout le trajet",
+            "paragraphs": [
+              "Merzouga est le village d’accès aux dunes de l’Erg Chebbi, dans l’est du Maroc. M’Hamid ouvre sur une autre région désertique : pour rejoindre l’Erg Chigaga, il faut généralement un transfert en tout-terrain. Ce sont deux itinéraires différents, pas deux noms pour la même nuit au désert.",
+              "Choisissez selon le nombre de jours dont vous disposez, votre ville de départ et votre tolérance à la route. Si Merzouga est votre objectif principal depuis Marrakech, prévoyez des nuits d’étape en chemin. Demandez le programme complet, retour ou suite du voyage compris, avant de comparer les offres."
+            ]
+          },
+          {
+            "heading": "Comprendre l’arrivée et le transfert au bivouac",
+            "paragraphs": [
+              "Vous laisserez peut-être votre véhicule principal ou vos grosses valises à un point de rendez-vous avant de rejoindre le bivouac. Le dernier trajet peut se faire à dos de dromadaire ou en véhicule, selon le campement et ce qui a été convenu. Confirmez l’horaire et les alternatives à l’avance, surtout si vous préférez ne pas monter.",
+              "Le coucher du soleil est un moment très apprécié près des dunes, mais l’heure d’arrivée dépend de la route et des conditions. Ne considérez pas la photo au coucher du soleil comme un rendez-vous garanti. Un trajet confortable laisse au chauffeur le temps de gérer les arrêts et d’arriver au point de transfert sans se presser."
+            ]
+          },
+          {
+            "heading": "Ce que comprend vraiment une nuit au bivouac",
+            "paragraphs": [
+              "Les campements sont très différents les uns des autres. Demandez si votre tente est privée, si la salle de bain est partagée ou privative, comment fonctionne l’électricité et quelle literie est fournie. Si un élément de confort compte pour vous, demandez une confirmation au lieu de vous fier à une étiquette comme « luxe ».",
+              "Le séjour comprend souvent le dîner et le petit-déjeuner, mais vérifiez votre proposition. La soirée peut être animée par de la musique ; ne partez pas du principe que c’est le cas dans chaque campement ou chaque soir. Le vent, les nuages et la lune changent aussi l’expérience : un ciel parfaitement étoilé n’est jamais garanti."
+            ]
+          },
+          {
+            "heading": "Préparez vos affaires pour le transfert et la nuit",
+            "paragraphs": [
+              "Gardez un petit sac pour la nuit à portée de main. Pensez à une couche chaude, un chapeau, de la crème solaire, des lunettes de soleil, une gourde, une lampe de poche et des chaussures fermées pour marcher sur un sol inégal. Le sable s’infiltre vite dans les sacs ouverts : protégez votre téléphone et votre appareil photo quand vous ne les utilisez pas.",
+              "Les températures peuvent changer brusquement entre le jour et la nuit. Consultez la météo peu avant le départ et demandez à votre hôte quelles sont les conditions au campement. Emportez avec vous ce dont vous avez besoin pour la nuit : les grosses valises peuvent rester ailleurs pendant le transfert."
+            ]
+          },
+          {
+            "heading": "Gardez du temps pour une matinée tranquille",
+            "paragraphs": [
+              "Si votre programme le permet, levez-vous tôt pour une petite marche ou simplement pour regarder la lumière changer. Suivez les conseils de l’équipe du campement sur les endroits où aller, et organisez toute sortie plus longue avec un guide. Avant de partir, renseignez-vous sur l’heure du petit-déjeuner, la récupération des bagages et votre prochaine étape."
+            ]
+          }
+        ],
+        "cta_title": "Choisissez le désert qui vous convient",
+        "cta_text": "Découvrez notre circuit de cinq jours vers l’Erg Chigaga, ou demandez-nous de comparer un séjour à Merzouga avec un départ depuis M’Hamid.",
+        "tour_label": "Voir le circuit Erg Chigaga"
+      },
+      "en": {
+        "title": "Your First Sahara Tour: From the Road to the Dunes",
+        "category": "Desert travel",
+        "description": "Prepare for your first Morocco Sahara tour with advice on travel pace, desert camps, packing, camel rides and choosing the right dune experience.",
+        "teaser": "Prepare for your desert adventure",
+        "alt": "Camel caravan crossing a ridge of Sahara sand dunes at sunset",
+        "intro": "The desert experience starts well before you reach the sand. The journey through mountain passes, kasbah country and oasis valleys is part of the trip. Knowing how the route and camp stay work helps you arrive with realistic expectations.",
+        "sections": [
+          {
+            "heading": "Choose the desert by the whole route",
+            "paragraphs": [
+              "Merzouga is the village gateway to the Erg Chebbi dunes in eastern Morocco. Mhamid provides access to another desert region, with journeys towards Erg Chigaga generally involving an off-road transfer. These are different routes, rather than interchangeable names for the same overnight stop.",
+              "Choose according to your available days, departure city and tolerance for driving. If Merzouga is the main goal from Marrakech, allow time for overnight stops along the way. Ask to see the full schedule, including the return or onward journey, before comparing packages."
+            ]
+          },
+          {
+            "heading": "Understand the arrival and camp transfer",
+            "paragraphs": [
+              "You may leave your main vehicle or larger luggage at a meeting point before continuing to camp. The final transfer could involve a camel ride or a vehicle, depending on the camp and agreed arrangements. Confirm the timing and alternatives in advance, especially if you prefer not to ride.",
+              "Sunset is a popular time to be near the dunes, but arrival depends on the route and conditions. Avoid treating a sunset photograph as a guaranteed appointment. A comfortable journey gives the driver room to manage stops and reach the transfer point without rushing."
+            ]
+          },
+          {
+            "heading": "Ask what a camp night actually includes",
+            "paragraphs": [
+              "Camps vary considerably. Ask whether your tent is private, whether the bathroom is shared or ensuite, how electricity works and what bedding is provided. If a particular comfort matters to you, request confirmation rather than relying on a label such as luxury.",
+              "A stay often includes dinner and breakfast, but check your proposal. Music may be part of the evening; do not assume it is offered at every camp or every night. Wind, clouds and moonlight also change the experience, so stars and perfectly clear skies are never a promise."
+            ]
+          },
+          {
+            "heading": "Pack for the transfer and the night",
+            "paragraphs": [
+              "Keep a small overnight bag easy to reach. Useful items include a warm layer, sun hat, sunscreen, sunglasses, a refillable water bottle, a torch and closed shoes for walking on uneven ground. Sand gets into open bags quickly, so keep your phone and camera protected when you are not using them.",
+              "Temperatures can change sharply between daytime and night. Check the forecast close to departure and ask your host about current camp conditions. Bring the things you need overnight with you; large suitcases may remain elsewhere during the transfer."
+            ]
+          },
+          {
+            "heading": "Leave room for a quiet morning",
+            "paragraphs": [
+              "If your schedule allows, wake early for a short walk or simply sit and watch the light change. Follow the camp team's advice on where to go and arrange any longer outing with a guide. Before leaving, make sure you know the breakfast time, luggage collection plan and next overnight stop."
+            ]
+          }
+        ],
+        "cta_title": "Choose the desert journey that suits you",
+        "cta_text": "Explore our five-day Erg Chigaga route, or ask us to compare a Merzouga stay with a journey from Mhamid.",
+        "tour_label": "Explore the Erg Chigaga journey"
+      }
+    },
+    {
+      "slug": "best-time-to-visit-morocco",
+      "image": "atlas",
+      "tour": "8-day-desert-ocean-route",
+      "fr": {
+        "title": "Quand partir au Maroc : choisir la saison selon votre itinéraire",
+        "category": "Saisons & météo",
+        "description": "Choisissez quand partir au Maroc selon la région et la saison : désert au printemps, côte en été, villes en hiver.",
+        "teaser": "Associez saisons et expériences marocaines",
+        "alt": "Paysage de montagne dans l’Atlas marocain",
+        "intro": "Il n’existe pas de saison idéale pour tous les voyages au Maroc. Un séjour sur la côte, une randonnée dans l’Atlas et une nuit au Sahara peuvent être très différents le même mois. Partez des lieux et des activités qui vous font envie, puis choisissez la période qui s’y prête.",
+        "sections": [
+          {
+            "heading": "Le printemps : une bonne base pour les circuits variés",
+            "paragraphs": [
+              "Le printemps convient souvent à ceux qui veulent combiner villes, vallées et désert. C’est l’une des saisons que l’Office National Marocain du Tourisme recommande pour le Sahara. Les conditions varient pourtant d’une région à l’autre, et un après-midi agréable en ville ne dit rien de ce que vous ressentirez sur un col de montagne ou pendant une nuit dans le désert.",
+              "Pour un premier voyage, privilégiez un itinéraire avec un peu de souplesse plutôt qu’une grande activité en plein air chaque jour. Prévoyez plusieurs couches et consultez la météo locale peu avant le départ. Les excursions en montagne se décident selon les conditions réelles, pas selon la réputation de la saison."
+            ]
+          },
+          {
+            "heading": "L’été : pensez à la côte et à un autre rythme",
+            "paragraphs": [
+              "Quand il fait chaud à l’intérieur des terres, la brise de l’Atlantique rend la côte très attrayante. Un itinéraire qui passe plus de temps près de l’océan peut vous convenir mieux qu’un circuit chargé dans le désert. Si vous partez vers l’intérieur, parlez avec nous des départs matinaux, des pauses à l’ombre et du confort de vos hébergements.",
+              "Les vacances scolaires imposent parfois vos dates. Dans ce cas, adaptez l’expérience au mois de voyage au lieu de chercher à reproduire un itinéraire de printemps. Moins de transferts et des séjours plus longs simplifient l’organisation, surtout avec des enfants."
+            ]
+          },
+          {
+            "heading": "L’automne : une autre belle saison pour le désert et les villes",
+            "paragraphs": [
+              "L’automne est lui aussi recommandé par l’Office du tourisme pour le Sahara. C’est une bonne période pour associer visites de médinas et paysages du Sud. Consultez la météo et l’itinéraire peu avant le départ, sans vous attendre au même temps pendant tout le voyage.",
+              "Si un riad ou un bivouac précis compte beaucoup dans votre projet, vérifiez sa disponibilité avant de fixer le reste du voyage. Les périodes très demandées limitent le choix, et ajouter une nuit est plus facile quand vos dates sont souples."
+            ]
+          },
+          {
+            "heading": "L’hiver : composer avec la lumière du jour et les conditions locales",
+            "paragraphs": [
+              "L’hiver change l’équilibre d’un voyage. La montagne peut être froide et humide, et la neige peut gêner les routes en altitude. Les journées plus courtes rendent d’autant plus utile de ne pas surcharger les jours de route avec plusieurs visites.",
+              "Les séjours en ville et certains itinéraires du Sud restent possibles, mais renseignez-vous sur le chauffage et le confort du soir, dans les riads comme dans les bivouacs. Un joli patio en plein air n’a pas du tout le même charme une fois le soleil couché. Gardez une solution de repli pour les excursions qui dépendent de la route ou de la météo."
+            ]
+          },
+          {
+            "heading": "Servez-vous de vos dates pour bien préparer le voyage",
+            "paragraphs": [
+              "Avant de demander un devis, indiquez votre mois, vos dates fixes et les expériences qui comptent le plus pour vous. Demandez quelles parties de l’itinéraire conviennent à cette période et lesquelles doivent être adaptées. Si votre séjour tombe pendant une fête ou le ramadan, vérifiez les horaires d’ouverture et l’organisation des repas avec vos hôtes, car le quotidien peut être différent.",
+              "Les conseils saisonniers vous aident à choisir un point de départ, mais ce ne sont pas des prévisions. Vérifiez les conditions du moment et votre programme final avant de partir. Un itinéraire pensé pour vos dates vaut mieux qu’un classement général des meilleurs mois."
+            ]
+          }
+        ],
+        "cta_title": "Construisez votre voyage autour de vos dates",
+        "cta_text": "Partez de notre circuit de huit jours entre désert et océan, puis demandez-nous quelles étapes conviennent le mieux à votre mois de voyage.",
+        "tour_label": "Voir le circuit désert et océan",
+        "source": {
+          "label": "Office National Marocain du Tourisme : climat et saisons",
+          "url": "https://www.visitmorocco.com/en/travel-info/climate-and-seasons"
+        }
+      },
+      "en": {
+        "title": "When to Visit Morocco: Match the Season to Your Route",
+        "category": "Seasons & timing",
+        "description": "Plan when to visit Morocco by region and season, from spring desert journeys to summer coastal stays and winter city breaks.",
+        "teaser": "Match Morocco seasons with experiences",
+        "alt": "Mountain scenery in Morocco's Atlas region",
+        "intro": "There is no single season that suits every Morocco journey. A coastal stay, an Atlas walk and a Sahara overnight can feel very different in the same month. Start with the places and activities you want, then choose a travel window that supports them.",
+        "sections": [
+          {
+            "heading": "Spring: a useful starting point for mixed routes",
+            "paragraphs": [
+              "Spring often suits travellers hoping to combine cities, valleys and desert landscapes. It is one of the seasons the Moroccan National Tourist Office highlights for Sahara travel. Even so, conditions vary across the country, and a pleasant city afternoon does not tell you how a mountain pass or desert night will feel.",
+              "For a first visit, consider a route with some flexibility rather than scheduling a major outdoor activity every day. Pack layers and check local forecasts shortly before travel. Mountain excursions should be planned around the actual conditions, not the season's reputation."
+            ]
+          },
+          {
+            "heading": "Summer: consider the coast and a different pace",
+            "paragraphs": [
+              "Coastal breezes can make Atlantic destinations appealing when inland areas are hot. A route that spends more time near the ocean may suit you better than a packed desert circuit. If you are travelling inland, discuss early starts, shaded breaks and the comfort of your accommodation.",
+              "School holidays may determine your dates. In that case, adapt the experience to the month instead of trying to reproduce a spring itinerary. Fewer transfers and longer stays can make planning easier, particularly when travelling with children."
+            ]
+          },
+          {
+            "heading": "Autumn: another option for desert and city journeys",
+            "paragraphs": [
+              "Autumn is also highlighted by the tourist office as a suitable season for the Sahara. It can be a useful window for combining medina visits with southern landscapes. Check the forecast and the route close to departure rather than expecting identical weather throughout your trip.",
+              "If a particular riad or camp is central to your plans, ask about availability before fixing the rest of the journey. Popular travel windows can limit choice, and adding an extra night may be easier when your dates are flexible."
+            ]
+          },
+          {
+            "heading": "Winter: plan around daylight and regional conditions",
+            "paragraphs": [
+              "Winter changes the balance of a trip. Mountain areas can be cold and wet, and higher routes may be affected by snow. Shorter daylight makes it especially useful to avoid overloading driving days with several visits.",
+              "City stays and selected southern routes can still be planned, but ask about heating and evening comfort in both riads and camps. An attractive outdoor courtyard may feel quite different after sunset. Keep a backup plan for excursions that depend on road or weather conditions."
+            ]
+          },
+          {
+            "heading": "Use your dates as a planning tool",
+            "paragraphs": [
+              "Before requesting a quote, share your month, fixed dates and the experiences you care about most. Ask which parts of the route work well then and which need adjustment. If your visit overlaps a holiday or Ramadan, confirm opening hours and meal arrangements with your hosts, as routines may differ.",
+              "Seasonal guidance helps you choose a starting point; it is not a forecast. Review current conditions and your final schedule before travelling. A route built for your dates is more useful than a generic ranking of the best months."
+            ]
+          }
+        ],
+        "cta_title": "Shape a journey around your travel window",
+        "cta_text": "Use our eight-day desert and ocean route as a starting point, then ask which stops and stays best suit your month.",
+        "tour_label": "Explore the desert and ocean route",
+        "source": {
+          "label": "Moroccan National Tourist Office: climate and seasons",
+          "url": "https://www.visitmorocco.com/en/travel-info/climate-and-seasons"
+        }
+      }
+    },
+    {
+      "slug": "marrakech-to-merzouga-stops",
+      "image": "kasbah",
+      "tour": "6-day-marrakech-fes-desert-crossing",
+      "fr": {
+        "title": "De Marrakech à Merzouga : faites de la route un vrai voyage",
+        "category": "Itinéraires & paysages",
+        "description": "Les plus belles étapes entre Marrakech et Merzouga : le Haut Atlas, Aït Ben Haddou, la vallée du Dadès et les gorges du Todra.",
+        "teaser": "Des étapes inoubliables après Marrakech",
+        "alt": "Tours en terre et maisons à flanc de colline à Aït Ben Haddou",
+        "intro": "La route de Marrakech à Merzouga relie certains des plus beaux paysages du Maroc, mais elle implique aussi de longues heures en voiture. En la découpant en journées raisonnables, chaque étape devient un lieu à découvrir, et non un nom aperçu par la fenêtre.",
+        "sections": [
+          {
+            "heading": "Le Haut Atlas : prenez le temps de la traversée",
+            "paragraphs": [
+              "Pour rejoindre Ouarzazate, la route traverse généralement le Haut Atlas par le col du Tizi n’Tichka. Le paysage change à mesure que l’on monte, entre virages, belvédères et villages. Considérez cette traversée comme une bonne partie de la journée, surtout si vous voulez vous arrêter pour des photos.",
+              "Une route de montagne sinueuse est une bonne raison de garder un programme souple. Demandez le temps de route estimé pour votre itinéraire réel, pauses comprises. Les conditions et la circulation peuvent changer : une estimation sur la carte ne doit pas devenir une contrainte pour la visite suivante."
+            ]
+          },
+          {
+            "heading": "Aït Ben Haddou : marchez plutôt que de jeter un coup d’œil",
+            "paragraphs": [
+              "Aït Ben Haddou est un ksar : un ensemble de bâtiments en terre au sein d’un village fortifié, et non une kasbah isolée. L’UNESCO reconnaît le site pour son architecture de terre du Sud marocain. La visite est bien plus riche si vous prenez le temps de parcourir les ruelles et de comprendre le lieu.",
+              "Parlez du parcours avec votre guide si les marches ou les sols inégaux vous posent problème. L’accès et les sentiers du haut ne sont pas aussi faciles pour tout le monde. Emportez de l’eau, voyagez léger et prenez le temps de faire des pauses au lieu de foncer vers le point de vue."
+            ]
+          },
+          {
+            "heading": "Ouarzazate et les vallées : choisissez ce qui vous intéresse",
+            "paragraphs": [
+              "Ouarzazate est une bonne étape avant de poursuivre vers l’est. Selon vos envies, le programme peut inclure une kasbah, un arrêt lié au cinéma ou simplement un déjeuner et une nuit confortable. Inutile de tout cumuler pour passer une belle journée.",
+              "Plus loin, la vallée du Dadès offre villages, cultures et paysages de montagne. Une nuit dans la vallée transforme un simple trajet en véritable étape du voyage. Vérifiez que votre hébergement se trouve bien dans la vallée et combien de temps l’itinéraire laisse pour la découvrir."
+            ]
+          },
+          {
+            "heading": "Les gorges du Todra : courte visite ou vraie balade",
+            "paragraphs": [
+              "Près de Tinghir, les gorges du Todra offrent un changement d’échelle saisissant, avec leurs parois rocheuses qui dominent le fond de la vallée. Certains se contentent d’une courte marche ; d’autres préfèrent une sortie guidée pour mieux découvrir les environs. Dites-nous ce qui vous tente pour que l’arrêt soit prévu en conséquence.",
+              "Restez réaliste si vous continuez jusqu’à Merzouga le jour même. Une longue balade dans les gorges et un transfert tardif vers le désert se disputent les mêmes heures. Ajouter une nuit est souvent une meilleure solution que de raccourcir chaque expérience pour tout faire tenir dans une journée chargée."
+            ]
+          },
+          {
+            "heading": "Merzouga : arrivez avec le temps de vous installer",
+            "paragraphs": [
+              "La dernière étape mène aux dunes de l’Erg Chebbi. Vérifiez où vous retrouvez l’équipe du campement, comment se passe le dernier transfert et quels bagages emporter. L’arrivée est bien plus agréable quand ces détails sont réglés avant de quitter votre étape précédente.",
+              "Si vous poursuivez vers Fès, regardez la journée de route suivante avec autant d’attention que l’aller depuis Marrakech. Si vous revenez à Marrakech, réfléchissez à la façon de découper le retour. Un bon itinéraire dans le désert soigne les deux moitiés du voyage."
+            ]
+          }
+        ],
+        "cta_title": "Reliez Marrakech, les dunes et Fès",
+        "cta_text": "Notre traversée de six jours est une bonne base de discussion, avec des étapes pour la nuit en chemin et une arrivée à Fès.",
+        "tour_label": "Voir la traversée de six jours",
+        "source": {
+          "label": "UNESCO : Ksar d’Aït-Ben-Haddou",
+          "url": "https://whc.unesco.org/fr/list/444/"
+        }
+      },
+      "en": {
+        "title": "Marrakech to Merzouga: Make the Road Part of the Journey",
+        "category": "Routes & landscapes",
+        "description": "Discover worthwhile stops between Marrakech and Merzouga, including the High Atlas, Ait Ben Haddou, Dades Valley and Todra Gorge.",
+        "teaser": "Discover memorable stops beyond Marrakech",
+        "alt": "Earthen towers and hillside buildings at Ait Ben Haddou",
+        "intro": "The road from Marrakech to Merzouga links some of Morocco's most striking landscapes. It also involves long stretches in a vehicle. Breaking the journey into manageable days makes the stops feel like places to explore, rather than names checked off through the window.",
+        "sections": [
+          {
+            "heading": "The High Atlas: leave space for the crossing",
+            "paragraphs": [
+              "Routes towards Ouarzazate commonly cross the High Atlas through the Tizi n'Tichka pass. The landscape shifts as the road climbs, with bends, viewpoints and villages along the way. Plan the crossing as a substantial part of the day, especially if you want to stop for photographs.",
+              "A winding mountain road is a reason to keep the schedule generous. Ask about likely driving time for your actual itinerary, including breaks. Conditions and traffic can change, so a map estimate should not become a deadline for the next visit."
+            ]
+          },
+          {
+            "heading": "Ait Ben Haddou: walk, rather than glance",
+            "paragraphs": [
+              "Ait Ben Haddou is a ksar: a group of earthen buildings within a fortified settlement, rather than one standalone kasbah. UNESCO recognises the site for its southern Moroccan earthen architecture. A visit is more rewarding when you allow time to walk the lanes and understand the setting.",
+              "Discuss the walking route with your guide if steps or uneven surfaces are difficult for you. The approach and upper paths are not equally easy for everyone. Carry water, keep your bag light and allow time to pause rather than rushing straight to a viewpoint."
+            ]
+          },
+          {
+            "heading": "Ouarzazate and the valleys: choose what interests you",
+            "paragraphs": [
+              "Ouarzazate is a useful point to pause before continuing east. Depending on your interests, your schedule might include a kasbah visit, a film-related stop or simply lunch and a comfortable overnight stay. Adding every option is not necessary to have a worthwhile day.",
+              "Further along the route, the Dades Valley offers villages, cultivated land and mountain scenery. An overnight in the valley can turn a driving corridor into part of the experience. Confirm whether your accommodation is in the valley itself and how much exploring time the itinerary allows."
+            ]
+          },
+          {
+            "heading": "Todra Gorge: a short visit or a longer walk",
+            "paragraphs": [
+              "Near Tinghir, Todra Gorge offers a striking change of scale, with rock walls rising above the valley floor. Some visitors prefer a brief walk; others want a guided outing with more time in the surrounding area. Tell your planner which version interests you so the stop is scheduled accordingly.",
+              "Keep the day realistic if you are continuing to Merzouga. A longer gorge walk and a late desert transfer may compete for the same hours. Adding a night can be a better solution than shortening every experience to fit a crowded day."
+            ]
+          },
+          {
+            "heading": "Merzouga: arrive with time to settle in",
+            "paragraphs": [
+              "The final stage leads towards the Erg Chebbi dunes. Confirm where you meet the camp team, how the last transfer works and what luggage to take. It is easier to enjoy the arrival when those details are settled before leaving your previous overnight stop.",
+              "If your journey continues to Fes, look at the onward driving day as carefully as the approach from Marrakech. If you return to Marrakech, consider how the return is divided. A good desert itinerary gives attention to both halves of the journey."
+            ]
+          }
+        ],
+        "cta_title": "Connect Marrakech, the dunes and Fes",
+        "cta_text": "Our six-day crossing provides a route to discuss, with overnight stops along the way and an onward finish in Fes.",
+        "tour_label": "Explore the six-day desert crossing",
+        "source": {
+          "label": "UNESCO: Ksar of Ait-Ben-Haddou",
+          "url": "https://whc.unesco.org/en/list/444/"
+        }
+      }
+    },
+    {
+      "slug": "moroccan-culture-food-local-experiences",
+      "image": "hospitality",
+      "tour": "7-day-food-craft-cities",
+      "fr": {
+        "title": "Au-delà des monuments : cuisine, artisanat et Maroc du quotidien",
+        "category": "Culture & cuisine",
+        "description": "Faites une place à la cuisine marocaine, à l’artisanat et aux rencontres locales, avec des idées concrètes pour les médinas, les cours de cuisine et un voyage respectueux.",
+        "teaser": "Vivez le Maroc au quotidien",
+        "alt": "Hôte servant le thé dans de petits verres lors d’une soirée dans le désert",
+        "intro": "Les plus beaux souvenirs de voyage tiennent souvent à des moments simples : une conversation autour d’un thé, un artisan au travail, ou l’histoire d’un plat racontée par la personne qui le prépare. Laissez de la place à ces rencontres, à côté des monuments et des panoramas de votre itinéraire.",
+        "sections": [
+          {
+            "heading": "Faites d’un repas une expérience",
+            "paragraphs": [
+              "La cuisine marocaine réunit des traditions régionales et une grande variété de saveurs. Tajines, couscous et pastilla sont des noms utiles à connaître, mais un menu ne raconte qu’une partie de l’histoire. Demandez à votre hôte ce qui est typique de la région et quels produits sont de saison.",
+              "Un cours de cuisine vous laisse le temps de poser des questions qu’un simple arrêt au restaurant ne permet pas. Vérifiez s’il comprend une visite du marché, une vraie préparation et un repas partagé. Signalez vos préférences alimentaires et vos allergies avant de confirmer, pour que l’organisateur vous dise ce qui est possible."
+            ]
+          },
+          {
+            "heading": "Le thé, une invitation à faire une pause",
+            "paragraphs": [
+              "Le thé à la menthe est étroitement lié à l’hospitalité marocaine. Si l’on vous invite à le partager, prenez le temps de la conversation autant que du verre. Vous pouvez demander poliment, quand c’est possible, un thé moins sucré, sans attendre que chaque hôte le serve de la même façon.",
+              "Une visite doit aussi rester agréable pour ceux qui vous reçoivent. Organisez les rencontres chez l’habitant en toute transparence, avec une idée claire de la durée et du prix. Une visite de village ou de maison prévue au programme n’autorise pas à entrer dans des espaces privés ailleurs sur la route."
+            ]
+          },
+          {
+            "heading": "Découvrir une médina en la comprenant",
+            "paragraphs": [
+              "À Fès comme à Marrakech, une visite guidée de la médina aide à faire le lien entre architecture, vie de quartier et ateliers. Partagez vos centres d’intérêt avant la sortie : cuisine, textiles, zelliges ou histoire mènent chacun à une balade différente. Demandez combien de temps est consacré aux boutiques.",
+              "Si vous souhaitez acheter quelque chose, prenez le temps de regarder de près et de vous renseigner sur les matériaux et la fabrication. Discutez le prix avec respect et n’hésitez pas à décliner. Une visite d’atelier n’oblige pas à acheter, et un bon guide respecte vos envies en matière de shopping."
+            ]
+          },
+          {
+            "heading": "Une photo, c’est d’abord un échange",
+            "paragraphs": [
+              "Demandez avant de photographier une personne reconnaissable, surtout dans un petit atelier ou un lieu privé. Si elle refuse, rangez l’appareil. Une simple question est bien plus respectueuse que de considérer qu’une personne qui travaille ou sert le thé fait partie du décor.",
+              "Suivez les consignes dans les lieux religieux et demandez avant d’entrer quand l’accès n’est pas clair. Une tenue et une attitude adaptées au lieu rendent les visites agréables pour tous. Votre guide peut vous expliquer les usages locaux, sans présenter chaque communauté comme identique."
+            ]
+          },
+          {
+            "heading": "Laissez de la place aux rencontres dans l’itinéraire",
+            "paragraphs": [
+              "Une balade gourmande, une visite d’atelier ou un repas chez l’habitant s’apprécient mieux quand on n’a pas l’œil rivé sur la montre pour un long transfert. Prévoyez une deuxième nuit en ville, ou une seule vraie expérience plutôt que plusieurs arrêts rapides. Demandez qui l’anime, où elle a lieu et ce qui est compris.",
+              "Choisissez vos expériences parce qu’elles vous intéressent, et prenez le temps d’écouter. Un itinéraire bien pensé équilibre les sites célèbres et le temps passé à apprendre auprès de ceux qui connaissent les lieux au quotidien."
+            ]
+          }
+        ],
+        "cta_title": "Mettez la cuisine et l’artisanat au cœur du voyage",
+        "cta_text": "Découvrez notre circuit de sept jours autour des saveurs et de l’artisanat, puis dites-nous quels repas, ateliers et rencontres vous intéressent.",
+        "tour_label": "Voir le circuit saveurs et artisanat",
+        "source": {
+          "label": "Office National Marocain du Tourisme : gastronomie",
+          "url": "https://www.visitmorocco.com/en/discover-morocco/gastronomy"
+        }
+      },
+      "en": {
+        "title": "Beyond the Sights: Food, Craft and Everyday Morocco",
+        "category": "Culture & food",
+        "description": "Make room for Moroccan food, craft and local encounters, with practical ideas for medina visits, cooking experiences and considerate travel.",
+        "teaser": "Experience Morocco through everyday encounters",
+        "alt": "Host pouring tea into small glasses during a desert evening",
+        "intro": "Memorable travel is often made of ordinary moments: a conversation over tea, watching a craftsperson work or learning why a dish matters to the person making it. Leave room for these encounters alongside the monuments and viewpoints on your route.",
+        "sections": [
+          {
+            "heading": "Let a meal become an experience",
+            "paragraphs": [
+              "Moroccan cooking brings together regional traditions and a wide range of flavours. Tagines, couscous and pastilla are useful names to recognise, but a menu tells only part of the story. Ask your host what is typical locally and which ingredients are in season.",
+              "A cooking session can give you time to ask questions that a quick restaurant stop does not. Check whether it includes a market visit, practical preparation and a shared meal. Tell the organiser about dietary preferences and allergies before confirming so they can explain what is possible."
+            ]
+          },
+          {
+            "heading": "Treat tea as a chance to pause",
+            "paragraphs": [
+              "Mint tea is closely associated with Moroccan hospitality. If you are invited to share it, leave time for the conversation as well as the drink. You can politely ask for your preference when possible, including less sugar, without expecting every host to serve it the same way.",
+              "A visit should feel comfortable for the people receiving you too. Arrange hosted experiences openly, with a clear understanding of the duration and payment. An advertised village or home visit is not an invitation to enter private spaces elsewhere along the route."
+            ]
+          },
+          {
+            "heading": "Explore a medina with context",
+            "paragraphs": [
+              "In cities such as Fes and Marrakech, a guided medina walk can help connect architecture, neighbourhood life and workshops. Share your interests before the outing: food, textiles, tilework or history may each lead to a different walk. Ask how much time is spent visiting shops.",
+              "If you want to buy something, take time to look closely and ask about materials and production. Discuss a price respectfully and be comfortable declining. A workshop visit does not need to become a purchase, and a guide should understand your shopping preferences."
+            ]
+          },
+          {
+            "heading": "Make photographs a conversation",
+            "paragraphs": [
+              "Ask before taking a recognisable photograph of someone, especially in a small workshop or private setting. If they decline, put the camera away. A quick request is more considerate than assuming that a person working or serving tea is part of the scenery.",
+              "Follow guidance at religious sites and ask before entering places whose access is unclear. Dress and behaviour that fit the setting help make visits comfortable. Your guide can explain local expectations without treating every community as identical."
+            ]
+          },
+          {
+            "heading": "Give local experiences room in the itinerary",
+            "paragraphs": [
+              "A food walk, craft visit or hosted meal is easiest to enjoy when you are not watching the clock for a long transfer. Consider a second night in a city, or schedule one focused experience rather than several short stops. Ask who leads it, where it takes place and what is included.",
+              "Choose experiences because they interest you, and leave space to listen. A thoughtful route balances famous sights with time spent learning from the people who know a place through everyday life."
+            ]
+          }
+        ],
+        "cta_title": "Make food and craft part of your journey",
+        "cta_text": "Explore our seven-day food and craft route, then share the meals, workshops and local experiences that interest you.",
+        "tour_label": "Explore the food and craft journey",
+        "source": {
+          "label": "Moroccan National Tourist Office: gastronomy",
+          "url": "https://www.visitmorocco.com/en/discover-morocco/gastronomy"
+        }
+      }
+    }
   ]
 }

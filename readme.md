@@ -15,8 +15,22 @@ Open `http://localhost:8000`. Python 3's standard library is sufficient for buil
 - `data/tours.json`: a `tours` collection with routes, days, overnight counts, itinerary copy and destination relationships.
 - `data/destinations.json`: a `destinations` collection with destination guides, experiences and planning notes.
 - `data/articles.json`: an `articles` collection with Blog copy, five-word card teasers, images and related tour links. The first two articles are featured above the homepage footer.
+- `data/testimonials.json`: the homepage traveller review summaries.
+- `data/ui.json`: every interface label and fixed page text (navigation, homepage sections, buttons, forms, footer, page titles and meta descriptions).
+- `data/legal.json`: the Privacy Policy and Terms and Conditions.
 - `data/site.json`: brand name, production URL and contact configuration.
 - `scripts/build.py`: shared header, footer, cards, templates, metadata and HTML generation. Edit templates/data, then regenerate; edits made only to generated HTML will be overwritten.
+
+## Languages
+
+French is the main language and is published at the site root (`/`, `/tours/…`). English is published under `/en/` with the same page names (`/en/`, `/en/tours/…`). Every page has a FR / EN switcher in the header, `<html lang>`, a self-referencing canonical URL and `hreflang` links for `fr`, `en` and `x-default` (French); `sitemap.xml` lists both versions with the same alternates.
+
+Each translatable value is stored with both languages side by side:
+
+- In tours, destinations, articles and testimonials, shared fields (slug, days, images, links) stay at the top level and the text lives in a `fr` block and an `en` block with identical fields.
+- In `data/ui.json` and `data/legal.json`, every key holds `{"fr": "…", "en": "…"}`.
+
+`assets/site.js` reads `<html lang>` and uses its own small French/English dictionary for messages created in the browser (filter counts, trip brief, copy/download status). `scripts/check_site.py` verifies both languages, including `lang`, hreflang targets and five-word teasers in each language.
 - `assets/styles.css` and `assets/site.js`: shared responsive styling and progressive enhancements.
 - `images/`: all 23 original repository images, untouched.
 - `assets/images/`: smaller WebP derivatives of selected existing images. `data/images.json` records each source and its dimensions. Existing marks in the originals have not been removed.

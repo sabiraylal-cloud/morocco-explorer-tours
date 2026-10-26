@@ -26,8 +26,10 @@ Keep `main` protected in GitHub:
 
 ## Editing content
 
-- Blog articles: keep URL slugs unique and lowercase. Card teasers must contain exactly five words. A related tour slug must match an existing tour.
-- Tours: the number of itinerary days must equal the Days field. Each day contains two values in order: the day title and its description. Destination values must match destination slugs.
+The site is bilingual: French is the main site and English is published under `/en/`. Every article, tour and destination has a **Français** block (open by default) and an **English** block (collapsed) with the same fields. Update both blocks so the two versions stay in step; an empty English block produces empty English pages. Interface text, homepage copy and legal pages are not in the dashboard: edit `data/ui.json` and `data/legal.json` in a pull request, where each key holds the French and English text side by side.
+
+- Blog articles: keep URL slugs unique and lowercase. Card teasers must contain exactly five words, in each language. A related tour slug must match an existing tour.
+- Tours: the number of itinerary days, in each language, must equal the Days field. Each day contains two values in order: the day title and its description. Destination values must match destination slugs. Categories are fixed keys shown with their French and English labels.
 - Destinations: use a unique lowercase slug and add at least one experience.
 - Website settings: contact details and social links are stored in `data/site.json` and flow into generated pages.
 

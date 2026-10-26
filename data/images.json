@@ -48,5 +48,10 @@
     "source": "images/travel experience (104).jpeg",
     "width": 950,
     "height": 712
+  },
+  "hero-guests": {
+    "source": "images/hassan-ii-mosque-guests-casablanca.jpg",
+    "width": 950,
+    "height": 950
   }
 }

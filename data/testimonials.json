@@ -5,27 +5,48 @@
   "reviews": [
     {
       "name": "Lissa Gomez",
-      "country": "USA",
       "initials": "LG",
-      "title": "Marrakech to the Sahara",
-      "summary": "Lissa remembers a memorable, carefully organised journey from Marrakech into the Sahara, with Sabir providing excellent driving and guidance.",
-      "rating": 5
+      "rating": 5,
+      "fr": {
+        "country": "États-Unis",
+        "title": "De Marrakech au Sahara",
+        "summary": "Lissa garde le souvenir d’un voyage mémorable et soigneusement organisé de Marrakech jusqu’au Sahara, avec Sabir, excellent chauffeur et guide."
+      },
+      "en": {
+        "country": "USA",
+        "title": "Marrakech to the Sahara",
+        "summary": "Lissa remembers a memorable, carefully organised journey from Marrakech into the Sahara, with Sabir providing excellent driving and guidance."
+      }
     },
     {
       "name": "Ben Tanaka",
-      "country": "Japan",
       "initials": "BT",
-      "title": "A journey in good hands",
-      "summary": "Ben appreciated Sabir's kindness and professional approach, feeling safe and at ease throughout a thoughtfully planned trip across Morocco.",
-      "rating": 5
+      "rating": 5,
+      "fr": {
+        "country": "Japon",
+        "title": "Un voyage entre de bonnes mains",
+        "summary": "Ben a apprécié la gentillesse et le professionnalisme de Sabir, et s’est senti en sécurité et à l’aise tout au long d’un voyage bien pensé à travers le Maroc."
+      },
+      "en": {
+        "country": "Japan",
+        "title": "A journey in good hands",
+        "summary": "Ben appreciated Sabir's kindness and professional approach, feeling safe and at ease throughout a thoughtfully planned trip across Morocco."
+      }
     },
     {
       "name": "Martin Lovers",
-      "country": "UK",
       "initials": "ML",
-      "title": "Fes with a local guide",
-      "summary": "Martin enjoyed exploring Fes with Meryem, whose warm manner and knowledge of the city made the visit feel authentic and effortless.",
-      "rating": 5
+      "rating": 5,
+      "fr": {
+        "country": "Royaume-Uni",
+        "title": "Fès avec une guide locale",
+        "summary": "Martin a aimé découvrir Fès avec Meryem, dont la chaleur et la connaissance de la ville ont rendu la visite authentique et sans effort."
+      },
+      "en": {
+        "country": "UK",
+        "title": "Fes with a local guide",
+        "summary": "Martin enjoyed exploring Fes with Meryem, whose warm manner and knowledge of the city made the visit feel authentic and effortless."
+      }
     }
   ]
 }

@@ -8,6 +8,9 @@ on:
       - data/tours.json
       - data/destinations.json
       - data/site.json
+      - data/testimonials.json
+      - data/ui.json
+      - data/legal.json
       - images/uploads/**
 
 permissions:

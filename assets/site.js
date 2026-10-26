@@ -1,5 +1,37 @@
 'use strict';
 document.documentElement.classList.add('js');
+const LANG = document.documentElement.lang === 'en' ? 'en' : 'fr';
+const TEXT = {
+  fr: {
+    testimonial: 'Avis {i} sur {n} : {name}, {country}.',
+    journey: 'voyage à découvrir',
+    journeys: 'voyages à découvrir',
+    briefTitle: 'MOROCCO EXPLORER TOURS — MON PROJET DE VOYAGE',
+    name: 'Nom', month: 'Mois du voyage', arrival: 'Ville d’arrivée', travellers: 'Voyageurs', days: 'Jours au Maroc', comfort: 'Hébergement', interest: 'Circuit ou destination', ideas: 'Mes envies',
+    notProvided: 'Non renseigné', flexible: 'Flexible', openToIdeas: 'Ouvert à toutes les idées', helpMe: 'Aidez-moi à trouver un itinéraire adapté.',
+    notBooking: 'Ceci est une demande d’information, pas une réservation confirmée.',
+    whatsappDraft: 'Ouvrir le message WhatsApp ↗', emailDraft: 'Ouvrir l’e-mail ↗', emailSubject: 'Mon projet de voyage au Maroc',
+    copied: 'Copié. Vous pouvez coller votre projet dans un message. Il n’a pas encore été envoyé.',
+    copyUnavailable: 'La copie n’est pas disponible dans ce navigateur. Sélectionnez le texte pour le copier, ou utilisez Télécharger (.txt).',
+    downloadName: 'projet-voyage-maroc.txt', downloaded: 'Votre fichier est prêt. Ce projet n’a pas encore été envoyé.',
+    social: 'Nos réseaux sociaux officiels', contact: 'Contact', chat: 'Discuter avec Morocco Explorer Tours sur WhatsApp'
+  },
+  en: {
+    testimonial: 'Testimonial {i} of {n}: {name}, {country}.',
+    journey: 'journey to explore',
+    journeys: 'journeys to explore',
+    briefTitle: 'MOROCCO EXPLORER TOURS — MY TRIP BRIEF',
+    name: 'Name', month: 'Travel month', arrival: 'Arrival city', travellers: 'Travellers', days: 'Days in Morocco', comfort: 'Accommodation', interest: 'Tour or destination', ideas: 'My ideas',
+    notProvided: 'Not provided', flexible: 'Flexible', openToIdeas: 'Open to ideas', helpMe: 'Help me find a route that fits.',
+    notBooking: 'This is a planning enquiry, not a confirmed booking.',
+    whatsappDraft: 'Open WhatsApp draft ↗', emailDraft: 'Open email draft ↗', emailSubject: 'My Morocco trip enquiry',
+    copied: 'Copied. You can paste your brief into a message. It has not been sent.',
+    copyUnavailable: 'Copy is unavailable in this browser. Select the brief text to copy it, or use Download .txt.',
+    downloadName: 'morocco-trip-brief.txt', downloaded: 'Your download is ready. This brief has not been sent.',
+    social: 'Official social media channels', contact: 'Contact', chat: 'Chat with Morocco Explorer Tours on WhatsApp'
+  }
+}[LANG];
+const format = (text, values) => text.replace(/\{(\w+)\}/g, (match, key) => values[key] ?? match);
 const header = document.querySelector('.site-header');
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
@@ -109,7 +141,7 @@ document.querySelectorAll('.testimonials').forEach(carousel => {
     if (changed && announce) {
       const name = slides[active].querySelector('.testimonial-name').textContent;
       const country = slides[active].querySelector('.testimonial-country').textContent;
-      status.textContent = `Testimonial ${active + 1} of ${slides.length}: ${name}, ${country}.`;
+      status.textContent = format(TEXT.testimonial, { i: active + 1, n: slides.length, name, country });
     }
     ticking = false;
   }
@@ -155,7 +187,7 @@ if (filters) {
       card.hidden = !visible;
       if (visible) count++;
     }
-    document.querySelector('#result-count').textContent = `${count} ${count === 1 ? 'journey' : 'journeys'} to explore`;
+    document.querySelector('#result-count').textContent = `${count} ${count === 1 ? TEXT.journey : TEXT.journeys}`;
     document.querySelector('#empty-results').hidden = count > 0;
     if (updateURL) {
       const query = new URLSearchParams([...data].filter(([, value]) => value));
@@ -185,7 +217,9 @@ if (form) {
     if (!form.reportValidity()) return;
     const data = new FormData(form);
     const value = name => String(data.get(name) || '').trim();
-    brief = `MOROCCO EXPLORER TOURS — MY TRIP BRIEF\n\nName: ${value('name') || 'Not provided'}\nTravel month: ${value('month') || 'Flexible'}\nArrival city: ${value('arrival')}\nTravellers: ${value('travellers')}\nDays in Morocco: ${value('days')}\nAccommodation: ${value('comfort')}\nTour or destination: ${value('interest') || 'Open to ideas'}\n\nMy ideas:\n${value('notes') || 'Help me find a route that fits.'}\n\nThis is a planning enquiry, not a confirmed booking.`;
+    const sep = LANG === 'fr' ? ' : ' : ': ';
+    const line = (label, text) => `${label}${sep}${text}`;
+    brief = [TEXT.briefTitle, '', line(TEXT.name, value('name') || TEXT.notProvided), line(TEXT.month, value('month') || TEXT.flexible), line(TEXT.arrival, value('arrival')), line(TEXT.travellers, value('travellers')), line(TEXT.days, value('days')), line(TEXT.comfort, value('comfort')), line(TEXT.interest, value('interest') || TEXT.openToIdeas), '', `${TEXT.ideas}${sep.trimEnd()}`, value('notes') || TEXT.helpMe, '', TEXT.notBooking].join('\n');
     document.querySelector('#brief-text').textContent = brief;
     const share = document.querySelector('#share-brief');
     const phone = form.dataset.whatsapp.replace(/\D/g, '');
@@ -193,11 +227,11 @@ if (form) {
     share.hidden = true;
     if (/^\d{8,15}$/.test(phone)) {
       share.href = `https://wa.me/${phone}?text=${encodeURIComponent(brief)}`;
-      share.textContent = 'Open WhatsApp draft ↗';
+      share.textContent = TEXT.whatsappDraft;
       share.hidden = false;
     } else if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      share.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('My Morocco trip enquiry')}&body=${encodeURIComponent(brief)}`;
-      share.textContent = 'Open email draft ↗';
+      share.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(TEXT.emailSubject)}&body=${encodeURIComponent(brief)}`;
+      share.textContent = TEXT.emailDraft;
       share.hidden = false;
     }
     status.textContent = '';
@@ -213,21 +247,21 @@ if (form) {
   document.querySelector('#copy-brief').addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(brief);
-      status.textContent = 'Copied. You can paste your brief into a message. It has not been sent.';
+      status.textContent = TEXT.copied;
     } catch {
-      status.textContent = 'Copy is unavailable in this browser. Select the brief text to copy it, or use Download .txt.';
+      status.textContent = TEXT.copyUnavailable;
     }
   });
   document.querySelector('#download-brief').addEventListener('click', () => {
     const url = URL.createObjectURL(new Blob([brief], { type: 'text/plain;charset=utf-8' }));
     const anchor = document.createElement('a');
     anchor.href = url;
-    anchor.download = 'morocco-trip-brief.txt';
+    anchor.download = TEXT.downloadName;
     document.body.append(anchor);
     anchor.click();
     anchor.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-    status.textContent = 'Your download is ready. This brief has not been sent.';
+    status.textContent = TEXT.downloaded;
   });
 }
 
@@ -245,7 +279,7 @@ if (form) {
   };
 
   const socialIcons = `
-    <div class="site-footer__social" aria-label="Official social media channels">
+    <div class="site-footer__social" aria-label="${TEXT.social}">
       <a href="${official.facebook}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.5 22v-8h2.7l.4-3h-3.1V7.6c0-.9.3-1.5 1.7-1.5H16V3.1c-.3-.1-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.4V11H7v3h2.3v8h4.2Z"/></svg>
       </a>
@@ -266,7 +300,7 @@ if (form) {
         <a href="mailto:${official.email}">${official.email}</a>
         <a href="tel:${official.phoneTel}">${official.phoneDisplay}</a>
         <a href="${official.whatsapp}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        <a href="${location.pathname.includes('/tours/') || location.pathname.includes('/destinations/') || location.pathname.includes('/blog/') ? '../' : ''}contact.html">Contact</a>
+        <a href="${location.pathname.includes('/tours/') || location.pathname.includes('/destinations/') || location.pathname.includes('/blog/') ? '../' : ''}contact.html">${TEXT.contact}</a>
       </div>
       ${socialIcons}`;
     const bottom = footer.querySelector('.footer-bottom');
@@ -280,7 +314,7 @@ if (form) {
     button.href = official.whatsapp;
     button.target = '_blank';
     button.rel = 'noopener noreferrer';
-    button.setAttribute('aria-label', 'Chat with Morocco Explorer Tours on WhatsApp');
+    button.setAttribute('aria-label', TEXT.chat);
     button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a9.9 9.9 0 0 0-8.5 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8 8 0 1 1 12 20Zm4.5-6c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.6l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.1 0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.5 3.9 1.7.7 2.4.8 3.3.7 1-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.2-.3-.3-.7-.4Z"/></svg>';
     document.body.append(button);
   }

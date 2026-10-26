@@ -42,7 +42,8 @@ function htmlFiles(dir) {
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false, `Overflow: ${file} at ${width}`);
         assert.deepEqual(await page.evaluate(() => [...document.images].filter(image => !image.naturalWidth).map(image => image.src)), [], `Broken image: ${file}`);
         const contactLink = await page.locator('.site-footer__contacts a').filter({ hasText: /^Contact$/ }).getAttribute('href');
-        assert.equal(new URL(contactLink, page.url()).pathname, '/contact.html', `Footer contact link: ${file}`);
+        assert.equal(new URL(contactLink, page.url()).pathname, file.startsWith('en/') ? '/en/contact.html' : '/contact.html', `Footer contact link: ${file}`);
+        assert.equal(await page.locator('.lang-switch').isVisible(), true, `Language switcher hidden: ${file} at ${width}`);
       }
     }
     await page.setViewportSize({ width: 390, height: 844 });
@@ -50,7 +51,7 @@ function htmlFiles(dir) {
     assert.equal(await page.locator('.blog-preview .blog-card').count(), 2);
     assert.equal(await page.evaluate(() => document.querySelector('main').lastElementChild.classList.contains('blog-preview')), true);
     const previewLinks = await page.locator('.blog-preview .card-bottom a').evaluateAll(links => links.map(link => link.href));
-    await page.locator('.blog-preview').getByRole('link', { name: 'All blog articles' }).click();
+    await page.locator('.blog-preview').getByRole('link', { name: 'Tous les articles' }).click();
     assert.equal(new URL(page.url()).pathname, '/blog/index.html');
     assert.equal(await page.locator('.blog-card').count(), articles.length);
     const articleLinks = await page.locator('.blog-card .card-bottom a').evaluateAll(links => links.map(link => link.href));
@@ -65,7 +66,7 @@ function htmlFiles(dir) {
       await page.locator('.blog-card .card-bottom a').nth(index).click();
       assert.equal(page.url(), articleLinks[index]);
       assert.equal(await page.locator('h1').textContent(), title);
-      assert.equal(await page.locator('.article-copy > section').count(), articles[index].sections.length + 1);
+      assert.equal(await page.locator('.article-copy > section').count(), articles[index].fr.sections.length + 1);
       await page.locator('.article-next a[href="../contact.html"]').click();
       assert.equal(new URL(page.url()).pathname, '/contact.html');
     }
@@ -73,7 +74,7 @@ function htmlFiles(dir) {
     const menu = page.getByRole('button', { name: 'Menu' });
     await menu.click();
     assert.equal(await menu.getAttribute('aria-expanded'), 'true');
-    await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Our tours' }).waitFor({ state: 'visible' });
+    await page.getByRole('navigation', { name: 'Navigation principale' }).getByRole('link', { name: 'Nos circuits' }).waitFor({ state: 'visible' });
     await page.keyboard.press('Escape');
     assert.equal(await menu.getAttribute('aria-expanded'), 'false');
     assert.equal(await menu.evaluate(element => element === document.activeElement), true);
@@ -82,37 +83,43 @@ function htmlFiles(dir) {
     await page.locator('[name="days"]').selectOption('16');
     assert.equal(await page.locator('.tour-card:visible').count(), 0);
     assert.equal(await page.locator('#empty-results').isVisible(), true);
-    await page.getByRole('button', { name: 'Reset filters' }).click();
+    await page.getByRole('button', { name: 'Réinitialiser les filtres' }).click();
     await page.waitForFunction(expected => document.querySelectorAll('.tour-card:not([hidden])').length === expected, tours.length);
-    await page.locator('[name="category"]').selectOption('Cities & desert');
-    assert.equal(await page.locator('.tour-card:visible').filter({ hasText: 'Food, craft & imperial cities' }).count(), 0);
-    await page.locator('[name="category"]').selectOption('Grand journeys');
-    assert.equal(await page.locator('.tour-card:visible').filter({ hasText: 'Food, craft & imperial cities' }).count(), 1);
+    await page.locator('[name="category"]').selectOption('cities-desert');
+    assert.equal(await page.locator('.tour-card:visible').filter({ hasText: 'Saveurs, artisanat & villes impériales' }).count(), 0);
+    await page.locator('[name="category"]').selectOption('grand-journeys');
+    assert.equal(await page.locator('.tour-card:visible').filter({ hasText: 'Saveurs, artisanat & villes impériales' }).count(), 1);
     await page.goto(`${base}/destinations/mhamid.html`);
-    assert.equal(await page.locator('.tour-card').filter({ hasText: 'The complete Morocco explorer circuit' }).count(), 0);
-    assert.equal(await page.locator('.tour-card').filter({ hasText: 'Erg Chigaga deep desert' }).count(), 1);
-    await page.goto(`${base}/plan-your-trip.html?tour=Test+route&arrival=Fes`);
-    assert.equal(await page.locator('[name="arrival"]').inputValue(), 'Fes');
+    assert.equal(await page.locator('.tour-card').filter({ hasText: 'Le grand tour complet du Maroc' }).count(), 0);
+    assert.equal(await page.locator('.tour-card').filter({ hasText: 'Au cœur du désert : l’Erg Chigaga' }).count(), 1);
+    await page.goto(`${base}/plan-your-trip.html?tour=Test+route&arrival=F%C3%A8s`);
+    assert.equal(await page.locator('[name="arrival"]').inputValue(), 'Fès');
     assert.equal(await page.locator('[name="interest"]').inputValue(), 'Test route');
     await page.locator('[name="travellers"]').fill('0');
-    await page.getByRole('button', { name: 'Create my trip brief' }).click();
+    await page.getByRole('button', { name: 'Créer mon projet de voyage' }).click();
     assert.equal(await page.locator('#trip-result').isVisible(), false);
     await page.locator('[name="travellers"]').fill('4');
     await page.locator('[name="notes"]').fill('<script>alert("test")</script>');
-    await page.getByRole('button', { name: 'Create my trip brief' }).click();
-    assert.match(await page.locator('#brief-text').textContent(), /Travellers: 4/);
+    await page.getByRole('button', { name: 'Créer mon projet de voyage' }).click();
+    assert.match(await page.locator('#brief-text').textContent(), /Voyageurs : 4/);
     assert.match(await page.locator('#brief-text').textContent(), /<script>/);
     assert.equal(await page.locator('#share-brief').isVisible(), true);
     assert.match(await page.locator('#share-brief').getAttribute('href'), /^https:\/\/wa\.me\/212704321335\?text=/);
     const downloadPromise = page.waitForEvent('download');
-    await page.getByRole('button', { name: 'Download .txt' }).click();
+    await page.getByRole('button', { name: 'Télécharger (.txt)' }).click();
     const download = await downloadPromise;
-    assert.equal(download.suggestedFilename(), 'morocco-trip-brief.txt');
-    await page.getByRole('button', { name: 'Edit my details' }).click();
+    assert.equal(download.suggestedFilename(), 'projet-voyage-maroc.txt');
+    await page.getByRole('button', { name: 'Modifier mes informations' }).click();
     assert.equal(await page.locator('[name="travellers"]').inputValue(), '4');
     await page.goto(base);
     await page.locator('summary').first().click();
     assert.equal(await page.locator('details').first().getAttribute('open'), '');
+    await page.goto(`${base}/en/index.html`);
+    assert.equal(await page.locator('html').getAttribute('lang'), 'en');
+    assert.equal(await page.locator('.lang-switch a[aria-current]').textContent(), 'EN');
+    await page.locator('.lang-switch a[hreflang="fr"]').click();
+    assert.equal(new URL(page.url()).pathname, '/index.html');
+    assert.equal(await page.locator('html').getAttribute('lang'), 'fr');
     fs.mkdirSync(path.join(root, 'artifacts'), { recursive: true });
     await page.goto(base);
     for (const image of await page.locator('img').all()) { await image.scrollIntoViewIfNeeded(); await image.evaluate(element => element.decode()); }
@@ -135,12 +142,12 @@ function htmlFiles(dir) {
     }
     const noJS = await browser.newPage({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
     await noJS.goto(base);
-    assert.equal(await noJS.getByRole('navigation', { name: 'Main navigation' }).isVisible(), true);
+    assert.equal(await noJS.getByRole('navigation', { name: 'Navigation principale' }).isVisible(), true);
     await noJS.goto(`${base}/tours/`);
     assert.equal(await noJS.locator('.tour-card').count(), tours.length);
     await noJS.goto(`${base}/blog/index.html`);
     assert.equal(await noJS.locator('.blog-card').count(), articles.length);
     assert.deepEqual(failures, []);
-    console.log(`PASS: ${pages.length} pages × 5 widths, images, footer links, blog cards/navigation/teasers, mobile menu, filters, planner validation, safe text, download, FAQ, no-JS navigation; no browser errors.`);
+    console.log(`PASS: ${pages.length} pages × 5 widths, images, footer links, blog cards/navigation/teasers, mobile menu, language switcher, filters, planner validation, safe text, download, FAQ, no-JS navigation; no browser errors.`);
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exit(1); });

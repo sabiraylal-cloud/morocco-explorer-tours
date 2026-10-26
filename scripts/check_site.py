@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 errors=[]
 class Page(HTMLParser):
  def __init__(self,path):
-  super().__init__(convert_charrefs=True); self.path=path;self.ids=set();self.refs=[];self.h1=0;self.title='';self.in_title=False;self.meta={};self.canonical=None;self.json=False;self.json_text='';self.feed(path.read_text(encoding='utf-8'))
+  super().__init__(convert_charrefs=True); self.path=path;self.ids=set();self.refs=[];self.h1=0;self.title='';self.in_title=False;self.meta={};self.canonical=None;self.alternates={};self.lang=None;self.json=False;self.json_text='';self.feed(path.read_text(encoding='utf-8'))
  def handle_starttag(self,tag,attrs):
   a=dict(attrs)
   if 'id' in a:
@@ -17,10 +17,13 @@ class Page(HTMLParser):
   if tag=='title':self.in_title=True
   if tag=='meta':self.meta[a.get('name',a.get('property'))]=a.get('content','')
   if tag=='link' and a.get('rel')=='canonical':self.canonical=a.get('href')
+  if tag=='link' and a.get('rel')=='alternate' and a.get('hreflang'):self.alternates[a['hreflang']]=a.get('href')
+  if tag=='html':self.lang=a.get('lang')
   if tag=='script' and a.get('type')=='application/ld+json':self.json=True;self.json_text=''
   if tag=='img':
    for key in ['alt','width','height']:
-    if not a.get(key):errors.append(f'{self.path}: image missing {key}')
+    decorative=key=='alt' and a.get('alt')=='' and a.get('aria-hidden')=='true'
+    if not a.get(key) and not decorative:errors.append(f'{self.path}: image missing {key}')
   for key in ['href','src']:
    if key in a:self.refs.append(a[key])
   if 'srcset' in a:self.refs.extend(p.strip().split()[0] for p in a['srcset'].split(','))
@@ -50,21 +53,33 @@ for key in ['title','canonical']:
  values=[getattr(p,key) for p in pages.values()]
  if len(values)!=len(set(values)):errors.append(f'Duplicate {key}')
 ET.parse(ROOT/'sitemap.xml')
+LANGS={'fr':'','en':'en/'}
+canonical_pages={p.canonical:path for path,p in pages.items()}
+for path,p in pages.items():
+ relative=path.relative_to(ROOT).as_posix()
+ expected='en' if relative.startswith('en/') else 'fr'
+ if p.lang!=expected:errors.append(f'{relative}: html lang should be {expected}, got {p.lang}')
+ for code in [*LANGS,'x-default']:
+  target=p.alternates.get(code)
+  if not target:errors.append(f'{relative}: missing hreflang {code}');continue
+  if target not in canonical_pages:errors.append(f'{relative}: hreflang {code} points to unknown page {target}')
+ if p.alternates.get(expected)!=p.canonical:errors.append(f'{relative}: hreflang {expected} must match canonical')
 
 articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))['articles']
 if not articles or len({article['slug'] for article in articles})!=len(articles):errors.append('Blog articles need unique slugs')
-blog=pages.get((ROOT/'blog/index.html').resolve())
-home=pages[(ROOT/'index.html').resolve()]
 sitemap_urls={element.text for element in ET.parse(ROOT/'sitemap.xml').findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
-for i,article in enumerate(articles):
- path=(ROOT/'blog'/f'{article["slug"]}.html').resolve()
- if len(article['teaser'].split())!=5:errors.append(f'{article["slug"]}: teaser must contain exactly five words')
- if not blog or f'{article["slug"]}.html' not in blog.refs:errors.append(f'{article["slug"]}: unreachable from blog')
- if i<2 and f'blog/{article["slug"]}.html' not in home.refs:errors.append(f'{article["slug"]}: missing homepage preview')
- if path not in pages:errors.append(f'{article["slug"]}: missing article page');continue
- page=pages[path]
- if page.canonical not in sitemap_urls:errors.append(f'{article["slug"]}: missing from sitemap')
- if f'../tours/{article["tour"]}.html' not in page.refs or '../contact.html' not in page.refs:errors.append(f'{article["slug"]}: missing relevant call to action')
+for code,prefix in LANGS.items():
+ blog=pages.get((ROOT/prefix/'blog/index.html').resolve())
+ home=pages[(ROOT/prefix/'index.html').resolve()]
+ for i,article in enumerate(articles):
+  path=(ROOT/prefix/'blog'/f'{article["slug"]}.html').resolve()
+  if len(article[code]['teaser'].split())!=5:errors.append(f'{article["slug"]} ({code}): teaser must contain exactly five words')
+  if not blog or f'{article["slug"]}.html' not in blog.refs:errors.append(f'{article["slug"]} ({code}): unreachable from blog')
+  if i<2 and f'blog/{article["slug"]}.html' not in home.refs:errors.append(f'{article["slug"]} ({code}): missing homepage preview')
+  if path not in pages:errors.append(f'{article["slug"]} ({code}): missing article page');continue
+  page=pages[path]
+  if page.canonical not in sitemap_urls:errors.append(f'{article["slug"]} ({code}): missing from sitemap')
+  if f'../tours/{article["tour"]}.html' not in page.refs or '../contact.html' not in page.refs:errors.append(f'{article["slug"]} ({code}): missing relevant call to action')
 tours=json.loads((ROOT/'data/tours.json').read_text(encoding='utf-8'))['tours'];dests=json.loads((ROOT/'data/destinations.json').read_text(encoding='utf-8'))['destinations']
 images=json.loads((ROOT/'data/images.json').read_text(encoding='utf-8'))
 site=json.loads((ROOT/'data/site.json').read_text(encoding='utf-8'))
@@ -97,7 +112,8 @@ for item in articles+tours+dests:
   elif not candidate.is_file():errors.append(f'{item["slug"]}: missing uploaded image {relative}')
  elif image not in images:errors.append(f'{item["slug"]}: unknown image key {image}')
 for t in tours:
- if len(t['itinerary'])!=t['days']:errors.append(f'{t["slug"]}: itinerary length')
+ for code in LANGS:
+  if len(t[code]['itinerary'])!=t['days']:errors.append(f'{t["slug"]} ({code}): itinerary length')
  if not set(t['destinations'])<={d['slug'] for d in dests}:errors.append('Unknown destination')
 for article in articles:
  if article['tour'] not in {tour['slug'] for tour in tours}:errors.append(f'{article["slug"]}: unknown related tour')

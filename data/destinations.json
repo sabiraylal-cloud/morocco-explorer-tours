@@ -1,12 +1,228 @@
 {
   "destinations": [
- {"slug":"sahara","name":"Merzouga & the Sahara","category":"Desert","image":"sahara","description":"Open horizons, changing dune colours and a different rhythm after sunset.","body":"Merzouga sits beside the Erg Chebbi dunes in eastern Morocco. Build your visit around time outdoors and a desert overnight, with enough travel days to enjoy the route there.","experiences":["Walk beside the dunes in the softer morning light","Discuss a camel ride or a vehicle transfer to camp","Leave an evening free for the desert sky"],"planning":"Confirm the camp location, bathroom arrangements, transfers and activities in your quote. Marrakech and Fes are both a substantial drive away."},
- {"slug":"chefchaouen","name":"Chefchaouen","category":"Northern Morocco","image":"chefchaouen","description":"Blue-washed lanes and mountain views, with room to simply wander.","body":"Set in the Rif Mountains, Chefchaouen adds a quieter stop to a northern route. Stay overnight to see the lanes at different times of day instead of treating the town as a quick photo stop.","experiences":["Explore the medina's blue lanes on foot","Pause at a square for tea and people-watching","Look for views across the rooftops"],"planning":"Pair Chefchaouen with Fes or an arrival in Tangier. Tell us about mobility needs: the medina has steps and sloping lanes."},
- {"slug":"fes","name":"Fes","category":"Imperial cities","image":"fes","description":"Craft workshops, tiled gateways and the everyday life of a historic medina.","body":"Fes rewards a full day of exploration. Its lanes connect working neighbourhoods, markets and architecture, so a visit is richer when there is time to stop and listen.","experiences":["Begin your medina walk at Bab Bou Jeloud","Discover local craft traditions with a city guide","Take time for a lunch break between visits"],"planning":"Ask for a guided walking day rather than squeezing the city into a transfer afternoon. Comfortable shoes make the uneven streets easier."},
- {"slug":"ait-ben-haddou","name":"Ait Ben Haddou","category":"Southern Morocco","image":"kasbah","description":"Earthen architecture, winding paths and a remarkable view over the valley.","body":"Ait Ben Haddou is a natural stop between Marrakech and southern Morocco. The earthen village is best explored on foot, allowing time for the climb and the changing views.","experiences":["Follow the paths through the earthen village","Look out over the valley from higher ground","Pair the visit with an overnight near Ouarzazate"],"planning":"The paths can be steep and exposed to the sun. Plan water, suitable shoes and a visit that fits your walking comfort."},
- {"slug":"atlas-mountains","name":"The Atlas Mountains","category":"Mountains","image":"atlas","description":"Mountain roads, terraced valleys and a welcome change of pace.","body":"The Atlas is more than a route to the desert. Add time for a valley stay, village walk or dedicated hiking day, choosing the activity around your interests and ability.","experiences":["Stop for wide views along your mountain route","Make time for a guided valley walk","Extend your stay to explore beyond the road"],"planning":"Mountain weather can affect access and timings. A road crossing is not a trekking itinerary; ask us to plan a separate walking experience if that is your priority."},
- {"slug":"marrakech","name":"Marrakech","category":"Imperial cities","image":"marrakech","description":"Warm-toned streets, lively souks and a gateway to the High Atlas.","body":"Give Marrakech time at the beginning or end of your journey. Balance the busy medina with a courtyard break and make space for the city's food, craft and architecture.","experiences":["Explore the medina with a local guide","Leave time to browse craft stalls","Build a city day around your arrival or departure"],"planning":"A central riad can be reached on foot from a vehicle drop-off point. Share your accommodation before pickup so the meeting point is clear."},
- {"slug":"casablanca","name":"Casablanca","category":"Atlantic gateway","image":"casablanca","description":"An oceanfront introduction to Morocco and a practical starting point for a wider journey.","body":"Casablanca combines an Atlantic setting with the energy of a large working city. It can be a first stop before heading north to Chefchaouen or inland toward Fes.","experiences":["See the oceanfront around the Hassan II Mosque","Enjoy a relaxed arrival night before a long drive","Connect a northern route with an airport transfer"],"planning":"Interior mosque visits depend on opening arrangements and tickets. Share your arrival time before planning sightseeing or a long onward drive."},
- {"slug":"mhamid","name":"Mhamid & the Draa Valley","category":"Desert","image":"hospitality","description":"Palm-lined valleys and desert hospitality at the end of the southern road.","body":"The journey to Mhamid follows the Draa Valley into southern desert country. A stay near Mhamid and an expedition to Erg Chegaga are different experiences, requiring different amounts of time.","experiences":["Break the journey with stops in the Draa Valley","Share tea and settle into a desert overnight","Add days for a separately arranged Erg Chegaga excursion"],"planning":"Marrakech to Mhamid is a long journey. Two days means substantial driving; additional nights allow more stops and time in the desert."}
+    {
+      "slug": "sahara",
+      "image": "sahara",
+      "fr": {
+        "name": "Merzouga & le Sahara",
+        "category": "Désert",
+        "description": "Des horizons immenses, des dunes qui changent de couleur et un autre rythme une fois le soleil couché.",
+        "body": "Merzouga se trouve au pied des dunes de l’Erg Chebbi, dans l’est du Maroc. Construisez votre séjour autour du plein air et d’une nuit dans le désert, avec assez de jours de route pour profiter du trajet.",
+        "experiences": [
+          "Marcher au pied des dunes dans la lumière douce du matin",
+          "Choisir entre une balade à dos de dromadaire ou un transfert en véhicule jusqu’au bivouac",
+          "Garder une soirée libre pour le ciel du désert"
+        ],
+        "planning": "Faites préciser dans votre devis l’emplacement du bivouac, les sanitaires, les transferts et les activités. Marrakech et Fès sont toutes deux à une longue route de là."
+      },
+      "en": {
+        "name": "Merzouga & the Sahara",
+        "category": "Desert",
+        "description": "Open horizons, changing dune colours and a different rhythm after sunset.",
+        "body": "Merzouga sits beside the Erg Chebbi dunes in eastern Morocco. Build your visit around time outdoors and a desert overnight, with enough travel days to enjoy the route there.",
+        "experiences": [
+          "Walk beside the dunes in the softer morning light",
+          "Discuss a camel ride or a vehicle transfer to camp",
+          "Leave an evening free for the desert sky"
+        ],
+        "planning": "Confirm the camp location, bathroom arrangements, transfers and activities in your quote. Marrakech and Fes are both a substantial drive away."
+      }
+    },
+    {
+      "slug": "chefchaouen",
+      "image": "chefchaouen",
+      "fr": {
+        "name": "Chefchaouen",
+        "category": "Nord du Maroc",
+        "description": "Des ruelles peintes en bleu et des vues sur la montagne, pour le simple plaisir de flâner.",
+        "body": "Nichée dans les montagnes du Rif, Chefchaouen apporte une étape plus paisible à un itinéraire dans le Nord. Restez-y une nuit pour voir les ruelles à différents moments de la journée, au lieu d’en faire un simple arrêt photo.",
+        "experiences": [
+          "Parcourir à pied les ruelles bleues de la médina",
+          "Faire une pause thé sur une place en regardant la vie passer",
+          "Chercher les vues sur les toits de la ville"
+        ],
+        "planning": "Associez Chefchaouen à Fès ou à une arrivée à Tanger. Signalez-nous vos besoins de mobilité : la médina compte des escaliers et des ruelles en pente."
+      },
+      "en": {
+        "name": "Chefchaouen",
+        "category": "Northern Morocco",
+        "description": "Blue-washed lanes and mountain views, with room to simply wander.",
+        "body": "Set in the Rif Mountains, Chefchaouen adds a quieter stop to a northern route. Stay overnight to see the lanes at different times of day instead of treating the town as a quick photo stop.",
+        "experiences": [
+          "Explore the medina's blue lanes on foot",
+          "Pause at a square for tea and people-watching",
+          "Look for views across the rooftops"
+        ],
+        "planning": "Pair Chefchaouen with Fes or an arrival in Tangier. Tell us about mobility needs: the medina has steps and sloping lanes."
+      }
+    },
+    {
+      "slug": "fes",
+      "image": "fes",
+      "fr": {
+        "name": "Fès",
+        "category": "Villes impériales",
+        "description": "Des ateliers d’artisans, des portes couvertes de zelliges et la vie quotidienne d’une médina historique.",
+        "body": "Fès mérite une journée entière. Ses ruelles relient quartiers d’artisans, marchés et monuments : la visite est bien plus riche quand on prend le temps de s’arrêter et d’écouter.",
+        "experiences": [
+          "Commencer la balade dans la médina à Bab Boujloud",
+          "Découvrir l’artisanat local avec un guide de la ville",
+          "Prendre le temps d’une pause déjeuner entre deux visites"
+        ],
+        "planning": "Prévoyez une journée de visite guidée à pied plutôt que de caser la ville dans un après-midi de transfert. De bonnes chaussures rendent les rues inégales bien plus agréables."
+      },
+      "en": {
+        "name": "Fes",
+        "category": "Imperial cities",
+        "description": "Craft workshops, tiled gateways and the everyday life of a historic medina.",
+        "body": "Fes rewards a full day of exploration. Its lanes connect working neighbourhoods, markets and architecture, so a visit is richer when there is time to stop and listen.",
+        "experiences": [
+          "Begin your medina walk at Bab Bou Jeloud",
+          "Discover local craft traditions with a city guide",
+          "Take time for a lunch break between visits"
+        ],
+        "planning": "Ask for a guided walking day rather than squeezing the city into a transfer afternoon. Comfortable shoes make the uneven streets easier."
+      }
+    },
+    {
+      "slug": "ait-ben-haddou",
+      "image": "kasbah",
+      "fr": {
+        "name": "Aït Ben Haddou",
+        "category": "Sud du Maroc",
+        "description": "Une architecture de terre, des sentiers sinueux et une vue remarquable sur la vallée.",
+        "body": "Aït Ben Haddou est une étape naturelle entre Marrakech et le Sud marocain. Le village de terre se découvre à pied, en prenant le temps de la montée et des points de vue qui changent.",
+        "experiences": [
+          "Suivre les sentiers à travers le village de terre",
+          "Admirer la vallée depuis les hauteurs",
+          "Associer la visite à une nuit près de Ouarzazate"
+        ],
+        "planning": "Les sentiers peuvent être raides et exposés au soleil. Prévoyez de l’eau, de bonnes chaussures et une visite adaptée à votre aisance à la marche."
+      },
+      "en": {
+        "name": "Ait Ben Haddou",
+        "category": "Southern Morocco",
+        "description": "Earthen architecture, winding paths and a remarkable view over the valley.",
+        "body": "Ait Ben Haddou is a natural stop between Marrakech and southern Morocco. The earthen village is best explored on foot, allowing time for the climb and the changing views.",
+        "experiences": [
+          "Follow the paths through the earthen village",
+          "Look out over the valley from higher ground",
+          "Pair the visit with an overnight near Ouarzazate"
+        ],
+        "planning": "The paths can be steep and exposed to the sun. Plan water, suitable shoes and a visit that fits your walking comfort."
+      }
+    },
+    {
+      "slug": "atlas-mountains",
+      "image": "atlas",
+      "fr": {
+        "name": "Les montagnes de l’Atlas",
+        "category": "Montagnes",
+        "description": "Des routes de montagne, des vallées en terrasses et un changement de rythme bienvenu.",
+        "body": "L’Atlas, c’est bien plus qu’une route vers le désert. Prévoyez une nuit dans une vallée, une balade dans un village ou une vraie journée de randonnée, selon vos envies et votre niveau.",
+        "experiences": [
+          "S’arrêter pour les grands panoramas le long de la route",
+          "Prendre le temps d’une balade guidée dans une vallée",
+          "Prolonger le séjour pour explorer au-delà de la route"
+        ],
+        "planning": "La météo en montagne peut influer sur l’accès et les horaires. Traverser l’Atlas en voiture n’est pas un trek : demandez-nous une expérience de marche dédiée si c’est votre priorité."
+      },
+      "en": {
+        "name": "The Atlas Mountains",
+        "category": "Mountains",
+        "description": "Mountain roads, terraced valleys and a welcome change of pace.",
+        "body": "The Atlas is more than a route to the desert. Add time for a valley stay, village walk or dedicated hiking day, choosing the activity around your interests and ability.",
+        "experiences": [
+          "Stop for wide views along your mountain route",
+          "Make time for a guided valley walk",
+          "Extend your stay to explore beyond the road"
+        ],
+        "planning": "Mountain weather can affect access and timings. A road crossing is not a trekking itinerary; ask us to plan a separate walking experience if that is your priority."
+      }
+    },
+    {
+      "slug": "marrakech",
+      "image": "marrakech",
+      "fr": {
+        "name": "Marrakech",
+        "category": "Villes impériales",
+        "description": "Des rues aux tons chauds, des souks animés et une porte d’entrée vers le Haut Atlas.",
+        "body": "Accordez du temps à Marrakech au début ou à la fin de votre voyage. Alternez la médina animée avec une pause dans un patio, et faites une place à la cuisine, à l’artisanat et à l’architecture de la ville.",
+        "experiences": [
+          "Découvrir la médina avec un guide local",
+          "Prendre le temps de flâner entre les échoppes d’artisans",
+          "Organiser une journée en ville autour de votre arrivée ou de votre départ"
+        ],
+        "planning": "Un riad central se rejoint souvent à pied depuis le point de dépose du véhicule. Indiquez-nous votre hébergement avant la prise en charge pour que le point de rendez-vous soit clair."
+      },
+      "en": {
+        "name": "Marrakech",
+        "category": "Imperial cities",
+        "description": "Warm-toned streets, lively souks and a gateway to the High Atlas.",
+        "body": "Give Marrakech time at the beginning or end of your journey. Balance the busy medina with a courtyard break and make space for the city's food, craft and architecture.",
+        "experiences": [
+          "Explore the medina with a local guide",
+          "Leave time to browse craft stalls",
+          "Build a city day around your arrival or departure"
+        ],
+        "planning": "A central riad can be reached on foot from a vehicle drop-off point. Share your accommodation before pickup so the meeting point is clear."
+      }
+    },
+    {
+      "slug": "casablanca",
+      "image": "casablanca",
+      "fr": {
+        "name": "Casablanca",
+        "category": "Porte de l’Atlantique",
+        "description": "Une entrée en matière face à l’océan et un point de départ pratique pour un plus grand voyage.",
+        "body": "Casablanca allie un cadre atlantique à l’énergie d’une grande ville active. C’est une bonne première étape avant de partir vers Chefchaouen au nord ou vers Fès à l’intérieur des terres.",
+        "experiences": [
+          "Découvrir le front de mer autour de la mosquée Hassan II",
+          "Profiter d’une première nuit tranquille avant une longue route",
+          "Relier un itinéraire vers le Nord à un transfert depuis l’aéroport"
+        ],
+        "planning": "La visite intérieure de la mosquée dépend des horaires d’ouverture et de la billetterie. Indiquez l’heure de votre arrivée avant de prévoir des visites ou une longue route."
+      },
+      "en": {
+        "name": "Casablanca",
+        "category": "Atlantic gateway",
+        "description": "An oceanfront introduction to Morocco and a practical starting point for a wider journey.",
+        "body": "Casablanca combines an Atlantic setting with the energy of a large working city. It can be a first stop before heading north to Chefchaouen or inland toward Fes.",
+        "experiences": [
+          "See the oceanfront around the Hassan II Mosque",
+          "Enjoy a relaxed arrival night before a long drive",
+          "Connect a northern route with an airport transfer"
+        ],
+        "planning": "Interior mosque visits depend on opening arrangements and tickets. Share your arrival time before planning sightseeing or a long onward drive."
+      }
+    },
+    {
+      "slug": "mhamid",
+      "image": "hospitality",
+      "fr": {
+        "name": "M’Hamid & la vallée du Drâa",
+        "category": "Désert",
+        "description": "Des vallées bordées de palmiers et l’hospitalité du désert, au bout de la route du Sud.",
+        "body": "La route de M’Hamid suit la vallée du Drâa jusqu’aux terres désertiques du Sud. Un séjour près de M’Hamid et une expédition vers l’Erg Chegaga sont deux expériences différentes, qui ne demandent pas le même temps.",
+        "experiences": [
+          "Couper la route par des arrêts dans la vallée du Drâa",
+          "Partager un thé et s’installer pour une nuit dans le désert",
+          "Ajouter des jours pour une excursion vers l’Erg Chegaga"
+        ],
+        "planning": "De Marrakech à M’Hamid, la route est longue. En deux jours, vous passerez beaucoup de temps en voiture ; des nuits supplémentaires permettent plus d’arrêts et plus de temps dans le désert."
+      },
+      "en": {
+        "name": "Mhamid & the Draa Valley",
+        "category": "Desert",
+        "description": "Palm-lined valleys and desert hospitality at the end of the southern road.",
+        "body": "The journey to Mhamid follows the Draa Valley into southern desert country. A stay near Mhamid and an expedition to Erg Chegaga are different experiences, requiring different amounts of time.",
+        "experiences": [
+          "Break the journey with stops in the Draa Valley",
+          "Share tea and settle into a desert overnight",
+          "Add days for a separately arranged Erg Chegaga excursion"
+        ],
+        "planning": "Marrakech to Mhamid is a long journey. Two days means substantial driving; additional nights allow more stops and time in the desert."
+      }
+    }
   ]
 }
