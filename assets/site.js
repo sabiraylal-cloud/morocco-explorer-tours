@@ -59,7 +59,7 @@ navigation.addEventListener('click', event => {
 });
 const mobileQuery = matchMedia('(max-width: 800px)');
 function updateMenu() {
-  menuButton.hidden = !mobileQuery.matches;
+  menuButton.hidden = !mobileQuery.matches && !header.classList.contains('site-header--home');
   closeMenu();
 }
 mobileQuery.addEventListener('change', updateMenu);
@@ -327,3 +327,17 @@ if (form) {
     document.body.append(button);
   }
 })();
+
+// Homepage language menu (<details>): close it on outside click or Escape.
+const langMenu = document.querySelector('.lang-menu');
+if (langMenu) {
+  document.addEventListener('click', event => {
+    if (langMenu.open && !event.target.closest('.lang-menu')) langMenu.open = false;
+  });
+  langMenu.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && langMenu.open) {
+      langMenu.open = false;
+      langMenu.querySelector('summary').focus();
+    }
+  });
+}

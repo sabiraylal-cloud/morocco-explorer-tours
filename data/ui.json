@@ -265,21 +265,51 @@
     "fr": "Voyageurs souriants avec leur guide Morocco Explorer Tours devant la mosquée Hassan II à Casablanca",
     "en": "Smiling travellers with their Morocco Explorer Tours guide at the Hassan II Mosque in Casablanca"
   },
+  "home_nav_tours": {
+    "fr": "Nos circuits",
+    "en": "Our tours"
+  },
+  "home_nav_about": {
+    "fr": "À propos",
+    "en": "About"
+  },
+  "home_hero_title": {
+    "fr": "Le Haut Atlas,<br> à deux pas de <span class=\"home-script\">Marrakech.</span>",
+    "en": "The High Atlas,<br> just beyond <span class=\"home-script\">Marrakech.</span>"
+  },
+  "home_hero_text": {
+    "fr": "Des treks inoubliables, des rencontres authentiques et des paysages à couper le souffle, au cœur des montagnes berbères.",
+    "en": "Unforgettable treks, genuine encounters and breathtaking landscapes, in the heart of the Berber mountains."
+  },
+  "home_hero_treks": {
+    "fr": "Voir nos treks",
+    "en": "See our treks"
+  },
+  "home_features": {
+    "fr": [
+      "Guides de la montagne",
+      "Sorties privées",
+      "Nature & authenticité",
+      "Rencontres chez l’habitant"
+    ],
+    "en": [
+      "Mountain guides",
+      "Private trips",
+      "Nature & authenticity",
+      "Time with local families"
+    ]
+  },
+  "home_intro_title": {
+    "fr": "Vivez l’aventure autrement",
+    "en": "Experience adventure differently"
+  },
+  "home_intro_text": {
+    "fr": "Treks, excursions et expériences uniques dans les vallées berbères, avec nos guides de la montagne, au départ de Marrakech.",
+    "en": "Treks, day trips and unique experiences in the Berber valleys, with our mountain guides, from Marrakech."
+  },
   "hero_kicker": {
     "fr": "TREKS & EXCURSIONS · HAUT ATLAS",
     "en": "TREKS & DAY TRIPS · HIGH ATLAS"
-  },
-  "hero_title": {
-    "fr": "Le Haut Atlas,<br>à deux pas<br>de <em>Marrakech.</em>",
-    "en": "The High Atlas,<br>just beyond<br><em>Marrakech.</em>"
-  },
-  "hero_text": {
-    "fr": "Treks jusqu’au sommet du Toubkal, nuits chez l’habitant et excursions dans les vallées berbères.<br> Avec des guides de la montagne, au départ de Marrakech.",
-    "en": "Treks to the summit of Toubkal, homestays and day trips into the Berber valleys.<br> With mountain guides, from Marrakech."
-  },
-  "hero_find": {
-    "fr": "Voir nos treks ↗",
-    "en": "See our treks ↗"
   },
   "hero_create": {
     "fr": "Excursions à la journée",

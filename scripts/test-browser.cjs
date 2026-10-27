@@ -32,10 +32,16 @@ function htmlFiles(dir) {
           await image.scrollIntoViewIfNeeded();
           await image.evaluate(element => element.decode());
         }
-        if (file === 'index.html') {
+        const isHome = file === 'index.html' || file === 'en/index.html';
+        if (isHome) {
+          assert.equal(await page.locator('h1').count(), 1, `One h1 on ${file}`);
+          assert.equal(await page.locator('.home-features li').count(), 4, `Four hero features on ${file}`);
+          assert.equal(await page.locator('.home-points li').count(), 3, `Three numbered items on ${file}`);
+          assert.equal(await page.locator('.home-hero-photo').getAttribute('fetchpriority'), 'high');
+          assert.equal(await page.locator('link[rel="preload"][as="image"]').count(), 1, `Hero image preloaded on ${file}`);
           assert.equal(await page.evaluate(() => {
-            const hero = document.querySelector('.hero-intro').getBoundingClientRect();
-            return [...document.querySelectorAll('.hero-intro .button')].every(button => {
+            const hero = document.querySelector('.home-hero').getBoundingClientRect();
+            return [...document.querySelectorAll('.home-hero .home-btn')].every(button => {
               const rect = button.getBoundingClientRect();
               return rect.bottom <= hero.bottom && rect.right <= hero.right && rect.left >= hero.left;
             });
@@ -45,7 +51,7 @@ function htmlFiles(dir) {
         assert.deepEqual(await page.evaluate(() => [...document.images].filter(image => !image.naturalWidth).map(image => image.src)), [], `Broken image: ${file}`);
         const contactLink = await page.locator('.site-footer__contacts a').filter({ hasText: /^Contact$/ }).getAttribute('href');
         assert.equal(new URL(contactLink, page.url()).pathname, file.startsWith('en/') ? '/en/contact.html' : '/contact.html', `Footer contact link: ${file}`);
-        assert.equal(await page.locator('.lang-switch').isVisible(), true, `Language switcher hidden: ${file} at ${width}`);
+        assert.equal(await page.locator(isHome ? '.lang-menu summary' : '.lang-switch').isVisible(), true, `Language switcher hidden: ${file} at ${width}`);
       }
     }
     await page.setViewportSize({ width: 390, height: 844 });
@@ -74,7 +80,7 @@ function htmlFiles(dir) {
     const menu = page.getByRole('button', { name: 'Menu' });
     await menu.click();
     assert.equal(await menu.getAttribute('aria-expanded'), 'true');
-    await page.getByRole('navigation', { name: 'Navigation principale' }).getByRole('link', { name: 'Nos treks' }).waitFor({ state: 'visible' });
+    await page.locator('#navigation').getByRole('link', { name: 'Nos treks' }).waitFor({ state: 'visible' });
     await page.keyboard.press('Escape');
     assert.equal(await menu.getAttribute('aria-expanded'), 'false');
     assert.equal(await menu.evaluate(element => element === document.activeElement), true);
@@ -112,11 +118,12 @@ function htmlFiles(dir) {
     await page.getByRole('button', { name: 'Modifier mes informations' }).click();
     assert.equal(await page.locator('[name="travellers"]').inputValue(), '4');
     await page.goto(base);
-    await page.locator('summary').first().click();
-    assert.equal(await page.locator('details').first().getAttribute('open'), '');
+    await page.locator('.faq summary').first().click();
+    assert.equal(await page.locator('.faq details').first().getAttribute('open'), '');
     await page.goto(`${base}/en/index.html`);
     assert.equal(await page.locator('html').getAttribute('lang'), 'en');
     assert.equal(await page.locator('.lang-switch a[aria-current]').textContent(), 'EN');
+    await page.locator('.lang-menu summary').click();
     await page.locator('.lang-switch a[hreflang="fr"]').click();
     assert.equal(new URL(page.url()).pathname, '/index.html');
     assert.equal(await page.locator('html').getAttribute('lang'), 'fr');

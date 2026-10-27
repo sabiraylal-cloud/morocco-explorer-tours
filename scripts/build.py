@@ -100,6 +100,8 @@ def img(key,alt,cls='',eager=False):
  sizes='100vw' if cls=='hero-photo' else '(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 33vw'
  if cls=='article-photo':sizes='(max-width: 560px) calc(100vw - 36px), (max-width: 1100px) calc(100vw - 56px), (max-width: 1336px) calc(100vw - 96px), 1240px'
  if cls=='blog-featured-photo':sizes='(max-width: 560px) 92vw, 46vw'
+ if cls=='home-hero-photo':sizes='100vw'
+ if cls=='home-brush-photo':sizes='(max-width: 560px) 130px, 200px'
  if cls=='gallery-photo':sizes='(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 31vw'
  if key not in images:
   relative,path=uploaded_image_path(key);width,height=image_dimensions(path)
@@ -108,8 +110,8 @@ def img(key,alt,cls='',eager=False):
  return f'<img class="{cls}" src="{link(image_file(key))}" srcset="{srcset}" sizes="{sizes}" width="{images[key]["width"]}" height="{images[key]["height"]}" alt="{esc(alt,quote=True)}" {"fetchpriority=high" if eager else "loading=lazy"} decoding="async">'
 def photo_placeholder(cls=''):
  return f'<div class="photo-placeholder {cls}" role="img" aria-label="{t("photo_coming")}"><span>{t("photo_coming")}</span></div>'
-def brand():
- return f'<img class="brand-logo" src="{asset("assets/logo-morocco-explorer-tours.png")}" width="1008" height="687" alt="Morocco Explorer Tours">'
+def brand(light=False):
+ return f'<img class="brand-logo" src="{asset("assets/logo-morocco-explorer-tours"+("-light" if light else "")+".png")}" width="1008" height="687" alt="Morocco Explorer Tours">'
 def trip_path(trip):
  return f'{TRIP_SECTION[trip["type"]]}/{trip["slug"]}.html'
 def trip_label(trip):
@@ -118,6 +120,7 @@ def language_switch():
  links=''.join(f'<a href="{esc(link(page_path(base,code)),quote=True)}" hreflang="{code}" lang="{code}" title="{ui["lang_name"][code]}"'+(' aria-current="true"' if code==lang else '')+f'>{code.upper()}</a>' for code in LANGS)
  return f'<nav class="lang-switch" aria-label="{t("lang_switch_label")}">{links}</nav>'
 def header():
+ if base=='index.html':return home_header()
  def active(p):
   section=p.split('/')[0]+'/'
   return current==page_path(p) or (p.endswith('index.html') and '/' in p and current.startswith(PREFIX[lang]+section))
@@ -130,7 +133,7 @@ def cta():
 def start_page(path):
  global base,current
  base=path;current=page_path(path)
-def write(title,description,body,section='',schema=None,social=None):
+def write(title,description,body,section='',schema=None,social=None,head=''):
  path=base
  canonical=canonical_url(path,lang)
  alternates=''.join(f'<link rel="alternate" hreflang="{code}" href="{canonical_url(path,code)}">' for code in LANGS)+f'<link rel="alternate" hreflang="x-default" href="{canonical_url(path,DEFAULT_LANG)}">'
@@ -141,7 +144,7 @@ def write(title,description,body,section='',schema=None,social=None):
  other_locales=''.join(f'<meta property="og:locale:alternate" content="{ui["og_locale"][code]}">' for code in LANGS if code!=lang)
  robots='<meta name="robots" content="noindex, follow">' if path=='404.html' else ''
  doc=f'''<!doctype html>
-<html lang="{t('html_lang')}"><head><meta charset="utf-8">{robots}<meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} | Morocco Explorer Tours</title><meta name="description" content="{esc(description,quote=True)}"><link rel="canonical" href="{canonical}">{alternates}<meta property="og:type" content="{og_type}"><meta property="og:locale" content="{t('og_locale')}">{other_locales}<meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Morocco Explorer Tours"><meta property="og:image" content="{social_image}"><meta property="og:image:alt" content="{esc(social_alt,quote=True)}"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#703d2b"><link rel="icon" href="{asset('assets/favicon.svg')}" type="image/svg+xml"><link rel="stylesheet" href="{asset('assets/styles.css')}"><script src="{asset('assets/site.js')}" defer></script><script type="application/ld+json">{json.dumps(base_schema,ensure_ascii=False).replace('<',chr(92)+'u003c')}</script></head><body class="{section}">{header()}<main id="main">{body}</main>{footer()}</body></html>'''
+<html lang="{t('html_lang')}"><head><meta charset="utf-8">{robots}<meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} | Morocco Explorer Tours</title><meta name="description" content="{esc(description,quote=True)}"><link rel="canonical" href="{canonical}">{alternates}<meta property="og:type" content="{og_type}"><meta property="og:locale" content="{t('og_locale')}">{other_locales}<meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Morocco Explorer Tours"><meta property="og:image" content="{social_image}"><meta property="og:image:alt" content="{esc(social_alt,quote=True)}"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#703d2b"><link rel="icon" href="{asset('assets/favicon.svg')}" type="image/svg+xml">{head}<link rel="stylesheet" href="{asset('assets/styles.css')}"><script src="{asset('assets/site.js')}" defer></script><script type="application/ld+json">{json.dumps(base_schema,ensure_ascii=False).replace('<',chr(92)+'u003c')}</script></head><body class="{section}">{header()}<main id="main">{body}</main>{footer()}</body></html>'''
  out=ROOT/current;out.parent.mkdir(parents=True,exist_ok=True);out.write_text(doc+'\n',encoding='utf-8');pages.append((current,path,lang,canonical))
 def trip_photo(trip,cls='',eager=False):
  key=content_image(trip)
@@ -233,20 +236,42 @@ def trip_page(trip):
 def t_list(key):
  return ui[key][lang]
 
+HOME_ICONS={'mountain': '<path d="M4 40 18 15l8 13 6-9 12 21Z"/><path d="m14 22 4 3 4-3"/>', 'compass': '<circle cx="24" cy="24" r="18"/><path d="m31 17-5 9-9 5 5-9Z"/><path d="M24 6v4M24 38v4M6 24h4M38 24h4"/>', 'leaf': '<path d="M9 39C9 19 21 10 40 8c0 20-10 31-29 31Z"/><path d="M9 39 29 19"/>', 'home': '<path d="M7 22 24 8l17 14"/><path d="M12 18v21h24V18"/><path d="M24 34c-4-3-7-5-7-8a3.5 3.5 0 0 1 7-1.5 3.5 3.5 0 0 1 7 1.5c0 3-3 5-7 8Z"/>'}
+HOME_EDGE='<svg class="home-hero-edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 80 L0 33 L36 33 L64 28 L93 28 L110 40 L125 43 L154 36 L169 25 L188 26 L213 40 L242 34 L267 30 L305 40 L327 29 L343 39 L377 32 L411 25 L447 33 L471 26 L503 19 L540 28 L557 26 L575 35 L594 38 L623 27 L642 30 L675 30 L695 32 L724 27 L743 30 L765 21 L793 29 L816 33 L841 35 L860 28 L893 29 L925 42 L962 41 L986 9 L1006 38 L1040 36 L1058 28 L1085 40 L1106 42 L1120 30 L1136 28 L1164 27 L1199 43 L1230 36 L1244 25 L1275 28 L1301 38 L1339 26 L1370 41 L1401 39 L1424 37 L1440 30 L1440 80 Z"/><path d="M607 27 l54 -2.6 l-22 4.2 Z"/><path d="M890 23 l42 -2.7 l-17 4.3 Z"/><path d="M149 26 l60 -3.3 l-24 5.2 Z"/><path d="M1030 23 l49 -2.7 l-20 4.3 Z"/><path d="M639 28 l22 -3.0 l-9 4.8 Z"/><path d="M81 25 l38 -2.0 l-15 3.1 Z"/><path d="M990 24 l44 -3.3 l-18 5.3 Z"/><path d="M388 18 l31 -2.9 l-12 4.6 Z"/><path d="M316 20 l56 -2.8 l-22 4.5 Z"/><path d="M641 29 l32 -2.8 l-13 4.5 Z"/><path d="M310 23 l52 -3.3 l-21 5.3 Z"/><path d="M1237 23 l42 -2.1 l-17 3.4 Z"/><path d="M225 24 l53 -3.2 l-21 5.1 Z"/><path d="M1007 29 l30 -1.8 l-12 2.9 Z"/></svg>'
+HOME_MOUNTAINS='<svg class="home-mountains" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 160 L0 120 L90 92 L160 104 L260 58 L330 84 L420 40 L500 78 L590 66 L680 96 L780 50 L850 70 L940 28 L1030 74 L1110 60 L1200 92 L1290 54 L1370 86 L1440 70 L1440 160 Z"/></svg>'
+def home_icon(name):
+ return f'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{HOME_ICONS[name]}</svg>'
+def home_header():
+ # Homepage only: transparent header over the hero photo, main links inline, full menu behind the hamburger.
+ chevron='<svg viewBox="0 0 12 8" width="11" height="8" aria-hidden="true" focusable="false"><path d="M1 1.5 6 6.5 11 1.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>'
+ burger='<svg viewBox="0 0 28 20" width="28" height="20" aria-hidden="true" focusable="false"><path d="M0 1.5h28M0 10h28M0 18.5h28" stroke="currentColor" stroke-width="2.4"/></svg>'
+ main=[('index.html',t('home')),('treks/index.html',t('home_nav_tours')),('about.html',t('home_nav_about')),('blog/index.html','Blog'),('contact.html',t('nav_contact'))]
+ nav=''.join(f'<a href="{esc(link(page_path(p)),quote=True)}"'+(' aria-current="page"' if p=='index.html' else '')+f'>{label}</a>' for p,label in main)
+ full=''.join(a(p,label) for p,label in [('treks/index.html',t('nav_treks')),('excursions/index.html',t('nav_excursions')),('about.html',t('nav_about')),('blog/index.html',t('footer_blog')),('contact.html',t('nav_contact'))])+a('plan-your-trip.html',t('nav_plan')+' <span aria-hidden="true">↗</span>','button small')
+ return f'''<a class="skip-link" href="#main">{t('skip')}</a><header class="site-header site-header--home"><div class="container header-inner">{a('index.html',brand(True),'brand')}<nav class="home-nav" aria-label="{t('main_nav')}">{nav}</nav><details class="lang-menu"><summary><span class="sr-only">{t('lang_switch_label')} : </span>{lang.upper()}{chevron}</summary>{language_switch()}</details><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="{t('menu')}" hidden>{burger}</button><nav id="navigation" aria-label="{t('menu')}">{full}</nav></div></header>'''
+def home_head():
+ # Hero photo preloaded with its responsive sizes; display fonts only on the homepage.
+ srcset=', '.join(f'{link(image_file(HERO_IMAGE,w))} {min(w,images[HERO_IMAGE]["width"])}w' for w in image_widths(HERO_IMAGE))
+ return f'<link rel="preload" as="image" href="{link(image_file(HERO_IMAGE))}" imagesrcset="{srcset}" imagesizes="100vw" fetchpriority="high"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaushan+Script&amp;family=Playfair+Display:wght@700&amp;display=swap">'
+def home_hero():
+ icons=['mountain','compass','leaf','home']
+ features=''.join(f'<li>{home_icon(icon)}<span>{label}</span></li>' for icon,label in zip(icons,t_list('home_features')))
+ points=''.join(f'<li><span class="home-num" aria-hidden="true">{i:02}</span><p class="home-point-text"><span class="sr-only">{i:02}. </span>{t(f"promise_{i}")}</p><div class="home-brush">{img(key,image_alt(key),"home-brush-photo")}</div></li>' for i,key in enumerate(['atlas-hiker-high-valley','terraced-village-snow-peaks','winding-mountain-road'],1))
+ ornament='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2 22 12 12 22 2 12Z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M12 7.5 16.5 12 12 16.5 7.5 12Z" fill="currentColor"/></svg>'
+ return f'''<section class="home-hero" aria-labelledby="home-hero-title">{img(HERO_IMAGE,image_alt(HERO_IMAGE),'home-hero-photo',True)}<div class="container home-hero-inner"><div class="home-hero-copy"><p class="home-hero-eyebrow"><span aria-hidden="true"></span>{t('hero_kicker')}</p><h1 id="home-hero-title">{t('home_hero_title')}</h1><p class="home-hero-text">{t('home_hero_text')}</p><div class="home-hero-buttons">{a('treks/index.html',t('home_hero_treks')+' <span aria-hidden="true">→</span>','home-btn home-btn--gold')}{a('excursions/index.html',t('hero_create'),'home-btn home-btn--ghost')}</div></div><ul class="home-features">{features}</ul></div>{HOME_EDGE}</section>
+<section class="home-intro"><div class="container home-intro-grid"><div class="home-intro-copy"><h2 class="home-script-heading">{t('home_intro_title')}</h2><p>{t('home_intro_text')}</p><div class="home-divider" aria-hidden="true"><span></span>{ornament}<span></span></div></div><ol class="home-points">{points}</ol></div>{HOME_MOUNTAINS}</section>
+'''
 def build_language():
  faq=''.join(f'<details><summary>{q}</summary><p>{v}</p></details>' for q,v in t_list('faqs'))
  start_page('index.html')
  values=''.join(f'<div><strong>{title}</strong><span>{text}</span></div>' for title,text in t_list('story_values'))
- body=f'''<section class="hero">{img(HERO_IMAGE,image_alt(HERO_IMAGE),'hero-photo',True)}<div class="hero-overlay"><div class="container"><p class="eyebrow">{t('hero_kicker')}</p><h1>{t('hero_title')}</h1></div></div></section>
-<section class="hero-intro"><div class="container hero-intro-inner"><p>{t('hero_text')}</p><div class="button-row">{a('treks/index.html',t('hero_find'),'button')}{a('excursions/index.html',t('hero_create'),'button secondary')}</div></div></section>
-<div class="promise-bar"><div class="container"><span><b>01</b> {t('promise_1')}</span><span><b>02</b> {t('promise_2')}</span><span><b>03</b> {t('promise_3')}</span></div></div>
-<section class="section container" id="treks"><div class="section-heading"><div><p class="eyebrow">{t('treks_section_kicker')}</p><h2>{t('treks_section_title')}</h2></div><div><p>{t('treks_section_text')}</p>{a('treks/index.html',t('treks_section_all'),'text-link')}</div></div><div class="tour-grid">{''.join(tripcard(trip) for trip in treks)}</div></section>
+ body=home_hero()+f'''<section class="section container" id="treks"><div class="section-heading"><div><p class="eyebrow">{t('treks_section_kicker')}</p><h2>{t('treks_section_title')}</h2></div><div><p>{t('treks_section_text')}</p>{a('treks/index.html',t('treks_section_all'),'text-link')}</div></div><div class="tour-grid">{''.join(tripcard(trip) for trip in treks)}</div></section>
 <section class="section container excursions-preview" id="excursions"><div class="section-heading"><div><p class="eyebrow">{t('excursions_section_kicker')}</p><h2>{t('excursions_section_title')}</h2></div><div><p>{t('excursions_section_text')}</p>{a('excursions/index.html',t('excursions_section_all'),'text-link')}</div></div><div class="tour-grid excursion-grid">{''.join(tripcard(trip) for trip in excursions)}</div></section>
 <section class="story-section" id="about"><div class="container story-grid"><div class="story-image">{img('atlas-shepherds-flock',image_alt('atlas-shepherds-flock'))}<span class="image-note">{t('story_note')}</span></div><div class="story-copy"><p class="eyebrow">{t('story_kicker')}</p><h2>{t('story_title')}</h2><p>{t('story_p1')}</p><p>{t('story_p2')}</p>{a('about.html',t('story_link'),'text-link')}<div class="story-values">{values}</div></div></div></section>
 <section class="section container"><div class="section-heading"><div><p class="eyebrow">{t('steps_kicker')}</p><h2>{t('steps_title')}</h2></div><p>{t('steps_text')}</p></div>{steps(t_list('home_steps'))}</section>
 <section class="faq-section" id="questions"><div class="container faq-grid"><div><p class="eyebrow">{t('faq_kicker')}</p><h2>{t('faq_title')}</h2>{a('plan-your-trip.html',t('faq_link'),'text-link')}</div><div class="faq">{faq}</div></div></section>{cta()}'''
  body+=testimonial_carousel()
- write(t('home_meta_title'),t('home_meta_description'),body,'home')
+ write(t('home_meta_title'),t('home_meta_description'),body,'home',head=home_head())
 
  for kind,items in [('trek',treks),('excursion',excursions)]:
   section=TRIP_SECTION[kind]

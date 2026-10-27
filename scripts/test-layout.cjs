@@ -63,11 +63,13 @@ const server = http.createServer((request, response) => {
         const layout = await page.evaluate(() => {
           const header = document.querySelector('.site-header').getBoundingClientRect();
           const logo = document.querySelector('.site-header .brand-logo').getBoundingClientRect();
-          const main = document.querySelector('main').getBoundingClientRect();
+          // The homepage header is transparent over the hero photo: the hero text, not <main>, must clear it.
+          const main = (document.querySelector('.home-hero-copy') || document.querySelector('main')).getBoundingClientRect();
           const menu = document.querySelector('.menu-toggle').getBoundingClientRect();
           return { headerHeight: header.height, logoWidth: logo.width, logoHeight: logo.height, mainTop: main.top, headerBottom: header.bottom, menuLeft: menu.left, logoRight: logo.right, menuHeight: menu.height };
         });
-        assert.ok(layout.headerHeight <= (width <= 560 ? 51 : width <= 800 ? 55 : 63), `${file}: tall header at ${width}`);
+        const home = file === 'index.html' || file === 'en/index.html';
+        assert.ok(layout.headerHeight <= (home ? (width <= 800 ? 64 : 80) : width <= 560 ? 51 : width <= 800 ? 55 : 63), `${file}: tall header at ${width}`);
         assert.ok(layout.mainTop >= layout.headerBottom, `${file}: header overlaps initial content at ${width}`);
         assert.ok(Math.abs(layout.logoWidth / layout.logoHeight - 1008 / 687) < 0.01, 'Logo aspect ratio changed');
         if (width <= 800) {
