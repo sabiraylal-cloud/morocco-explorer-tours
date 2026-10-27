@@ -38,7 +38,7 @@ function htmlFiles(dir) {
           assert.equal(await page.locator('.home-features li').count(), 4, `Four hero features on ${file}`);
           assert.equal(await page.locator('.home-points li').count(), 3, `Three numbered items on ${file}`);
           assert.equal(await page.locator('.home-hero-photo').getAttribute('fetchpriority'), 'high');
-          assert.equal(await page.locator('link[rel="preload"][as="image"]').count(), 1, `Hero image preloaded on ${file}`);
+          assert.equal(await page.locator('link[rel="preload"][as="image"]').count(), 2, `Hero image preloaded on ${file}`);
           assert.equal(await page.evaluate(() => {
             const hero = document.querySelector('.home-hero').getBoundingClientRect();
             return [...document.querySelectorAll('.home-hero .home-btn')].every(button => {

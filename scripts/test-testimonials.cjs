@@ -11,9 +11,12 @@ const url = pathToFileURL(path.join(root, 'index.html')).href + '#testimonials';
   try {
     const page = await browser.newPage({ reducedMotion: 'reduce' });
     const failures = [];
+    // Chrome refuses web fonts over file:// (CORS); they load normally from the web server, so only that case is ignored.
+    const fileFont = text => /\/assets\/fonts\/[^']*\.woff2/.test(text) && (text.startsWith('file:') || text.includes('CORS policy'));
     page.on('pageerror', error => failures.push(error.message));
-    page.on('console', message => { if (message.type() === 'error') failures.push(message.text()); });
-    page.on('requestfailed', request => failures.push(request.url()));
+    page.on('console', message => { if (message.type() === 'error' && !fileFont(message.text()) && !(message.text() === 'Failed to load resource: net::ERR_FAILED' && fontFailed)) failures.push(message.text()); });
+    let fontFailed = false;
+    page.on('requestfailed', request => { if (fileFont(request.url())) fontFailed = true; else failures.push(request.url()); });
     fs.mkdirSync(path.join(root, 'artifacts'), { recursive: true });
     for (const width of [320, 390, 768, 1024, 1440, 1920]) {
       await page.setViewportSize({ width, height: 1000 });
