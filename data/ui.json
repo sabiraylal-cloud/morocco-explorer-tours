@@ -129,7 +129,7 @@
   },
   "read_more": {
     "fr": "Lire la suite",
-    "en": "Read More"
+    "en": "Read more"
   },
   "journal_kicker": {
     "fr": "LE CARNET DE L’ATLAS",
@@ -173,7 +173,7 @@
   },
   "contact_details": {
     "fr": "Coordonnées",
-    "en": "Contact Details"
+    "en": "Contact details"
   },
   "email": {
     "fr": "E-mail",
@@ -189,7 +189,7 @@
   },
   "last_updated": {
     "fr": "Dernière mise à jour : 26 octobre 2026",
-    "en": "Last updated: October 26, 2026"
+    "en": "Last updated: 26 October 2026"
   },
   "home": {
     "fr": "Accueil",
@@ -670,7 +670,7 @@
       [
         "03 / ÉQUITÉ",
         "Un travail juste",
-        "Les familles qui vous accueillent et les muletiers qui nous accompagnent sont payés justement pour leur travail."
+        "Les familles qui vous accueillent et les muletiers qui nous accompagnent sont rémunérés équitablement pour leur travail."
       ],
       [
         "04 / SÉCURITÉ",
@@ -1130,7 +1130,7 @@
     "en": "Not included"
   },
   "trip_age": {
-    "fr": "<strong>Âge :</strong> de 10 à 80 ans. Les mineurs (10–17 ans) voyagent avec un parent ou un tuteur légal, responsable d’eux.",
+    "fr": "<strong>Âge :</strong> de 10 à 80 ans. Les mineurs (10–17 ans) voyagent avec un parent ou un tuteur légal, qui est responsable d’eux.",
     "en": "<strong>Age:</strong> 10 to 80 years. Minors (10–17) travel with a parent or legal guardian who is responsible for them."
   },
   "trip_price": {

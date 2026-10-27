@@ -63,7 +63,7 @@
             "text": "Matinée tranquille à Imlil, puis route vers Marrakech, avec une arrivée en début d’après-midi.",
             "walk": "",
             "altitude": "",
-            "overnight": "Fin du trek (non inclus à Marrakech)",
+            "overnight": "Fin du trek (hébergement à Marrakech non inclus)",
             "meals": "Petit-déjeuner, déjeuner"
           }
         ],
@@ -111,7 +111,7 @@
         "days": [
           {
             "title": "Marrakech – Imlil – Aroumd",
-            "text": "Leave Marrakech in the morning, about 1 h 30 by road via Asni. In Imlil the mules are loaded and we walk up through walnut trees and orchards to the village of Aroumd. A quiet afternoon to acclimatise around the village.",
+            "text": "Leave Marrakech in the morning, about an hour and a half by road via Asni. In Imlil the mules are loaded and we walk up through walnut trees and orchards to the village of Aroumd. A quiet afternoon to acclimatise around the village.",
             "walk": "2–3 h",
             "altitude": "Imlil 1,740 m → Aroumd approx. 1,900 m",
             "overnight": "Gîte (mountain guesthouse) in Aroumd",
@@ -138,7 +138,7 @@
             "text": "A relaxed morning in Imlil, then the drive back to Marrakech, arriving in the early afternoon.",
             "walk": "",
             "altitude": "",
-            "overnight": "End of trek (Marrakech not included)",
+            "overnight": "End of trek (accommodation in Marrakech not included)",
             "meals": "Breakfast, lunch"
           }
         ],
@@ -227,7 +227,7 @@
             "text": "Courte descente jusqu’à Imlil, puis route vers Marrakech.",
             "walk": "env. 1 h",
             "altitude": "Aroumd env. 1 900 m → Imlil 1 740 m",
-            "overnight": "Fin du trek (non inclus à Marrakech)",
+            "overnight": "Fin du trek (hébergement à Marrakech non inclus)",
             "meals": "Petit-déjeuner, déjeuner"
           }
         ],
@@ -246,7 +246,7 @@
           "Pourboires",
           "Tout ce qui n’est pas mentionné dans « Inclus »"
         ],
-        "note": "Réservé aux randonneurs en très bonne condition physique, à l’aise sur sentier raide et dans les éboulis. Le col de Tizi n’Aguelzim peut rester enneigé jusqu’au printemps : l’itinéraire se confirme selon la saison."
+        "note": "Réservé aux randonneurs en très bonne condition physique, à l’aise sur sentier raide et dans les éboulis. Le col de Tizi n’Aguelzim peut rester enneigé jusqu’au printemps : l’itinéraire est confirmé selon la saison."
       },
       "en": {
         "name": "Toubkal via the Azzaden valley",
@@ -278,7 +278,7 @@
         "days": [
           {
             "title": "Marrakech – Imlil – Tizi n’Mzik – Tizi Oussem",
-            "text": "Drive to Imlil, about 1 h 30. Climb through the villages to the Tizi n’Mzik pass, then descend into the Azzaden valley to the village of Tizi Oussem.",
+            "text": "Drive to Imlil, about an hour and a half. Climb through the villages to the Tizi n’Mzik pass, then descend into the Azzaden valley to the village of Tizi Oussem.",
             "walk": "5–6 h",
             "altitude": "Imlil 1,740 m → Tizi n’Mzik 2,489 m → Tizi Oussem approx. 1,850 m",
             "overnight": "Gîte in Tizi Oussem",
@@ -305,7 +305,7 @@
             "text": "A short walk down to Imlil, then the drive back to Marrakech.",
             "walk": "approx. 1 h",
             "altitude": "Aroumd approx. 1,900 m → Imlil 1,740 m",
-            "overnight": "End of trek (Marrakech not included)",
+            "overnight": "End of trek (accommodation in Marrakech not included)",
             "meals": "Breakfast, lunch"
           }
         ],
@@ -394,7 +394,7 @@
             "text": "Retour à pied jusqu’à Tighdouine, puis route vers Marrakech.",
             "walk": "",
             "altitude": "",
-            "overnight": "Fin du trek (non inclus à Marrakech)",
+            "overnight": "Fin du trek (hébergement à Marrakech non inclus)",
             "meals": "Petit-déjeuner, déjeuner"
           }
         ],
@@ -464,7 +464,7 @@
             "text": "Walk back to Tighdouine, then drive to Marrakech.",
             "walk": "",
             "altitude": "",
-            "overnight": "End of trek (Marrakech not included)",
+            "overnight": "End of trek (accommodation in Marrakech not included)",
             "meals": "Breakfast, lunch"
           }
         ],
@@ -548,10 +548,10 @@
         "name": "Imlil and the Atlas villages",
         "title": "Day trip from Marrakech to Imlil",
         "description": "A day in the Imlil valley, gateway to Toubkal National Park: Berber villages, terraced orchards and views of the massif’s peaks.",
-        "intro": "About 1 h 30 from Marrakech, Imlil is the starting point for hikes to Toubkal. This day trip lets you explore the valley on foot, among walnut trees, terraced fields and villages of earth and stone, with the peaks of the massif as a backdrop.",
+        "intro": "About an hour and a half from Marrakech, Imlil is the starting point for hikes to Toubkal. This day trip lets you explore the valley on foot, among walnut trees, terraced fields and villages of earth and stone, with the peaks of the massif as a backdrop.",
         "level": "Easy to moderate",
-        "duration": "Full day (about 8 h 30)",
-        "distance": "About 65 km, 1 h 30 by road",
+        "duration": "Full day (about 8.5 hours)",
+        "distance": "About 65 km, 1.5 hours by road",
         "highlights": [
           "The High Atlas road through the Moulay Brahim gorges and Asni",
           "A guided walk to the village of Aroumd",
@@ -663,8 +663,8 @@
         "description": "The Atlas valley closest to Marrakech: Berber villages, an argan cooperative, a traditional house and the Setti Fatma waterfalls.",
         "intro": "The Ourika valley follows the river at the foot of the High Atlas, among earthen villages, orchards and small riverside restaurants. At the end of the road, the village of Setti Fatma is the starting point of a trail to a series of waterfalls.",
         "level": "Easy to moderate",
-        "duration": "Full day (about 8 h)",
-        "distance": "About 65 km, 1 h 30 by road",
+        "duration": "Full day (about 8 hours)",
+        "distance": "About 65 km, 1.5 hours by road",
         "highlights": [
           "A women’s argan oil cooperative",
           "A visit to a traditional Berber house",
@@ -768,7 +768,7 @@
           "Pourboires",
           "Tout ce qui n’est pas mentionné dans « Inclus »"
         ],
-        "note": "La route est longue, aller et retour dans la journée. Le sentier vers le bas des chutes comporte des marches. Merci de ne pas nourrir les singes. Les horaires sont indicatifs."
+        "note": "La route est longue : l’aller et le retour se font dans la journée. Le sentier vers le bas des chutes comporte des marches. Merci de ne pas nourrir les singes. Les horaires sont indicatifs."
       },
       "en": {
         "name": "Ouzoud waterfalls",
@@ -776,8 +776,8 @@
         "description": "Falls of about 110 metres, among the highest in Morocco, surrounded by olive trees and Barbary macaques.",
         "intro": "In the province of Azilal, the Ouzoud river drops from a cliff of about 110 metres into a green gorge. A path leads down to the foot of the falls, through olive trees and shaded terraces where Barbary macaques live.",
         "level": "Easy",
-        "duration": "Full day (about 10 h)",
-        "distance": "About 150 km, 2 h 30 to 3 h by road",
+        "duration": "Full day (about 10 hours)",
+        "distance": "About 150 km, 2.5 to 3 hours by road",
         "highlights": [
           "The Ouzoud falls, about 110 metres high",
           "The walk down to the foot of the falls along the olive-tree path",
@@ -881,7 +881,7 @@
           "Achats et dépenses personnelles",
           "Tout ce qui n’est pas mentionné dans « Inclus »"
         ],
-        "note": "Peu de marche : idéale si vous voulez voir plusieurs paysages de l’Atlas en une journée. L’ordre des étapes peut être adapté selon la saison et la circulation. Les horaires sont indicatifs."
+        "note": "Peu de marche : une excursion idéale si vous voulez voir plusieurs paysages de l’Atlas en une journée. L’ordre des étapes peut être adapté selon la saison et la circulation. Les horaires sont indicatifs."
       },
       "en": {
         "name": "The three Atlas valleys",
@@ -889,7 +889,7 @@
         "description": "Three faces of the High Atlas in one day: the Ourika valley, the Asni valley through the Moulay Brahim gorges, and the Imlil valley.",
         "intro": "A day to see several Atlas landscapes without a long walk: the orchards and cooperatives of the Ourika, the Moulay Brahim gorges and the market town of Asni, then the Imlil valley and its terraced villages, with stops at the viewpoints.",
         "level": "Easy",
-        "duration": "Full day (about 9 h)",
+        "duration": "Full day (about 9 hours)",
         "distance": "Loop from Marrakech with several stops",
         "highlights": [
           "The Ourika valley and an argan cooperative",
