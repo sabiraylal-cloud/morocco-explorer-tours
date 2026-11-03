@@ -376,11 +376,12 @@ def build_language():
  write(t('notfound_meta_title'),t('notfound_meta_description'),intro(t('notfound_kicker'),t('notfound_title'),t('notfound_lead'))+f'<div class="container collection button-row">{a("index.html",t("notfound_home"),"button")}{a("treks/index.html",t("notfound_tours"),"button secondary")}</div>')
 
 for lang in LANGS:build_language()
-for trip in all_trips:
- if not visible(trip):
-  for code in LANGS:
-   stale=ROOT/PREFIX[code]/trip_path(trip)
-   if stale.is_file():stale.unlink()
+# Trip pages are generated: remove the page of any tour that is hidden or deleted (its data stays in data/trips.json).
+for code in LANGS:
+ for kind,folder in TRIP_SECTION.items():
+  keep={trip['slug'] for trip in trips if trip['type']==kind}
+  for stale in (ROOT/PREFIX[code]/folder).glob('*.html'):
+   if stale.name!='index.html' and stale.stem not in keep:stale.unlink()
 sitemap_entries=''
 for out,path,language,url in pages:
  if path=='404.html':continue
