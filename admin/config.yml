@@ -18,9 +18,6 @@ publish_mode: editorial_workflow
 local_backend: true
 media_folder: images/uploads
 public_folder: /images/uploads
-media_library:
-  config:
-    max_file_size: 8388608
 slug:
   encoding: ascii
   clean_accents: true
