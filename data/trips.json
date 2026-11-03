@@ -1,161 +1,6 @@
 {
   "trips": [
     {
-      "slug": "vallee-oued-zat-4-jours",
-      "type": "trek",
-      "days": 4,
-      "image": "douar-terraced-fields",
-      "gallery": [
-        "douar-terraced-fields",
-        "atlas-green-valley-snow-peak",
-        "tlatast-pottery-workshop",
-        "tlatast-pottery-drying",
-        "plateau-red-rocks-snow-peaks",
-        "yagour-rock-engraving",
-        "plateau-bivouac-tents"
-      ],
-      "fr": {
-        "name": "Vallée de l’Oued Zat & plateau du Yagour",
-        "title": "Trek de 4 jours dans la vallée de l’Oued Zat, chez l’habitant",
-        "description": "Au départ de Tighdouine : les poteries du vieux village de Tlatast, des nuits chez des familles berbères et les gravures rupestres du plateau du Yagour.",
-        "intro": "Un trek loin des sentiers fréquentés, au rythme des douars de la vallée de l’Oued Zat. Vous dormez chez des familles, partagez leurs repas et montez jusqu’au plateau du Yagour, connu pour ses gravures rupestres antérieures à notre ère.",
-        "level": "Modéré",
-        "key_fact": "Gravures rupestres du Yagour",
-        "route": [
-          "Marrakech",
-          "Tighdouine",
-          "Tlatast",
-          "Azgour",
-          "Plateau du Yagour",
-          "Aït Inzal",
-          "Tighdouine",
-          "Marrakech"
-        ],
-        "highlights": [
-          "Le vieux village de Tlatast et ses ateliers de poterie",
-          "La vallée de l’Oued Zat et ses douars",
-          "Les gravures rupestres du plateau du Yagour, antérieures à notre ère",
-          "Des nuits chez l’habitant et la cuisine des familles berbères"
-        ],
-        "days": [
-          {
-            "title": "Marrakech – Tighdouine – Tlatast – douar Azgour",
-            "text": "Départ de Marrakech le matin et arrivée à Tighdouine vers 10 h. Visite du vieux village de Tlatast et de ses ateliers de poterie, puis marche jusqu’au douar Azgour, près de l’Oued Zat.",
-            "walk": "",
-            "altitude": "",
-            "overnight": "Chez une famille du douar Azgour",
-            "meals": "Déjeuner, dîner"
-          },
-          {
-            "title": "Azgour – plateau du Yagour",
-            "text": "Marche vers le plateau du Yagour, célèbre pour ses gravures rupestres préhistoriques, antérieures à notre ère. Du temps pour découvrir les gravures et les grands espaces du plateau.",
-            "walk": "",
-            "altitude": "",
-            "overnight": "Chez l’habitant ou en bivouac",
-            "meals": "Petit-déjeuner, déjeuner, dîner"
-          },
-          {
-            "title": "Yagour – région d’Aït Inzal",
-            "text": "Traversée vers le versant opposé, dans la région d’Aït Inzal.",
-            "walk": "",
-            "altitude": "",
-            "overnight": "Chez une famille du douar Aït Ali (ou d’un douar voisin)",
-            "meals": "Petit-déjeuner, déjeuner, dîner"
-          },
-          {
-            "title": "Retour à Tighdouine – Marrakech",
-            "text": "Retour à pied jusqu’à Tighdouine, puis route vers Marrakech.",
-            "walk": "",
-            "altitude": "",
-            "overnight": "Fin du trek (hébergement à Marrakech non inclus)",
-            "meals": "Petit-déjeuner, déjeuner"
-          }
-        ],
-        "included": [
-          "Transport Marrakech – Tighdouine – Marrakech",
-          "Hébergement chez l’habitant ou en bivouac",
-          "Tous les repas",
-          "Mules (selon la taille du groupe)",
-          "Guide"
-        ],
-        "excluded": [
-          "Hébergement à Marrakech",
-          "Tout ce qui n’est pas mentionné dans « Inclus »"
-        ],
-        "note": "Les nuits chez l’habitant sont simples et chaleureuses : le confort est sommaire et les pièces souvent partagées. Les étapes et les douars d’accueil peuvent varier selon la saison et la disponibilité des familles."
-      },
-      "en": {
-        "name": "Oued Zat valley & Yagour plateau",
-        "title": "4-day trek in the Oued Zat valley with local families",
-        "description": "From Tighdouine: the pottery of the old village of Tlatast, nights with Berber families and the rock engravings of the Yagour plateau.",
-        "intro": "A trek away from the busy trails, at the pace of the Oued Zat valley villages. You sleep in family homes, share their meals and walk up to the Yagour plateau, known for rock engravings that predate the Common Era.",
-        "level": "Moderate",
-        "key_fact": "Yagour rock engravings",
-        "route": [
-          "Marrakech",
-          "Tighdouine",
-          "Tlatast",
-          "Azgour",
-          "Yagour plateau",
-          "Aït Inzal",
-          "Tighdouine",
-          "Marrakech"
-        ],
-        "highlights": [
-          "The old village of Tlatast and its pottery workshops",
-          "The Oued Zat valley and its villages",
-          "The Yagour plateau rock engravings, older than the Common Era",
-          "Nights with local families and Berber home cooking"
-        ],
-        "days": [
-          {
-            "title": "Marrakech – Tighdouine – Tlatast – Azgour village",
-            "text": "Leave Marrakech in the morning and arrive in Tighdouine around 10:00. Visit the old village of Tlatast and its pottery workshops, then walk to the village of Azgour near the Oued Zat.",
-            "walk": "",
-            "altitude": "",
-            "overnight": "With a family in Azgour",
-            "meals": "Lunch, dinner"
-          },
-          {
-            "title": "Azgour – Yagour plateau",
-            "text": "Walk to the Yagour plateau, famous for its prehistoric rock engravings that predate the Common Era. Time to discover the engravings and the wide open plateau.",
-            "walk": "",
-            "altitude": "",
-            "overnight": "With a local family or in a camp",
-            "meals": "Breakfast, lunch, dinner"
-          },
-          {
-            "title": "Yagour – Aït Inzal area",
-            "text": "Cross to the opposite side, into the Aït Inzal area.",
-            "walk": "",
-            "altitude": "",
-            "overnight": "With a family in the village of Aït Ali (or a nearby village)",
-            "meals": "Breakfast, lunch, dinner"
-          },
-          {
-            "title": "Back to Tighdouine – Marrakech",
-            "text": "Walk back to Tighdouine, then drive to Marrakech.",
-            "walk": "",
-            "altitude": "",
-            "overnight": "End of trek (accommodation in Marrakech not included)",
-            "meals": "Breakfast, lunch"
-          }
-        ],
-        "included": [
-          "Transport Marrakech – Tighdouine – Marrakech",
-          "Accommodation with local families or in a camp",
-          "All meals",
-          "Mules (according to group size)",
-          "Guide"
-        ],
-        "excluded": [
-          "Accommodation in Marrakech",
-          "Anything not listed under “Included”"
-        ],
-        "note": "Nights with local families are simple and warm: comfort is basic and rooms are often shared. Stages and host villages may vary with the season and the families’ availability."
-      }
-    },
-    {
       "slug": "toubkal-vallee-azzaden-4-jours",
       "type": "trek",
       "days": 4,
@@ -320,6 +165,161 @@
           "Anything not listed under “Included”"
         ],
         "note": "For very fit hikers who are comfortable on steep trails and scree. The Tizi n’Aguelzim pass can hold snow into spring: the route is confirmed according to the season."
+      }
+    },
+    {
+      "slug": "vallee-oued-zat-4-jours",
+      "type": "trek",
+      "days": 4,
+      "image": "douar-terraced-fields",
+      "gallery": [
+        "douar-terraced-fields",
+        "atlas-green-valley-snow-peak",
+        "tlatast-pottery-workshop",
+        "tlatast-pottery-drying",
+        "plateau-red-rocks-snow-peaks",
+        "yagour-rock-engraving",
+        "plateau-bivouac-tents"
+      ],
+      "fr": {
+        "name": "Vallée de l’Oued Zat & plateau du Yagour",
+        "title": "Trek de 4 jours dans la vallée de l’Oued Zat, chez l’habitant",
+        "description": "Au départ de Tighdouine : les poteries du vieux village de Tlatast, des nuits chez des familles berbères et les gravures rupestres du plateau du Yagour.",
+        "intro": "Un trek loin des sentiers fréquentés, au rythme des douars de la vallée de l’Oued Zat. Vous dormez chez des familles, partagez leurs repas et montez jusqu’au plateau du Yagour, connu pour ses gravures rupestres antérieures à notre ère.",
+        "level": "Modéré",
+        "key_fact": "Gravures rupestres du Yagour",
+        "route": [
+          "Marrakech",
+          "Tighdouine",
+          "Tlatast",
+          "Azgour",
+          "Plateau du Yagour",
+          "Aït Inzal",
+          "Tighdouine",
+          "Marrakech"
+        ],
+        "highlights": [
+          "Le vieux village de Tlatast et ses ateliers de poterie",
+          "La vallée de l’Oued Zat et ses douars",
+          "Les gravures rupestres du plateau du Yagour, antérieures à notre ère",
+          "Des nuits chez l’habitant et la cuisine des familles berbères"
+        ],
+        "days": [
+          {
+            "title": "Marrakech – Tighdouine – Tlatast – douar Azgour",
+            "text": "Départ de Marrakech le matin et arrivée à Tighdouine vers 10 h. Visite du vieux village de Tlatast et de ses ateliers de poterie, puis marche jusqu’au douar Azgour, près de l’Oued Zat.",
+            "walk": "",
+            "altitude": "",
+            "overnight": "Chez une famille du douar Azgour",
+            "meals": "Déjeuner, dîner"
+          },
+          {
+            "title": "Azgour – plateau du Yagour",
+            "text": "Marche vers le plateau du Yagour, célèbre pour ses gravures rupestres préhistoriques, antérieures à notre ère. Du temps pour découvrir les gravures et les grands espaces du plateau.",
+            "walk": "",
+            "altitude": "",
+            "overnight": "Chez l’habitant ou en bivouac",
+            "meals": "Petit-déjeuner, déjeuner, dîner"
+          },
+          {
+            "title": "Yagour – région d’Aït Inzal",
+            "text": "Traversée vers le versant opposé, dans la région d’Aït Inzal.",
+            "walk": "",
+            "altitude": "",
+            "overnight": "Chez une famille du douar Aït Ali (ou d’un douar voisin)",
+            "meals": "Petit-déjeuner, déjeuner, dîner"
+          },
+          {
+            "title": "Retour à Tighdouine – Marrakech",
+            "text": "Retour à pied jusqu’à Tighdouine, puis route vers Marrakech.",
+            "walk": "",
+            "altitude": "",
+            "overnight": "Fin du trek (hébergement à Marrakech non inclus)",
+            "meals": "Petit-déjeuner, déjeuner"
+          }
+        ],
+        "included": [
+          "Transport Marrakech – Tighdouine – Marrakech",
+          "Hébergement chez l’habitant ou en bivouac",
+          "Tous les repas",
+          "Mules (selon la taille du groupe)",
+          "Guide"
+        ],
+        "excluded": [
+          "Hébergement à Marrakech",
+          "Tout ce qui n’est pas mentionné dans « Inclus »"
+        ],
+        "note": "Les nuits chez l’habitant sont simples et chaleureuses : le confort est sommaire et les pièces souvent partagées. Les étapes et les douars d’accueil peuvent varier selon la saison et la disponibilité des familles."
+      },
+      "en": {
+        "name": "Oued Zat valley & Yagour plateau",
+        "title": "4-day trek in the Oued Zat valley with local families",
+        "description": "From Tighdouine: the pottery of the old village of Tlatast, nights with Berber families and the rock engravings of the Yagour plateau.",
+        "intro": "A trek away from the busy trails, at the pace of the Oued Zat valley villages. You sleep in family homes, share their meals and walk up to the Yagour plateau, known for rock engravings that predate the Common Era.",
+        "level": "Moderate",
+        "key_fact": "Yagour rock engravings",
+        "route": [
+          "Marrakech",
+          "Tighdouine",
+          "Tlatast",
+          "Azgour",
+          "Yagour plateau",
+          "Aït Inzal",
+          "Tighdouine",
+          "Marrakech"
+        ],
+        "highlights": [
+          "The old village of Tlatast and its pottery workshops",
+          "The Oued Zat valley and its villages",
+          "The Yagour plateau rock engravings, older than the Common Era",
+          "Nights with local families and Berber home cooking"
+        ],
+        "days": [
+          {
+            "title": "Marrakech – Tighdouine – Tlatast – Azgour village",
+            "text": "Leave Marrakech in the morning and arrive in Tighdouine around 10:00. Visit the old village of Tlatast and its pottery workshops, then walk to the village of Azgour near the Oued Zat.",
+            "walk": "",
+            "altitude": "",
+            "overnight": "With a family in Azgour",
+            "meals": "Lunch, dinner"
+          },
+          {
+            "title": "Azgour – Yagour plateau",
+            "text": "Walk to the Yagour plateau, famous for its prehistoric rock engravings that predate the Common Era. Time to discover the engravings and the wide open plateau.",
+            "walk": "",
+            "altitude": "",
+            "overnight": "With a local family or in a camp",
+            "meals": "Breakfast, lunch, dinner"
+          },
+          {
+            "title": "Yagour – Aït Inzal area",
+            "text": "Cross to the opposite side, into the Aït Inzal area.",
+            "walk": "",
+            "altitude": "",
+            "overnight": "With a family in the village of Aït Ali (or a nearby village)",
+            "meals": "Breakfast, lunch, dinner"
+          },
+          {
+            "title": "Back to Tighdouine – Marrakech",
+            "text": "Walk back to Tighdouine, then drive to Marrakech.",
+            "walk": "",
+            "altitude": "",
+            "overnight": "End of trek (accommodation in Marrakech not included)",
+            "meals": "Breakfast, lunch"
+          }
+        ],
+        "included": [
+          "Transport Marrakech – Tighdouine – Marrakech",
+          "Accommodation with local families or in a camp",
+          "All meals",
+          "Mules (according to group size)",
+          "Guide"
+        ],
+        "excluded": [
+          "Accommodation in Marrakech",
+          "Anything not listed under “Included”"
+        ],
+        "note": "Nights with local families are simple and warm: comfort is basic and rooms are often shared. Stages and host villages may vary with the season and the families’ availability."
       }
     },
     {
