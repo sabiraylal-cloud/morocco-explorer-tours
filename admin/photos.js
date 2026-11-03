@@ -153,6 +153,7 @@
 	}
 
 	// ---------- routes ----------
+	MX.routes.photos = function (parts, view) { MX.photosRoute(parts[0], parts[1], view); };
 	MX.photosRoute = function (kind, id, view) {
 		MX.say('');
 		view.textContent = '';
@@ -330,4 +331,42 @@
 			});
 		}).catch(function (err) { busy = false; bad(err); });
 	}
+
+	// ---------- helpers for other pages (blog covers and photos in articles) ----------
+	function photoList() {
+		return Promise.all([MX.loadFile('data/images.json'), MX.listUploads()]).then(function (r) {
+			var images = r[0].data, out = [];
+			r[1].forEach(function (u) { out.push({ value: u.path, label: 'Your photo: ' + u.name, thumb: '../' + u.path }); });
+			Object.keys(images).forEach(function (k) {
+				out.push({ value: k, label: (images[k].alt && images[k].alt.en) || k, thumb: libThumb(k, images) });
+			});
+			return out;
+		});
+	}
+	MX.photoList = photoList;
+
+	// A grid where one photo can be chosen. onChange(value) is called on every tap.
+	MX.pickPhoto = function (box, current, onChange) {
+		box.textContent = '';
+		box.appendChild(el('p', 'mx-note', 'Loading photos\u2026'));
+		return photoList().then(function (list) {
+			var value = current;
+			function draw() {
+				box.textContent = '';
+				var g = el('div', 'mx-photos');
+				list.forEach(function (p) {
+					var b = el('button', 'mx-photo' + (p.value === value ? ' mx-photo-on' : ''));
+					b.type = 'button';
+					var im = el('img'); im.src = p.thumb; im.alt = ''; im.loading = 'lazy';
+					b.appendChild(im);
+					b.appendChild(el('span', 'mx-photo-mark', p.value === value ? svg('check') : ''));
+					b.title = p.label; b.setAttribute('aria-label', p.label); b.setAttribute('aria-pressed', p.value === value ? 'true' : 'false');
+					b.addEventListener('click', function () { value = p.value; onChange(value); draw(); });
+					g.appendChild(b);
+				});
+				box.appendChild(g);
+			}
+			draw();
+		}, function (err) { box.textContent = ''; box.appendChild(el('p', 'mx-note', 'We could not load the photos. ' + MX.reason(err))); });
+	};
 })();

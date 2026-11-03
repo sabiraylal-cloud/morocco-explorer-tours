@@ -17,7 +17,8 @@ treks=[trip for trip in trips if trip['type']=='trek']
 excursions=[trip for trip in trips if trip['type']=='excursion']
 images=load('images.json')
 uploads_alt=load('uploads.json') if (ROOT/'data/uploads.json').is_file() else {}  # descriptions of photos added in the dashboard: {"images/uploads/x.jpg": {"fr": "...", "en": "..."}}
-articles=load('articles.json')['articles']
+all_articles=load('articles.json')['articles']
+articles=[article for article in all_articles if visible(article)]  # an article can be hidden with "visible": false
 testimonials=load('testimonials.json')
 ui=load('ui.json')
 legal=load('legal.json')
@@ -385,6 +386,10 @@ for code in LANGS:
   keep={trip['slug'] for trip in trips if trip['type']==kind}
   for stale in (ROOT/PREFIX[code]/folder).glob('*.html'):
    if stale.name!='index.html' and stale.stem not in keep:stale.unlink()
+for code in LANGS:
+ keep={article['slug'] for article in articles}
+ for stale in (ROOT/PREFIX[code]/'blog').glob('*.html'):
+  if stale.name!='index.html' and stale.stem not in keep:stale.unlink()
 sitemap_entries=''
 for out,path,language,url in pages:
  if path=='404.html':continue
