@@ -117,7 +117,7 @@
 	MX.routes.text = function (parts, view) {
 		if (parts[0] === 'about' && MX.routes.aboutText) return MX.routes.aboutText(parts.slice(1), view);
 		if ((parts[0] === 'privacy' || parts[0] === 'terms') && MX.routes.legalText) return MX.routes.legalText(parts[0], parts.slice(1), view);
-		if ((parts[0] === 'contact' || parts[0] === 'plan') && MX.routes.pageText) return MX.routes.pageText(parts[0], parts.slice(1), view);
+		if ((parts[0] === 'contact' || parts[0] === 'plan' || parts[0] === 'home') && MX.routes.pageText) return MX.routes.pageText(parts[0], parts.slice(1), view);
 		MX.say('');
 		view.textContent = '';
 		MX.setHead(MX.HOME, 'Home', 'Website Text', 'Choose the page you want to change.');
@@ -140,7 +140,7 @@
 		view.appendChild(g1);
 		view.appendChild(heading('Main pages'));
 		var g2 = el('div', 'mx-secgrid');
-		[['About us', '/about.html', '#/text/about'], ['Home page', '/'], ['Plan your trip', '/plan-your-trip.html', '#/text/plan'], ['Contact page', '/contact.html', '#/text/contact'], ['Privacy policy', '/privacy.html', '#/text/privacy'], ['Terms and conditions', '/terms-and-conditions.html', '#/text/terms']].forEach(function (p) {
+		[['About us', '/about.html', '#/text/about'], ['Home page', '/', '#/text/home'], ['Plan your trip', '/plan-your-trip.html', '#/text/plan'], ['Contact page', '/contact.html', '#/text/contact'], ['Privacy policy', '/privacy.html', '#/text/privacy'], ['Terms and conditions', '/terms-and-conditions.html', '#/text/terms']].forEach(function (p) {
 			g2.appendChild(p[2] ? card(p[2], 'text', p[0], p[1], false) : card('', 'text', p[0], p[1], true));
 		});
 		view.appendChild(g2);
