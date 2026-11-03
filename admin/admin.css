@@ -162,6 +162,7 @@ body.mx-sub [class*="CollectionMain"] ul{padding-left:0}
 .mx-soon{align-self:flex-start;margin-top:4px;padding:3px 12px;border-radius:999px;background:#e9e7e3;color:var(--mx-muted);font-size:14px;font-weight:700}
 
 /* ---- My Tours page ---- */
+.mx-tours{display:none}
 body.mx-tours-open .mx-tours{display:block;position:fixed;top:var(--mx-bar-h);left:0;right:0;bottom:0;z-index:99999;overflow:auto;background:var(--mx-sand)}
 body.mx-tours-open .mx-pagehead{position:fixed;z-index:100000;background:var(--mx-sand)}
 .mx-tours .mx-home-inner{padding-top:calc(var(--mx-head-h,170px) + 4px)}
@@ -247,3 +248,7 @@ body.mx-tours-open .mx-pagehead{position:fixed;z-index:100000;background:var(--m
 	.mx-photos{grid-template-columns:repeat(3,minmax(0,1fr))}
 	.mx-status .mx-tour-actions{width:100%}
 }
+
+/* Old editor: no preview link. */
+[class*="PreviewButtonContainer"]{display:none!important}
+.mx-version{margin:28px 0 0;font-size:14px;color:var(--mx-muted)}
