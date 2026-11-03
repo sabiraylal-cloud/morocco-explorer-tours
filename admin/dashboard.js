@@ -4,6 +4,7 @@
 (function () {
 	'use strict';
 
+	var VERSION = '4.1';
 	var SITE_URL = 'https://moroccoexplorertours.com';
 	var SITE_NAME = 'Morocco Explorer Tours';
 	var HOME = '#/home';
@@ -31,8 +32,7 @@
 		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer.', soon: true },
 		{ icon: 'text', color: '#3f4f4a', title: 'Website Text', text: 'Words on your pages, and blog articles.', soon: true },
 		{ icon: 'star', color: '#a8742a', title: 'Reviews', text: 'What your travellers say about you.', href: '#/collections/reviews' },
-		{ icon: 'phone', color: '#d98a1a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/collections/settings' },
-		{ icon: 'clock', color: '#4a5560', title: 'Waiting to publish', text: 'See your changes and put them on the website.', href: '#/workflow' }
+		{ icon: 'phone', color: '#d98a1a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/collections/settings' }
 	];
 
 	function svg(name) {
@@ -128,6 +128,9 @@
 		inner.appendChild(hello);
 		inner.appendChild(lead);
 		inner.appendChild(grid);
+		var ver = el('p', 'mx-version');
+		ver.textContent = 'Dashboard version ' + VERSION;
+		inner.appendChild(ver);
 		home.appendChild(inner);
 
 		head = el('div', 'mx-pagehead');
@@ -141,7 +144,7 @@
 		[back, headTitle, headText].forEach(function (n) { headIn.appendChild(n); });
 		head.appendChild(headIn);
 
-		tours = el('main', 'mx-home mx-tours');
+		tours = el('main', 'mx-tours');
 		tours.setAttribute('aria-label', 'My Tours');
 		var tin = el('div', 'mx-home-inner');
 		var add = el('a', 'mx-primary', svg('plus') + '<span>Add a new tour</span>');
@@ -381,7 +384,7 @@
 		el: el, svg: svg, ICONS: ICONS, api: api, reason: reason, say: say, loadFile: loadFile, loadTrips: loadTrips,
 		encode: encode, saveTrips: saveTrips, getState: function () { return state; }, setState: function (s) { state = s; },
 		priceText: priceText, lengthText: lengthText, thumb: thumb, isVisible: isVisible, setHead: setHead,
-		SITE_URL: SITE_URL, SECTION: SECTION, HOME: HOME, TRIPS_FILE: TRIPS_FILE, REPO: REPO
+		VERSION: VERSION, SITE_URL: SITE_URL, SECTION: SECTION, HOME: HOME, TRIPS_FILE: TRIPS_FILE, REPO: REPO
 	};
 
 	function escapeHtml(s) {
