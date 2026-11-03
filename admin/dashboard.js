@@ -4,7 +4,7 @@
 (function () {
 	'use strict';
 
-	var VERSION = '7.0';
+	var VERSION = '8.0';
 	var SITE_URL = 'https://moroccoexplorertours.com';
 	var SITE_NAME = 'Morocco Explorer Tours';
 	var HOME = '#/home';
@@ -32,7 +32,8 @@
 		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer.', href: '#/photos' },
 		{ icon: 'text', color: '#3f4f4a', title: 'Website Text', text: 'Words on your pages, and blog articles.', href: '#/text' },
 		{ icon: 'star', color: '#a8742a', title: 'Reviews', text: 'What your travellers say about you.', href: '#/reviews' },
-		{ icon: 'phone', color: '#d98a1a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/contact' }
+		{ icon: 'phone', color: '#d98a1a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/contact' },
+		{ icon: 'clock', color: '#4a5560', title: 'Recent changes', text: 'See what was changed lately, and undo a change.', href: '#/history' }
 	];
 
 	function svg(name) {
@@ -345,16 +346,19 @@
 		// A list page (not the editor): show the "< Home" header with a plain title.
 		var m = /^#\/collections\/([^\/?]+)\/?(?:\?.*)?$/.exec(window.location.hash);
 		var page = m && PAGES[m[1]];
-		var wf = window.location.hash.indexOf('#/workflow') === 0;
 		var tm = /^#\/tours(?:\/([^\/?]+))?(?:\/([^\/?]+))?(?:\/([^\/?]+))?\/?$/.exec(window.location.hash);
 		// Photos, Website Text, Contact, Reviews and Blog share the same full-screen layer as My Tours.
-		var gm = /^#\/(photos|text|contact|reviews|blog)(?:\/([^?]*?))?\/?$/.exec(window.location.hash);
+		var gm = /^#\/(photos|text|contact|reviews|blog|history)(?:\/([^?]*?))?\/?$/.exec(window.location.hash);
 		var onPhotos = !!gm;
 		var onTours = !!tm || onPhotos;
 		var onToursList = !!tm && !tm[1] && !onPhotos;
 		document.body.classList.toggle('mx-tours-open', loggedIn && onTours);
 		if (loggedIn && onTours) {
+			if (head.parentNode !== tours) tours.insertBefore(head, tours.firstChild);
+		} else if (head.parentNode === tours) document.body.appendChild(head);
+		if (loggedIn && onTours) {
 			if (window.location.hash !== lastRoute) {
+				tours.scrollTop = 0; // every page starts at the top
 				lastRoute = window.location.hash;
 				toursListView.style.display = onToursList ? '' : 'none';
 				toursDetail.style.display = onToursList ? 'none' : '';
@@ -364,12 +368,12 @@
 			}
 			if (onToursList) showTours();
 		} else if (!onTours) { toursLoaded = false; lastRoute = ''; }
-		var sub = loggedIn && (!!page || wf || onTours);
+		var sub = loggedIn && (!!page || onTours);
 		document.body.classList.toggle('mx-sub', sub);
 		if (sub) {
 			if (onToursList) { headTitle.textContent = 'My Tours'; headText.textContent = 'All your tours, in the same order as on the website. Tap Change to edit a tour.'; }
-			else if (!onTours) headTitle.textContent = page ? page[0] : 'Waiting to publish';
-			if (!onTours) headText.textContent = page ? page[1] : 'Changes you saved that are not on the website yet.';
+			else if (!onTours) headTitle.textContent = page ? page[0] : '';
+			if (!onTours) headText.textContent = page ? page[1] : '';
 			document.documentElement.style.setProperty('--mx-head-h', (head.offsetHeight + 4) + 'px');
 		}
 		if (loggedIn && onHome) {
