@@ -37,7 +37,8 @@
 		if (r = m.match(/^add (\d+) photos?$/)) return 'Added ' + r[1] + ' photo' + (r[1] === '1' ? '' : 's');
 		if (r = m.match(/^change description of photo (.+)$/)) return 'Changed the description of the photo ' + r[1];
 		if (r = m.match(/^(replace|delete) photo (.+)$/)) return (r[1] === 'replace' ? 'Replaced the photo ' : 'Deleted the photo ') + r[2];
-		if (r = m.match(/^change About page \((\w+), (\w+)\)$/)) return 'Changed the About page (' + r[1] + ', ' + (r[2] === 'en' ? 'English' : 'French') + ')';
+		if (r = m.match(/^change (Privacy policy|Terms and conditions) \((\w+), (\w+)\)$/)) return 'Changed the ' + r[1] + ' (' + (r[3] === 'en' ? 'English' : 'French') + ')';
+		if (r = m.match(/^change (.+) page \((\w+), (\w+)\)$/)) return 'Changed the ' + r[1] + ' page (' + (r[3] === 'en' ? 'English' : 'French') + ')';
 		if (r = m.match(/^undo "(.+)"$/)) return 'Undid: ' + r[1];
 		return m.charAt(0).toUpperCase() + m.slice(1);
 	}
