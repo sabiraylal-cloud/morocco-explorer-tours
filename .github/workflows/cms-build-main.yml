@@ -9,6 +9,7 @@ on:
       - data/trips.json
       - data/articles.json
       - data/images.json
+      - data/uploads.json
       - data/site.json
       - data/testimonials.json
       - data/ui.json
