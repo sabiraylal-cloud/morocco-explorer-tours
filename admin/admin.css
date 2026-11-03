@@ -164,8 +164,8 @@ body.mx-sub [class*="CollectionMain"] ul{padding-left:0}
 /* ---- My Tours page ---- */
 .mx-tours{display:none}
 body.mx-tours-open .mx-tours{display:block;position:fixed;top:var(--mx-bar-h);left:0;right:0;bottom:0;z-index:99999;overflow:auto;background:var(--mx-sand)}
-body.mx-tours-open .mx-pagehead{position:fixed;z-index:100000;background:var(--mx-sand)}
-.mx-tours .mx-home-inner{padding-top:calc(var(--mx-head-h,170px) + 4px)}
+body.mx-sub .mx-tours .mx-pagehead{position:static;z-index:auto;padding:20px clamp(16px,4vw,32px) 0}
+.mx-tours .mx-home-inner{padding-top:12px}
 .mx-primary{
 	display:inline-flex;align-items:center;gap:10px;padding:16px 26px;border-radius:14px;background:var(--mx-accent);color:#fff;
 	font-weight:800;font-size:19px;text-decoration:none;box-shadow:0 4px 12px rgba(180,71,43,.3);
@@ -272,3 +272,4 @@ body.mx-tours-open .mx-pagehead{position:fixed;z-index:100000;background:var(--m
 .mx-quote{margin:0 0 14px;color:var(--mx-ink);font-size:16px;line-height:1.5}
 .mx-sub-text a{color:var(--mx-accent);font-weight:700}
 .mx-secgrid + .mx-note{margin-top:16px}
+.mx-sub-text a{display:inline-block;padding:11px 0;margin:-9px 0}
