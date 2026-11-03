@@ -169,8 +169,7 @@
       "price": {
         "amount": 250,
         "currency": "EUR"
-      },
-      "visible": false
+      }
     },
     {
       "slug": "vallee-oued-zat-4-jours",
