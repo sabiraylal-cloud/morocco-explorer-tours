@@ -18,16 +18,17 @@
 		phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"/>',
 		star: '<path d="m12 3 2.8 5.8 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.3l1.1-6.2L3 9.7l6.2-.9L12 3Z"/>',
 		back: '<path d="M19 12H5"/><path d="m11 18-6-6 6-6"/>',
+		text: '<path d="M5 6V4h14v2"/><path d="M12 4v16"/><path d="M9 20h6"/>',
 		clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>'
 	};
 
 	var CARDS = [
-		{ icon: 'map', color: '#b4472b', title: 'My Treks & excursions', text: 'Change days, descriptions and photos. Add a new trip.', href: '#/collections/trips' },
-		{ icon: 'blog', color: '#4f8a3c', title: 'Blog articles', text: 'Write or change the stories on your blog.', href: '#/collections/blog' },
-		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer to a trip.', href: '#/collections/trips' },
-		{ icon: 'phone', color: '#a8742a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/collections/settings' },
-		{ icon: 'star', color: '#7a6a3a', title: 'Reviews', text: 'What your travellers say about you.', href: '#/collections/reviews' },
-		{ icon: 'clock', color: '#3f4f4a', title: 'Waiting to publish', text: 'See your changes and put them on the website.', href: '#/workflow' }
+		{ icon: 'map', color: '#b4472b', title: 'My Tours', text: 'Add and change your treks and day trips.', href: '#/collections/trips' },
+		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer.', href: '#/collections/trips' },
+		{ icon: 'text', color: '#3f4f4a', title: 'Website Text', text: 'Words on your pages, and blog articles.', href: '#/collections/blog' },
+		{ icon: 'star', color: '#a8742a', title: 'Reviews', text: 'What your travellers say about you.', href: '#/collections/reviews' },
+		{ icon: 'phone', color: '#d98a1a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/collections/settings' },
+		{ icon: 'clock', color: '#4a5560', title: 'Waiting to publish', text: 'See your changes and put them on the website.', href: '#/workflow' }
 	];
 
 	function svg(name) {

@@ -57,13 +57,13 @@ body.mx-home-open .mx-home{
 .mx-lead{margin:0 0 28px;font-size:clamp(17px,2.4vw,20px);color:var(--mx-muted)}
 .mx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
 .mx-card{
-	display:flex;flex-direction:column;gap:8px;padding:24px;border:1px solid var(--mx-line);border-radius:22px;background:var(--mx-paper);
+	display:flex;flex-direction:column;gap:8px;padding:24px;border:0;border-radius:22px;background:var(--mx-paper);
 	color:var(--mx-ink);text-decoration:none;box-shadow:0 2px 10px rgba(36,31,27,.06);transition:transform .15s,box-shadow .15s;
 }
 .mx-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(36,31,27,.14)}
 .mx-icon{display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:16px;color:#fff;margin-bottom:8px}
 .mx-icon svg{width:32px;height:32px}
-.mx-card-title{font-family:var(--mx-font);font-weight:700;font-size:24px;line-height:1.2;color:var(--mx-brown)}
+.mx-card-title{font-family:var(--mx-font);font-weight:800;font-size:22px;line-height:1.2;color:var(--mx-brown)}
 .mx-card-text{font-size:17px;line-height:1.45;color:var(--mx-muted)}
 
 @media (max-width:640px){
