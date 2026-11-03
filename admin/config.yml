@@ -2,6 +2,8 @@ backend:
   name: github
   repo: sabiraylal-cloud/morocco-explorer-tours
   branch: main
+  base_url: https://decap-proxy.sabiraylal.workers.dev
+  auth_endpoint: /auth
   use_graphql: true
   squash_merges: true
   commit_messages:
