@@ -15,7 +15,11 @@
 	function titleFromPlain(p) {
 		return escapeHtml(p).replace(/\r?\n/g, '<br>').replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
 	}
-	MX.aboutWords = { titleToPlain: titleToPlain, titleFromPlain: titleFromPlain, escapeHtml: escapeHtml };
+	// The big title of the home page: a new line and one word in the handwritten style (shown between stars).
+	var SCRIPT_OPEN = '<span class="home-script">';
+	function heroToPlain(s) { return String(s).replace(/<br\s*\/?>/gi, '\n').replace(/<span class="home-script">([\s\S]*?)<\/span>/g, '*$1*'); }
+	function heroFromPlain(p) { return escapeHtml(p).replace(/\r?\n/g, '<br>').replace(/\*([^*\n]+)\*/g, SCRIPT_OPEN + '$1</span>'); }
+	MX.aboutWords = { titleToPlain: titleToPlain, titleFromPlain: titleFromPlain, heroToPlain: heroToPlain, heroFromPlain: heroFromPlain, escapeHtml: escapeHtml };
 	MX.pageKit = { escapeHtml: escapeHtml, buildField: function (spec, orig) { return buildField(spec, orig); } };
 
 	// kind: text (one line), title (big title), area (several lines), paras (paragraphs), meta (Google / message: no markup),
@@ -132,7 +136,72 @@
 		], summary: function (u, l) { return u.plan_meta_title[l]; } }
 	];
 
+
+	var HOME_SECTIONS = [
+		{ id: 'top', title: 'Top of the page', icon: 'text', fields: [
+			{ key: 'hero_kicker', label: 'Small title above', kind: 'text' },
+			{ key: 'home_hero_title', label: 'Big title', kind: 'hero' },
+			{ key: 'home_hero_text', label: 'Text', kind: 'area' },
+			{ key: 'home_hero_treks', label: 'First button', kind: 'text' },
+			{ key: 'hero_create', label: 'Second button', kind: 'text' },
+			{ key: 'home_features', label: 'The four short lines under the photo', kind: 'fixed', itemName: 'Line', hint: 'You can change the words, but not add or remove a line.' }
+		], summary: function (u, l) { return flat(u.home_hero_title[l]); } },
+		{ id: 'welcome', title: 'Welcome', icon: 'text', fields: [
+			{ key: 'home_intro_title', label: 'Title', kind: 'text' },
+			{ key: 'home_intro_text', label: 'Text', kind: 'area' },
+			{ key: 'promise_1', label: 'First promise', kind: 'text' },
+			{ key: 'promise_2', label: 'Second promise', kind: 'text' },
+			{ key: 'promise_3', label: 'Third promise', kind: 'text' }
+		], summary: function (u, l) { return u.home_intro_title[l]; } },
+		{ id: 'treks', title: 'Our treks', icon: 'text', fields: [
+			{ key: 'treks_section_kicker', label: 'Small title above', kind: 'text' },
+			{ key: 'treks_section_title', label: 'Title', kind: 'title' },
+			{ key: 'treks_section_text', label: 'Text', kind: 'title', hint: 'Press Enter for a new line.' }
+		], summary: function (u, l) { return flat(u.treks_section_title[l]); } },
+		{ id: 'daytrips', title: 'Our day trips', icon: 'text', fields: [
+			{ key: 'excursions_section_kicker', label: 'Small title above', kind: 'text' },
+			{ key: 'excursions_section_title', label: 'Title', kind: 'title' },
+			{ key: 'excursions_section_text', label: 'Text', kind: 'title', hint: 'Press Enter for a new line.' }
+		], summary: function (u, l) { return flat(u.excursions_section_title[l]); } },
+		{ id: 'story', title: 'Our story', icon: 'text', fields: [
+			{ key: 'story_kicker', label: 'Small title above', kind: 'text' },
+			{ key: 'story_title', label: 'Title', kind: 'title' },
+			{ key: 'story_p1', label: 'First paragraph', kind: 'area' },
+			{ key: 'story_p2', label: 'Second paragraph', kind: 'area' },
+			{ key: 'story_link', label: 'Link', kind: 'text' },
+			{ key: 'story_note', label: 'Words on the photo', kind: 'text' },
+			{ key: 'story_values', label: 'The two short points', kind: 'list', cols: [['Title', 'text'], ['Text', 'area']], itemName: 'Point' }
+		], summary: function (u, l) { return flat(u.story_title[l]); } },
+		{ id: 'steps', title: 'How we work', icon: 'text', fields: [
+			{ key: 'steps_kicker', label: 'Small title above', kind: 'text' },
+			{ key: 'steps_title', label: 'Title', kind: 'text' },
+			{ key: 'steps_text', label: 'Text', kind: 'title', hint: 'Press Enter for a new line.' },
+			{ key: 'home_steps', label: 'The three steps', kind: 'list', cols: [['Number and name', 'text'], ['Title', 'text'], ['Text', 'area']], itemName: 'Step' }
+		], summary: function (u, l) { return count(u.home_steps[l], 'step'); } },
+		{ id: 'questions', title: 'Questions and answers', icon: 'text', fields: [
+			{ key: 'faq_kicker', label: 'Small title above', kind: 'text' },
+			{ key: 'faq_title', label: 'Title', kind: 'title' },
+			{ key: 'faq_link', label: 'Link', kind: 'text' },
+			{ key: 'faqs', label: 'Questions', kind: 'list', cols: [['Question', 'text'], ['Answer', 'area']], itemName: 'Question' }
+		], summary: function (u, l) { return count(u.faqs[l], 'question'); } },
+		{ id: 'reviews', title: 'Reviews block', icon: 'text', fields: [
+			{ key: 'reviews_kicker', label: 'Small title above', kind: 'text' },
+			{ key: 'reviews_title', label: 'Title', kind: 'text', hint: 'The reviews themselves are changed in Reviews.' },
+			{ key: 'reviews_track', label: 'Name of the list (for screen readers)', kind: 'text' },
+			{ key: 'reviews_choose', label: 'Choose a review (for screen readers)', kind: 'text' },
+			{ key: 'reviews_prev', label: 'Previous button (for screen readers)', kind: 'text' },
+			{ key: 'reviews_next', label: 'Next button (for screen readers)', kind: 'text' },
+			{ key: 'reviews_show', label: 'See the review of a traveller', kind: 'text', hint: 'Keep {name} as it is: it becomes the traveller\u2019s name.' },
+			{ key: 'reviews_slide', label: 'Review number', kind: 'text', hint: 'Keep {i} and {n} as they are: they become the numbers.' }
+		], summary: function (u, l) { return u.reviews_title[l]; } },
+		{ id: 'google', title: 'How it looks on Google', icon: 'search', fields: [
+			{ key: 'home_meta_title', label: 'Title on Google', kind: 'meta' },
+			{ key: 'home_meta_description', label: 'Short text on Google', kind: 'meta', area: true, hint: 'One or two sentences.' }
+		], summary: function (u, l) { return u.home_meta_title[l]; } }
+	];
+
 	var PAGES = {
+		home: { title: 'Home page', url: '/', en: '/en/', sections: HOME_SECTIONS, help: 'Change the words of your Home page. The tour cards come from My Tours, the reviews from Reviews, and the photos from Photos. The menu, the footer and the closing call-to-action appear on every page and are not changed here.' },
 		about: { title: 'About us', url: '/about.html', en: '/en/about.html', sections: ABOUT_SECTIONS, help: 'Change the words of your About page. Tap a part to change it. The photos are changed in Photos.' },
 		contact: { title: 'Contact page', url: '/contact.html', en: '/en/contact.html', sections: CONTACT_SECTIONS, help: 'Change the words of your Contact page. Your phone number, email and social links are changed in My Contact Info.' },
 		plan: { title: 'Plan your trip', url: '/plan-your-trip.html', en: '/en/plan-your-trip.html', sections: PLAN_SECTIONS, help: 'Change the words of the Plan your trip page and its form. The message the form creates for the visitor is not changed here.' }
@@ -207,7 +276,7 @@
 			previewUrl: MX.SITE_URL + (lang === 'en' ? page.en : page.url), editor: editor,
 			save: function (apply) {
 				var changed = 0;
-				return MX.mutateFile(FILE, function (d) { changed = apply(d); if (!changed) return false; }, 'content: change ' + page.title + ' page (' + section.id + ', ' + lang + ')')
+				return MX.mutateFile(FILE, function (d) { changed = apply(d); if (!changed) return false; }, 'content: change ' + page.title.replace(/ page$/, '') + ' page (' + section.id + ', ' + lang + ')')
 					.then(function (f) { return changed ? f : { note: 'Nothing was changed, so nothing was saved.' }; });
 			}
 		});
@@ -218,11 +287,11 @@
 		var kind = spec.kind;
 		if (kind === 'list') return listField(spec, orig);
 		if (kind === 'fixed') return fixedField(spec, orig);
-		var shown = kind === 'title' ? titleToPlain(orig) : kind === 'paras' ? orig.join('\n\n') : orig;
+		var shown = kind === 'title' ? titleToPlain(orig) : kind === 'hero' ? heroToPlain(orig) : kind === 'paras' ? orig.join('\n\n') : orig;
 		var type = kind === 'text' || (kind === 'meta' && !spec.area) ? 'text' : 'textarea';
-		var f = F.makeField({ label: spec.label, type: type, hint: kind === 'title' ? 'Press Enter for a new line. Put *stars* around words that should be in italic.' : kind === 'paras' ? 'Leave an empty line between paragraphs.' : spec.hint }, shown);
+		var f = F.makeField({ label: spec.label, type: type, hint: spec.hint ? spec.hint : kind === 'hero' ? 'Press Enter for a new line. Put *stars* around the word shown in the handwritten style.' : kind === 'title' ? 'Press Enter for a new line. Put *stars* around words that should be in italic.' : kind === 'paras' ? 'Leave an empty line between paragraphs.' : spec.hint }, shown);
 		var input = f.node.querySelector('input,textarea');
-		if (type === 'textarea') input.rows = kind === 'paras' ? 12 : kind === 'title' ? 3 : 5;
+		if (type === 'textarea') input.rows = kind === 'paras' ? 12 : (kind === 'title' || kind === 'hero') ? 3 : 5;
 		return {
 			node: f.node,
 			read: function () {
@@ -230,6 +299,7 @@
 				if (!String(v).trim()) return { error: 'Please fill in "' + spec.label + '".' };
 				if (v === shown) return { changed: false };
 				if (kind === 'title') return { changed: true, value: titleFromPlain(v.trim()) };
+				if (kind === 'hero') return { changed: true, value: heroFromPlain(v.trim()) };
 				if (kind === 'paras') {
 					var ps = v.split(/\n\s*\n/).map(function (s) { return s.trim(); }).filter(Boolean);
 					return { changed: true, value: ps.map(escapeHtml) };
