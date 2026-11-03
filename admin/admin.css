@@ -1,0 +1,68 @@
+/* Morocco Explorer Tours content dashboard: brand look and friendly home page. */
+@font-face{font-family:'Playfair Display';font-weight:700;font-style:normal;font-display:swap;src:url('../assets/fonts/playfair-display-700-latin.woff2') format('woff2')}
+
+:root{
+	--mx-ink:#322820;
+	--mx-muted:#6e6258;
+	--mx-sand:#f6f1e8;
+	--mx-paper:#fffdf9;
+	--mx-clay:#9b4d32;
+	--mx-brown:#653b29;
+	--mx-gold:#f2b33d;
+	--mx-gold-dark:#a8680f;
+	--mx-line:#ded4c6;
+	--mx-bar:#1d1a21;
+	--mx-bar-h:64px;
+}
+
+body{background:var(--mx-sand);color:var(--mx-ink);font-family:Arial,Helvetica,sans-serif}
+::selection{background:var(--mx-gold);color:#1d1a21}
+a:focus-visible,button:focus-visible{outline:3px solid var(--mx-gold);outline-offset:2px}
+
+/* Our top bar covers Decap's own header once somebody is signed in. */
+.mx-bar,.mx-home{display:none}
+body.mx-on .mx-bar{
+	display:flex;align-items:center;gap:14px;position:fixed;top:0;left:0;right:0;z-index:100000;
+	height:var(--mx-bar-h);padding:0 clamp(12px,3vw,32px);background:var(--mx-bar);color:#fff;box-sizing:border-box;
+}
+.mx-homebtn{
+	display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:12px;background:var(--mx-gold);
+	color:#1d1a21;font-weight:700;font-size:17px;text-decoration:none;white-space:nowrap;
+}
+.mx-homebtn svg,.mx-pill svg{width:22px;height:22px;flex:none}
+.mx-sitename{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-spacer{flex:1}
+.mx-pill{
+	display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:0;border-radius:12px;background:rgba(255,255,255,.1);
+	color:#fff;font:inherit;font-size:16px;font-weight:600;text-decoration:none;cursor:pointer;white-space:nowrap;
+}
+.mx-pill:hover{background:rgba(255,255,255,.2)}
+
+/* Room for the bar: Decap's header is hidden behind it and has the same height. */
+body.mx-on #nc-root>div>header,body.mx-on #nc-root header{visibility:hidden}
+
+body.mx-home-open .mx-home{
+	display:block;position:fixed;top:var(--mx-bar-h);left:0;right:0;bottom:0;z-index:99999;overflow:auto;background:var(--mx-sand);
+}
+.mx-home-inner{max-width:1040px;margin:0 auto;padding:clamp(20px,4vw,44px) clamp(16px,4vw,32px) 56px}
+.mx-hello{margin:0 0 10px;font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,6vw,46px);line-height:1.15;color:var(--mx-brown)}
+.mx-lead{margin:0 0 28px;font-size:clamp(17px,2.4vw,20px);color:var(--mx-muted)}
+.mx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.mx-card{
+	display:flex;flex-direction:column;gap:8px;padding:24px;border:1px solid var(--mx-line);border-radius:22px;background:var(--mx-paper);
+	color:var(--mx-ink);text-decoration:none;box-shadow:0 2px 10px rgba(50,40,32,.06);transition:transform .15s,box-shadow .15s;
+}
+.mx-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(50,40,32,.14)}
+.mx-icon{display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:16px;color:#fff;margin-bottom:8px}
+.mx-icon svg{width:32px;height:32px}
+.mx-card-title{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:24px;line-height:1.2;color:var(--mx-brown)}
+.mx-card-text{font-size:17px;line-height:1.45;color:var(--mx-muted)}
+
+@media (max-width:640px){
+	:root{--mx-bar-h:56px}
+	.mx-sitename{display:none}
+	.mx-pill span{display:none}
+	.mx-pill{padding:10px 12px}
+	.mx-homebtn{padding:8px 14px}
+}
+@media (prefers-reduced-motion:reduce){.mx-card{transition:none}.mx-card:hover{transform:none}}
