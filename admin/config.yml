@@ -19,9 +19,7 @@ local_backend: true
 media_folder: images/uploads
 public_folder: /images/uploads
 media_library:
-  name: default
   config:
-    multiple: false
     max_file_size: 8388608
 slug:
   encoding: ascii
@@ -53,7 +51,7 @@ collections:
                 options:
                   - { label: "Trek (plusieurs jours)", value: trek }
                   - { label: "Excursion (une journée)", value: excursion }
-              - { label: Days, name: days, widget: number, value_type: int, min: 1, max: 30, hint: For a trek, the day-by-day list must have this many days. Use 1 for a day trip. }
+              - { label: Days, name: days, widget: number, value_type: int, min: 1, max: 30, hint: "For a trek, the day-by-day list must have this many days. Use 1 for a day trip." }
               - &trip_image
                 label: Main photo
                 name: image
@@ -266,7 +264,7 @@ collections:
           - { label: Business name, name: name, widget: string }
           - { label: Website URL, name: url, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
           - { label: Contact email, name: email, widget: string, pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter a valid email address.'] }
-          - { label: WhatsApp number, name: whatsapp, widget: string, hint: International E.164 format, for example +212700000000., pattern: ['^\+[1-9][0-9]{7,14}$', 'Use + followed by 8 to 15 digits.'] }
+          - { label: WhatsApp number, name: whatsapp, widget: string, hint: "International E.164 format, for example +212700000000.", pattern: ['^\+[1-9][0-9]{7,14}$', 'Use + followed by 8 to 15 digits.'] }
           - { label: Display phone number, name: phone, widget: string }
           - { label: Legal and privacy email, name: legal_email, widget: string, hint: Shown on the terms and privacy pages., pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter a valid email address.'] }
           - { label: Location, name: location, widget: string, hint: Not shown on the pages; the displayed location is the "location" text in data/ui.json. }
