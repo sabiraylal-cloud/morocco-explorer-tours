@@ -1,0 +1,51 @@
+name: Rebuild pages after dashboard saves
+
+# The new My Tours dashboard saves straight to main. This rebuilds the public pages
+# from the saved data and commits them, the same way the pull-request workflow does.
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/trips.json
+      - data/articles.json
+      - data/images.json
+      - data/site.json
+      - data/testimonials.json
+      - data/ui.json
+      - data/legal.json
+      - images/uploads/**
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cms-build-main
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build and validate saved content
+        run: |
+          python3 scripts/build.py
+          python3 scripts/check_site.py
+      - name: Commit generated public pages
+        run: |
+          git add -A -- '*.html' sitemap.xml robots.txt
+          if git diff --cached --quiet; then
+            echo "Generated pages are already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "content: regenerate public pages"
+          git pull --rebase origin main
+          git push origin HEAD:main

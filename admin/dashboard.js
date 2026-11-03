@@ -19,11 +19,15 @@
 		star: '<path d="m12 3 2.8 5.8 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.3l1.1-6.2L3 9.7l6.2-.9L12 3Z"/>',
 		back: '<path d="M19 12H5"/><path d="m11 18-6-6 6-6"/>',
 		text: '<path d="M5 6V4h14v2"/><path d="M12 4v16"/><path d="M9 20h6"/>',
+		pencil: '<path d="M4 20h4L19 9l-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/>',
+		up: '<path d="M12 19V5"/><path d="m6 11 6-6 6 6"/>',
+		down: '<path d="M12 5v14"/><path d="m18 13-6 6-6-6"/>',
+		plus: '<path d="M12 5v14M5 12h14"/>',
 		clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>'
 	};
 
 	var CARDS = [
-		{ icon: 'map', color: '#b4472b', title: 'My Tours', text: 'Add and change your treks and day trips.', href: '#/collections/trips' },
+		{ icon: 'map', color: '#b4472b', title: 'My Tours', text: 'Add and change your treks and day trips.', href: '#/tours' },
 		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer.', soon: true },
 		{ icon: 'text', color: '#3f4f4a', title: 'Website Text', text: 'Words on your pages, and blog articles.', soon: true },
 		{ icon: 'star', color: '#a8742a', title: 'Reviews', text: 'What your travellers say about you.', href: '#/collections/reviews' },
@@ -74,7 +78,12 @@
 		reviews: ['Reviews', 'What your travellers say about you.']
 	};
 
-	var bar, home, head, headTitle, headText;
+	var REPO = 'sabiraylal-cloud/morocco-explorer-tours';
+	var TRIPS_FILE = 'data/trips.json';
+	var EDITOR = '#/collections/trips/entries/trips';
+	var SECTION = { trek: 'treks', excursion: 'excursions' };
+
+	var bar, home, head, headTitle, headText, tours, toursList, toursMsg, toursLoaded = false;
 
 	function build() {
 		bar = el('div', 'mx-bar');
@@ -130,9 +139,156 @@
 		[back, headTitle, headText].forEach(function (n) { headIn.appendChild(n); });
 		head.appendChild(headIn);
 
+		tours = el('main', 'mx-home mx-tours');
+		tours.setAttribute('aria-label', 'My Tours');
+		var tin = el('div', 'mx-home-inner');
+		var add = el('a', 'mx-primary', svg('plus') + '<span>Add a new tour</span>');
+		add.href = EDITOR;
+		toursMsg = el('p', 'mx-toast');
+		toursMsg.setAttribute('role', 'status');
+		toursList = el('div', 'mx-tour-list');
+		[add, toursMsg, toursList].forEach(function (n) { tin.appendChild(n); });
+		tours.appendChild(tin);
+
 		document.body.appendChild(home);
+		document.body.appendChild(tours);
 		document.body.appendChild(head);
 		document.body.appendChild(bar);
+	}
+
+	// ---- My Tours: read and save data/trips.json through GitHub (saving publishes the site) ----
+	function api(path, options) {
+		var user = currentUser();
+		if (!user || !user.token) return Promise.reject(new Error('signin'));
+		options = options || {};
+		options.headers = Object.assign({ Authorization: 'token ' + user.token, Accept: 'application/vnd.github+json' }, options.headers || {});
+		return fetch('https://api.github.com/repos/' + REPO + path, options).then(function (r) {
+			if (!r.ok) throw new Error('http ' + r.status);
+			return r.json();
+		});
+	}
+
+	function decode(b64) {
+		var bin = atob(b64.replace(/\s/g, ''));
+		var bytes = new Uint8Array(bin.length);
+		for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+		return new TextDecoder('utf-8').decode(bytes);
+	}
+
+	function encode(text) {
+		var bytes = new TextEncoder().encode(text), bin = '';
+		for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+		return btoa(bin);
+	}
+
+	function loadTrips() {
+		return api('/contents/' + TRIPS_FILE + '?ref=main').then(function (file) {
+			return { sha: file.sha, data: JSON.parse(decode(file.content)) };
+		});
+	}
+
+	function saveTrips(file, message) {
+		var body = { message: message, content: encode(JSON.stringify(file.data, null, 2) + '\n'), sha: file.sha, branch: 'main' };
+		return api('/contents/' + TRIPS_FILE, { method: 'PUT', body: JSON.stringify(body), headers: { 'Content-Type': 'application/json' } });
+	}
+
+	function say(text, bad) {
+		toursMsg.textContent = text;
+		toursMsg.className = 'mx-toast' + (text ? (bad ? ' mx-bad' : ' mx-good') : '');
+	}
+
+	function isVisible(trip) { return trip.visible !== false; }
+
+	function lengthText(trip) {
+		if (trip.type === 'trek') return trip.days + ' Days / ' + (trip.days - 1) + ' Nights';
+		return '1 Day';
+	}
+
+	function priceText(trip) {
+		var p = trip.price || {};
+		if (typeof p.amount !== 'number' || !(p.amount > 0)) return '';
+		var cur = p.currency || 'USD';
+		var shown = cur === 'USD' ? 'US$' + p.amount : cur === 'EUR' ? '\u20ac' + p.amount : p.amount + ' ' + cur;
+		return 'From ' + shown + ' per person';
+	}
+
+	function thumb(trip) {
+		var key = trip.uploaded_image ? '../' + trip.uploaded_image : trip.image ? '../assets/images/' + trip.image + '-480.webp' : '';
+		return key;
+	}
+
+	function move(index, delta) {
+		say('Saving\u2026');
+		loadTrips().then(function (file) {
+			var list = file.data.trips, trip = list[index];
+			var j = index + delta;
+			while (j >= 0 && j < list.length && list[j].type !== trip.type) j += delta;
+			if (j < 0 || j >= list.length) { say(''); return null; }
+			list[index] = list[j];
+			list[j] = trip;
+			return saveTrips(file, 'content: change tour order').then(function () {
+				say('Saved. The new order will be on the website in a few minutes.');
+				return loadTrips();
+			}).then(drawTours);
+		}).catch(function () { say('Could not save. Please try again in a moment.', true); });
+	}
+
+	function drawTours(file) {
+		var list = file.data.trips;
+		toursList.textContent = '';
+		list.forEach(function (trip, i) {
+			var shown = isVisible(trip);
+			var card = el('article', 'mx-tour');
+			var photo = el('div', 'mx-tour-photo');
+			var src = thumb(trip);
+			if (src) {
+				var im = el('img');
+				im.src = src;
+				im.alt = '';
+				im.loading = 'lazy';
+				photo.appendChild(im);
+			}
+			var info = el('div', 'mx-tour-info');
+			var name = el('h2', 'mx-tour-name');
+			name.textContent = (trip.fr && trip.fr.name) || trip.slug;
+			var meta = el('p', 'mx-tour-meta');
+			var parts = [lengthText(trip)];
+			var price = priceText(trip);
+			if (price) parts.push(price);
+			meta.textContent = parts.join('  \u00b7  ');
+			var badge = el('span', 'mx-badge ' + (shown ? 'mx-on-site' : 'mx-off-site'),
+				shown ? svg('eye') + '<span>On the website</span>' : '<span>Hidden</span>');
+			meta.appendChild(badge);
+			var row = el('div', 'mx-tour-actions');
+			var change = el('a', 'mx-btn mx-btn-main', svg('pencil') + '<span>Change</span>');
+			change.href = EDITOR;
+			var preview = el(shown ? 'a' : 'span', 'mx-btn', svg('eye') + '<span>Preview</span>');
+			if (shown) {
+				preview.href = SITE_URL + '/' + SECTION[trip.type] + '/' + trip.slug + '.html';
+				preview.target = '_blank';
+				preview.rel = 'noopener noreferrer';
+			} else { preview.setAttribute('aria-disabled', 'true'); preview.className += ' mx-btn-off'; }
+			var up = el('button', 'mx-btn', svg('up') + '<span>Up</span>');
+			var down = el('button', 'mx-btn', svg('down') + '<span>Down</span>');
+			up.type = down.type = 'button';
+			var first = !list.some(function (o, k) { return k < i && o.type === trip.type; });
+			var last = !list.some(function (o, k) { return k > i && o.type === trip.type; });
+			if (first) { up.disabled = true; up.className += ' mx-btn-off'; } else up.addEventListener('click', function () { move(i, -1); });
+			if (last) { down.disabled = true; down.className += ' mx-btn-off'; } else down.addEventListener('click', function () { move(i, 1); });
+			[change, preview, up, down].forEach(function (n) { row.appendChild(n); });
+			[name, meta, row].forEach(function (n) { info.appendChild(n); });
+			card.appendChild(photo);
+			card.appendChild(info);
+			toursList.appendChild(card);
+		});
+	}
+
+	function showTours() {
+		if (toursLoaded) return;
+		toursLoaded = true;
+		say('Loading your tours\u2026');
+		loadTrips().then(function (file) { say(''); drawTours(file); })
+			.catch(function () { toursLoaded = false; say('We could not load your tours. Please check your internet and press Home, then My Tours again.', true); });
 	}
 
 	function render() {
@@ -146,11 +302,14 @@
 		var m = /^#\/collections\/([^\/?]+)\/?(?:\?.*)?$/.exec(window.location.hash);
 		var page = m && PAGES[m[1]];
 		var wf = window.location.hash.indexOf('#/workflow') === 0;
-		var sub = loggedIn && (!!page || wf);
+		var onTours = window.location.hash === '#/tours';
+		document.body.classList.toggle('mx-tours-open', loggedIn && onTours);
+		if (loggedIn && onTours) showTours(); else if (!onTours) toursLoaded = false;
+		var sub = loggedIn && (!!page || wf || onTours);
 		document.body.classList.toggle('mx-sub', sub);
 		if (sub) {
-			headTitle.textContent = page ? page[0] : 'Waiting to publish';
-			headText.textContent = page ? page[1] : 'Changes you saved that are not on the website yet.';
+			headTitle.textContent = onTours ? 'My Tours' : page ? page[0] : 'Waiting to publish';
+			headText.textContent = onTours ? 'All your tours, in the same order as on the website. Tap Change to edit a tour.' : page ? page[1] : 'Changes you saved that are not on the website yet.';
 			document.documentElement.style.setProperty('--mx-head-h', (head.offsetHeight + 4) + 'px');
 		}
 		if (loggedIn && onHome) {

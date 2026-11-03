@@ -9,7 +9,10 @@ from urllib.parse import urlencode
 ROOT=Path(__file__).resolve().parents[1]
 def load(name):return json.loads((ROOT/'data'/name).read_text(encoding='utf-8'))
 site=load('site.json')
-trips=load('trips.json')['trips']
+all_trips=load('trips.json')['trips']
+def visible(trip):
+ return trip.get('visible',True) is not False
+trips=[trip for trip in all_trips if visible(trip)]
 treks=[trip for trip in trips if trip['type']=='trek']
 excursions=[trip for trip in trips if trip['type']=='excursion']
 images=load('images.json')
@@ -114,6 +117,15 @@ def brand(light=False):
  return f'<img class="brand-logo" src="{asset("assets/logo-morocco-explorer-tours"+("-light" if light else "")+".png")}" width="1008" height="687" alt="Morocco Explorer Tours">'
 def trip_path(trip):
  return f'{TRIP_SECTION[trip["type"]]}/{trip["slug"]}.html'
+CURRENCY={'USD':('US$','$'),'EUR':('€','€'),'MAD':('MAD','MAD')}
+def price_text(trip):
+ # Optional "price": {"amount": 450, "currency": "USD"}. No price (or no amount): returns '' and nothing is shown.
+ price=trip.get('price') or {}
+ amount=price.get('amount')
+ if not isinstance(amount,(int,float)) or isinstance(amount,bool) or amount<=0:return ''
+ symbol=CURRENCY.get(price.get('currency') or 'USD',(price.get('currency') or 'USD',)*2)[0]
+ number=f'{amount:g}'
+ return f'{symbol}{number}' if lang=='en' and symbol!='MAD' else f'{number} {symbol}'
 def trip_label(trip):
  return t('type_trek',days=trip['days']) if trip['type']=='trek' else t('type_excursion')
 def language_switch():
@@ -145,16 +157,21 @@ def write(title,description,body,section='',schema=None,social=None,head=''):
  robots='<meta name="robots" content="noindex, follow">' if path=='404.html' else ''
  doc=f'''<!doctype html>
 <html lang="{t('html_lang')}"><head><meta charset="utf-8">{robots}<meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} | Morocco Explorer Tours</title><meta name="description" content="{esc(description,quote=True)}"><link rel="canonical" href="{canonical}">{alternates}<meta property="og:type" content="{og_type}"><meta property="og:locale" content="{t('og_locale')}">{other_locales}<meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Morocco Explorer Tours"><meta property="og:image" content="{social_image}"><meta property="og:image:alt" content="{esc(social_alt,quote=True)}"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#703d2b"><link rel="icon" href="{asset('assets/favicon.svg')}" type="image/svg+xml">{head}<link rel="stylesheet" href="{asset('assets/styles.css')}"><script src="{asset('assets/site.js')}" defer></script><script type="application/ld+json">{json.dumps(base_schema,ensure_ascii=False).replace('<',chr(92)+'u003c')}</script></head><body class="{section}">{header()}<main id="main">{body}</main>{footer()}</body></html>'''
+ for hidden in all_trips:
+  if not visible(hidden):doc=doc.replace(trip_path(hidden),TRIP_SECTION[hidden['type']]+'/index.html')  # links to a hidden trip go to the list instead
  out=ROOT/current;out.parent.mkdir(parents=True,exist_ok=True);out.write_text(doc+'\n',encoding='utf-8');pages.append((current,path,lang,canonical))
 def trip_photo(trip,cls='',eager=False):
  key=content_image(trip)
  return img(key,image_alt(key,tx(trip)['title']),cls,eager) if key else photo_placeholder(cls)
+def price_line(trip):
+ price=price_text(trip)
+ return f' · {t("price_from_short",price=price)}' if price else ''
 def tripcard(trip):
  text=tx(trip);path=trip_path(trip)
  label=f"{t('card_days',days=trip['days'])} · {t('card_nights',nights=trip['days']-1)}" if trip['type']=='trek' else t('card_day_trip')
  detail=text['key_fact'] if trip['type']=='trek' else text['distance']
  view=t('card_view_trek' if trip['type']=='trek' else 'card_view_excursion')
- return f'''<article class="tour-card" data-type="{trip['type']}" data-days="{trip['days']}"><a class="card-photo" href="{link(page_path(path))}" tabindex="-1" aria-hidden="true">{trip_photo(trip)}<span class="photo-label">{label}</span></a><div class="card-body"><p class="eyebrow">{trip_label(trip)}</p><h3>{a(path,esc(text['name']))}</h3><p class="route-line">{esc(text['level'])} · {esc(detail)}</p><p>{esc(text['description'])}</p><div class="card-bottom"><span>{t('card_from')}</span>{a(path,view+' <span aria-hidden="true">↗</span>')}</div></div></article>'''
+ return f'''<article class="tour-card" data-type="{trip['type']}" data-days="{trip['days']}"><a class="card-photo" href="{link(page_path(path))}" tabindex="-1" aria-hidden="true">{trip_photo(trip)}<span class="photo-label">{label}</span></a><div class="card-body"><p class="eyebrow">{trip_label(trip)}</p><h3>{a(path,esc(text['name']))}</h3><p class="route-line">{esc(text['level'])} · {esc(detail)}</p><p>{esc(text['description'])}</p><div class="card-bottom"><span>{t('card_from')}{price_line(trip)}</span>{a(path,view+' <span aria-hidden="true">↗</span>')}</div></div></article>'''
 
 def articlecard(article,heading='h2'):
  text=tx(article);path='blog/'+article['slug']+'.html'
@@ -162,11 +179,11 @@ def articlecard(article,heading='h2'):
 
 def testimonial_carousel():
  reviews=testimonials['reviews']
- by_slug={trip['slug']:trip for trip in trips}
+ by_slug={trip['slug']:trip for trip in all_trips}
  def card(i,review):
   text=tx(review);trip=by_slug[review['trip']]
   country=f'<span class="testimonial-country">{esc(review["country"][lang])}</span>' if review.get('country') else ''
-  return f'''<article class="testimonial-card" role="group" aria-roledescription="slide" aria-label="{t('reviews_slide',i=i+1,n=len(reviews))}"><p class="testimonial-trip">{a(trip_path(trip),esc(text['trip_label']),'testimonial-trip-link')}</p><h3>{esc(text['title'])}</h3><p class="testimonial-summary">{esc(text['text'])}</p><div class="testimonial-person"><span class="testimonial-avatar" aria-hidden="true">{esc(review['initials'])}</span><div><strong class="testimonial-name">{esc(review['name'])}</strong>{country}</div><span class="testimonial-arrow-link" aria-hidden="true">↗</span></div></article>'''
+  return f'''<article class="testimonial-card" role="group" aria-roledescription="slide" aria-label="{t('reviews_slide',i=i+1,n=len(reviews))}"><p class="testimonial-trip">{a(trip_path(trip),esc(text['trip_label']),'testimonial-trip-link') if visible(trip) else esc(text['trip_label'])}</p><h3>{esc(text['title'])}</h3><p class="testimonial-summary">{esc(text['text'])}</p><div class="testimonial-person"><span class="testimonial-avatar" aria-hidden="true">{esc(review['initials'])}</span><div><strong class="testimonial-name">{esc(review['name'])}</strong>{country}</div><span class="testimonial-arrow-link" aria-hidden="true">↗</span></div></article>'''
  slides=''.join(card(i,review) for i,review in enumerate(reviews))
  dots=''.join(f'<button type="button" class="testimonial-dot" data-slide="{i}" aria-controls="testimonial-track" aria-label="{esc(t("reviews_show",name=review["name"]),quote=True)}" title="{esc(review["name"],quote=True)}"'+(' aria-current="true"' if i==0 else '')+'><span aria-hidden="true"></span></button>' for i,review in enumerate(reviews))
  return f'''<section id="testimonials" class="section container testimonials" role="region" aria-roledescription="carousel" aria-labelledby="testimonials-title"><div class="section-heading"><div><p class="eyebrow">{t('reviews_kicker')}</p><h2 id="testimonials-title">{t('reviews_title')}</h2></div></div><div id="testimonial-track" class="testimonial-track" tabindex="0" aria-label="{t('reviews_track')}">{slides}</div><div class="testimonial-controls" hidden><button type="button" class="testimonial-arrow testimonial-prev" aria-label="{t('reviews_prev')}" title="{t('reviews_prev')}" aria-controls="testimonial-track" aria-disabled="true"><span aria-hidden="true"></span></button><div class="testimonial-pagination" role="group" aria-label="{t('reviews_choose')}">{dots}</div><button type="button" class="testimonial-arrow testimonial-next" aria-label="{t('reviews_next')}" title="{t('reviews_next')}" aria-controls="testimonial-track" aria-disabled="false"><span aria-hidden="true"></span></button></div><p class="sr-only testimonial-status" role="status" aria-live="polite" aria-atomic="true"></p></section>'''
@@ -201,6 +218,9 @@ def gallery_img(key):
  html=img(key,image_alt(key),'gallery-photo')
  focus=images[key].get('focus')
  return html.replace('<img ',f'<img style="object-position:{esc(focus,quote=True)}" ',1) if focus else html
+def trip_price_html(trip):
+ price=price_text(trip)
+ return t('trip_price_from',price=price) if price else t('trip_price')
 def trip_page(trip):
  text=tx(trip);is_trek=trip['type']=='trek'
  start_page(trip_path(trip))
@@ -227,8 +247,9 @@ def trip_page(trip):
  others=[other for other in trips if other['type']==trip['type'] and other is not trip]
  more=f'<section class="container section"><div class="section-heading"><div><h2>{t("trip_more_treks" if is_trek else "trip_more_excursions")}</h2></div>{a(section+"/index.html",t("treks_section_all" if is_trek else "excursions_section_all"),"text-link")}</div><div class="tour-grid">{"".join(tripcard(other) for other in others)}</div></section>'
  request=a(plan_link(trip),t('trip_request_trek' if is_trek else 'trip_request_excursion'),'button')
- body=crumbs(section+'/index.html',t('nav_treks' if is_trek else 'nav_excursions'))+f'''<section class="container detail-hero"><div><p class="eyebrow">{trip_label(trip)}</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['intro'])}</p><div class="facts">{fact_html}</div>{request}</div>{trip_photo(trip,'detail-photo',True)}</section><section class="container section detail-layout"><div><p class="eyebrow">{t('trip_route_kicker')}</p>{plan}{highlights}</div><aside class="planning-note"><h2>{t('trip_included')}</h2>{item_list(text['included'],'check-list')}<h2>{t('trip_excluded')}</h2>{item_list(text['excluded'],'cross-list')}<p class="trip-age">{t('trip_age')}</p><p>{t('trip_price')}</p><hr><p class="eyebrow">{t('trip_good_kicker')}</p><p>{esc(text['note'])}</p>{request}</aside></section>{gallery}{more}'''+cta()
+ body=crumbs(section+'/index.html',t('nav_treks' if is_trek else 'nav_excursions'))+f'''<section class="container detail-hero"><div><p class="eyebrow">{trip_label(trip)}</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['intro'])}</p><div class="facts">{fact_html}</div>{request}</div>{trip_photo(trip,'detail-photo',True)}</section><section class="container section detail-layout"><div><p class="eyebrow">{t('trip_route_kicker')}</p>{plan}{highlights}</div><aside class="planning-note"><h2>{t('trip_included')}</h2>{item_list(text['included'],'check-list')}<h2>{t('trip_excluded')}</h2>{item_list(text['excluded'],'cross-list')}<p class="trip-age">{t('trip_age')}</p><p>{trip_price_html(trip)}</p><hr><p class="eyebrow">{t('trip_good_kicker')}</p><p>{esc(text['note'])}</p>{request}</aside></section>{gallery}{more}'''+cta()
  schema={'@context':'https://schema.org','@type':'TouristTrip','name':text['title'],'description':text['description'],'inLanguage':lang,'touristType':t('tour_type'),'provider':{'@type':'TravelAgency','name':site['name'],'url':site['url']}}
+ if price_text(trip):schema['offers']={'@type':'Offer','price':f"{trip['price']['amount']:g}",'priceCurrency':trip['price'].get('currency') or 'USD'}
  if is_trek:schema['itinerary']={'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':name} for i,name in enumerate(text['route'])]}
  key=content_image(trip)
  social=(image_url(key),image_alt(key)) if key else None
@@ -304,11 +325,12 @@ def build_language():
   contents=''.join(f'<li><a href="#{slug}-section-{i}">{esc(section["heading"])}</a></li>' for i,section in enumerate(text['sections']))+''.join(f'<li><a href="#{anchor}">{esc(label)}</a></li>' for anchor,label,_ in extras)
   source=text.get('source')
   source_note=f'<p class="article-source">{t("article_further")} <a href="{esc(source["url"],quote=True)}">{esc(source["label"])}</a>.</p>' if source else ''
-  related=next(trip for trip in trips if trip['slug']==article['trip'])
+  related=next(trip for trip in all_trips if trip['slug']==article['trip'])
+  related_path=trip_path(related) if visible(related) else TRIP_SECTION[related['type']]+'/index.html'
   whatsapp='https://wa.me/'+site['whatsapp'].lstrip('+')+'?'+urlencode({'text':t('article_whatsapp_text',title=text['title'])})
   cover=content_image(article)
   cover_alt=image_alt(cover,text['title'])
-  body=f'''<nav class="breadcrumbs container" aria-label="{t('breadcrumb')}">{a('index.html',t('home'))}<span aria-hidden="true">/</span>{a('blog/index.html',t('footer_blog'))}<span aria-hidden="true">/</span><span aria-current="page">{esc(text['category'])}</span></nav><article class="container blog-article"><header class="article-header"><p class="eyebrow">{esc(text['category'])} · MOROCCO EXPLORER TOURS</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['intro'])}</p></header><figure class="article-image">{img(cover,cover_alt,'article-photo',True)}</figure><div class="article-layout"><nav class="article-contents" aria-label="{t('article_in_this')}"><h2>{t('article_in_this')}</h2><ol>{contents}</ol></nav><div class="article-copy">{sections}{''.join(html for *_,html in extras)}{source_note}<section class="article-next"><h2>{esc(text['cta_title'])}</h2><p>{esc(text['cta_text'])}</p><div class="button-row">{a(trip_path(related),esc(text['tour_label'])+' ↗','button')}<a class="button secondary" href="{esc(whatsapp,quote=True)}" target="_blank" rel="noopener noreferrer">{t('article_whatsapp')}</a></div><p class="article-next-links">{a('plan-your-trip.html',t('article_plan'),'text-link')} {a('contact.html',t('article_enquire'),'text-link')}</p></section>{a('blog/index.html','<span aria-hidden="true">←</span> '+t('all_articles'),'text-link')}</div></div></article>'''
+  body=f'''<nav class="breadcrumbs container" aria-label="{t('breadcrumb')}">{a('index.html',t('home'))}<span aria-hidden="true">/</span>{a('blog/index.html',t('footer_blog'))}<span aria-hidden="true">/</span><span aria-current="page">{esc(text['category'])}</span></nav><article class="container blog-article"><header class="article-header"><p class="eyebrow">{esc(text['category'])} · MOROCCO EXPLORER TOURS</p><h1>{esc(text['title'])}</h1><p class="lead">{esc(text['intro'])}</p></header><figure class="article-image">{img(cover,cover_alt,'article-photo',True)}</figure><div class="article-layout"><nav class="article-contents" aria-label="{t('article_in_this')}"><h2>{t('article_in_this')}</h2><ol>{contents}</ol></nav><div class="article-copy">{sections}{''.join(html for *_,html in extras)}{source_note}<section class="article-next"><h2>{esc(text['cta_title'])}</h2><p>{esc(text['cta_text'])}</p><div class="button-row">{a(related_path,esc(text['tour_label'])+' ↗','button')}<a class="button secondary" href="{esc(whatsapp,quote=True)}" target="_blank" rel="noopener noreferrer">{t('article_whatsapp')}</a></div><p class="article-next-links">{a('plan-your-trip.html',t('article_plan'),'text-link')} {a('contact.html',t('article_enquire'),'text-link')}</p></section>{a('blog/index.html','<span aria-hidden="true">←</span> '+t('all_articles'),'text-link')}</div></div></article>'''
   schema={'@context':'https://schema.org','@type':'BlogPosting','headline':text['title'],'description':text['description'],'image':image_url(cover),'datePublished':article.get('date'),'author':{'@type':'Organization','name':site['name']},'publisher':{'@type':'Organization','name':site['name']},'mainEntityOfPage':article_url,'articleSection':text['category'],'inLanguage':lang}
   write(text.get('meta_title') or text['title'],text['description'],body,'blog-detail',schema=schema,social=(schema['image'],cover_alt))
 
@@ -354,6 +376,11 @@ def build_language():
  write(t('notfound_meta_title'),t('notfound_meta_description'),intro(t('notfound_kicker'),t('notfound_title'),t('notfound_lead'))+f'<div class="container collection button-row">{a("index.html",t("notfound_home"),"button")}{a("treks/index.html",t("notfound_tours"),"button secondary")}</div>')
 
 for lang in LANGS:build_language()
+for trip in all_trips:
+ if not visible(trip):
+  for code in LANGS:
+   stale=ROOT/PREFIX[code]/trip_path(trip)
+   if stale.is_file():stale.unlink()
 sitemap_entries=''
 for out,path,language,url in pages:
  if path=='404.html':continue

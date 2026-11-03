@@ -1137,6 +1137,14 @@
     "fr": "<strong>Prix sur demande.</strong><br>Le tarif dépend de la date et de la taille du groupe.",
     "en": "<strong>Price on request.</strong><br>The rate depends on the date and group size."
   },
+  "trip_price_from": {
+    "fr": "<strong>À partir de {price} par personne.</strong><br>Le tarif dépend de la date et de la taille du groupe.",
+    "en": "<strong>From {price} per person.</strong><br>The rate depends on the date and group size."
+  },
+  "price_from_short": {
+    "fr": "À partir de {price}",
+    "en": "From {price}"
+  },
   "trip_good_kicker": {
     "fr": "BON À SAVOIR",
     "en": "GOOD TO KNOW"

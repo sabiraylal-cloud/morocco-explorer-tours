@@ -52,6 +52,23 @@ collections:
                 options:
                   - { label: "Trek (plusieurs jours)", value: trek }
                   - { label: "Excursion (une journée)", value: excursion }
+              - { label: Show this trip on the website, name: visible, widget: boolean, default: true, required: false, hint: "Turn this off to hide the trip from the website. Nothing is deleted." }
+              - label: Price per person
+                name: price
+                widget: object
+                required: false
+                hint: Optional. Leave the price empty if you prefer "Price on request".
+                fields:
+                  - { label: Price from, name: amount, widget: number, value_type: int, min: 1, required: false, hint: "For example 450." }
+                  - label: Currency
+                    name: currency
+                    widget: select
+                    default: USD
+                    required: false
+                    options:
+                      - { label: "US dollars (US$)", value: USD }
+                      - { label: "Euros (€)", value: EUR }
+                      - { label: "Moroccan dirhams (MAD)", value: MAD }
               - { label: Number of days, name: days, widget: number, value_type: int, min: 1, max: 30, hint: "For a trek, add one entry per day in \"Day by day\" below. Use 1 for a day trip." }
               - &trip_image
                 label: Main photo
