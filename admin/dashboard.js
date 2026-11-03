@@ -21,12 +21,12 @@
 	};
 
 	var CARDS = [
-		{ icon: 'map', color: '#9b4d32', title: 'My Treks & excursions', text: 'Change days, descriptions and photos. Add a new trip.', href: '#/collections/trips' },
-		{ icon: 'blog', color: '#2f7a46', title: 'Blog articles', text: 'Write or change the stories on your blog.', href: '#/collections/blog' },
-		{ icon: 'photo', color: '#1f6fb5', title: 'Photos', text: 'Add photos from your phone or computer to a trip.', href: '#/collections/trips' },
-		{ icon: 'phone', color: '#b87a14', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/collections/settings' },
-		{ icon: 'star', color: '#8a6420', title: 'Reviews', text: 'What your travellers say about you.', href: '#/collections/reviews' },
-		{ icon: 'clock', color: '#3a3541', title: 'Waiting to publish', text: 'See your changes and put them on the website.', href: '#/workflow' }
+		{ icon: 'map', color: '#2f5d43', title: 'My Treks & excursions', text: 'Change days, descriptions and photos. Add a new trip.', href: '#/collections/trips' },
+		{ icon: 'blog', color: '#4f8a3c', title: 'Blog articles', text: 'Write or change the stories on your blog.', href: '#/collections/blog' },
+		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer to a trip.', href: '#/collections/trips' },
+		{ icon: 'phone', color: '#a8742a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/collections/settings' },
+		{ icon: 'star', color: '#7a6a3a', title: 'Reviews', text: 'What your travellers say about you.', href: '#/collections/reviews' },
+		{ icon: 'clock', color: '#3f4f4a', title: 'Waiting to publish', text: 'See your changes and put them on the website.', href: '#/workflow' }
 	];
 
 	function svg(name) {
