@@ -165,6 +165,10 @@
           "Anything not listed under “Included”"
         ],
         "note": "For very fit hikers who are comfortable on steep trails and scree. The Tizi n’Aguelzim pass can hold snow into spring: the route is confirmed according to the season."
+      },
+      "price": {
+        "amount": 250,
+        "currency": "EUR"
       }
     },
     {
