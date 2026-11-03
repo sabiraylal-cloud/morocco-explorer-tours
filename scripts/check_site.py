@@ -124,7 +124,7 @@ for item in articles+all_trips:
 for t in all_trips:
  if t['type'] not in SECTION:errors.append(f'{t["slug"]}: type must be trek or excursion');continue
  for key in t.get('gallery',[]):
-  if key not in images:errors.append(f'{t["slug"]}: unknown gallery image {key}')
+  if key not in images and not (str(key).startswith('images/uploads/') and (ROOT/key).resolve().is_relative_to(upload_root) and (ROOT/key).is_file()):errors.append(f'{t["slug"]}: unknown gallery image {key}')
  for code in LANGS:
   text=t[code]
   if t['type']=='trek' and len(text['days'])!=t['days']:errors.append(f'{t["slug"]} ({code}): day-by-day length must equal days')

@@ -16,6 +16,7 @@ trips=[trip for trip in all_trips if visible(trip)]
 treks=[trip for trip in trips if trip['type']=='trek']
 excursions=[trip for trip in trips if trip['type']=='excursion']
 images=load('images.json')
+uploads_alt=load('uploads.json') if (ROOT/'data/uploads.json').is_file() else {}  # descriptions of photos added in the dashboard: {"images/uploads/x.jpg": {"fr": "...", "en": "..."}}
 articles=load('articles.json')['articles']
 testimonials=load('testimonials.json')
 ui=load('ui.json')
@@ -98,7 +99,7 @@ def image_url(value,width=None):
  relative,_=uploaded_image_path(value)
  return site['url'].rstrip('/')+'/'+relative
 def image_alt(key,fallback=''):
- return images.get(key,{}).get('alt',{}).get(lang) or fallback
+ return images.get(key,{}).get('alt',{}).get(lang) or uploads_alt.get(key,{}).get(lang) or fallback
 def img(key,alt,cls='',eager=False):
  sizes='100vw' if cls=='hero-photo' else '(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 33vw'
  if cls=='article-photo':sizes='(max-width: 560px) calc(100vw - 36px), (max-width: 1100px) calc(100vw - 56px), (max-width: 1336px) calc(100vw - 96px), 1240px'
@@ -213,10 +214,12 @@ def plan_link(trip):
  return 'plan-your-trip.html?'+urlencode({'tour':tx(trip)['title'],'type':t_list('form_type_options')[1 if trip['type']=='trek' else 2]})
 def item_list(items,cls=''):
  return f'<ul class="{cls}">'+''.join(f'<li>{esc(item)}</li>' for item in items)+'</ul>'
-def gallery_img(key):
+def full_image(key):
+ return image_file(key,max(image_widths(key))) if key in images else uploaded_image_path(key)[0]
+def gallery_img(key,fallback=''):
  # Optional "focus" in data/images.json keeps the subject in the 4:3 gallery frame (CSS object-position).
- html=img(key,image_alt(key),'gallery-photo')
- focus=images[key].get('focus')
+ html=img(key,image_alt(key,fallback),'gallery-photo')
+ focus=images.get(key,{}).get('focus')
  return html.replace('<img ',f'<img style="object-position:{esc(focus,quote=True)}" ',1) if focus else html
 def trip_price_html(trip):
  price=price_text(trip)
@@ -242,7 +245,7 @@ def trip_page(trip):
  highlights=f'<p class="eyebrow space-top">{t("trip_highlights_kicker")}</p><h2>{t("trip_highlights")}</h2>{item_list(text["highlights"],"experience-list")}'
  gallery=''
  if trip['gallery']:
-  figures=''.join(f'<figure><a class="gallery-link" href="{link(image_file(key,max(image_widths(key))))}">{gallery_img(key)}</a><figcaption>{esc(image_alt(key))}</figcaption></figure>' for key in trip['gallery'])
+  figures=''.join(f'<figure><a class="gallery-link" href="{link(full_image(key))}">{gallery_img(key,'' if key in images else text['title'])}</a><figcaption>{esc(image_alt(key,'' if key in images else text['title']))}</figcaption></figure>' for key in trip['gallery'])
   gallery=f'<section class="container section trip-gallery-section"><p class="eyebrow">{t("trip_gallery_kicker")}</p><h2>{t("trip_gallery")}</h2><div class="trip-gallery">{figures}</div></section>'
  others=[other for other in trips if other['type']==trip['type'] and other is not trip]
  more=f'<section class="container section"><div class="section-heading"><div><h2>{t("trip_more_treks" if is_trek else "trip_more_excursions")}</h2></div>{a(section+"/index.html",t("treks_section_all" if is_trek else "excursions_section_all"),"text-link")}</div><div class="tour-grid">{"".join(tripcard(other) for other in others)}</div></section>'

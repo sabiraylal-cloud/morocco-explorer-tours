@@ -4,7 +4,7 @@
 (function () {
 	'use strict';
 
-	var VERSION = '4.1';
+	var VERSION = '5.0';
 	var SITE_URL = 'https://moroccoexplorertours.com';
 	var SITE_NAME = 'Morocco Explorer Tours';
 	var HOME = '#/home';
@@ -29,7 +29,7 @@
 
 	var CARDS = [
 		{ icon: 'map', color: '#b4472b', title: 'My Tours', text: 'Add and change your treks and day trips.', href: '#/tours' },
-		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer.', soon: true },
+		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer.', href: '#/photos' },
 		{ icon: 'text', color: '#3f4f4a', title: 'Website Text', text: 'Words on your pages, and blog articles.', soon: true },
 		{ icon: 'star', color: '#a8742a', title: 'Reviews', text: 'What your travellers say about you.', href: '#/collections/reviews' },
 		{ icon: 'phone', color: '#d98a1a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/collections/settings' }
@@ -347,8 +347,10 @@
 		var page = m && PAGES[m[1]];
 		var wf = window.location.hash.indexOf('#/workflow') === 0;
 		var tm = /^#\/tours(?:\/([^\/?]+))?(?:\/([^\/?]+))?(?:\/([^\/?]+))?\/?$/.exec(window.location.hash);
-		var onTours = !!tm;
-		var onToursList = !!tm && !tm[1];
+		var pm = /^#\/photos(?:\/(lib|up)\/([^\/?]+))?\/?$/.exec(window.location.hash);
+		var onPhotos = !!pm;
+		var onTours = !!tm || onPhotos; // both use the same full-screen layer
+		var onToursList = !!tm && !tm[1] && !onPhotos;
 		document.body.classList.toggle('mx-tours-open', loggedIn && onTours);
 		if (loggedIn && onTours) {
 			if (window.location.hash !== lastRoute) {
@@ -356,6 +358,7 @@
 				toursListView.style.display = onToursList ? '' : 'none';
 				toursDetail.style.display = onToursList ? 'none' : '';
 				if (onToursList) { backLink.href = HOME; backLabel.textContent = 'Home'; toursLoaded = false; listNote = window.MX && window.MX.flash ? window.MX.flash : null; window.MX.flash = null; say(''); }
+				else if (onPhotos) { if (window.MX && window.MX.photosRoute) window.MX.photosRoute(pm[1], pm[2], toursDetail); }
 				else if (window.MX && window.MX.tourRoute) window.MX.tourRoute(tm[1], tm[2], tm[3], toursDetail);
 			}
 			if (onToursList) showTours();

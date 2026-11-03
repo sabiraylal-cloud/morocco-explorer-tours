@@ -321,48 +321,43 @@
 
 	// ---------- photos ----------
 	function photosEditor(trip) {
-		var main = trip.image || '';
+		var UP = 'images/uploads/';
+		var main = trip.uploaded_image || trip.image || '';
 		var gallery = (trip.gallery || []).slice();
-		var uploaded = trip.uploaded_image || '';
 		var images = {};
+		var uploads = [];
+		function isUpload(k) { return String(k).indexOf(UP) === 0; }
 		function tile(key, picked, onTap, label) {
 			var b = el('button', 'mx-photo' + (picked ? ' mx-photo-on' : ''));
 			b.type = 'button';
 			var im = el('img'); im.alt = ''; im.loading = 'lazy';
-			var w = images[key] && images[key].widths ? Math.min.apply(null, images[key].widths) : 480;
-			im.src = '../assets/images/' + key + '-' + w + '.webp';
+			if (isUpload(key)) im.src = '../' + key;
+			else {
+				var w = images[key] && images[key].widths ? Math.min.apply(null, images[key].widths) : 480;
+				im.src = '../assets/images/' + key + '-' + w + '.webp';
+			}
 			b.appendChild(im);
-			var mark = el('span', 'mx-photo-mark', picked ? svg('check') : '');
-			b.appendChild(mark);
-			var cap = (images[key] && images[key].alt && images[key].alt.en) || key;
+			b.appendChild(el('span', 'mx-photo-mark', picked ? svg('check') : ''));
+			var cap = (images[key] && images[key].alt && images[key].alt.en) || (isUpload(key) ? 'Your photo' : key);
 			b.title = cap; b.setAttribute('aria-label', label + ': ' + cap);
 			b.setAttribute('aria-pressed', picked ? 'true' : 'false');
 			b.addEventListener('click', onTap);
 			return b;
 		}
 		return {
-			intro: 'Choose the main photo (shown on the card and at the top of the page) and the photos at the bottom of the page. To add your own photos, use the Photos page (coming soon).',
+			intro: 'Choose the main photo (shown on the card and at the top of the page) and the photos at the bottom of the page. To add your own photos, use the Photos page on Home.',
 			lang: false,
 			render: function (box) {
-				box.appendChild(el('p', 'mx-note', 'Loading photos…'));
-				MX.loadFile('data/images.json').then(function (f) {
-					images = f.data;
-					box.textContent = '';
-					var keys = Object.keys(images);
+				box.appendChild(el('p', 'mx-note', 'Loading photos\u2026'));
+				Promise.all([MX.loadFile('data/images.json'), MX.listUploads ? MX.listUploads() : Promise.resolve([])]).then(function (r) {
+					images = r[0].data;
+					uploads = r[1].map(function (u) { return u.path; });
+					var keys = uploads.concat(Object.keys(images));
 					function draw() {
 						box.textContent = '';
-						if (uploaded) {
-							var u = el('div', 'mx-note');
-							u.textContent = 'A photo you uploaded is used as the main photo. ';
-							var rm = el('button', 'mx-btn', '<span>Use a library photo instead</span>');
-							rm.type = 'button';
-							rm.addEventListener('click', function () { uploaded = ''; box.dispatchEvent(new Event('input', { bubbles: true })); draw(); });
-							u.appendChild(rm);
-							box.appendChild(u);
-						}
 						var h1 = el('h3', 'mx-h3'); h1.textContent = 'Main photo';
 						var g1 = el('div', 'mx-photos');
-						keys.forEach(function (k) { g1.appendChild(tile(k, !uploaded && k === main, function () { main = k; uploaded = ''; box.dispatchEvent(new Event('input', { bubbles: true })); draw(); }, 'Main photo')); });
+						keys.forEach(function (k) { g1.appendChild(tile(k, k === main, function () { main = k; box.dispatchEvent(new Event('input', { bubbles: true })); draw(); }, 'Main photo')); });
 						var h2 = el('h3', 'mx-h3'); h2.textContent = 'Photos at the bottom of the page (' + gallery.length + ')';
 						var g2 = el('div', 'mx-photos');
 						keys.forEach(function (k) {
@@ -379,8 +374,14 @@
 			},
 			collect: function () {
 				if (!Object.keys(images).length) return { error: 'The photos are not loaded yet. Please wait a moment.' };
-				if (!uploaded && !main) return { error: 'Please choose a main photo.' };
-				return { apply: function (t) { if (!uploaded) { delete t.uploaded_image; t.image = main; } t.gallery = gallery.slice(); } };
+				if (!main) return { error: 'Please choose a main photo.' };
+				return {
+					apply: function (t) {
+						if (isUpload(main)) t.uploaded_image = main;
+						else { delete t.uploaded_image; t.image = main; }
+						t.gallery = gallery.slice();
+					}
+				};
 			}
 		};
 	}
