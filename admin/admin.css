@@ -155,3 +155,8 @@ body.mx-sub [class*="CollectionMain"]>*{margin-left:0!important;margin-right:0!i
 body.mx-sub [class*="ViewControls"],body.mx-sub [class*="CollectionControlsContainer"]{display:none}
 body.mx-sub [class*="CardsGrid"]{margin:0!important;padding:0!important;width:100%;max-width:none}
 body.mx-sub [class*="CollectionMain"] ul{padding-left:0}
+
+/* Sections that are not ready yet: faded, not clickable */
+.mx-card-soon{opacity:.55;cursor:default;box-shadow:none}
+.mx-card-soon:hover{transform:none;box-shadow:none}
+.mx-soon{align-self:flex-start;margin-top:4px;padding:3px 12px;border-radius:999px;background:#e9e7e3;color:var(--mx-muted);font-size:14px;font-weight:700}

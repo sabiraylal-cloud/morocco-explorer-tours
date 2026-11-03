@@ -24,8 +24,8 @@
 
 	var CARDS = [
 		{ icon: 'map', color: '#b4472b', title: 'My Tours', text: 'Add and change your treks and day trips.', href: '#/collections/trips' },
-		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer.', href: '#/collections/trips' },
-		{ icon: 'text', color: '#3f4f4a', title: 'Website Text', text: 'Words on your pages, and blog articles.', href: '#/collections/blog' },
+		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer.', soon: true },
+		{ icon: 'text', color: '#3f4f4a', title: 'Website Text', text: 'Words on your pages, and blog articles.', soon: true },
 		{ icon: 'star', color: '#a8742a', title: 'Reviews', text: 'What your travellers say about you.', href: '#/collections/reviews' },
 		{ icon: 'phone', color: '#d98a1a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/collections/settings' },
 		{ icon: 'clock', color: '#4a5560', title: 'Waiting to publish', text: 'See your changes and put them on the website.', href: '#/workflow' }
@@ -101,8 +101,9 @@
 		lead.textContent = 'What would you like to do today? Tap one of the big buttons.';
 		var grid = el('div', 'mx-grid');
 		CARDS.forEach(function (c) {
-			var a = el('a', 'mx-card');
-			a.href = c.href;
+			var a = el(c.soon ? 'div' : 'a', 'mx-card' + (c.soon ? ' mx-card-soon' : ''));
+			if (c.soon) a.setAttribute('aria-disabled', 'true');
+			else a.href = c.href;
 			var icon = el('span', 'mx-icon', svg(c.icon));
 			icon.style.background = c.color;
 			var title = el('span', 'mx-card-title');
@@ -112,6 +113,7 @@
 			a.appendChild(icon);
 			a.appendChild(title);
 			a.appendChild(text);
+			if (c.soon) a.appendChild(el('span', 'mx-soon', 'Coming soon'));
 			grid.appendChild(a);
 		});
 		inner.appendChild(hello);
