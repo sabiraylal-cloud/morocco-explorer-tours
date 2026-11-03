@@ -201,3 +201,49 @@ body.mx-tours-open .mx-pagehead{position:fixed;z-index:100000;background:var(--m
 	.mx-btn{padding:12px 16px}
 }
 .mx-tours .mx-home-inner{max-width:1040px;margin:0 auto;padding-left:0;padding-right:0;width:calc(100% - 2*clamp(16px,4vw,32px))}
+
+/* ---- One tour: status, section cards, edit pages ---- */
+.mx-status{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;justify-content:space-between;padding:20px 24px;border-radius:18px;background:var(--mx-paper);box-shadow:0 2px 10px rgba(36,31,27,.08);border-left:6px solid var(--mx-green);margin-bottom:18px}
+.mx-status-off{border-left-color:#9a948d}
+.mx-status h2{margin:0 0 4px;font-weight:800;font-size:21px}
+.mx-status p{margin:0;color:var(--mx-muted);font-size:17px}
+.mx-secgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mx-sec{display:flex;gap:16px;align-items:center;padding:20px 22px;border-radius:18px;background:var(--mx-paper);box-shadow:0 2px 10px rgba(36,31,27,.08);color:var(--mx-ink);text-decoration:none;transition:transform .15s,box-shadow .15s}
+.mx-sec:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(36,31,27,.14)}
+.mx-sec-icon{flex:none;display:inline-flex;color:var(--mx-accent)}
+.mx-sec-icon svg{width:30px;height:30px}
+.mx-sec-text{display:flex;flex-direction:column;gap:4px;min-width:0}
+.mx-sec-text strong{font-weight:800;font-size:19px;line-height:1.25}
+.mx-sec-text span{color:var(--mx-muted);font-size:16px;line-height:1.35}
+.mx-divider{border:0;border-top:2px dashed var(--mx-line);margin:28px 0 20px}
+.mx-btn-danger{color:var(--mx-accent);border-color:var(--mx-accent);background:#fff}
+.mx-btn-danger svg{width:22px;height:22px}
+.mx-card-form{padding:22px;border-radius:18px;background:var(--mx-paper);box-shadow:0 2px 10px rgba(36,31,27,.08);margin-bottom:16px;display:flex;flex-direction:column;gap:16px}
+.mx-form{display:flex;flex-direction:column;gap:16px;margin-bottom:20px}
+.mx-field{display:flex;flex-direction:column;gap:6px}
+.mx-label{font-weight:800;font-size:17px;color:var(--mx-ink)}
+.mx-hint{font-size:15px;color:var(--mx-muted);line-height:1.4}
+.mx-note{margin:0;padding:14px 16px;border-radius:12px;background:#fff;box-shadow:0 1px 6px rgba(36,31,27,.06);color:var(--mx-muted);font-size:16px;line-height:1.45}
+.mx-tours input,.mx-tours textarea,.mx-tours select{font:inherit;font-size:17px;line-height:1.4;padding:14px 16px;border:1px solid var(--mx-line);border-radius:12px;background:#fff;color:var(--mx-ink);box-sizing:border-box;width:100%}
+.mx-tours input:focus,.mx-tours textarea:focus,.mx-tours select:focus{outline:none;border-color:var(--mx-accent);box-shadow:0 0 0 3px rgba(180,71,43,.2)}
+.mx-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.mx-tab{padding:11px 20px;border-radius:12px;border:1px solid var(--mx-line);background:#fff;color:var(--mx-ink);font:inherit;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer}
+.mx-tab-on{background:var(--mx-accent);border-color:var(--mx-accent);color:#fff}
+.mx-savebar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;position:sticky;bottom:0;padding:14px 0;background:linear-gradient(to top,var(--mx-sand) 70%,transparent)}
+.mx-savebar .mx-primary{border:0;cursor:pointer;font-family:inherit}
+.mx-card-form .mx-primary{border:0;cursor:pointer;font-family:inherit;align-self:flex-start}
+.mx-day-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.mx-day-head strong{font-weight:800;font-size:19px}
+.mx-h3{margin:8px 0 0;font-weight:800;font-size:19px}
+.mx-photos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.mx-photo{position:relative;padding:0;border:3px solid transparent;border-radius:14px;overflow:hidden;background:#e2e0dc;cursor:pointer;aspect-ratio:1/1}
+.mx-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.mx-photo-on{border-color:var(--mx-accent)}
+.mx-photo-mark{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;background:var(--mx-accent);color:#fff;display:none;align-items:center;justify-content:center}
+.mx-photo-on .mx-photo-mark{display:flex}
+.mx-photo-mark svg{width:16px;height:16px}
+@media (max-width:640px){
+	.mx-secgrid{grid-template-columns:1fr}
+	.mx-photos{grid-template-columns:repeat(3,minmax(0,1fr))}
+	.mx-status .mx-tour-actions{width:100%}
+}

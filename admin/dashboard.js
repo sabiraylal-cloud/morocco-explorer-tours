@@ -83,7 +83,7 @@
 	var EDITOR = '#/collections/trips/entries/trips';
 	var SECTION = { trek: 'treks', excursion: 'excursions' };
 
-	var bar, home, head, headTitle, headText, tours, toursList, toursMsg, toursLoaded = false;
+	var bar, home, head, headTitle, headText, backLink, backLabel, tours, toursList, toursMsg, toursListView, toursDetail, toursLoaded = false, lastRoute = '', listNote = null;
 
 	function build() {
 		bar = el('div', 'mx-bar');
@@ -134,6 +134,8 @@
 		var headIn = el('div', 'mx-pagehead-in');
 		var back = el('a', 'mx-back', svg('back') + '<span>Home</span>');
 		back.href = HOME;
+		backLink = back;
+		backLabel = back.querySelector('span');
 		headTitle = el('h1', 'mx-title');
 		headText = el('p', 'mx-sub-text');
 		[back, headTitle, headText].forEach(function (n) { headIn.appendChild(n); });
@@ -143,11 +145,15 @@
 		tours.setAttribute('aria-label', 'My Tours');
 		var tin = el('div', 'mx-home-inner');
 		var add = el('a', 'mx-primary', svg('plus') + '<span>Add a new tour</span>');
-		add.href = EDITOR;
+		add.href = '#/tours/new/new';
 		toursMsg = el('p', 'mx-toast');
 		toursMsg.setAttribute('role', 'status');
 		toursList = el('div', 'mx-tour-list');
-		[add, toursMsg, toursList].forEach(function (n) { tin.appendChild(n); });
+		toursListView = el('div');
+		toursListView.appendChild(add);
+		toursListView.appendChild(toursList);
+		toursDetail = el('div');
+		[toursMsg, toursListView, toursDetail].forEach(function (n) { tin.appendChild(n); });
 		tours.appendChild(tin);
 
 		document.body.appendChild(home);
@@ -201,11 +207,14 @@
 
 	var state = null; // { sha, data } of data/trips.json as last read from or saved to GitHub
 
-	function loadTrips() {
-		return api('/contents/' + TRIPS_FILE + '?ref=main').then(function (file) {
-			state = { sha: file.sha, data: JSON.parse(decode(file.content)) };
-			return state;
+	function loadFile(path) {
+		return api('/contents/' + path + '?ref=main').then(function (file) {
+			return { sha: file.sha, data: JSON.parse(decode(file.content)) };
 		});
+	}
+
+	function loadTrips() {
+		return loadFile(TRIPS_FILE).then(function (file) { state = file; return state; });
 	}
 
 	function saveTrips(file, message) {
@@ -293,7 +302,7 @@
 			meta.appendChild(badge);
 			var row = el('div', 'mx-tour-actions');
 			var change = el('a', 'mx-btn mx-btn-main', svg('pencil') + '<span>Change</span>');
-			change.href = EDITOR;
+			change.href = '#/tours/' + trip.slug;
 			var preview = el(shown ? 'a' : 'span', 'mx-btn', svg('eye') + '<span>Preview</span>');
 			if (shown) {
 				preview.href = SITE_URL + '/' + SECTION[trip.type] + '/' + trip.slug + '.html';
@@ -319,7 +328,7 @@
 		if (toursLoaded) return;
 		toursLoaded = true;
 		say('Loading your tours\u2026');
-		loadTrips().then(function (file) { say(''); drawTours(file); })
+		loadTrips().then(function (file) { if (listNote) { say(listNote.text, listNote.bad); listNote = null; } else say(''); drawTours(file); })
 			.catch(function (err) { toursLoaded = false; say('We could not load your tours. ' + reason(err) + ' Then press Home and My Tours again.', true); });
 	}
 
@@ -334,20 +343,46 @@
 		var m = /^#\/collections\/([^\/?]+)\/?(?:\?.*)?$/.exec(window.location.hash);
 		var page = m && PAGES[m[1]];
 		var wf = window.location.hash.indexOf('#/workflow') === 0;
-		var onTours = window.location.hash === '#/tours';
+		var tm = /^#\/tours(?:\/([^\/?]+))?(?:\/([^\/?]+))?(?:\/([^\/?]+))?\/?$/.exec(window.location.hash);
+		var onTours = !!tm;
+		var onToursList = !!tm && !tm[1];
 		document.body.classList.toggle('mx-tours-open', loggedIn && onTours);
-		if (loggedIn && onTours) showTours(); else if (!onTours) toursLoaded = false;
+		if (loggedIn && onTours) {
+			if (window.location.hash !== lastRoute) {
+				lastRoute = window.location.hash;
+				toursListView.style.display = onToursList ? '' : 'none';
+				toursDetail.style.display = onToursList ? 'none' : '';
+				if (onToursList) { backLink.href = HOME; backLabel.textContent = 'Home'; toursLoaded = false; listNote = window.MX && window.MX.flash ? window.MX.flash : null; window.MX.flash = null; say(''); }
+				else if (window.MX && window.MX.tourRoute) window.MX.tourRoute(tm[1], tm[2], tm[3], toursDetail);
+			}
+			if (onToursList) showTours();
+		} else if (!onTours) { toursLoaded = false; lastRoute = ''; }
 		var sub = loggedIn && (!!page || wf || onTours);
 		document.body.classList.toggle('mx-sub', sub);
 		if (sub) {
-			headTitle.textContent = onTours ? 'My Tours' : page ? page[0] : 'Waiting to publish';
-			headText.textContent = onTours ? 'All your tours, in the same order as on the website. Tap Change to edit a tour.' : page ? page[1] : 'Changes you saved that are not on the website yet.';
+			if (onToursList) { headTitle.textContent = 'My Tours'; headText.textContent = 'All your tours, in the same order as on the website. Tap Change to edit a tour.'; }
+			else if (!onTours) headTitle.textContent = page ? page[0] : 'Waiting to publish';
+			if (!onTours) headText.textContent = page ? page[1] : 'Changes you saved that are not on the website yet.';
 			document.documentElement.style.setProperty('--mx-head-h', (head.offsetHeight + 4) + 'px');
 		}
 		if (loggedIn && onHome) {
 			home.querySelector('#mx-hello').innerHTML = 'Hello ' + escapeHtml(firstName(user)) + ' <span aria-hidden="true">👋</span>';
 		}
 	}
+
+	function setHead(backHref, backText, title, text) {
+		backLink.href = backHref;
+		backLabel.textContent = backText;
+		headTitle.textContent = title;
+		headText.textContent = text;
+	}
+
+	window.MX = {
+		el: el, svg: svg, ICONS: ICONS, api: api, reason: reason, say: say, loadFile: loadFile, loadTrips: loadTrips,
+		encode: encode, saveTrips: saveTrips, getState: function () { return state; }, setState: function (s) { state = s; },
+		priceText: priceText, lengthText: lengthText, thumb: thumb, isVisible: isVisible, setHead: setHead,
+		SITE_URL: SITE_URL, SECTION: SECTION, HOME: HOME, TRIPS_FILE: TRIPS_FILE, REPO: REPO
+	};
 
 	function escapeHtml(s) {
 		return String(s).replace(/[&<>"']/g, function (ch) {
