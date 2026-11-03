@@ -5,11 +5,14 @@
       "name": "Samuel Depraz",
       "initials": "SD",
       "trip": "vallee-oued-zat-4-jours",
-      "country": {"fr": "Suisse", "en": "Switzerland"},
+      "country": {
+        "fr": "Suisse",
+        "en": "Switzerland"
+      },
       "fr": {
         "trip_label": "Trek dans la vallée du Zat",
         "title": "Une aventure inoubliable dans le Haut Atlas",
-        "text": "Notre expérience dans le Haut Atlas a été absolument magnifique ! Mohamed était un excellent guide de montagne, passionné, sympathique et très connaisseur de sa région. Les paysages de la vallée du Zat étaient à couper le souffle, et la découverte des villages berbères traditionnels a rendu cette aventure encore plus spéciale. Une expérience vivement recommandée pour découvrir le Maroc authentique !"
+        "text": "Notre expérience dans le Haut Atlas a été absolument magnifique ! Mohamed était un excellent guide de montagne, passionné, sympathique et très connaisseur de sa région. Les paysages de la vallée du Zat étaient à couper le souffle, et la découverte des villages (berbères) traditionnels a rendu cette aventure encore plus spéciale. Une expérience vivement recommandée pour découvrir le Maroc authentique !"
       },
       "en": {
         "trip_label": "Zat Valley trek",
