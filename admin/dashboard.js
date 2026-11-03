@@ -4,7 +4,7 @@
 (function () {
 	'use strict';
 
-	var VERSION = '6.0';
+	var VERSION = '7.0';
 	var SITE_URL = 'https://moroccoexplorertours.com';
 	var SITE_NAME = 'Morocco Explorer Tours';
 	var HOME = '#/home';

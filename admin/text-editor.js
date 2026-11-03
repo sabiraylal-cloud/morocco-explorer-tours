@@ -68,7 +68,7 @@
 			var r = opts.editor.collect();
 			if (r.error) { MX.say(r.error, true); top(); return; }
 			busy = true; MX.say('Saving…');
-			opts.save(r.apply).then(function () { busy = false; dirty = false; MX.say(SAVED); })
+			opts.save(r.apply).then(function (res) { busy = false; dirty = false; MX.say(res && res.note ? res.note : SAVED); })
 				.catch(function (err) { busy = false; bad(err); top(); });
 		});
 	};
@@ -115,6 +115,7 @@
 
 	// ---------- Website Text ----------
 	MX.routes.text = function (parts, view) {
+		if (parts[0] === 'about' && MX.routes.aboutText) return MX.routes.aboutText(parts.slice(1), view);
 		MX.say('');
 		view.textContent = '';
 		MX.setHead(MX.HOME, 'Home', 'Website Text', 'Choose the page you want to change.');
@@ -137,8 +138,8 @@
 		view.appendChild(g1);
 		view.appendChild(heading('Main pages'));
 		var g2 = el('div', 'mx-secgrid');
-		[['Home page', '/'], ['About us', '/about.html'], ['Plan your trip', '/plan-your-trip.html'], ['Contact page', '/contact.html'], ['Privacy policy', '/privacy.html'], ['Terms and conditions', '/terms-and-conditions.html']].forEach(function (p) {
-			g2.appendChild(card('', 'text', p[0], p[1], true));
+		[['About us', '/about.html', true], ['Home page', '/'], ['Plan your trip', '/plan-your-trip.html'], ['Contact page', '/contact.html'], ['Privacy policy', '/privacy.html'], ['Terms and conditions', '/terms-and-conditions.html']].forEach(function (p) {
+			g2.appendChild(p[2] ? card('#/text/about', 'text', p[0], p[1], false) : card('', 'text', p[0], p[1], true));
 		});
 		view.appendChild(g2);
 	};

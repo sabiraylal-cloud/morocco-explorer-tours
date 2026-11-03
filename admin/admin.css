@@ -271,3 +271,4 @@ body.mx-tours-open .mx-pagehead{position:fixed;z-index:100000;background:var(--m
 .mx-avatar{flex:none;width:64px;height:64px;border-radius:50%;background:var(--mx-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px}
 .mx-quote{margin:0 0 14px;color:var(--mx-ink);font-size:16px;line-height:1.5}
 .mx-sub-text a{color:var(--mx-accent);font-weight:700}
+.mx-secgrid + .mx-note{margin-top:16px}
