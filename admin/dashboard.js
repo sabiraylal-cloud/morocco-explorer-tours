@@ -4,7 +4,7 @@
 (function () {
 	'use strict';
 
-	var VERSION = '5.0';
+	var VERSION = '6.0';
 	var SITE_URL = 'https://moroccoexplorertours.com';
 	var SITE_NAME = 'Morocco Explorer Tours';
 	var HOME = '#/home';
@@ -30,9 +30,9 @@
 	var CARDS = [
 		{ icon: 'map', color: '#b4472b', title: 'My Tours', text: 'Add and change your treks and day trips.', href: '#/tours' },
 		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer.', href: '#/photos' },
-		{ icon: 'text', color: '#3f4f4a', title: 'Website Text', text: 'Words on your pages, and blog articles.', soon: true },
-		{ icon: 'star', color: '#a8742a', title: 'Reviews', text: 'What your travellers say about you.', href: '#/collections/reviews' },
-		{ icon: 'phone', color: '#d98a1a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/collections/settings' }
+		{ icon: 'text', color: '#3f4f4a', title: 'Website Text', text: 'Words on your pages, and blog articles.', href: '#/text' },
+		{ icon: 'star', color: '#a8742a', title: 'Reviews', text: 'What your travellers say about you.', href: '#/reviews' },
+		{ icon: 'phone', color: '#d98a1a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/contact' }
 	];
 
 	function svg(name) {
@@ -347,9 +347,10 @@
 		var page = m && PAGES[m[1]];
 		var wf = window.location.hash.indexOf('#/workflow') === 0;
 		var tm = /^#\/tours(?:\/([^\/?]+))?(?:\/([^\/?]+))?(?:\/([^\/?]+))?\/?$/.exec(window.location.hash);
-		var pm = /^#\/photos(?:\/(lib|up)\/([^\/?]+))?\/?$/.exec(window.location.hash);
-		var onPhotos = !!pm;
-		var onTours = !!tm || onPhotos; // both use the same full-screen layer
+		// Photos, Website Text, Contact, Reviews and Blog share the same full-screen layer as My Tours.
+		var gm = /^#\/(photos|text|contact|reviews|blog)(?:\/([^?]*?))?\/?$/.exec(window.location.hash);
+		var onPhotos = !!gm;
+		var onTours = !!tm || onPhotos;
 		var onToursList = !!tm && !tm[1] && !onPhotos;
 		document.body.classList.toggle('mx-tours-open', loggedIn && onTours);
 		if (loggedIn && onTours) {
@@ -358,7 +359,7 @@
 				toursListView.style.display = onToursList ? '' : 'none';
 				toursDetail.style.display = onToursList ? 'none' : '';
 				if (onToursList) { backLink.href = HOME; backLabel.textContent = 'Home'; toursLoaded = false; listNote = window.MX && window.MX.flash ? window.MX.flash : null; window.MX.flash = null; say(''); }
-				else if (onPhotos) { if (window.MX && window.MX.photosRoute) window.MX.photosRoute(pm[1], pm[2], toursDetail); }
+				else if (onPhotos) { var handler = window.MX && window.MX.routes && window.MX.routes[gm[1]]; if (handler) handler(gm[2] ? gm[2].split('/') : [], toursDetail); }
 				else if (window.MX && window.MX.tourRoute) window.MX.tourRoute(tm[1], tm[2], tm[3], toursDetail);
 			}
 			if (onToursList) showTours();
@@ -384,7 +385,7 @@
 	}
 
 	window.MX = {
-		el: el, svg: svg, ICONS: ICONS, api: api, reason: reason, say: say, loadFile: loadFile, loadTrips: loadTrips,
+		routes: {}, el: el, svg: svg, ICONS: ICONS, api: api, reason: reason, say: say, loadFile: loadFile, loadTrips: loadTrips,
 		encode: encode, saveTrips: saveTrips, getState: function () { return state; }, setState: function (s) { state = s; },
 		priceText: priceText, lengthText: lengthText, thumb: thumb, isVisible: isVisible, setHead: setHead,
 		VERSION: VERSION, SITE_URL: SITE_URL, SECTION: SECTION, HOME: HOME, TRIPS_FILE: TRIPS_FILE, REPO: REPO

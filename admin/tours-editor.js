@@ -563,4 +563,6 @@
 			}).catch(function (err) { busy = false; bad(err); top(); });
 		});
 	}
+	// Shared with the Website Text pages (text-editor.js, blog-editor.js).
+	MX.forms = { makeField: makeField, clone: clone, slugify: slugify, find: find, uniqueSlug: uniqueSlug };
 })();

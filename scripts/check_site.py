@@ -66,11 +66,12 @@ for path,p in pages.items():
   if target not in canonical_pages:errors.append(f'{relative}: hreflang {code} points to unknown page {target}')
  if p.alternates.get(expected)!=p.canonical:errors.append(f'{relative}: hreflang {expected} must match canonical')
 
-articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))['articles']
+all_articles=json.loads((ROOT/'data/articles.json').read_text(encoding='utf-8'))['articles']
+articles=[article for article in all_articles if article.get('visible',True) is not False]  # articles shown on the website; hidden ones have no page
 all_trips=json.loads((ROOT/'data/trips.json').read_text(encoding='utf-8'))['trips']
 trips=[trip for trip in all_trips if trip.get('visible',True) is not False]  # trips shown on the website; hidden ones have no page
 SECTION={'trek':'treks','excursion':'excursions'}
-if not articles or len({article['slug'] for article in articles})!=len(articles):errors.append('Blog articles need unique slugs')
+if not articles or len({article['slug'] for article in all_articles})!=len(all_articles):errors.append('Blog articles need unique slugs')
 sitemap_urls={element.text for element in ET.parse(ROOT/'sitemap.xml').findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
 for code,prefix in LANGS.items():
  blog=pages.get((ROOT/prefix/'blog/index.html').resolve())
@@ -93,7 +94,7 @@ for code,prefix in LANGS.items():
 images=json.loads((ROOT/'data/images.json').read_text(encoding='utf-8'))
 site=json.loads((ROOT/'data/site.json').read_text(encoding='utf-8'))
 slug_pattern=re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
-for label,items in [('article',articles),('trip',all_trips)]:
+for label,items in [('article',all_articles),('trip',all_trips)]:
  slugs=[item['slug'] for item in items]
  if len(slugs)!=len(set(slugs)):errors.append(f'Duplicate {label} slug')
  for slug in slugs:
@@ -113,7 +114,7 @@ for upload in upload_root.rglob('*') if upload_root.exists() else []:
  if suffix=='.png' and not data.startswith(allowed[suffix]):errors.append(f'Invalid PNG upload: {upload.relative_to(ROOT)}')
  if suffix=='.gif' and data[:6] not in (b'GIF87a',b'GIF89a'):errors.append(f'Invalid GIF upload: {upload.relative_to(ROOT)}')
  if suffix=='.webp' and not (data[:4]==b'RIFF' and data[8:12]==b'WEBP'):errors.append(f'Invalid WebP upload: {upload.relative_to(ROOT)}')
-for item in articles+all_trips:
+for item in all_articles+all_trips:
  image=item.get('uploaded_image') or item.get('image','')
  if not image and item in all_trips:continue
  if item.get('uploaded_image'):
@@ -134,8 +135,11 @@ for key,image in images.items():
  if 'alt' in image and not all(image['alt'].get(code) for code in LANGS):errors.append(f'{key}: alt text needed in each language')
  for width in image.get('widths',[]):
   if not (ROOT/f'assets/images/{key}-{width}.webp').exists():errors.append(f'{key}: missing assets/images/{key}-{width}.webp')
-for article in articles:
+for article in all_articles:
  if article['trip'] not in {trip['slug'] for trip in all_trips}:errors.append(f'{article["slug"]}: unknown related trip')
+ if article.get('visible',True) is False:
+  for code in LANGS:
+   if len(article[code]['teaser'].split())!=5:errors.append(f'{article["slug"]} ({code}): teaser must contain exactly five words')
 for file in [ROOT/'assets/styles.css']:
  for ref in re.findall(r'url\([\"\']?([^\)\"\']+)',file.read_text(encoding='utf-8')):
   if not ref.startswith('data:') and not (file.parent/ref).exists():errors.append(f'Missing CSS asset {ref}')

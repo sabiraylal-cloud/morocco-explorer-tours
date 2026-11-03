@@ -263,3 +263,11 @@ body.mx-tours-open .mx-pagehead{position:fixed;z-index:100000;background:var(--m
 .mx-nodesc{position:absolute;left:8px;bottom:8px;padding:4px 10px;border-radius:8px;background:rgba(23,26,28,.82);color:#fff;font-weight:700;font-size:13px}
 .mx-bigpic{width:100%;max-height:440px;object-fit:contain;border-radius:14px;background:#e2e0dc}
 @media (max-width:640px){.mx-pics{grid-template-columns:repeat(2,minmax(0,1fr))}.mx-wide{width:100%}}
+
+/* ---- Website Text, Blog, Reviews ---- */
+.mx-h2{margin:26px 0 12px;font-weight:800;font-size:22px;color:var(--mx-ink)}
+.mx-sec-wide{margin:6px 0 0}
+.mx-sec.mx-card-soon .mx-sec-icon{opacity:.6}
+.mx-avatar{flex:none;width:64px;height:64px;border-radius:50%;background:var(--mx-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px}
+.mx-quote{margin:0 0 14px;color:var(--mx-ink);font-size:16px;line-height:1.5}
+.mx-sub-text a{color:var(--mx-accent);font-weight:700}
