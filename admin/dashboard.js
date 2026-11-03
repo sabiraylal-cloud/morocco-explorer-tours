@@ -159,13 +159,31 @@
 	// ---- My Tours: read and save data/trips.json through GitHub (saving publishes the site) ----
 	function api(path, options) {
 		var user = currentUser();
-		if (!user || !user.token) return Promise.reject(new Error('signin'));
+		if (!user || !user.token) return Promise.reject({ status: 401 });
 		options = options || {};
+		// "no-store": GitHub lets the browser keep answers for 60 seconds, which made a second save use an old copy.
+		options.cache = 'no-store';
 		options.headers = Object.assign({ Authorization: 'token ' + user.token, Accept: 'application/vnd.github+json' }, options.headers || {});
 		return fetch('https://api.github.com/repos/' + REPO + path, options).then(function (r) {
-			if (!r.ok) throw new Error('http ' + r.status);
+			if (!r.ok) {
+				var limited = r.status === 403 && r.headers.get('x-ratelimit-remaining') === '0';
+				throw { status: limited ? 429 : r.status };
+			}
 			return r.json();
-		});
+		}, function () { throw { status: 0 }; });
+	}
+
+	// Plain words for every way saving can fail.
+	function reason(err) {
+		var s = err && err.status;
+		if (s === 0) return 'There is no internet connection, or it is too slow. Check it and try again.';
+		if (s === 401) return 'Your sign-in has ended. Press Sign out, sign in again, then try again.';
+		if (s === 403) return 'Your account is not allowed to change the website. Ask the person who manages the website to give you access.';
+		if (s === 404) return 'We could not find the list of tours. Please tell the person who manages the website.';
+		if (s === 409 || s === 422) return 'The tours were changed somewhere else a moment ago. We reloaded them. Please try again.';
+		if (s === 429) return 'Too many changes in a short time. Wait a minute, then try again.';
+		if (s >= 500) return 'The website storage (GitHub) is not answering. Try again in a few minutes.';
+		return 'Something went wrong. Please try again, and tell us if it keeps happening.';
 	}
 
 	function decode(b64) {
@@ -181,9 +199,12 @@
 		return btoa(bin);
 	}
 
+	var state = null; // { sha, data } of data/trips.json as last read from or saved to GitHub
+
 	function loadTrips() {
 		return api('/contents/' + TRIPS_FILE + '?ref=main').then(function (file) {
-			return { sha: file.sha, data: JSON.parse(decode(file.content)) };
+			state = { sha: file.sha, data: JSON.parse(decode(file.content)) };
+			return state;
 		});
 	}
 
@@ -217,20 +238,31 @@
 		return key;
 	}
 
+	var busy = false;
+
 	function move(index, delta) {
+		if (busy || !state) return;
+		busy = true;
+		var before = state;
+		var list = before.data.trips, trip = list[index];
+		var j = index + delta;
+		while (j >= 0 && j < list.length && list[j].type !== trip.type) j += delta;
+		if (j < 0 || j >= list.length) { busy = false; return; }
+		var next = { sha: before.sha, data: { trips: list.slice() } };
+		next.data.trips[index] = list[j];
+		next.data.trips[j] = trip;
 		say('Saving\u2026');
-		loadTrips().then(function (file) {
-			var list = file.data.trips, trip = list[index];
-			var j = index + delta;
-			while (j >= 0 && j < list.length && list[j].type !== trip.type) j += delta;
-			if (j < 0 || j >= list.length) { say(''); return null; }
-			list[index] = list[j];
-			list[j] = trip;
-			return saveTrips(file, 'content: change tour order').then(function () {
-				say('Saved. The new order will be on the website in a few minutes.');
-				return loadTrips();
-			}).then(drawTours);
-		}).catch(function () { say('Could not save. Please try again in a moment.', true); });
+		drawTours(next); // show the new order right away, buttons off while saving
+		saveTrips(next, 'content: change tour order').then(function (res) {
+			state = { sha: res.content.sha, data: next.data };
+			busy = false;
+			drawTours(state);
+			say('Saved. The new order will be on the website in a few minutes.');
+		}).catch(function (err) {
+			// Put the screen back to what is really saved, then say why.
+			loadTrips().then(function (fresh) { busy = false; drawTours(fresh); }, function () { busy = false; drawTours(before); });
+			say('Not saved. ' + reason(err), true);
+		});
 	}
 
 	function drawTours(file) {
@@ -273,8 +305,8 @@
 			up.type = down.type = 'button';
 			var first = !list.some(function (o, k) { return k < i && o.type === trip.type; });
 			var last = !list.some(function (o, k) { return k > i && o.type === trip.type; });
-			if (first) { up.disabled = true; up.className += ' mx-btn-off'; } else up.addEventListener('click', function () { move(i, -1); });
-			if (last) { down.disabled = true; down.className += ' mx-btn-off'; } else down.addEventListener('click', function () { move(i, 1); });
+			if (first || busy) { up.disabled = true; up.className += ' mx-btn-off'; } else up.addEventListener('click', function () { move(i, -1); });
+			if (last || busy) { down.disabled = true; down.className += ' mx-btn-off'; } else down.addEventListener('click', function () { move(i, 1); });
 			[change, preview, up, down].forEach(function (n) { row.appendChild(n); });
 			[name, meta, row].forEach(function (n) { info.appendChild(n); });
 			card.appendChild(photo);
@@ -288,7 +320,7 @@
 		toursLoaded = true;
 		say('Loading your tours\u2026');
 		loadTrips().then(function (file) { say(''); drawTours(file); })
-			.catch(function () { toursLoaded = false; say('We could not load your tours. Please check your internet and press Home, then My Tours again.', true); });
+			.catch(function (err) { toursLoaded = false; say('We could not load your tours. ' + reason(err) + ' Then press Home and My Tours again.', true); });
 	}
 
 	function render() {
