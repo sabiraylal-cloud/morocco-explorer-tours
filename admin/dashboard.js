@@ -17,11 +17,12 @@
 		photo: '<rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10" r="1.8"/><path d="m4 18 5.5-5 4 3.5 3-2.5L21 18"/>',
 		phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"/>',
 		star: '<path d="m12 3 2.8 5.8 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.3l1.1-6.2L3 9.7l6.2-.9L12 3Z"/>',
+		back: '<path d="M19 12H5"/><path d="m11 18-6-6 6-6"/>',
 		clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>'
 	};
 
 	var CARDS = [
-		{ icon: 'map', color: '#2f5d43', title: 'My Treks & excursions', text: 'Change days, descriptions and photos. Add a new trip.', href: '#/collections/trips' },
+		{ icon: 'map', color: '#b4472b', title: 'My Treks & excursions', text: 'Change days, descriptions and photos. Add a new trip.', href: '#/collections/trips' },
 		{ icon: 'blog', color: '#4f8a3c', title: 'Blog articles', text: 'Write or change the stories on your blog.', href: '#/collections/blog' },
 		{ icon: 'photo', color: '#2b6f8e', title: 'Photos', text: 'Add photos from your phone or computer to a trip.', href: '#/collections/trips' },
 		{ icon: 'phone', color: '#a8742a', title: 'My Contact Info', text: 'Phone, WhatsApp, email and social pages.', href: '#/collections/settings' },
@@ -65,7 +66,14 @@
 		window.location.reload();
 	}
 
-	var bar, home;
+	var PAGES = {
+		trips: ['My Treks & excursions', 'Your treks and day trips. Open the list, then tap a trip to change it.'],
+		blog: ['Blog articles', 'The stories on your blog. Tap an article to change it, or add a new one.'],
+		settings: ['My contact info', 'Your phone, WhatsApp, email and social pages.'],
+		reviews: ['Reviews', 'What your travellers say about you.']
+	};
+
+	var bar, home, head, headTitle, headText;
 
 	function build() {
 		bar = el('div', 'mx-bar');
@@ -110,7 +118,17 @@
 		inner.appendChild(grid);
 		home.appendChild(inner);
 
+		head = el('div', 'mx-pagehead');
+		var headIn = el('div', 'mx-pagehead-in');
+		var back = el('a', 'mx-back', svg('back') + '<span>Home</span>');
+		back.href = HOME;
+		headTitle = el('h1', 'mx-title');
+		headText = el('p', 'mx-sub-text');
+		[back, headTitle, headText].forEach(function (n) { headIn.appendChild(n); });
+		head.appendChild(headIn);
+
 		document.body.appendChild(home);
+		document.body.appendChild(head);
 		document.body.appendChild(bar);
 	}
 
@@ -121,6 +139,17 @@
 		var loggedIn = !!user && !!document.querySelector('#nc-root header');
 		document.body.classList.toggle('mx-on', loggedIn);
 		document.body.classList.toggle('mx-home-open', loggedIn && onHome);
+		// A list page (not the editor): show the "< Home" header with a plain title.
+		var m = /^#\/collections\/([^\/?]+)\/?(?:\?.*)?$/.exec(window.location.hash);
+		var page = m && PAGES[m[1]];
+		var wf = window.location.hash.indexOf('#/workflow') === 0;
+		var sub = loggedIn && (!!page || wf);
+		document.body.classList.toggle('mx-sub', sub);
+		if (sub) {
+			headTitle.textContent = page ? page[0] : 'Waiting to publish';
+			headText.textContent = page ? page[1] : 'Changes you saved that are not on the website yet.';
+			document.documentElement.style.setProperty('--mx-head-h', (head.offsetHeight + 4) + 'px');
+		}
 		if (loggedIn && onHome) {
 			home.querySelector('#mx-hello').innerHTML = 'Hello ' + escapeHtml(firstName(user)) + ' <span aria-hidden="true">👋</span>';
 		}
