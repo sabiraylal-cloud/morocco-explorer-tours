@@ -29,34 +29,36 @@ editor:
 
 collections:
   # Every text field exists twice: "Français" (fr, main site) and "English" (en, /en/ pages).
-  - label: Treks & excursions
+  - label: My Treks & excursions
     name: trips
     files:
-      - label: Treks and day trips
+      - label: All my treks and day trips
         name: trips
         file: data/trips.json
         fields:
-          - label: Trips
+          - label: Treks and day trips
             name: trips
+            hint: Tap a trip to open it. Use the + button to add a new one.
             widget: list
             summary: "{{fields.type}} · {{fields.slug}}"
+            label_singular: trip
             minimize_collapsed: true
             fields:
-              - { label: URL slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
-              - label: Type
+              - { label: Page address, name: slug, widget: string, hint: "The end of the web link, for example toubkal-4-jours. Lowercase letters, numbers and hyphens only. Changing it changes the page link.", pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
+              - label: Trek or day trip?
                 name: type
                 widget: select
-                hint: Treks are published under /treks/, day trips under /excursions/.
+                hint: A trek lasts several days. A day trip is one day.
                 options:
                   - { label: "Trek (plusieurs jours)", value: trek }
                   - { label: "Excursion (une journée)", value: excursion }
-              - { label: Days, name: days, widget: number, value_type: int, min: 1, max: 30, hint: "For a trek, the day-by-day list must have this many days. Use 1 for a day trip." }
+              - { label: Number of days, name: days, widget: number, value_type: int, min: 1, max: 30, hint: "For a trek, add one entry per day in \"Day by day\" below. Use 1 for a day trip." }
               - &trip_image
                 label: Main photo
                 name: image
                 widget: select
                 required: false
-                hint: Card and page photo. Leave empty to show "Photo à venir". Each photo's French and English alt text is in data/images.json.
+                hint: Shown on the card and at the top of the page. Leave empty if you have no photo yet.
                 options: &image_options
                   - { label: "sahara", value: sahara }
                   - { label: "casablanca", value: casablanca }
@@ -97,59 +99,62 @@ collections:
                   - { label: "Camp tents on a green plateau, with grazing horses and terraced fields", value: plateau-bivouac-tents }
                   - { label: "Berber village of stacked stone houses below a vast snow-covered High ", value: village-below-snow-wall }
                   - { label: "Group of hikers on a rocky high-mountain ridge, with snow patches and ", value: hikers-rocky-ridge }
-              - label: New uploaded photo
+              - label: Upload a new photo
                 name: uploaded_image
                 widget: image
                 required: false
                 choose_url: false
-                hint: Optional. JPG, PNG, GIF or WebP, maximum 8 MB. Takes priority over the main photo above.
+                hint: Optional. Add a photo from your phone or computer (JPG, PNG or WebP, up to 8 MB). It replaces the main photo above.
               - label: Gallery
                 name: gallery
                 widget: list
                 required: false
-                hint: Photos shown in full (not cropped) at the bottom of the page.
+                hint: More photos, shown at the bottom of the page.
                 field: { label: Photo, name: photo, widget: select, options: *image_options }
               - &trip_text
-                label: Français
+                label: French version
                 name: fr
                 widget: object
                 collapsed: false
+                hint: The main website is in French. Fill this in first.
                 fields:
-                  - { label: Card name, name: name, widget: string }
-                  - { label: Page title, name: title, widget: string }
-                  - { label: Short description (cards and search engines), name: description, widget: text }
-                  - { label: Introduction, name: intro, widget: text }
-                  - { label: Level, name: level, widget: string }
-                  - { label: Key fact (treks), name: key_fact, widget: string, required: false, hint: "For example: 4 167 m (Toubkal)" }
-                  - { label: Duration (day trips), name: duration, widget: string, required: false }
-                  - { label: Distance and drive (day trips), name: distance, widget: string, required: false }
-                  - label: Route stops (treks)
+                  - { label: Name on the card, name: name, widget: string }
+                  - { label: Page title, name: title, widget: string, hint: The big title at the top of the page. }
+                  - { label: Short description, name: description, widget: text, hint: Shown on the cards and in Google. One or two sentences. }
+                  - { label: Introduction, name: intro, widget: text, hint: A few lines at the top of the page. }
+                  - { label: Difficulty level, name: level, widget: string, hint: "For example: Moderate" }
+                  - { label: Key fact (trek), name: key_fact, widget: string, required: false, hint: "For example: 4 167 m (Toubkal)" }
+                  - { label: How long (day trip), name: duration, widget: string, required: false, hint: "For example: 10 hours" }
+                  - { label: Distance and driving time (day trip), name: distance, widget: string, required: false }
+                  - label: Places on the route (trek)
                     name: route
                     widget: list
                     required: false
+                    hint: The main places you pass, in order.
                     field: { label: Place, name: place, widget: string }
                   - label: Highlights
                     name: highlights
                     widget: list
                     min: 1
+                    hint: The best things about this trip, one per line.
                     field: { label: Highlight, name: highlight, widget: string }
-                  - label: Day by day (treks)
+                  - label: Day by day (trek)
                     name: days
                     widget: list
                     required: false
                     summary: "{{fields.title}}"
                     fields:
-                      - { label: Day title, name: title, widget: string }
-                      - { label: Description, name: text, widget: text }
+                      - { label: Title of the day, name: title, widget: string }
+                      - { label: What happens this day, name: text, widget: text }
                       - { label: Walking time, name: walk, widget: string, required: false }
                       - { label: Altitude, name: altitude, widget: string, required: false }
-                      - { label: Overnight, name: overnight, widget: string, required: false }
+                      - { label: Where you sleep, name: overnight, widget: string, required: false }
                       - { label: Meals, name: meals, widget: string, required: false }
-                  - label: Day programme (day trips)
+                  - label: Timetable (day trip)
                     name: program
                     widget: list
                     required: false
-                    hint: Each step contains two values, the time first, then what happens.
+                    hint: For each step, first write the time, then what happens.
                     field:
                       label: Time and step
                       name: step
@@ -157,57 +162,63 @@ collections:
                       min: 2
                       max: 2
                       field: { label: Text, name: text, widget: string }
-                  - label: Included
+                  - label: What is included
                     name: included
                     widget: list
                     min: 1
+                    hint: One item per line, for example Mountain guide.
                     field: { label: Item, name: item, widget: string }
-                  - label: Not included
+                  - label: What is not included
                     name: excluded
                     widget: list
                     min: 1
+                    hint: One item per line, for example Travel insurance.
                     field: { label: Item, name: item, widget: string }
-                  - { label: Good to know, name: note, widget: text }
+                  - { label: Good to know, name: note, widget: text, hint: Extra advice for travellers. }
               - <<: *trip_text
-                label: English
+                label: English version
                 name: en
                 collapsed: true
+                hint: The English pages. Please keep it the same as the French version.
 
   - label: Blog articles
     name: blog
     files:
-      - label: Articles
+      - label: My blog articles
         name: articles
         file: data/articles.json
         fields:
           - label: Articles
             name: articles
             widget: list
+            hint: Tap an article to open it. Use the + button to add a new one.
             summary: "{{fields.slug}}"
+            label_singular: article
             minimize_collapsed: true
             fields:
-              - { label: URL slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
-              - { label: Cover photo, name: image, widget: select, options: *image_options, hint: Alt text for each photo is in data/images.json. }
-              - label: New uploaded cover photo
+              - { label: Page address, name: slug, widget: string, hint: "The end of the web link, for example toubkal-4-jours. Lowercase letters, numbers and hyphens only. Changing it changes the page link.", pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only.'] }
+              - { label: Cover photo, name: image, widget: select, options: *image_options, hint: The photo shown at the top of the article. }
+              - label: Upload a new cover photo
                 name: uploaded_image
                 widget: image
                 required: false
                 choose_url: false
-                hint: Optional. JPG, PNG, GIF or WebP, maximum 8 MB. Takes priority over the cover photo above.
-              - { label: Related trek or day trip slug, name: trip, widget: string, hint: Must match an existing trip URL slug. }
-              - { label: Publication date, name: date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false }
+                hint: Optional. Add a photo from your phone or computer (JPG, PNG or WebP, up to 8 MB). It replaces the cover photo above.
+              - { label: Related trip, name: trip, widget: string, hint: "The page address of the trek or day trip this article is about, for example vallee-oued-zat-4-jours." }
+              - { label: Date of the article, name: date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false }
               - &article_text
-                label: Français
+                label: French version
                 name: fr
                 widget: object
                 collapsed: false
+                hint: The main website is in French. Fill this in first.
                 fields:
-                  - { label: SEO title, name: meta_title, widget: string, required: false, hint: Shown in search results; the page title is used if empty. }
+                  - { label: Title in Google, name: meta_title, widget: string, required: false, hint: Shown in Google results. If empty, the title below is used. }
                   - { label: Title, name: title, widget: string }
                   - { label: Category, name: category, widget: string }
-                  - { label: Search description, name: description, widget: text }
-                  - { label: Five-word card teaser, name: teaser, widget: string, pattern: ['^\S+(?:\s+\S+){4}$', 'Use exactly five words.'] }
-                  - { label: Introduction, name: intro, widget: text }
+                  - { label: Short description for Google, name: description, widget: text }
+                  - { label: Teaser for the card (5 words), name: teaser, widget: string, hint: Exactly five words., pattern: ['^\S+(?:\s+\S+){4}$', 'Use exactly five words.'] }
+                  - { label: Introduction, name: intro, widget: text, hint: A few lines at the top of the article. }
                   - label: Article sections
                     name: sections
                     widget: list
@@ -219,7 +230,7 @@ collections:
                         name: paragraphs
                         widget: list
                         min: 1
-                        hint: "Link to a page with [link text](treks/page-name.html)."
+                        hint: "To add a link to another page, write [link text](treks/page-name.html)."
                         field: { label: Paragraph, name: paragraph, widget: text }
                       - { label: Photo in this section, name: image, widget: select, required: false, options: *image_options }
                       - { label: Photo caption, name: caption, widget: string, required: false }
@@ -249,24 +260,66 @@ collections:
                   - { label: Call-to-action text, name: cta_text, widget: text }
                   - { label: Related trip button label, name: tour_label, widget: string }
               - <<: *article_text
-                label: English
+                label: English version
                 name: en
                 collapsed: true
+                hint: The English pages. Please keep it the same as the French version.
 
-  - label: Website settings
+  - label: My contact info
     name: settings
     files:
-      - label: Contact and social information
+      - label: Phone, email and social links
         name: site
         file: data/site.json
         fields:
-          - { label: Business name, name: name, widget: string }
-          - { label: Website URL, name: url, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
-          - { label: Contact email, name: email, widget: string, pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter a valid email address.'] }
-          - { label: WhatsApp number, name: whatsapp, widget: string, hint: "International E.164 format, for example +212700000000.", pattern: ['^\+[1-9][0-9]{7,14}$', 'Use + followed by 8 to 15 digits.'] }
-          - { label: Display phone number, name: phone, widget: string }
-          - { label: Legal and privacy email, name: legal_email, widget: string, hint: Shown on the terms and privacy pages., pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter a valid email address.'] }
-          - { label: Location, name: location, widget: string, hint: Not shown on the pages; the displayed location is the "location" text in data/ui.json. }
-          - { label: Facebook URL, name: facebook, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
-          - { label: Instagram URL, name: instagram, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
-          - { label: YouTube URL, name: youtube, widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
+          - { label: Business name, name: name, widget: string, hint: The name shown on your website. }
+          - { label: Website address, name: url, hint: "Starts with https://", widget: string, pattern: ['^https://', 'Use a secure https:// URL.'] }
+          - { label: Email, name: email, hint: Where customers write to you., widget: string, pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter a valid email address.'] }
+          - { label: WhatsApp number, name: whatsapp, widget: string, hint: "Start with + and the country code, no spaces, for example +212700000000.", pattern: ['^\+[1-9][0-9]{7,14}$', 'Use + followed by 8 to 15 digits.'] }
+          - { label: Phone number (as shown), name: phone, widget: string, hint: "Written the way you want customers to see it." }
+          - { label: Email for legal pages, name: legal_email, widget: string, hint: Shown on the terms and privacy pages., pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter a valid email address.'] }
+          - { label: Town, name: location, widget: string, hint: Kept for your records. It is not shown on the website pages. }
+          - { label: Facebook page, name: facebook, widget: string, hint: Paste the full link of your page., pattern: ['^https://', 'Use a secure https:// URL.'] }
+          - { label: Instagram page, name: instagram, widget: string, hint: Paste the full link of your page., pattern: ['^https://', 'Use a secure https:// URL.'] }
+          - { label: YouTube channel, name: youtube, widget: string, hint: Paste the full link of your channel., pattern: ['^https://', 'Use a secure https:// URL.'] }
+
+  - label: Reviews
+    name: reviews
+    files:
+      - label: What my travellers say
+        name: testimonials
+        file: data/testimonials.json
+        fields:
+          - { label: format, name: format, widget: hidden }
+          - label: Reviews
+            name: reviews
+            widget: list
+            summary: "{{fields.name}} · {{fields.trip}}"
+            label_singular: review
+            minimize_collapsed: true
+            hint: Tap a review to open it. Use the + button to add a new one. Copy the traveller's words exactly.
+            fields:
+              - { label: Traveller name, name: name, widget: string }
+              - { label: Initials, name: initials, widget: string, hint: "Two letters shown in the circle, for example SD." }
+              - { label: Trip, name: trip, widget: string, hint: "The page address of the trek or day trip, for example vallee-oued-zat-4-jours." }
+              - label: Country
+                name: country
+                widget: object
+                required: false
+                hint: Optional. Shown under the name.
+                fields:
+                  - { label: Country in French, name: fr, widget: string, required: false }
+                  - { label: Country in English, name: en, widget: string, required: false }
+              - &review_text
+                label: French version
+                name: fr
+                widget: object
+                collapsed: false
+                fields:
+                  - { label: Trip name, name: trip_label, widget: string }
+                  - { label: Review title, name: title, widget: string }
+                  - { label: Review, name: text, widget: text }
+              - <<: *review_text
+                label: English version
+                name: en
+                collapsed: true

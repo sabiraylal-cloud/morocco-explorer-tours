@@ -24,6 +24,12 @@ Keep `main` protected in GitHub:
 
 `publish_mode: editorial_workflow` makes each saved draft use a `cms/...` branch and pull request. Move an entry to Ready for review, review the generated pages and uploaded image in that pull request, and publish only after approval and passing checks. Publishing in Decap merges the content pull request, so branch protection is the final enforcement point.
 
+## Friendly home page and look
+
+`admin/admin.css` and `admin/dashboard.js` add the brand colours, the dark top bar (Home, See my website, Sign out) and a "Hello" home page with big buttons at `/admin/#/home`. They only sit on top of Decap: login, saving and publishing are Decap's own. People signed in are sent to Home first; every button opens a normal Decap section. To change a button, edit the `CARDS` list in `admin/dashboard.js`. The Content Security Policy in `admin/index.html` allows `'self'` scripts and fonts for these two files.
+
+Reviews are edited in the "Reviews" section (`data/testimonials.json`). Website text (`data/ui.json`) and business details are not in the dashboard yet.
+
 ## Editing content
 
 The site is bilingual: French is the main site and English is published under `/en/`. Every trek, day trip and article has a **Français** block (open by default) and an **English** block (collapsed) with the same fields. Update both blocks so the two versions stay in step; an empty English block produces empty English pages. Interface text, homepage copy and legal pages are not in the dashboard: edit `data/ui.json` and `data/legal.json` in a pull request, where each key holds the French and English text side by side.
