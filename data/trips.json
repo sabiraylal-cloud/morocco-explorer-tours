@@ -1,166 +1,6 @@
 {
   "trips": [
     {
-      "slug": "toubkal-voie-classique-4-jours",
-      "type": "trek",
-      "days": 4,
-      "image": "trek-hikers-mules-snow",
-      "gallery": [
-        "trek-hikers-mules-snow",
-        "mule-mountain-trail"
-      ],
-      "fr": {
-        "name": "Toubkal par la voie classique",
-        "title": "Trek de 4 jours : ascension du Toubkal par la voie classique",
-        "description": "Au départ d’Imlil, la voie historique vers le plus haut sommet d’Afrique du Nord : Aroumd, Sidi Chamharouch, une nuit en refuge et le sommet du Toubkal à 4 167 m.",
-        "intro": "L’itinéraire le plus direct vers le Toubkal. On monte progressivement depuis la vallée d’Imlil, on dort au refuge au pied du sommet et on part avant l’aube pour atteindre le toit de l’Afrique du Nord, avant de redescendre vers les villages.",
-        "level": "Sportif",
-        "key_fact": "4 167 m (Toubkal)",
-        "route": [
-          "Marrakech",
-          "Imlil",
-          "Aroumd",
-          "Sidi Chamharouch",
-          "Refuge du Toubkal",
-          "Sommet du Toubkal",
-          "Imlil",
-          "Marrakech"
-        ],
-        "highlights": [
-          "Le sommet du Toubkal (4 167 m), point culminant de l’Afrique du Nord",
-          "Le village d’Aroumd et ses cultures en terrasses",
-          "Le sanctuaire de Sidi Chamharouch, au bord du torrent",
-          "Une nuit en refuge au cœur du parc national du Toubkal",
-          "Le lever du jour sur les crêtes du Haut Atlas"
-        ],
-        "days": [
-          {
-            "title": "Marrakech – Imlil – Aroumd",
-            "text": "Départ de Marrakech le matin, environ 1 h 30 de route par Asni. À Imlil, les mules sont chargées et nous montons à travers les noyers et les vergers jusqu’au village d’Aroumd. Après-midi tranquille pour s’acclimater autour du village.",
-            "walk": "2 à 3 h",
-            "altitude": "Imlil 1 740 m → Aroumd env. 1 900 m",
-            "overnight": "Gîte d’étape à Aroumd",
-            "meals": "Déjeuner, dîner"
-          },
-          {
-            "title": "Aroumd – Sidi Chamharouch – Refuge du Toubkal",
-            "text": "On traverse la plaine alluviale d’Aroumd, puis on remonte la vallée jusqu’au sanctuaire de Sidi Chamharouch, lieu de pèlerinage au bord du torrent. Le sentier devient ensuite plus raide jusqu’au refuge, au pied des pentes du Toubkal.",
-            "walk": "5 à 6 h",
-            "altitude": "Sidi Chamharouch 2 310 m → refuge 3 207 m",
-            "overnight": "Refuge du Toubkal (dortoir)",
-            "meals": "Petit-déjeuner, déjeuner, dîner"
-          },
-          {
-            "title": "Sommet du Toubkal (4 167 m) – Imlil",
-            "text": "Départ avant l’aube pour l’ascension, entre éboulis et crêtes. Au sommet, la vue s’ouvre sur les crêtes du Haut Atlas. Retour au refuge, puis longue descente par Sidi Chamharouch jusqu’à Imlil.",
-            "walk": "8 à 9 h",
-            "altitude": "Refuge 3 207 m → sommet 4 167 m → Imlil 1 740 m",
-            "overnight": "Gîte d’étape à Imlil",
-            "meals": "Petit-déjeuner, déjeuner, dîner"
-          },
-          {
-            "title": "Imlil – Marrakech",
-            "text": "Matinée tranquille à Imlil, puis route vers Marrakech, avec une arrivée en début d’après-midi.",
-            "walk": "",
-            "altitude": "",
-            "overnight": "Fin du trek (hébergement à Marrakech non inclus)",
-            "meals": "Petit-déjeuner, déjeuner"
-          }
-        ],
-        "included": [
-          "Transport Marrakech – Imlil – Marrakech",
-          "Guide de montagne",
-          "Mules et muletier pour les bagages",
-          "Tous les hébergements pendant le trek (gîtes et refuge)",
-          "Tous les repas pendant le trek"
-        ],
-        "excluded": [
-          "Hébergement à Marrakech",
-          "Boissons en dehors des repas",
-          "Assurance voyage",
-          "Location de matériel (crampons, piolet, sac de couchage)",
-          "Pourboires",
-          "Tout ce qui n’est pas mentionné dans « Inclus »"
-        ],
-        "note": "Sans difficulté technique de la fin du printemps à l’automne. En hiver et au début du printemps, la neige impose crampons et piolet : nous vous conseillons sur la période et l’équipement. La journée du sommet est longue et demande une bonne condition physique."
-      },
-      "en": {
-        "name": "Toubkal by the classic route",
-        "title": "4-day trek: Toubkal ascent by the classic route",
-        "description": "From Imlil, the historic route to North Africa’s highest summit: Aroumd, Sidi Chamharouch, a night in the refuge and the summit of Toubkal at 4,167 m.",
-        "intro": "The most direct route to Toubkal. You climb gradually from the Imlil valley, sleep at the refuge below the summit and set off before dawn to reach the roof of North Africa, before heading back down to the villages.",
-        "level": "Challenging",
-        "key_fact": "4,167 m (Toubkal)",
-        "route": [
-          "Marrakech",
-          "Imlil",
-          "Aroumd",
-          "Sidi Chamharouch",
-          "Toubkal refuge",
-          "Toubkal summit",
-          "Imlil",
-          "Marrakech"
-        ],
-        "highlights": [
-          "The summit of Toubkal (4,167 m), the highest point in North Africa",
-          "The village of Aroumd and its terraced fields",
-          "The shrine of Sidi Chamharouch beside the mountain stream",
-          "A night in a refuge at the heart of Toubkal National Park",
-          "Daybreak over the High Atlas ridges"
-        ],
-        "days": [
-          {
-            "title": "Marrakech – Imlil – Aroumd",
-            "text": "Leave Marrakech in the morning, about an hour and a half by road via Asni. In Imlil the mules are loaded and we walk up through walnut trees and orchards to the village of Aroumd. A quiet afternoon to acclimatise around the village.",
-            "walk": "2–3 h",
-            "altitude": "Imlil 1,740 m → Aroumd approx. 1,900 m",
-            "overnight": "Gîte (mountain guesthouse) in Aroumd",
-            "meals": "Lunch, dinner"
-          },
-          {
-            "title": "Aroumd – Sidi Chamharouch – Toubkal refuge",
-            "text": "Cross the Aroumd flood plain, then follow the valley up to the shrine of Sidi Chamharouch, a pilgrimage site beside the stream. The trail then steepens all the way to the refuge at the foot of Toubkal’s slopes.",
-            "walk": "5–6 h",
-            "altitude": "Sidi Chamharouch 2,310 m → refuge 3,207 m",
-            "overnight": "Toubkal refuge (dormitory)",
-            "meals": "Breakfast, lunch, dinner"
-          },
-          {
-            "title": "Toubkal summit (4,167 m) – Imlil",
-            "text": "Start before dawn for the ascent over scree and ridges. From the summit the view opens over the High Atlas ridges. Back to the refuge, then a long descent via Sidi Chamharouch to Imlil.",
-            "walk": "8–9 h",
-            "altitude": "Refuge 3,207 m → summit 4,167 m → Imlil 1,740 m",
-            "overnight": "Gîte in Imlil",
-            "meals": "Breakfast, lunch, dinner"
-          },
-          {
-            "title": "Imlil – Marrakech",
-            "text": "A relaxed morning in Imlil, then the drive back to Marrakech, arriving in the early afternoon.",
-            "walk": "",
-            "altitude": "",
-            "overnight": "End of trek (accommodation in Marrakech not included)",
-            "meals": "Breakfast, lunch"
-          }
-        ],
-        "included": [
-          "Transport Marrakech – Imlil – Marrakech",
-          "Mountain guide",
-          "Mules and muleteer for luggage",
-          "All accommodation during the trek (gîtes and refuge)",
-          "All meals during the trek"
-        ],
-        "excluded": [
-          "Accommodation in Marrakech",
-          "Drinks outside meals",
-          "Travel insurance",
-          "Equipment hire (crampons, ice axe, sleeping bag)",
-          "Tips",
-          "Anything not listed under “Included”"
-        ],
-        "note": "No technical difficulty from late spring to autumn. In winter and early spring, snow means crampons and an ice axe are needed: we will advise you on timing and equipment. Summit day is long and requires good fitness."
-      }
-    },
-    {
       "slug": "toubkal-vallee-azzaden-4-jours",
       "type": "trek",
       "days": 4,
@@ -325,6 +165,166 @@
           "Anything not listed under “Included”"
         ],
         "note": "For very fit hikers who are comfortable on steep trails and scree. The Tizi n’Aguelzim pass can hold snow into spring: the route is confirmed according to the season."
+      }
+    },
+    {
+      "slug": "toubkal-voie-classique-4-jours",
+      "type": "trek",
+      "days": 4,
+      "image": "trek-hikers-mules-snow",
+      "gallery": [
+        "trek-hikers-mules-snow",
+        "mule-mountain-trail"
+      ],
+      "fr": {
+        "name": "Toubkal par la voie classique",
+        "title": "Trek de 4 jours : ascension du Toubkal par la voie classique",
+        "description": "Au départ d’Imlil, la voie historique vers le plus haut sommet d’Afrique du Nord : Aroumd, Sidi Chamharouch, une nuit en refuge et le sommet du Toubkal à 4 167 m.",
+        "intro": "L’itinéraire le plus direct vers le Toubkal. On monte progressivement depuis la vallée d’Imlil, on dort au refuge au pied du sommet et on part avant l’aube pour atteindre le toit de l’Afrique du Nord, avant de redescendre vers les villages.",
+        "level": "Sportif",
+        "key_fact": "4 167 m (Toubkal)",
+        "route": [
+          "Marrakech",
+          "Imlil",
+          "Aroumd",
+          "Sidi Chamharouch",
+          "Refuge du Toubkal",
+          "Sommet du Toubkal",
+          "Imlil",
+          "Marrakech"
+        ],
+        "highlights": [
+          "Le sommet du Toubkal (4 167 m), point culminant de l’Afrique du Nord",
+          "Le village d’Aroumd et ses cultures en terrasses",
+          "Le sanctuaire de Sidi Chamharouch, au bord du torrent",
+          "Une nuit en refuge au cœur du parc national du Toubkal",
+          "Le lever du jour sur les crêtes du Haut Atlas"
+        ],
+        "days": [
+          {
+            "title": "Marrakech – Imlil – Aroumd",
+            "text": "Départ de Marrakech le matin, environ 1 h 30 de route par Asni. À Imlil, les mules sont chargées et nous montons à travers les noyers et les vergers jusqu’au village d’Aroumd. Après-midi tranquille pour s’acclimater autour du village.",
+            "walk": "2 à 3 h",
+            "altitude": "Imlil 1 740 m → Aroumd env. 1 900 m",
+            "overnight": "Gîte d’étape à Aroumd",
+            "meals": "Déjeuner, dîner"
+          },
+          {
+            "title": "Aroumd – Sidi Chamharouch – Refuge du Toubkal",
+            "text": "On traverse la plaine alluviale d’Aroumd, puis on remonte la vallée jusqu’au sanctuaire de Sidi Chamharouch, lieu de pèlerinage au bord du torrent. Le sentier devient ensuite plus raide jusqu’au refuge, au pied des pentes du Toubkal.",
+            "walk": "5 à 6 h",
+            "altitude": "Sidi Chamharouch 2 310 m → refuge 3 207 m",
+            "overnight": "Refuge du Toubkal (dortoir)",
+            "meals": "Petit-déjeuner, déjeuner, dîner"
+          },
+          {
+            "title": "Sommet du Toubkal (4 167 m) – Imlil",
+            "text": "Départ avant l’aube pour l’ascension, entre éboulis et crêtes. Au sommet, la vue s’ouvre sur les crêtes du Haut Atlas. Retour au refuge, puis longue descente par Sidi Chamharouch jusqu’à Imlil.",
+            "walk": "8 à 9 h",
+            "altitude": "Refuge 3 207 m → sommet 4 167 m → Imlil 1 740 m",
+            "overnight": "Gîte d’étape à Imlil",
+            "meals": "Petit-déjeuner, déjeuner, dîner"
+          },
+          {
+            "title": "Imlil – Marrakech",
+            "text": "Matinée tranquille à Imlil, puis route vers Marrakech, avec une arrivée en début d’après-midi.",
+            "walk": "",
+            "altitude": "",
+            "overnight": "Fin du trek (hébergement à Marrakech non inclus)",
+            "meals": "Petit-déjeuner, déjeuner"
+          }
+        ],
+        "included": [
+          "Transport Marrakech – Imlil – Marrakech",
+          "Guide de montagne",
+          "Mules et muletier pour les bagages",
+          "Tous les hébergements pendant le trek (gîtes et refuge)",
+          "Tous les repas pendant le trek"
+        ],
+        "excluded": [
+          "Hébergement à Marrakech",
+          "Boissons en dehors des repas",
+          "Assurance voyage",
+          "Location de matériel (crampons, piolet, sac de couchage)",
+          "Pourboires",
+          "Tout ce qui n’est pas mentionné dans « Inclus »"
+        ],
+        "note": "Sans difficulté technique de la fin du printemps à l’automne. En hiver et au début du printemps, la neige impose crampons et piolet : nous vous conseillons sur la période et l’équipement. La journée du sommet est longue et demande une bonne condition physique."
+      },
+      "en": {
+        "name": "Toubkal by the classic route",
+        "title": "4-day trek: Toubkal ascent by the classic route",
+        "description": "From Imlil, the historic route to North Africa’s highest summit: Aroumd, Sidi Chamharouch, a night in the refuge and the summit of Toubkal at 4,167 m.",
+        "intro": "The most direct route to Toubkal. You climb gradually from the Imlil valley, sleep at the refuge below the summit and set off before dawn to reach the roof of North Africa, before heading back down to the villages.",
+        "level": "Challenging",
+        "key_fact": "4,167 m (Toubkal)",
+        "route": [
+          "Marrakech",
+          "Imlil",
+          "Aroumd",
+          "Sidi Chamharouch",
+          "Toubkal refuge",
+          "Toubkal summit",
+          "Imlil",
+          "Marrakech"
+        ],
+        "highlights": [
+          "The summit of Toubkal (4,167 m), the highest point in North Africa",
+          "The village of Aroumd and its terraced fields",
+          "The shrine of Sidi Chamharouch beside the mountain stream",
+          "A night in a refuge at the heart of Toubkal National Park",
+          "Daybreak over the High Atlas ridges"
+        ],
+        "days": [
+          {
+            "title": "Marrakech – Imlil – Aroumd",
+            "text": "Leave Marrakech in the morning, about an hour and a half by road via Asni. In Imlil the mules are loaded and we walk up through walnut trees and orchards to the village of Aroumd. A quiet afternoon to acclimatise around the village.",
+            "walk": "2–3 h",
+            "altitude": "Imlil 1,740 m → Aroumd approx. 1,900 m",
+            "overnight": "Gîte (mountain guesthouse) in Aroumd",
+            "meals": "Lunch, dinner"
+          },
+          {
+            "title": "Aroumd – Sidi Chamharouch – Toubkal refuge",
+            "text": "Cross the Aroumd flood plain, then follow the valley up to the shrine of Sidi Chamharouch, a pilgrimage site beside the stream. The trail then steepens all the way to the refuge at the foot of Toubkal’s slopes.",
+            "walk": "5–6 h",
+            "altitude": "Sidi Chamharouch 2,310 m → refuge 3,207 m",
+            "overnight": "Toubkal refuge (dormitory)",
+            "meals": "Breakfast, lunch, dinner"
+          },
+          {
+            "title": "Toubkal summit (4,167 m) – Imlil",
+            "text": "Start before dawn for the ascent over scree and ridges. From the summit the view opens over the High Atlas ridges. Back to the refuge, then a long descent via Sidi Chamharouch to Imlil.",
+            "walk": "8–9 h",
+            "altitude": "Refuge 3,207 m → summit 4,167 m → Imlil 1,740 m",
+            "overnight": "Gîte in Imlil",
+            "meals": "Breakfast, lunch, dinner"
+          },
+          {
+            "title": "Imlil – Marrakech",
+            "text": "A relaxed morning in Imlil, then the drive back to Marrakech, arriving in the early afternoon.",
+            "walk": "",
+            "altitude": "",
+            "overnight": "End of trek (accommodation in Marrakech not included)",
+            "meals": "Breakfast, lunch"
+          }
+        ],
+        "included": [
+          "Transport Marrakech – Imlil – Marrakech",
+          "Mountain guide",
+          "Mules and muleteer for luggage",
+          "All accommodation during the trek (gîtes and refuge)",
+          "All meals during the trek"
+        ],
+        "excluded": [
+          "Accommodation in Marrakech",
+          "Drinks outside meals",
+          "Travel insurance",
+          "Equipment hire (crampons, ice axe, sleeping bag)",
+          "Tips",
+          "Anything not listed under “Included”"
+        ],
+        "note": "No technical difficulty from late spring to autumn. In winter and early spring, snow means crampons and an ice axe are needed: we will advise you on timing and equipment. Summit day is long and requires good fitness."
       }
     },
     {
